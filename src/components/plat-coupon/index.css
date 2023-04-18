@@ -1,0 +1,181 @@
+/* components/platCoupon/platCoupon.wxss */
+.coupon-item {
+  margin: 15px 0;
+  position: relative;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  height: 95px;
+  background: #fff;
+}
+.coupon-item .left {
+  float: left;
+  color: #fff;
+  text-align: center;
+  border-left: 1px dashed #fff;
+  padding: 20px 0;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f45c43),
+    to(#eb2444)
+  );
+  background: -o-linear-gradient(to left, #f45c43, #eb2444);
+  background: linear-gradient(to left, #f45c43, #eb2444);
+  background: -webkit-linear-gradient(to left, #f45c43, #eb2444);
+  width: 260rpx;
+  height: 55px;
+}
+.coupon-item .left .num {
+  font-weight: 600;
+  font-size: 36rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-family: arial;
+}
+.coupon-item .left .num .coupon-price {
+  font-size: 72rpx;
+  line-height: 72rpx;
+  display: inline-block;
+  font-family: arial;
+}
+.coupon-item .left .condition {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 2px;
+  font-family: arial;
+  margin-top: 10rpx;
+}
+.coupon-item .right {
+  margin-left: 280rpx;
+  padding: 5px;
+  position: relative;
+}
+.coupon-item .right .c-des {
+  height: 30px;
+  font-size: 26rpx;
+  line-height: 30px;
+  overflow: hidden;
+  font-weight: 600;
+}
+.coupon-item .right .c-des .c-type {
+  font-size: 24rpx;
+  background: #fdf0f0;
+  color: #F81A1A;
+  border-radius: 8px;
+  padding: 3px 10px;
+}
+.coupon-item .right .c-date {
+  font-size: 24rpx;
+  margin-top: 25px;
+}
+.coupon-item .right .c-date .c-data-info {
+  font-family: arial;
+}
+.coupon-item .right .c-date .c-btn {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  color: #fff;
+  font-size: 24rpx;
+  font-family: arial;
+  border-radius: 14px;
+  padding: 3px 7px;
+  background: #F81A1A;
+  border: 1px solid #F81A1A;
+}
+
+.coupon-item .right .c-date .c-btn.get-btn {
+  background: #fff;
+  border: 1px solid #F81A1A;
+  color: #F81A1A;
+}
+
+.coupon-item.gray .left {
+  background: #bbb;
+}
+
+.coupon-item.gray .right .c-des .c-type {
+  background: #bbb;
+  color: #fff;
+}
+
+.coupon-item.gray .right .c-date .c-btn {
+  display: none;
+}
+
+.coupon-item .tag-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.coupon-item .sel-btn {
+  position: absolute;
+  right: 10px;
+  top: 35px;
+}
+
+/* 券面 */
+.coupon-surface {
+  padding: 30rpx 0;
+}
+.coupon-content {
+  border: 1rpx solid #f8f8f8;
+  box-shadow: 2rpx 2rpx 10rpx rgba(221, 221, 221, 0.5);
+}
+.coupon-left,
+.coupon-right {
+  display: inline-block;
+  position: relative;
+  padding: 20rpx;
+}
+.coupon-left {
+  width: 22%;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 3rpx dashed #fff;
+  background-image: linear-gradient(60deg, #ff5d4c 10%, #fe9585 90%);
+}
+.coupon-right {
+  vertical-align: top;
+  padding-left: 25rpx;
+}
+.cou-money-amount {
+  text-align: center;
+  color: #F81A1A;
+  vertical-align: top;
+  height: 100rpx;
+}
+.cou-amount {
+  display: inline-block;
+  font-size: 1.8em;
+  padding: 0 10rpx;
+}
+.cou-text {
+  display: inline-block;
+  font-size: 26rpx;
+}
+.use-condition {
+  font-size: 25rpx;
+  color: #fff;
+  vertical-align: bottom;
+}
+.cou-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  height: 95rpx;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+.cou-term {
+  font-size: 28rpx;
+  color: #777;
+}
+
+/* /券面 */

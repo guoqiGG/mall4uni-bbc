@@ -1,0 +1,67 @@
+/* pages/spell-members-details/spell-members-details.wxss */
+image {
+  width: 100%;
+  height: 100%;
+}
+.display {
+  display: none;
+}
+.page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+  overflow: auto;
+}
+.member-item {
+  background: #fff;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+	box-sizing: border-box;
+}
+.head-img {
+  position: relative;
+  display: inline-block;
+  width: 90rpx;
+  height: 90rpx;
+  border: 6rpx solid #F81A1A;
+  border-radius: 50%;
+  margin-right: 25rpx;
+}
+.head-img > image {
+  border-radius: 50%;
+}
+.member-msg {
+  display: inline-block;
+  font-size: 28rpx;
+  vertical-align: top;
+  width: 80%;
+}
+.member-name {
+  margin-top: 15rpx;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+.time {
+  margin-top: 15rpx;
+  color: #aaa;
+  font-size: 26rpx;
+}
+/* 团长标识 */
+.group-leader {
+  position: absolute;
+  bottom: -8rpx;
+  left: 50%;
+  transform: translateX(-50%);
+	width: auto;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: #F81A1A;
+  padding: 3rpx 10rpx;
+  border-radius: 18rpx;
+	word-break: keep-all;
+}

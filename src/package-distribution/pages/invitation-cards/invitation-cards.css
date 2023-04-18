@@ -1,0 +1,144 @@
+.InvitationCards-mian {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.InvitationCards-ont {
+  width: 580rpx;
+  height: 840rpx;
+  border: 1px solid gainsboro;
+  margin: auto;
+  margin-top: 50rpx;
+  border-radius: 10rpx;
+}
+
+.InvitationCards-in {
+  background-color: #fff5ee;
+  width: 552rpx;
+  height: 812rpx;
+  border: 1px solid #ffebcd;
+  margin: auto;
+  margin-top: 10rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.hrLineLeft {
+  display: flex;
+  align-items: center;
+}
+
+.hrLineLeft .line {
+  width: 100rpx;
+  height: 3rpx;
+  background: rgba(255, 166, 0, 0.582);
+}
+
+.hrLineLeft .circle {
+  width: 10rpx;
+  height: 10rpx;
+  background: rgba(255, 166, 0, 0.582);
+  border-radius: 50%;
+}
+
+.hrLineRight .line {
+  width: 100rpx;
+  height: 3rpx;
+  background: rgba(255, 166, 0, 0.582);
+}
+
+.hrLineRight .circle {
+  width: 10rpx;
+  height: 10rpx;
+  background: rgba(255, 166, 0, 0.582);
+  border-radius: 50%;
+}
+
+.hrLineRight {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  /* padding-left: 50rpx; */
+  padding-top: 50rpx;
+  justify-content: center;
+}
+
+.centerText {
+  color: #cd5c5c;
+  font-size: 32rpx;
+  padding: 0 0.75rem;
+}
+
+.InvitationCards-in-image {
+  overflow: hidden;
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-top: 40rpx;
+}
+.InvitationCards-in-image image{
+	width: 100%;
+	height: 100%;
+}
+
+.userinfo-name {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+	max-width: 320rpx;
+	margin: 18rpx auto 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.InvitationCards-yaoqi {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  color: grey;
+}
+
+.InvitationCards-in-image2 {
+  display: flex;
+  width: 300rpx;
+  height: 300rpx;
+  padding: 20rpx;
+  margin: auto;
+  margin-top: 50rpx;
+  background: #fff;
+}
+
+.InvitationCards-in-image2 image {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.InvitationCards-mian-img image {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-top: 30rpx;
+  margin-left: 230rpx;
+}
+
+.InvitationCards-mian-text {
+  position: relative;
+  font-size: 27rpx;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: auto;
+  margin-top: 50rpx;
+  /* background: #CD5C5C; */
+  border-radius: 6rpx;
+  color: #666;
+  width: 300rpx;
+}

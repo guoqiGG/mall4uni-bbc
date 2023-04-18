@@ -1,0 +1,468 @@
+/* pages/confirm-order/confirm-order.wxss */
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+image {
+	display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.process {
+  display: flex;
+  justify-content: space-around;
+  font-size: 25rpx;
+  border-bottom: 1px solid #f2f2f2;
+  padding: .5em 20rpx;
+}
+.process-item {
+  display: inline-block;
+}
+.process-icon {
+  display: block;
+  width: 45rpx;
+  height: 45rpx;
+  margin: 0 auto;
+}
+.process-text {
+  padding: .5em 0;
+}
+.next-icon {
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 25rpx;
+}
+
+/***** 地址栏 ******/
+.add-addr {
+	display: inline-block;
+	margin-left: 30px;
+}
+.address-box {
+  position: relative;
+  font-size: 27rpx;
+  padding: 20rpx 0;
+  border-bottom: 15rpx solid #f9f8f8;
+}
+.recipient {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+	display: flex;
+	justify-content: space-between;
+}
+.recipient,
+.addr-text {
+  padding: 0 60rpx;
+}
+.username {
+	justify-content: space-between;
+	max-width: 80%;
+	overflow: hidden;
+	word-break: keep-all;
+	text-overflow: ellipsis;
+}
+.cellphone {
+  float: right;
+}
+.addr-text {
+  color: #888;
+	padding-bottom: 10px;
+	word-break: break-word;
+}
+/* 地址图标 */
+.addr-icon {
+  position: absolute;
+  top: 25rpx;
+  left: 20rpx;
+  display: block;
+  width: 28rpx;
+  height: 30rpx;
+}
+/* 右箭头 */
+.more-icon {
+  position: absolute;
+  right: 25rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  width: 20rpx;
+  height: 20rpx;
+}
+/* 虚线 */
+.dotted-line {
+  width: 100%;
+  height: 3rpx;
+}
+
+/***** 商品栏 *****/
+.prod-box {
+  font-size: 28rpx;
+  border-bottom: 15rpx solid #f9f8f8;
+}
+/* 店铺 */
+.prod-shop {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.shop-icon {
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align: bottom;
+  margin-right: 15rpx;
+}
+/* 商品 */
+.prod-con {
+  padding: 20rpx;
+}
+.prod-msg {
+  display: flex;
+  box-sizing: border-box;
+}
+.prod-img {
+  position: relative;
+  width: 180rpx;
+  height: 180rpx;
+  display: inline-block;
+  background: #eee;
+  margin-right: 25rpx;
+}
+.miaosha {
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  display: inline-block;
+  width: 80rpx;
+  height: 30rpx;
+}
+.prod-text {
+  flex: 1;
+  max-width: 70%;
+  position: relative;
+}
+.prod-name {
+   display: -webkit-box;
+  -webkit-line-clamp: 2; /*设定显示行数*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.prod-price-box {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.prod-sku {
+  display: inline-block;
+  /* background: #f3f3f3; */
+  font-size: 24rpx;
+  color: #777777;
+  padding: 4rpx 8rpx;
+  margin: 8rpx 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prod-price {
+  color: #F81A1A;
+  padding-right: 15rpx;
+  font-size: 32rpx;
+}
+.prod-price-del {
+  font-size: 28rpx;
+  text-decoration: line-through;
+  color: #888888;
+}
+.prod-amount {
+  float: right;
+  font-size: 30rpx;
+  padding-top: 4rpx;
+}
+
+/****** 配送&留言 ******/
+.row {
+  font-size: 28rpx;
+  border-bottom: 15rpx solid #f9f8f8;
+}
+.dispatching {
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.dispatching-way {
+  float: right;
+}
+.live-message {
+  display: flex;
+  align-items: center;
+  margin: 0 20rpx;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #eee;
+}
+.message-tit {
+  flex-wrap: wrap;
+}
+.message-int {
+  flex: 1;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 28rpx;
+}
+
+/****** 商品总额 ******/
+.sum {
+  font-size: 30rpx;
+}
+.cost-box {
+  margin: 0 20rpx;
+  padding-top: 24rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+  padding-right: 15rpx;
+}
+.prod-table {
+  margin-bottom: 24rpx;
+}
+.prod-table-way {
+  float: right;
+  font-size: 32rpx;
+}
+.prod-table-way.shine {
+  color: #F81A1A;
+}
+.leader-price {
+	font-weight: 600;
+	margin-right: 10rpx;
+}
+.del-line {
+	color: #AAAAAA;
+	text-decoration: line-through;
+	font-size: 30rpx;
+}
+.total-cost {
+  padding: 20rpx 20rpx;
+  text-align: right;
+  font-size: 26rpx;
+}
+.total-num {
+  color: #F81A1A;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+
+/****** 底部 ******/
+.foot-box {
+  margin-top: 90rpx;
+}
+.foot {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  text-align: right;
+  /* border-top: 3rpx solid #eee; */
+  box-shadow: 0 10rpx 15rpx rgba(0, 0, 0, 0.5);
+}
+.total-price {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+.submit-btn {
+  display: inline-block;
+  background: #F81A1A;
+  color: #fff;
+  padding: 0 50rpx;
+  line-height: 106rpx;
+  /* border: 1rpx solid #F81A1A; */
+}
+.total-price-num {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #F81A1A;
+}
+.invoice {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+  padding: 24rpx 0;
+	margin: 0 20rpx;
+}
+.item.invoice .item {
+  flex: 1;
+  margin-left: auto;
+}
+
+.text-arrow {
+	position: relative;
+	padding-right: 28rpx;
+  word-break: break-word;
+}
+.text-arrow ::after{
+	position: absolute;
+	right: 8rpx;
+	top: 45%;
+	display: block;
+	width: 14rpx;
+	height: 14rpx;
+	border: 2rpx solid #666;
+	border-width: 2rpx 2rpx 0 0;
+	content: " ";
+	font-size: 0;
+	transform: rotate(45deg) translateY(-50%);
+}
+
+/* 虚拟商品-留言 */
+.all-msg {
+  border-top: 1px solid #eee;
+}
+.all-msg .item {
+  max-width: 70%;
+}
+.all-msg .text-arrow .text {
+  display: flex;
+}
+.all-msg .text-arrow .text .msg-name {
+  flex-wrap: wrap;
+}
+.all-msg .text-arrow .text .msg-con {
+  flex: 1;
+  padding-left: 10rpx;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 留言弹窗 */
+.popup-hide {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.popup-box {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 80%;
+	overflow: hidden;
+	background-color: #fff;
+	border-radius: 10rpx 10rpx 0 0;
+}
+.popup-hide .con-tit {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 28rpx;
+	font-weight: bold;
+	padding: 30rpx;
+}
+.popup-hide .con-tit .sure {
+	font-size: 0;
+	width: 32rpx;
+	height: 32rpx;
+}
+.popup-hide .con-tit .sure image {
+	width: 100%;
+	height: 100%;
+}
+.popup-hide .con-tit .tit-text {
+	flex: 1;
+	text-align: center;
+}
+.close {
+	color: #666;
+	font-size: 32rpx;
+}
+.close::before {
+	content: "\2715";
+}
+.popup-hide .virtual-goods-msg-pop {
+	height: auto;
+}
+.popup-hide .virtual-goods-msg-pop .con-tit .tit-text {
+	text-align: left;
+}
+.popup-hide .virtual-goods-msg-pop .msg-pop-con .msg-list {
+	padding: 20rpx 30rpx;
+	margin-bottom: 140rpx;
+}
+.popup-hide .virtual-goods-msg-pop .msg-pop-con .msg-item {
+	display: flex;
+	margin-bottom: 30rpx;
+}
+.popup-hide .virtual-goods-msg-pop .msg-pop-con .item-con {
+	font-size: 24rpx;
+	word-wrap: break-word;
+	word-break: break-word;
+}
+.popup-hide .virtual-goods-msg-pop .msg-pop-con .item-con.weak {
+	color: #999999;
+	margin-right: 20rpx;
+	width: 180rpx;
+	min-width: 180rpx;
+}
+.popup-hide .virtual-goods-msg-pop .msg-pop-con .pop-foot {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	padding: 0 20rpx;
+	margin-bottom: 30rpx;
+	margin-top: 20rpx;
+	box-sizing: border-box;
+	background: #fff;
+}
+.popup-hide .virtual-goods-msg-pop .msg-pop-con .pop-foot .foot-btn {
+	font-size: 26rpx;
+	color: #fff;
+	width: 100%;
+	background: #F81A1A;
+	border-radius: 140rpx;
+	padding: 20rpx 0;
+	box-sizing: border-box;
+}
+
+/* 虚拟商品留言 */
+.virtual-goods-msg {
+	padding-top: 26rpx;
+	font-size: 24rpx;
+	line-height: 24rpx;
+}
+.virtual-goods-msg .v-msg-item {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 24rpx 0;
+	border-bottom: 2rpx solid #eee;
+}
+.virtual-goods-msg .v-msg-item .v-msg-con {
+	max-width: 100%;
+}
+.virtual-goods-msg .v-msg-item .v-msg-tit {
+	min-width: 110rpx;
+	max-width: 280rpx;
+}
+.virtual-goods-msg .v-msg-item .v-msg-tit .stress {
+	padding-left: 8rpx;
+	color: #F81A1A;
+	font-weight: bold;
+	font-size: 26rpx;
+}
+.virtual-goods-msg .v-msg-item .v-msg-input{
+	padding-left: 20rpx;
+	width: 100%;
+}
+.virtual-goods-msg .v-msg-item .ph-class {
+	font-size: 24rpx;
+	line-height: 24rpx;
+}

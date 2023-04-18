@@ -1,0 +1,100 @@
+/* 积分中心 */
+
+@import "../member-index/member-index.css";
+
+page {
+  background: #f6f7f9;
+}
+
+.integral-index {
+  position: relative;
+}
+
+.integral-index .integral-msg {
+  width: 750rpx;
+  height: 290rpx;
+  position: relative;
+}
+
+.integral-index .integral-msg .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.integral-index .integral-msg .my-integral {
+  display: flex;
+  padding: 90rpx 30rpx 0;
+  color: #fff;
+  position: relative;
+  align-items: center;
+}
+
+.integral-index .integral-msg .my-integral .number-box .text {
+  font-size: 24rpx;
+}
+
+.integral-index .integral-msg .my-integral .number-box .number {
+  font-size: 90rpx;
+  font-family: arial;
+  margin-top: 10rpx;
+}
+
+.integral-index .integral-msg .my-integral .det {
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  margin-top: 76rpx;
+	display: flex;
+	align-items: center;
+}
+
+.integral-index .integral-msg .my-integral .det image {
+  width: 12rpx;
+  height: 20rpx;
+	margin-left: 10rpx;
+	padding-top: 4rpx;
+}
+
+.integral-index .integral-msg .make {
+  position: absolute;
+  right: 30rpx;
+  bottom: 70rpx;
+  padding: 6rpx 12rpx 6rpx 6rpx;
+  background: #fff;
+  color: #ee3f0f;
+  font-size: 24rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  border-radius: 54rpx;
+	display: flex;
+}
+
+.integral-index .integral-msg .make image {
+  width: 42rpx;
+  height: 42rpx;
+  vertical-align: top;
+  margin:0 8rpx 0 4rpx;
+}
+
+/* 积分中心 */
+
+/* 加载完成 */
+.loadall {
+  margin: 20rpx 0;
+  line-height: 2em;
+  font-size: 28rpx;
+  color: #aaa;
+  text-align: center;
+}
+
+/* 空 */
+.empty {
+  display: block;
+  height: 200rpx;
+  line-height: 200rpx;
+  font-size: 30rpx;
+  color: #888;
+  text-align: center;
+}

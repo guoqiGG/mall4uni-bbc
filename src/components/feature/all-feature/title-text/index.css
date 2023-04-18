@@ -1,0 +1,56 @@
+.text-title {
+	display: flex;
+	flex-direction: column;
+	font-size: 28rpx;
+	padding: 0 20rpx;
+	word-break: break-word;
+}
+
+.title-row {
+	padding: 20rpx 0;
+	width: 100%;
+	height: 40rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.title {
+	flex: 1;
+	margin-right: auto;
+	word-break: break-word;
+	display: -webkit-box;
+	padding: 0rpx 40rpx;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+	margin-top: 0;
+}
+
+
+.title-more {
+	display: flex;
+	align-items: center;
+}
+
+
+.decs-row {
+	width: 100%;
+}
+
+
+.more-text {
+	font-size: 24rpx;
+	color: #aaa;
+}
+
+.more-icon {
+	width: 20rpx;
+	height: 20rpx;
+}
+.more-icon image {
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+	display: block;
+}

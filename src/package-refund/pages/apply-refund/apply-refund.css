@@ -1,0 +1,536 @@
+/* pages/apply-refund/apply-refund.wxss */
+
+/* 清除浮动 */
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  background: #f8f8f8;
+  overflow: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+input::placeholder {
+  color: #eee;
+}
+
+/* 头部商品信息 */
+
+.top-box {
+  text-align: left;
+  padding: 18rpx 20rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.order-number {
+  font-size: 28rpx;
+  vertical-align: middle;
+}
+
+.goods-msg-box {
+  background: #fff;
+  margin-bottom: 20rpx;
+  padding: 15rpx 20rpx;
+}
+
+.img-box {
+  display: inline-block;
+  width: 150rpx;
+  height: 150rpx;
+  background: #f8f8f8;
+  margin-right: 25rpx;
+  vertical-align: top;
+}
+
+.goods-msg {
+  display: inline-block;
+  vertical-align: top;
+  width: 75%;
+}
+
+.goods-title {
+  font-size: 28rpx;
+  line-height: 1.5em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /*设定显示行数*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goods-quantity {
+  font-size: 26rpx;
+  color: #888;
+  margin-top: 10rpx;
+  display: flex;
+}
+.goods-quantity .gift-icon {
+  display: inline-block;
+  background: #F81A1A;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 1em;
+  padding: 6rpx;
+  box-sizing: border-box;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+}
+
+.gift-price-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+.gift-price-info .price {
+  font-size: 28rpx;
+}
+.gift-price-info .prod-num {
+  font-size: 28rpx;
+}
+
+/* 整单退款商品列表 */
+.item-cont {
+  position: relative;
+  display: flex;
+  /* align-items: center; */
+  padding: 30rpx 10rpx;
+  border-top: 1px solid #f1f1f1;
+}
+
+.item-cont:first-child {
+  border-top: 0;
+}
+
+.item-cont .prod-pic {
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 18rpx;
+}
+
+.item-cont .prod-pic image {
+  width: 100%;
+  height: 100%;
+}
+
+.item-cont .prod-info {
+  font-size: 28rpx;
+  max-width: 74%;
+  position: relative;
+  /* height: 86px; */
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/* 申请退款按钮 */
+
+.apply-refund-btn {
+  position: absolute;
+  right: 20rpx;
+  bottom: 25rpx;
+  font-size: 23rpx;
+  padding: 7rpx 15rpx;
+  color: #F81A1A;
+  border: 1rpx solid #F81A1A;
+  border-radius: 30rpx;
+}
+
+.item-cont .prod-info .prodname {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  max-height: 86rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.item-cont .prod-info .prod-info-cont {
+  /* position: relative; */
+  color: #999;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  -webkit-line-clamp: 2;
+  flex-direction: column;
+}
+
+.item-cont .prod-info .prod-info-cont .info-item {
+  color: #888;
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  width: 75%;
+}
+
+.group-text {
+  display: block;
+  font-size: 23rpx;
+  color: #fff;
+  background: #F81A1A;
+  padding: 6rpx 10rpx;
+}
+
+.number {
+  display: inline-block;
+  /* margin-right: 20rpx; */
+  vertical-align: middle;
+}
+.sku-name {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.prod-num {
+  margin-left: 20rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+.price-nums {
+  margin-top: 10rpx;
+}
+
+.price-nums .prodprice {
+  color: #F81A1A;
+  font-size: 24rpx;
+  float: left;
+}
+
+.price-nums .btn-box {
+  float: right;
+  text-align: right;
+}
+
+.price-nums .btn-box .btn {
+  padding: 6rpx 30rpx;
+  line-height: 36rpx;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  display: inline-block;
+  border: 2rpx solid #e4e4e4;
+  border-radius: 50rpx;
+}
+
+/* 退款方式&原因 */
+
+.picker-box {
+  background: #fff;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.picker-reason {
+  margin-bottom: 20rpx;
+}
+
+.select-show {
+  text-align: right;
+  padding: 20rpx 0;
+  margin: 0 30rpx;
+}
+
+.select-text {
+  font-size: 30rpx;
+  float: left;
+}
+
+.select-results {
+  font-size: 30rpx;
+  color: #888;
+  float: right;
+}
+
+.select-box {
+  position: relative;
+}
+
+.select-reason {
+  padding-right: 30rpx;
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20rpx;
+  height: 20rpx;
+  display: block;
+}
+
+/* 退货数量 */
+
+.refund-quantity {
+  background: #fff;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+  text-align: left;
+}
+
+.qua-text {
+  font-size: 28rpx;
+}
+
+.quantity-choose {
+  float: right;
+}
+.quantity-choose .pieces {
+  font-size: 28rpx;
+  color: #333;
+}
+.show-num {
+  display: inline-block;
+  width: 75rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  font-size: 25rpx;
+  background: #f2f2f5;
+  margin: 0 3rpx;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.reduce, .add {
+  display: inline-block;
+  width: 65rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  background: #f7f7f9;
+  vertical-align: middle;
+  text-align: center;
+  color: #aaa;
+}
+
+/* 退款金额 */
+
+.refund-sum-box {
+  font-size: 30rpx;
+}
+
+.refund-sum {
+  background: #fff;
+  padding: 20rpx 30rpx;
+}
+
+.refund-sum-tit {
+  display: inline-block;
+  vertical-align: midddle;
+  margin-right: 50rpx;
+}
+
+.refund-sum-num {
+  display: inline-block;
+  vertical-align: middle;
+  color: #F81A1A;
+}
+
+.refund-sum-tips {
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.sub {
+  color: #F81A1A;
+  vertical-align: middle;
+}
+
+/* 退款信息填写 */
+
+.refund-message {
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.item-num {
+  background: #fff;
+  border-bottom: 1rpx solid #f2f2f2;
+  padding: 20rpx 30rpx;
+  font-size: 30rpx;
+}
+
+.item-num-tit {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 40rpx;
+}
+
+.upload-tit {
+  vertical-align: top;
+}
+
+.item-num-num {
+  display: inline-block;
+  vertical-align: middle;
+  width: 70%;
+}
+
+/* 订单状态 */
+
+.order-status {
+  padding: 20rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+/* 上传照片 */
+
+.upload-img {
+  display: inline-block;
+  width: 72%;
+}
+
+.upload-tips {
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 1em;
+}
+
+/* 缩略图 */
+
+.question-images {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.q-image-wrap {
+  display: inline-block;
+  position: relative;
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+}
+
+.q-image {
+  display: inline-block;
+  width: 110rpx;
+  height: 110rpx;
+  background: #eee;
+}
+
+.q-image-remover {
+  position: absolute;
+  right: -6rpx;
+  top: -6rpx;
+  width: 30rpx;
+  height: 30rpx;
+  text-align: center;
+  font-size: 23rpx;
+}
+
+/*  +  */
+
+.upload-img .upload-btn {
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 80rpx;
+  color: #ddd;
+  border: 2px dashed #f4f4f4;
+  vertical-align: top;
+}
+
+/* 提交按钮 */
+
+.submit-btn {
+  background: #F81A1A;
+  color: #fff;
+  margin: 20rpx 20rpx;
+  margin-top: 0rpx;
+  font-size: 30rpx;
+  padding: 1em 0;
+  text-align: center;
+  border-radius: 6rpx;
+}
+
+/* 赠品 */
+.gift-prods {
+  display: block;
+  width: 100%;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+.gift-prods .gift-item:not(:last-child) {
+  padding-bottom: 8rpx;
+}
+.gift-prods .gift-item .name,
+.gift-prods .gift-item .sku-name,
+.gift-prods .gift-item .num {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 10rpx;
+  box-sizing: border-box;
+}
+.gift-prods .gift-item .name {
+  width: 65%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gift-prods .gift-item .sku-name {
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gift-prods .gift-item::after {
+  content: '';
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  border-top: 2rpx solid #333333;
+  border-right: 2rpx solid #333333;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.remove-btn {
+  width: 100rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #F81A1A;
+  border: 2rpx solid #F81A1A;
+  border-radius: 24rpx;
+  margin-left: auto;
+}

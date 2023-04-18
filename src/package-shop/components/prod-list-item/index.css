@@ -1,0 +1,249 @@
+/* components/prod-list-item/prodListItem.wxss */
+
+.prod-items {
+  width: 345rpx;
+  display: inline-block;
+  background: #fff;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  /* box-shadow: 0rpx 6rpx 8rpx rgba(58, 134, 185, 0.2); */
+  box-shadow: 0rpx 5rpx 15rpx rgba(58,134,185,0.2);
+}
+
+.prod-items:nth-child(2n-1) {
+  margin: 20rpx 10rpx 0 20rpx;
+}
+
+.prod-items:nth-child(2n) {
+  margin: 20rpx 20rpx 0 10rpx;
+}
+
+/* .prod-items:last-child {
+  margin-bottom: 30rpx;
+} */
+.prodlist-item-cont {
+  margin-bottom: 40rpx
+}
+
+.prod-items .hot-imagecont .hotsaleimg {
+  width: 341rpx;
+  height: 341rpx;
+}
+
+.prod-items .hot-text .hotprod-text {
+  font-size: 28rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prod-items .hot-imagecont {
+  font-size: 0;
+  text-align: center;
+}
+
+.prod-items .hot-text {
+  margin-top: 20rpx;
+  padding: 0 10rpx;
+}
+
+.prod-items .hot-text .prod-info, .more-prod .prod-text-right .prod-info {
+  font-size: 22rpx;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+	height: 32rpx;
+}
+
+.prod-items .hot-text .prod-text-info {
+  position: relative;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-family: Arial;
+}
+
+.prod-items .hot-text .prod-text-info .price {
+  font-family: Arial;
+  display: inline-block;
+  color: #F81A1A;
+  padding-bottom: 10rpx;
+  padding-left: 10rpx;
+}
+
+.prod-items .hot-text .prod-text-info .price .symbol {
+  font-size: 24rpx;
+}
+
+.prod-items .hot-text .prod-text-info .price .big-num {
+  font-size: 32rpx;
+}
+
+.prod-items .hot-text .prod-text-info .basket-img {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  bottom: 7rpx;
+  padding: 8rpx;
+}
+
+
+
+/* .prod-list{
+  width: 100%;
+} */
+
+.prodlist-item-cont {
+  background: #fafafa;
+  padding-top: 20rpx;
+}
+
+.prod-list .title {
+  position: relative;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 32rpx;
+  padding: 30rpx 0 10rpx 30rpx;
+  color: #333;
+  background: #fff;
+}
+
+.title .more-prod-cont {
+  color: #999;
+  display: inline-block;
+  text-align: right;
+}
+
+.title .more-prod-cont .more {
+  position: absolute;
+  right: 30rpx;
+  top: 48rpx;
+  color: #666;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+
+.title .more-prod-cont .arrow {
+  width: 15rpx;
+  height: 15rpx;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 58rpx;
+  right: 30rpx;
+  border-top: 2rpx solid #666;
+  border-right: 2rpx solid #666;
+}
+
+.prod-list .prod-items {
+  width: 345rpx;
+  display: inline-block;
+  background: #fff;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.prod-list .prod-items:nth-child(2n-1) {
+  margin: 0 12rpx 20rpx 0rpx;
+}
+
+.prod-list .prod-items:nth-child(2n) {
+  margin: 0 0rpx 20rpx 11.5rpx;
+}
+
+.prod-items .hot-imagecont .hotsaleimg {
+  width: 341rpx;
+  height: 341rpx;
+}
+
+.prod-items .hot-text .prod-name {
+  font-size: 28rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prod-items .hot-imagecont {
+  font-size: 0;
+  text-align: center;
+}
+
+.prod-items .hot-text {
+  margin-top: 20rpx;
+  padding: 0 10rpx;
+}
+
+.prod-items .hot-text .prod-info, .more-prod .prod-text-right .prod-info {
+  font-size: 22rpx;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prod-items .hot-text .prod-text-info {
+  position: relative;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-family: Arial;
+}
+
+.prod-items .hot-text .prod-text-info .hotprod-price {
+  display: inline;
+  font-size: 26rpx;
+  color: #eb2444;
+}
+
+.prod-items .hot-text .prod-text-info .basket-img {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  bottom: 7rpx;
+  padding: 8rpx;
+}
+
+.singal-price {
+  display: inline;
+  font-size: 20rpx;
+  text-decoration: line-through;
+  color: #777;
+  margin-left: 15rpx;
+}
+.visib {
+  visibility: hidden;
+}
+
+
+.activity-box{
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 4rpx;
+}
+
+.activity {
+  background-color: #F81A1A;
+  display: inline-block;
+  padding: 0 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+}
+
+.activity-box{
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 4rpx;
+}
+
+.activity {
+  background-color: #F81A1A;
+  display: inline-block;
+  padding: 0 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+}

@@ -1,0 +1,45 @@
+.personal-recommend{
+  padding: 24rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.recommend-con{
+  background-color: #fff;
+  padding: 24rpx;
+  border-radius: 12rpx;
+}
+.recommend-con .recommend-set{
+  padding-bottom: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recommend-con .recommend-set .recommend-til{
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.recommend-con .recommend-set .switch-btn{
+  margin-right: -20rpx;
+}
+.recommend-con .recommend-tips{
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 38rpx;
+}
+
+.confirm-box{
+  padding: 12rpx 0;
+  margin-top: 40rpx;
+}
+.confirm-box .confirm-btn{
+  width: 100%;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  border-radius: 75rpx;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  background-color: #F81A1A;
+}

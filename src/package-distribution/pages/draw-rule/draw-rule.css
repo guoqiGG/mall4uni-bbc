@@ -1,0 +1,20 @@
+/* pages/draw-rule/draw-rule.wxss */
+page{
+  background: #fff;
+}
+.withdrawal {
+  margin: 40rpx 40rpx 0;
+}
+.title{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.rule-block{
+  margin-top: 20rpx;
+}
+.rule-block .tip{
+  display: block;
+  font-size: 30rpx;
+  line-height: 2em;
+}
+

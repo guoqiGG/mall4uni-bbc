@@ -1,0 +1,96 @@
+.pay-way image {
+	width: 100%;
+	height: 100%;
+}
+
+.pay-way .pay-number {
+	padding: 100rpx 0;
+	background: #f7f7f7;
+}
+
+.pay-way .pay-number .price {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	font-weight: 600;
+}
+
+.pay-way .pay-number .price .small-num {
+	font-size: 32rpx;
+}
+
+.pay-way .pay-number .price .big-num {
+	font-size: 48rpx;
+	line-height: 1;
+}
+
+.pay-way .pay-number .time {
+	margin-top: 10rpx;
+	font-size: 20rpx;
+	text-align: center;
+}
+
+.pay-way .ways {
+	padding: 0 20rpx;
+}
+
+.pay-way .ways .item {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #eee;
+	padding: 20rpx 0;
+}
+
+.pay-way .ways .item .pay-name {
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.pay-way .ways .item .pay-name .img {
+	width: 44rpx;
+	height: 44rpx;
+	font-size: 0;
+}
+
+.pay-way .ways .item .pay-name .name {
+	font-size: 24rpx;
+	margin-left: 20rpx;
+}
+
+.pay-way .sure-pay {
+	position: fixed;
+	bottom: 40rpx;
+	left: 20rpx;
+	right: 20rpx;
+	width: auto;
+	height: 80rpx;
+	line-height: 80rpx;
+	border-radius: 80rpx;
+	text-align: center;
+	background: #F81A1A;
+	font-size: 24rpx;
+	font-weight: 600;
+	color: #fff;
+}
+
+/*radio 选项框大小  */
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 32rpx;
+  height: 32rpx;
+}
+/*radio选中后样式  */
+radio .wx-radio-input.wx-radio-input-checked {
+  background: #F81A1A;
+  border-color: #F81A1A;
+}
+/*radio选中后图标样式  */
+radio .wx-radio-input.wx-radio-input-checked::before {
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}

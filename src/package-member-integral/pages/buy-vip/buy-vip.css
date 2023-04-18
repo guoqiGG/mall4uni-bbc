@@ -1,0 +1,528 @@
+/* pages/buy-vip/buy-vip.wxss */
+
+page {
+  height: 100%;
+}
+
+.buy-vip-container {
+  position: relative;
+  height: 100%;
+}
+
+.vip-card-wrapper {
+  margin-bottom: 200rpx;
+}
+
+/* 会员信息 */
+
+.top-bg {
+  background-color: #F81A1A;
+  height: 530rpx;
+}
+
+.member-info {
+  padding: 50rpx 30rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.member-info .head-portrait {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.member-info .head-portrait image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.member-info .text-box {
+  margin: 0 30rpx 0 20rpx;
+  flex: 1;
+}
+
+.member-info .text-box .name-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.member-info .text-box .name-box .name {
+  text-overflow: ellipsis;
+  font-size: 32rpx;
+  font-weight: 600;
+  flex: 1;
+  color: #fff;
+  /* max-width: 192rpx; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+
+}
+
+.member-info .text-box .name-box .level {
+  /* position: relative; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40rpx;
+  padding: 0 14rpx;
+  margin-left: 10rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 32rpx;
+}
+
+.member-info .text-box .name-box .level .l-bg {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.member-info .text-box .name-box .level .text {
+  color: #7c4733;
+  font-size: 20rpx;
+  font-family: arial;
+  position: relative;
+  line-height: 1em;
+  margin-left: 12rpx;
+}
+
+.member-info .text-box .date {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.member-info .buy-btn {
+  width: 170rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #7c4733;
+  background: #fbe3b4;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 70rpx;
+  font-weight: 600;
+}
+
+/* /会员信息 */
+
+/* 卡片轮播 */
+
+swiper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+swiper.pic-swiper {
+  margin-top: -330rpx;
+  position: relative;
+  height: 340rpx;
+}
+
+swiper-item {
+  font-size: 26rpx;
+  margin-left: 35rpx;
+}
+
+.banner-item {
+  box-sizing: border-box;
+}
+
+swiper.pic-swiper .banner {
+  width: 640rpx;
+  height: 340rpx;
+  border-radius: 14rpx 14rpx 0 0;
+}
+
+.level-mark {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #ffecc8;
+  width: 80rpx;
+  max-width: 100rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #7d4834;
+  text-align: center;
+  border-radius: 0 14rpx 0 14rpx;
+  font-size: 24rpx;
+  padding: 0 8rpx;
+}
+
+.card-face {
+  display: flex;
+  flex-direction: column;
+  padding: 50rpx 30rpx 30rpx;
+  height: 340rpx;
+  box-sizing: border-box;
+  color: #fff;
+  justify-content: space-between;
+  position: relative;
+}
+
+.vip-pic {
+  width: 640rpx;
+  height: 340rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.white-bg {
+  background-color: #fff;
+}
+
+.vip-info {
+  font-weight: 600;
+}
+
+.vip-level {
+  font-size: 36rpx;
+}
+
+.vip-price {
+  font-size: 26rpx;
+}
+
+.vip-price .amount {
+  font-size: 70rpx;
+}
+
+.vip-level-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: lighter;
+  font-size: 24rpx;
+  padding-bottom: 10rpx;
+}
+
+.vip-level-progress .level-tips {
+  flex: 6;
+  margin-right: 20rpx;
+  align-self: center;
+}
+
+.vip-level-progress .level-progress {
+  margin: 6rpx 0;
+}
+
+.vip-level-progress .level-span {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.vip-level-progress .level-text {
+}
+
+/* 会员权益 */
+
+.vip-rights-container {
+  background-color: #fff;
+  width: 750rpx;
+  min-height: 660rpx;
+  border-radius: 14rpx 14rpx 0 0;
+  position: relative;
+  margin-top: -20rpx;
+  padding: 50rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.vip-rights-container::after {
+  border-left: 12rpx solid transparent;
+  border-right: 12rpx solid transparent;
+  border-bottom: 12rpx solid #fff;
+  content: "";
+  position: absolute;
+  top: -10rpx;
+  left: 50%;
+  width: 0;
+  z-index: 99;
+  transform: translateX(-50%);
+}
+
+.member-tit {
+  display: flex;
+  align-items: center;
+}
+
+.member-tit .text {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  position: relative;
+  padding-left: 16rpx;
+}
+
+.member-tit .text::before {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  display: block;
+  width: 6rpx;
+  height: 70%;
+  content: " ";
+  background: #F81A1A;
+  border-radius: 6rpx;
+}
+
+.rights-item-con {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 40rpx 0 80rpx 0;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  /* height: 900rpx; */
+  overflow-y: scroll;
+}
+
+.rights-item-con::after{
+  content: '';
+  width: 30%;
+}
+
+.rights-item {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.rights-img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.rights-img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rights-tit {
+  font-size: 30rpx;
+  margin: 25rpx 0 15rpx 0;
+  word-break: break-word;
+}
+
+.rights-desc {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* 底部按钮 */
+
+.bottom {
+  box-shadow: 2rpx -2rpx 10rpx #eee;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background:#fff;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  z-index:200
+}
+
+.bottom-item {
+  text-align: center;
+  /* padding: 25rpx 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+.bottom-item.sub-btn {
+  padding: 28rpx 40rpx;
+  height: 100%;
+  font-weight: bold;
+}
+
+.btn {
+  background: #F81A1A;
+  color: #fff;
+}
+.btn-gray{
+  background: #aaa;
+  color: #fff;
+}
+
+.bottom .vip-price {
+  color: #F81A1A;
+}
+
+.vip-total-balck {
+  color: #000;
+}
+
+.symbol {
+  font-size: 26rpx;
+}
+
+.amount.pay-amount {
+  font-weight: bold;
+  font-size: 50rpx;
+}
+
+/**
+ * 支付类型选择弹窗
+ */
+.popup-hide {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.popup-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 330px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.popup-tit {
+  position: relative;
+  height: 46px;
+  line-height: 46px;
+  padding-left: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f7f7f7;
+}
+
+.close {
+  color: #aaa;
+  border-radius: 12px;
+  line-height: 20px;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  font-size: 18px;
+  padding: 1px;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+}
+
+.close::before {
+  content: "\2716";
+}
+
+.popup-cnt {
+  max-height: 429px;
+  overflow: auto;
+  padding: 0 10px;
+}
+
+/* 圆角样式 */
+.radius {
+  border-radius: 26rpx 26rpx 0 0;
+}
+.box-radius {
+  border-radius: 20rpx;
+}
+
+
+.pay-way .ways {
+	padding: 0 20rpx;
+}
+
+.pay-way .ways .item {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #eee;
+	padding: 20rpx 0;
+}
+
+.pay-way .ways .item .pay-name {
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.pay-way .ways .item .pay-name .img {
+	width: 44rpx;
+	height: 44rpx;
+	font-size: 0;
+}
+image{
+	width: 100%;
+	height: 100%;
+}
+
+.pay-way .ways .item .pay-name .name {
+	font-size: 24rpx;
+	margin-left: 20rpx;
+}
+
+.pay-way .sure-pay {
+	position: fixed;
+	bottom: 40rpx;
+	left: 20rpx;
+	right: 20rpx;
+	width: auto;
+	height: 80rpx;
+	line-height: 80rpx;
+	border-radius: 80rpx;
+	text-align: center;
+	background: #F81A1A;
+	font-size: 24rpx;
+	font-weight: 600;
+	color: #fff;
+}
+
+/*radio 选项框大小  */
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 32rpx;
+  height: 32rpx;
+}
+/*radio选中后样式  */
+radio .wx-radio-input.wx-radio-input-checked {
+  background: #F81A1A;
+  border-color: #F81A1A;
+}
+/*radio选中后图标样式  */
+radio .wx-radio-input.wx-radio-input-checked::before {
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.noInterests {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  color: #8a8989;
+  font-size: 14px;
+}

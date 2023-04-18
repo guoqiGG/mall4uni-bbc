@@ -1,0 +1,244 @@
+/* 余额充值页 */
+.recharge-container {
+  display: block;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.recharge-container .page-title {
+  display: block;
+  font-size: 42rpx;
+  margin-bottom: 40rpx;
+}
+
+/* 金额 */
+.amount .msg-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 240rpx;
+  height: auto;
+  /* height: 240rpx; */
+  border-radius: 10rpx 50rpx 10rpx 10rpx;
+  /* box-shadow: 0 20rpx 20rpx rgb(228,49,48,.1); */
+  box-shadow: 0 20rpx 20rpx rgb(0,0,0,.1);
+  margin-bottom: 64rpx;
+  box-sizing: border-box;
+}
+
+.amount .msg-banner .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.amount .msg-banner >>> image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx 50rpx 10rpx 10rpx;
+}
+
+.amount .msg-banner .current-selected {
+  padding: 28rpx;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  z-index: 2;
+}
+
+.amount .msg-banner .current-selected .con {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.amount .msg-banner .current-selected.custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.amount .msg-banner .current-selected.custom .txt {
+  font-size: 44rpx;
+}
+
+.amount .msg-banner .sel-amount {
+  margin-bottom: 18rpx;
+}
+
+.amount .msg-banner .sel-amount .big {
+  font-size: 70rpx;
+  line-height: 1em;
+}
+
+.amount .msg-banner .sel-amount .small {
+  font-size: 28rpx;
+  padding: 0 14rpx;
+  line-height: 1em;
+}
+
+.amount .msg-banner .recharge-info {
+  line-height: 1.5em;
+  height: auto;
+}
+
+.amount .msg-banner .recharge-info::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.8);
+}
+.amount .msg-banner .recharge-info::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+.amount .amount-options  {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.amount .amount-options .amount-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 210rpx;
+  height: 110rpx;
+  border: 1px solid #eee;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+}
+
+.amount .amount-options .amount-item:not(:nth-child(3n)) {
+  margin-right: 30rpx;
+}
+
+.amount .amount-options .amount-item.active {
+  border: 2rpx solid #F81A1A;
+  color: #F81A1A;
+  background: #FFEDEF;
+}
+
+.amount .custom-amount .tit {
+  font-size: 28rpx;
+}
+
+.amount .custom-amount .int {
+  display: block;
+  height: 1em;
+  line-height: 1em;
+  border-bottom: 1px solid #eee;
+  padding: 18rpx 0;
+}
+
+.amount .custom-amount  >>> input {
+  font-size: 28rpx;
+}
+
+.amount .custom-amount .input-placeholder {
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+
+/* .pay {
+  padding: 30rpx 20rpx;
+}
+.pay .payment-txt {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.select-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payment {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #f7f7f7;
+  font-size: 30rpx;
+}
+.payment:last-child {
+  border-bottom: 0;
+}
+.payment image {
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+} */
+
+
+/* 支付方式 */
+.ways {
+  margin-top: 40rpx;
+}
+
+.ways .payment-txt {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.ways image {
+	width: 100%;
+	height: 100%;
+}
+
+.ways .item {
+	display: flex;
+	align-items: center;
+	/* border-bottom: 1px solid #eee; */
+	padding: 20rpx 0;
+}
+
+.ways .item .pay-name {
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.ways .item .pay-name .img {
+	width: 48rpx;
+	height: 48rpx;
+	font-size: 0;
+}
+
+.ways .item .pay-name .name {
+	font-size: 28rpx;
+	margin-left: 20rpx;
+}
+
+/* 支付按钮 */
+.btn-box {
+  display: block;
+  width: 100%;
+  margin-top: 50rpx;
+  box-sizing: border-box;
+}
+.btn-box .btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #F81A1A;
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 80rpx;
+}

@@ -1,0 +1,270 @@
+
+page {
+  background: #f2f3f7;
+  font-size: 24rpx;
+}
+page input {
+  font-size: 24rpx;
+}
+page .uni-input-input {
+  font-size: 24rpx;
+}
+
+.invoice-detail {
+  padding-bottom: calc(126rpx + env(safe-area-inset-bottom));
+}
+
+/* 发票状态 */
+.invoice-detail .status-box {
+  position: relative;
+  height: 150rpx;
+  padding: 0 30rpx 10rpx;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  margin-bottom: -10rpx;
+}
+
+.invoice-detail .status-box .bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 0;
+}
+
+.invoice-detail .status-box .status {
+  position: relative;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+/* 发票信息 */
+.invoice-detail .invoice-info {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.invoice-detail .invoice-info .item {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: flex-start;
+  line-height: 32rpx;
+}
+
+.invoice-detail .invoice-info .item:first-child {
+	margin-top: 0;
+}
+
+.invoice-detail .invoice-info .item .tit {
+  color: #999999;
+  margin-right: 20rpx;
+}
+
+.invoice-detail .invoice-info .item .text {
+  font-family: PingFangSC-Medium, tahoma;
+  flex: 1;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+/* 商品信息 */
+.invoice-detail .prods-box {
+  background: #fff;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  padding: 30rpx;
+}
+
+.invoice-detail .prods-box .shop {
+  display: flex;
+  align-items: center;
+}
+
+.invoice-detail .prods-box .shop .icon {
+  width: 24rpx;
+  height: 24rpx;
+  font-size: 0;
+}
+
+.invoice-detail .prods-box .shop .name {
+  font-weight: 600;
+  margin-left: 10rpx;
+}
+
+.invoice-detail .prods-box .prod-item {
+  padding: 30rpx 0 10rpx;
+}
+
+/* 单商品 */
+.invoice-detail .prods-box .prod-item .single-prod {
+  display: flex;
+}
+
+.invoice-detail .prods-box .prod-item .single-prod .prod-img {
+  width: 136rpx;
+  height: 136rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  font-size: 0;
+}
+
+.invoice-detail .prods-box .prod-item .single-prod .text-box {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: 120rpx;
+  flex: 1;
+}
+
+.invoice-detail .prods-box .prod-item .single-prod .text-box .name {
+  max-height: 64rpx;
+  line-height: 32rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.invoice-detail .prods-box .prod-item .single-prod .text-box .sku {
+  margin-top: 10rpx;
+  color: #999;
+  font-size: 20rpx;
+}
+
+/* 多商品 */
+.invoice-detail .prods-box .prod-item .many-prods .prod-img .img-box {
+  white-space: nowrap;
+}
+
+.invoice-detail .prods-box .prod-item .many-prods .prod-img .img-box .img {
+  display: inline-block;
+  width: 130rpx;
+  height: 130rpx;
+  font-size: 0;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-left: 10rpx;
+}
+
+.invoice-detail .prods-box .prod-item .many-prods .prod-img .img-box .img:first-child {
+  margin-left: 0;
+}
+
+.invoice-detail .prods-box .prod-item .many-prods .price-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.invoice-detail .prods-box .prod-item .many-prods .price-box .count {
+  color: #999;
+  margin-right: 10rpx;
+}
+
+.invoice-detail .prods-box .prod-item .many-prods .price-box .price {
+  color: #333;
+}
+
+.invoice-detail .prods-box .prod-item .many-prods .price-box .price .big {
+  font-size: 24rpx;
+}
+
+/* 订单信息 */
+.invoice-detail .prods-box .order-msg .item {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: flex-start;
+  line-height: 32rpx;
+}
+
+.invoice-detail .prods-box .order-msg .item .tit {
+  color: #999999;
+  margin-right: 20rpx;
+}
+
+.invoice-detail .prods-box .order-msg .item .text {
+  font-family: PingFangSC-Medium, tahoma;
+  flex: 1;
+}
+
+/* 发票须知 */
+.invoice-detail .invoice-notice {
+  background: #fff;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  padding: 30rpx;
+}
+
+.invoice-detail .invoice-notice .tit {
+  font-weight: 600;
+  margin-bottom: 10rpx;
+}
+
+.invoice-detail .invoice-notice .text {
+  line-height: 40rpx;
+  color: #999;
+}
+
+/* 底部 */
+.invoice-detail .foot-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 750rpx;
+  margin: auto;
+  background: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -6rpx 6rpx rgba(0,0,0,.01);
+}
+
+.invoice-detail .foot-box .del-order {
+  font-weight: 600;
+}
+
+.invoice-detail .foot-box .btn-box {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.invoice-detail .foot-box .btn-box .btn {
+  padding: 10rpx 26rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 60rpx;
+  margin-left: 20rpx;
+  line-height: 36rpx;
+  box-sizing: border-box;
+}
+
+.invoice-detail .foot-box .btn-box .btn.btn-r {
+  background: #fc1b35;
+  color: #fff;
+  border-color: #fc1b35;
+}
+.invoice-detail .prod-count {
+	float: right;
+	margin-right: 20rpx;
+}
+
+
+.invoice-detail  .sku-name {
+	display: inline-block;
+	max-width: 300rpx;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}

@@ -1,0 +1,209 @@
+/* 余额 */
+.wallet-info {
+	background-image: linear-gradient(#F93534, #D61312);
+	width: 100%;
+	border-radius: 0 0 50% 50% / 0 0 12% 12%;
+	padding: 50rpx 0;
+	height: 181rpx;
+	margin-bottom: 10rpx;
+	display: flex;
+	justify-content: center;
+}
+
+.wallet-info .item {
+	 background-image: url(../../static/images/myWallet/item.png);
+	-moz-background-size:100% 100%;
+	 background-size:100% 100%;
+	height: 184rpx;
+	width: 674rpx;
+	display: flex;
+	justify-content: space-around;
+}
+
+.wallet-info .item .w-tit {
+	height: 36rpx;
+	font-size: 26rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	line-height: 36rpx;
+	color: #333333;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.wallet-info .item .w-num {
+	width: 206rpx;
+	height: 80rpx;
+	font-size: 56rpx;
+	font-weight: 600;
+	line-height: 80rpx;
+	color: #333333;
+	margin-top: 6rpx;
+}
+
+.wallet-info .item .item-box {
+	width: 192rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.wallet-info .item .btn {
+	width: 192rpx;
+	height: 72rpx;
+	background: linear-gradient(163deg, #FF5C5B 0%, #E21C1B 100%);
+	border-radius: 36rpx;
+	margin-right: -80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.wallet-info .item .btn .btn-text {
+	height: 40rpx;
+	font-size: 28rpx;
+	line-height: 40rpx;
+	color: #FFFFFF;
+}
+
+.wallet-info .w-banner {
+	text-align: center;
+	font-size: 28rpx;
+	line-height: 1.5em;
+	color: #fff;
+}
+
+.wallet-info .w-banner .w-num {
+	font-size: 46rpx;
+	line-height: 2em;
+}
+
+.recharge-btn {
+	text-align: center;
+	margin: 20rpx 0;
+}
+
+.recharge-btn .btn {
+	display: inline-block;
+	font-size: 30rpx;
+	border-radius: 10rpx;
+	padding: 10rpx 40rpx;
+	color: #e53837;
+	background: #fff;
+}
+
+/* 明细 */
+.content {
+	width: 52px;
+	height: 17px;
+	font-size: 13px;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	line-height: 17px;
+	color: #333333;
+	margin-right: 16rpx;
+}
+
+.create-time {
+	width: 126px;
+	height: 16px;
+	font-size: 12px;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	line-height: 16px;
+	color: #333333;
+}
+
+.order-number {
+	height: 15px;
+	font-size: 11px;
+	font-family: Microsoft YaHei;
+	font-weight: 400;
+	line-height: 15px;
+	color: #AAAAAA;
+	margin-top: 16rpx;
+}
+
+.wallet-detail {
+	padding: 20rpx 28rpx 20rpx 28rpx;
+}
+
+.wallet-detail .det-tit {
+	font-size: 30rpx;
+	margin-bottom: 30rpx;
+	font-weight: bold;
+}
+
+.det-list {
+	margin-bottom: 20rpx;
+}
+
+.det-list .det-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30rpx 0;
+}
+
+.det-item:not(:last-child) {
+	border-bottom: 1px solid #f9f9f9;
+}
+
+.det-item .det-lt {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.det-lt .banner-icon {
+	display: block;
+	width: 50rpx;
+	height: 50rpx;
+	margin-right: 16rpx;
+}
+
+.det-lt .det-content {
+	font-size: 28rpx;
+	line-height: 1.5em;
+}
+
+.det-lt .det-content .date {
+	color: #bbb;
+	font-size: 24rpx;
+	line-height: 1.5em;
+	padding-top: 8rpx;
+}
+
+.det-item .det-rt {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+}
+
+.red {
+	color: #F81A1A;
+}
+
+.gray {
+	color: gray;
+}
+
+/* 空 */
+.list-empty {
+	display: block;
+	margin: 0 auto;
+	margin-top: 60rpx;
+	font-size: 28rpx;
+	color: #ccc;
+	line-height: 2em;
+	text-align: center;
+}
+
+/* 加载完成 */
+.all-load {
+	display: block;
+	font-size: 28rpx;
+	color: #ccc;
+	margin-bottom: 40rpx;
+	text-align: center;
+}

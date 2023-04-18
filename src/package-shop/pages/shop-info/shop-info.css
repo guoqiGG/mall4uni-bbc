@@ -1,0 +1,124 @@
+/* pages/shop-info/shop-info.wxss */
+page{
+  background: #f7f7f7
+}
+
+
+/* 店铺信息 */
+.container .shop{
+
+}
+.container .shopInfo {
+  display: flex;
+  height: 110rpx;
+  padding: 18rpx;
+  margin: 10rpx 0 0 0;
+  background: #fff
+}
+
+.shopInfo .shopLogo {
+  flex: 1;
+  padding-right: 8rpx;
+}
+
+.shopInfo .shopLogo image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+}
+
+.shopInfo .shopTitle {
+  flex: 4;
+  padding: 5rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shopInfo .shopTitle .shopName {
+  font-size: 30rpx;
+}
+
+.shopInfo .shopTitle .shopDesc {
+  color: #999;
+  font-size: 25rpx;
+}
+
+/* 收藏按钮 */
+.collection {
+  position: absolute;
+  top: 50rpx;
+  right: 0;
+  width: 80rpx;
+  color: #666;
+  font-size: 22rpx;
+  padding-left: 20rpx;
+  text-align: center;
+}
+
+.collection image {
+  display: block;
+  margin: auto;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.collection::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: auto;
+  background: #f1f1f1;
+  position: absolute;
+  top: 0;
+  bottom: 5px;
+  left: 0;
+}
+
+/* 评分栏 */
+.grade{
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin: 15rpx 0;
+}
+.grade .gradeItem{
+  color: #888;
+  font-size: 28rpx;
+  flex: 1
+}
+.grade .gradeItem .fraction{
+  color: red;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+/* 其他店铺信息 */
+.other,.shopDetails{
+  background: #fff;
+  margin: 15rpx 0;
+}
+.otherItem{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  align-items: center;
+    font-size: 28rpx;
+}
+
+.otherItem view{
+  color: #888;
+}
+.otherItem:nth-child(2n+1){
+  border-bottom: 1rpx solid #eee;
+}
+.other .otherItem .otherIcon{
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  background: #0af;
+}
+

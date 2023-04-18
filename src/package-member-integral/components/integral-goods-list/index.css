@@ -1,0 +1,65 @@
+/* components/IntegralGoodsList/IntegralGoodsList.wxss */
+
+.integral-item {
+  margin-top: 30rpx;
+  width: 330rpx;
+  background: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+
+.integral-item:nth-child(2n) {
+  margin-right: 0;
+}
+
+.integral-item .img {
+  width: 290rpx;
+  height: 290rpx;
+  font-size: 0;
+}
+
+.integral-item .img image {
+  width: 100%;
+  height: 100%;
+}
+
+.integral-item .name {
+  font-size: 28rpx;
+  margin: 16rpx 0 10rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 56rpx;
+  line-height: 56rpx;
+}
+
+.integral-item .price {
+  position: relative;
+  padding-left: 34rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  font-size: 24rpx;
+}
+
+.integral-item .price .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.integral-item .red-word {
+  color: #F81A1A;
+}
+
+.integral-item .old-price {
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+  font-family: arial;
+  padding-top: 14rpx;
+}

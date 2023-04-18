@@ -1,0 +1,28 @@
+.claimer-mian{
+  height: auto;
+  padding-bottom: 100rpx;
+
+}
+
+.dist-pic{
+  width: 100%;
+}
+
+.claimer-mian-btn{
+  position: fixed;
+  width: 100%;
+  background-color: #F81A1A;
+  flex-direction: row nowrap;
+  font-size: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  z-index: 999;
+  text-align: center;
+  bottom: 0rpx;
+  color: white;
+}
+
+.dist-cont{
+  font-size:28rpx;
+  padding:20rpx;
+}

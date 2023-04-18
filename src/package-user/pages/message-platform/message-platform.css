@@ -1,0 +1,447 @@
+
+page {
+  background: #f2f3f7;
+}
+
+.platform-message {
+  /* padding: 30rpx 30rpx calc(30rpx + env(safe-area-inset-bottom)); */
+  padding-bottom: env(safe-area-inset-bottom)
+}
+
+/* 筛选栏 */
+.platform-message .tab {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 30rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 6rpx 6rpx rgba(0,0,0,.01);
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.platform-message .tab .tab-item {
+  position: relative;
+  line-height: 44rpx;
+  padding: 0 10rpx;
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.platform-message .tab .tab-item::after {
+  position: absolute;
+  bottom: -10rpx;
+  left: 40%;
+  right: 40%;
+  display: block;
+  width: auto;
+  height: 4rpx;
+  border-radius: 4rpx;
+  content: " ";
+  font-size: 0;
+  background: #fff;
+}
+
+.platform-message .tab .tab-item.active {
+  font-weight: 600;
+  color: #000;
+}
+
+.platform-message .tab .tab-item.active::after {
+  background: linear-gradient(to right, #fc1b35, #fff);
+}
+
+.platform-message .tab .tab-item.unread-tip::before {
+  position: absolute;
+  left: 50%;
+  top: 8rpx;
+  display: block;
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  content: " ";
+  background: #fc1b35;
+  margin-left: 58rpx;
+}
+/* 筛选栏 end */
+
+/* 平台公告 */
+
+.platform-message .notices-box {
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+  padding-bottom: 0;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.platform-message .platform .item {
+  padding: 30rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  margin-top: 30rpx;
+}
+
+.platform-message .item:first-child {
+  margin-top: 0;
+}
+
+.platform-message .item .tit-box {
+  display: flex;
+  align-items: center;
+}
+
+.platform-message .item .tit-box .tit {
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  font-weight: 600;
+  position: relative;
+}
+
+.platform-message .item.unread .tit-box .tit {
+  padding-left: 20rpx;
+}
+
+.platform-message .item.unread .tit-box .tit::before {
+  position: absolute;
+  left: 0;
+  top: 8rpx;
+  display: block;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  content: " ";
+  background: #fc1b35;
+}
+
+.platform-message .item .tit-box .time {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.platform-message .item .text-box {
+  margin: 20rpx 0;
+  color: #999;
+  max-height: 72rpx;
+  line-height: 36rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+}
+
+.platform-message .item .text-box .name {
+  flex: 1;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.platform-message .item .text-box >>> img {
+  display: block;
+  width: 100%;
+}
+
+.platform-message .item .text-arrow {
+  position: relative;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #f9f9f9;
+  font-size: 24rpx;
+}
+
+.platform-message .item .text-arrow::after {
+  position: absolute;
+  width: 10rpx;
+  height: 10rpx;
+  top: 72%;
+  right: 10rpx;
+  display: block;
+  width: 4px;
+  height: 4px;
+  content: " ";
+  font-size: 0;
+  border-top: 1px solid #333;
+  border-right: 1px solid #333;
+  -webkit-transform: rotate(
+  45deg
+  ) translateY(-50%);
+    transform: rotate(
+  45deg
+  ) translateY(-50%);
+}
+
+/* 系统通知 */
+.notice-message .notices-box {
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+  padding-bottom: 110rpx;
+  padding-bottom: calc(110rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(110rpx + env(safe-area-inset-bottom));
+}
+
+.notice-message .system .item {
+  margin-top: 30rpx;
+}
+
+.notice-message .item:first-child {
+  margin-top: 0;
+}
+
+.notice-message .item .time {
+  color: #999;
+  text-align: center;
+}
+
+.notice-message .item .item-box {
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  margin: 20rpx 0 30rpx 0;
+}
+
+.notice-message .item .item-box .tit {
+  font-size: 28rpx;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+}
+
+.notice-message .item.unread .item-box .tit {
+  padding-left: 20rpx;
+}
+
+.notice-message .item.unread .item-box .tit::before {
+  position: absolute;
+  left: 0;
+  top: 8rpx;
+  display: block;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  content: " ";
+  background: #fc1b35;
+}
+
+.notice-message .item .item-box .text-box {
+  margin: 20rpx 0;
+  color: #999;
+  max-height: 120rpx;
+  line-height: 36rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 30rpx;
+}
+
+.notice-message .item .item-box .text-box.text-arrow::after {
+  width: 12rpx;
+  height: 12rpx;
+  border-color: #999;
+  right: 8rpx;
+}
+.service-message {
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background: #fff;
+}
+
+ .service-message .item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  position: relative;
+}
+
+ .service-message .item::after {
+  position: absolute;
+  left: 114rpx;
+  right: 0;
+  bottom: 0;
+  display: block;
+  height: 2rpx;
+  content: " ";
+  font-size: 0;
+  background: #f9f9f9;
+}
+
+ .service-message .item:last-child::after {
+  height: 0;
+}
+
+.my-message .service-message .item .logo {
+  width: 90rpx;
+  height: 90rpx;
+  border: 2rpx solid #f5f5f5;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.my-message .service-message .item .logo image{
+  width: 100%;
+  height: 100%;
+}
+ .service-message .item .text-box {
+  flex: 1;
+  margin: 0 20rpx;
+  max-height: unset;
+}
+
+ .service-message .item .text-box .name {
+  font-size: 28rpx;
+  font-weight: 600;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #000;
+}
+
+ .service-message .item .text-box .des {
+  height: 32rpx;
+  line-height: 32rpx;
+  color: #999;
+  margin-top: 10rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 24rpx;
+}
+
+ .service-message .item .time-box .time {
+  color: #999;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+}
+
+ .service-message .item .time-box .unread-box {
+  height: 32rpx;
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+ .service-message .item .time-box .unread-box .number {
+  background: #fff;
+  font-size: 0;
+}
+
+ .service-message .item.unread .time-box .unread-box .number {
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  border-radius: 32rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 20rpx;
+  content: " ";
+  text-align: center;
+  background: #fc1b35;
+}
+
+  /* 无客服消息时 */
+  .empty {
+    margin-top: 100rpx;
+    text-align: cneter;
+  }
+
+  .my-message .empty .img{
+    width: 260rpx;
+    height: 260rpx;
+    margin: 0 auto;
+    margin-bottom: 20rpx;
+  }
+  .my-message .empty .img image{
+    width: 100%;
+    height: 100%;
+  }
+
+  .my-message .empty .text{
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+  }
+
+  /* 底部 */
+.coupon-foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 750rpx;
+  margin: auto;
+  background: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+  box-shadow: 0 -6rpx 6rpx rgba(0,0,0,.01);
+  box-sizing: border-box;
+  z-index: 30;
+  padding: 20rpx 30rpx;
+}
+
+.coupon-foot {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.coupon-foot .coupon-btn {
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bold;
+  padding: 36rpx 0;
+  font-size: 28rpx;
+  color: #aaa;
+}
+.coupon-foot .coupon-btn:first-child::after {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  content: '';
+  width: 2rpx;
+  height: 20rpx;
+  background: #ccc;
+}
+.coupon-foot .active {
+  color: #fc1b35;
+}
+
+.coupon-foot .btn {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 70rpx;
+  background: #fc1b35;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+.platform-message.notice-message .service-message.notices-box {
+  background: none;
+}

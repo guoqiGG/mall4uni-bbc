@@ -1,0 +1,98 @@
+
+/* 引导蒙版 */
+.guide-share-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}
+.guide-share-mask .mask {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.7);
+}
+.guide-share-mask .guide-share-close {
+	width: 50rpx;
+	height: 50rpx;
+	position: absolute;
+	top: 40rpx;
+	left: 40rpx;
+	z-index: 99;
+}
+.guide-share-mask .guide-share-close > image {
+	width: 100%;
+	height: 100%;
+}
+.guide-share-mask .guide-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.guide-share-mask .guide-content .share-img {
+  display: block;
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+  margin-left: 35%;
+}
+.guide-content .share-img image {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.guide-content .share-word {
+  display: block;
+  color: #fff;
+  text-align: center;
+}
+.guide-content .share-word .big-word {
+  font-size: 32rpx;
+}
+.guide-content .share-word .small-word {
+  font-size: 26rpx;
+  line-height: 2em;
+}
+
+/* 普通H5浏览器二维码 */
+.guide-qrcode {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+.guide-main {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+.guide-main > image {
+	width: 350rpx;
+	height: 350rpx;
+	margin-top: 50%;
+}
+.guide-copy-btn {
+	background-color: #fff;
+	margin-top: 60rpx;
+	border-radius: 50rpx;
+	border: #fff solid 2rpx;
+	padding: 10rpx 30rpx;
+	font-size: 28rpx;
+}

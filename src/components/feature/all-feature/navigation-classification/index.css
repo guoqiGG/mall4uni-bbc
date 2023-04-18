@@ -1,0 +1,39 @@
+.fature-cate-item {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20rpx 10rpx 0rpx;
+	flex-wrap: wrap;
+}
+.fature-cate-item .item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.fature-cate-item .item image {
+  width: 86rpx;
+  height: 86rpx;
+}
+.fature-cate-item .item text {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+.column-four {
+	width: 25%;
+}
+.column-five {
+	width: 20%;
+}
+.nav-title {
+	word-break: break-word;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis;
+	-moz-text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}

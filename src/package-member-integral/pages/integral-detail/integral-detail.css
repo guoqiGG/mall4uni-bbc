@@ -1,0 +1,185 @@
+/* 积分明细 */
+
+.integral-detail {
+  position: relative;
+}
+
+.integral-detail .number-box {
+  width: 750rpx;
+  height: 446rpx;
+  position: relative;
+  color: #fff;
+}
+
+.integral-detail .number-box .bg1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.integral-detail .number-box .bg2 {
+  position: absolute;
+  top: 50rpx;
+  left: 225rpx;
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.integral-detail .number-box .my-integral {
+  position: relative;
+  text-align: center;
+  width: 300rpx;
+  margin: auto;
+  padding-top: 146rpx;
+}
+
+.integral-detail .number-box .my-integral .number {
+  font-size: 60rpx;
+}
+
+.integral-detail .number-box .text {
+  font-size: 30rpx;
+}
+
+.integral-detail .number-box .explain {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  padding: 8rpx 16rpx 8rpx 20rpx;
+  border-radius: 30rpx 0 0 30rpx;
+  background: rgba(0,0,0,.2);
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.integral-detail .detail-list {
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+}
+
+.empty {
+  display: block;
+  width: 100%;
+  height: 200rpx;
+  line-height: 200rpx;
+  font-size: 28rpx;
+  color: #888;
+  text-align: center;
+}
+
+.integral-detail .detail-list .item {
+  display: flex;
+  padding: 30rpx 0;
+  border-bottom: 1px solid #eee;
+}
+
+.integral-detail .detail-list .item:last-child {
+  border: 0;
+}
+
+.integral-detail .detail-list .item .text-box {
+  flex: 1;
+  margin-right: 30rpx;
+}
+
+.integral-detail .detail-list .item .text-box .tit {
+  font-size: 28rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.integral-detail .detail-list .item .text-box .time {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.integral-detail .detail-list .item .score {
+  font-size: 36rpx;
+  margin-top: 4rpx;
+  font-family: arial;
+}
+
+.integral-detail .detail-list .item .score.add {
+  color: #F81A1A;
+}
+
+/* 积分明细 end */
+
+
+/* 积分攻略弹框 */
+
+.score-strategy {
+  display: block;
+  z-index: 999;
+}
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: .4;
+  z-index: 1;
+}
+.explain-card {
+  position: fixed;
+  width: 70%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #fff;
+  border-radius: 6rpx;
+  padding: 20rpx;
+  z-index: 2;
+}
+.content-wrap {
+	height: 100%;
+}
+.close-box {
+  display: block;
+  text-align: right;
+}
+.close-icon {
+	position: absolute;
+	top: 20rpx;
+	right: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.cont-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  text-align: center;
+	margin-bottom: 20rpx;
+}
+.cont-det {
+  display: block;
+  font-size: 28rpx;
+  color: #555;
+	max-height: 92%;
+	padding-bottom: 40rpx;
+	box-sizing: border-box;
+	overflow: scroll;
+}
+
+/* /积分攻略弹框 */
+
+
+
+/* 加载完成 */
+.loadall {
+  margin: 30rpx 0;
+  line-height: 2em;
+  font-size: 28rpx;
+  color: #aaa;
+  text-align: center;
+}

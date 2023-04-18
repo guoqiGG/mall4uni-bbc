@@ -1,0 +1,420 @@
+/* pages/member-center/member-center.wxss */
+
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.member-index {
+  position: relative;
+}
+
+/* 会员信息 */
+
+.member-index .member-container {
+  position: relative;
+  width: 750rpx;
+  height: 450rpx;
+}
+
+.member-container .m-bg {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.small-screen{
+  height: 480rpx;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15% 8% 5% 8%;
+  height: 100%;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.member-info-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.member-info-bottom{
+  padding-bottom: 20rpx;
+}
+
+.user-info {
+  display: flex;
+	max-width: 70%;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  margin-right: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.user-nickname{
+	flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.user-nickname .nickname {
+  font-size: 28rpx;
+  font-weight: 600;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	word-break: break-all;
+}
+
+.user-score {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+}
+
+.user-score .score-img {
+  width: 30rpx;
+  height: 30rpx;
+  display: inline-block;
+}
+
+.user-level {
+  font-size: 40rpx;
+  font-family: FZXiaoBiaoSong-B05S;
+  font-weight: 800;
+}
+
+.right-arr {
+  width: 13rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+}
+.level-img{
+  width: 40rpx;
+  height: 34rpx;
+  margin-left: 10rpx;
+  display: inkine-block;
+  vertical-align: middle;
+}
+
+.vip-level-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.vip-level-progress .level-tips {
+  flex: 6;
+  margin-right: 30rpx;
+  align-self: center;
+  font-size: 24rpx;
+}
+
+.vip-level-progress .level-progress {
+  margin: 6rpx 0;
+}
+
+.vip-level-progress .level-span {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+/* 会员信息 end */
+
+.member-growth {
+  padding: 30rpx;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+
+.member-tit {
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0;
+}
+
+.member-tit .text {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  position: relative;
+  padding-left: 22rpx;
+}
+
+.member-tit .text::before {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  display: block;
+  width: 6rpx;
+  height: 70%;
+  content: " ";
+  background: #F81A1A;
+  border-radius: 6rpx;
+}
+
+/* 等级表格 */
+
+.growth-value {
+  padding: 20rpx 40rpx;
+  margin-bottom: 20rpx;
+}
+.value-table .tr {
+  display: flex;
+}
+
+.td-left, .td-right {
+  display: inline-block;
+  padding: 0 6rpx;
+  line-height: 2.5em;
+  font-size: 28rpx;
+  text-align: left;
+  background: #fcf8f7;
+  text-align: center;
+  word-break: break-all;
+  /* text-indent: 1.5em; */
+}
+
+.th {
+  background: #ffefe5;
+  font-weight: bold;
+}
+
+.td-left {
+  width: 40%;
+  margin-right: 0.8%;
+}
+
+.td-right {
+  width: 59%;
+}
+/* .td-right::before{
+  display: inline-block;
+  content: "";
+  height: 100%;
+  vertical-align: middle;
+} */
+
+.member-rights {
+  justify-content: space-between;
+  padding-top: 0;
+  margin: 60rpx 0 40rpx 0;
+}
+
+.more-rights {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.rights-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.right-item {
+  display: flex;
+  width: 340rpx;
+  min-height: 160rpx;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8f8;
+  margin-bottom: 10rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+.right-lf {
+  display: flex;
+  align-items: center;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.right-rt {
+  margin-left: 20rpx;
+  flex: 1;
+}
+
+.right-rt .right-tit {
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+
+.right-rt .right-desc {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* swiper弹窗 */
+
+.swiperPop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+
+.swiperPop .mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+
+.swiperPop swiper {
+  position: fixed;
+  top: 20%;
+  width: 100%;
+  height: 78%;
+  z-index: 1000;
+}
+
+.swiperPop .close {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 16%;
+  right: 8%;
+}
+
+.close >image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.swiperPop .swiper-box {
+  width: 95%;
+  display: flex;
+}
+
+.top-bg {
+  width: 100%;
+  height: 180rpx;
+}
+
+.top-bg .member-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 14rpx;
+  display: block;
+}
+
+.top-con {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  padding: 40rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+}
+
+.top-con .member-title {
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.top-con .member-desc-text {
+  margin-left: 10px;
+}
+
+.top-bg .member-level {
+  position: absolute;
+  top: 10rpx;
+  right: -20rpx;
+  width: 50%;
+  opacity: 0.2;
+}
+
+.rights-item-con {
+  width: 95%;
+  height: 75%;
+  max-height: 75%;
+  overflow: scroll;
+  background-color: #fff;
+  position: absolute;
+  top: 160rpx;
+  left: 0;
+  border-radius: 14rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.rights-item-con::after {
+  content: '';
+  width: 30%;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+
+.rights-item {
+  width: 30% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.rights-img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.rights-img image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rights-tit {
+  font-size: 28rpx;
+  word-break: break-word;
+  margin: 25rpx 0 15rpx 0;
+}
+
+.rights-desc {
+  font-size: 22rpx;
+  color: #999;
+  word-break: break-word;
+  text-align: center;
+}
+
+.noInterests {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  color: #8a8989;
+  font-size: 14px;
+}

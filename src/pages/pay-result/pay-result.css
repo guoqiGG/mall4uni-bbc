@@ -1,0 +1,61 @@
+/* pages/pay-result/pay-result.wxss */
+
+.pay-sts {
+  font-size: 40rpx;
+  margin-top: 100rpx;
+  padding: 30rpx 0;
+  text-align: center;
+}
+
+.pay-sts.fail {
+  color: #F81A1A;
+}
+
+.pay-sts.succ {
+  color: #F81A1A;
+}
+
+.btns {
+  margin-top: 50rpx;
+  text-align: center;
+}
+
+.tips {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+}
+
+.tips .warn {
+  color: #F81A1A;
+}
+
+.btns .button {
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  background: #fff;
+  color: #333;
+  padding: 20rpx 35rpx;
+  width: 300rpx;
+  margin: 0 20rpx;
+  text-align: center;
+}
+
+.btns .button.checkorder {
+  background: #F81A1A;
+  color: #fff;
+  margin-bottom: 20rpx;
+  border: 2rpx solid #F81A1A;
+}
+
+.btns .button.payagain {
+  background: #fff;
+  border: 2rpx solid #f90;
+  color: #f90;
+}
+
+.btns .button.shopcontinue {
+  background: #fff;
+  border: 2rpx solid #F81A1A;
+  color: #F81A1A;
+}

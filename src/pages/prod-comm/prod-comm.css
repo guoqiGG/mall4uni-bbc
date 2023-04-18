@@ -1,0 +1,151 @@
+page{
+  background: #f4f4f4;
+}
+.comm-list{
+  background: #f4f4f4;
+}
+.comm-item{
+  margin-bottom:5rpx;
+  background: #fff;
+  padding:20rpx 0;
+}
+.comm-list::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 75rpx;
+  background: #f4f4f4;
+}
+.comm-item .item-top{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding:20rpx 20rpx;
+  border-bottom:2rpx solid #f4f4f4;
+}
+.comm-item .item-top .top-pic {
+  display: inline-block;
+  width: 90rpx;
+  height: 100%;
+  border-radius: 6rpx;
+	/* background-color: #F4F4F4; */
+}
+.comm-item .item-top .top-pic image{
+  width: 90rpx;
+  height: 90rpx;
+	border-radius: 6rpx;
+}
+.comm-item .item-top .top-tit{
+	flex: 1;
+  font-size:28rpx;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  margin-left:20rpx;
+}
+
+.comm-item .item-con{
+  padding:20rpx;
+  font-size: 28rpx;
+}
+.comm-item .item-con textarea{
+  width:100%;
+  height:180rpx;
+}
+.comm-item .item-pics{
+  display: flex;
+  padding-bottom: 15rpx;
+}
+.comm-item .item-pics image{
+  width: 140rpx;
+	height: 140rpx;
+  margin-left: 20rpx;
+}
+/* 缩略图 */
+.question-images {
+  display: flex;
+	flex-wrap: wrap;
+}
+.q-image-wrap {
+  margin-right: 10rpx;
+}
+.q-image {
+  flex: 1;
+  width: 140rpx !important;
+	height: 140rpx !important;
+  margin-left: 20rpx;
+}
+.q-image-remover {
+  text-align: center;
+  font-size: 25rpx;
+}
+/*  +  */
+.img-tip{
+	font-size: 25rpx;
+	color: grey;
+	padding: 15rpx 0;
+	margin-left: 20rpx;
+}
+.comm-item .item-pics .add-pic{
+  width:130rpx;
+  height:130rpx;
+  line-height: 130rpx;
+  text-align: center;
+  font-size: 80rpx;
+  margin-left:20rpx;
+  color:#ddd;
+  border:2px dashed #f4f4f4;
+}
+.item-btm{
+  padding:20rpx;
+  font-size: 26rpx;
+}
+/*checkbox 选项框大小  */
+
+checkbox .wx-checkbox-input {
+  border-radius: 50%;
+  width: 35rpx;
+  height: 35rpx;
+}
+
+/*checkbox选中后样式  */
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #F81A1A;
+  border-color: #F81A1A;
+}
+
+/*checkbox选中后图标样式  */
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  text-align: center;
+  font-size: 22rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+.item-star{
+  padding:20rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  height: 50rpx;
+  background: #fcfcfc;
+}
+comm-star{
+  margin-left:20rpx;
+}
+.comm-btn{
+  position: fixed;
+  bottom:0;
+  width:100%;
+  font-size: 32rpx;
+  border-top:1px solid #f4f4f4;
+  height:90rpx;
+  line-height: 90rpx;
+  color:#F81A1A;
+  text-align: center;
+  background: #fff;
+}

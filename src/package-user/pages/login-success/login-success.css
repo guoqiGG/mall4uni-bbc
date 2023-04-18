@@ -1,0 +1,40 @@
+page{
+  background: #fff;
+  height: 100%;
+}
+.success-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.success-img image {
+  margin-top: 157rpx;
+  width: 96rpx;
+  height: 96rpx;
+}
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  margin-top: 32rpx;
+}
+.sub-title {
+  width: 100%;
+  text-align: center;
+  color: #999999;
+  font-size: 24rpx;
+  margin-top: 24rpx;
+}
+.btn {
+  width: 90%;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #F81A1A;
+  border: 1rpx solid #F81A1A;
+  color: #fff;
+  border-radius: 14rpx;
+  font-size: 30rpx;
+  margin-top: 50rpx;
+}

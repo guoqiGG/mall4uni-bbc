@@ -1,0 +1,31 @@
+/* pages/shop-tabbar/shop-tabbar.wxss */
+
+.shop-tabbar-container {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1rpx solid #d5d5d5;
+  padding: 3rpx 0;
+}
+
+.tabBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rpx 20rpx;
+}
+
+.tabBar .tabIcon {
+  width: 54rpx;
+  height: 54rpx;
+}
+
+.tabBar .tabTitle {
+  font-size: 20rpx;
+  color: #333333;
+}
+
+  .on {
+  color: #F81A1A !important;
+}

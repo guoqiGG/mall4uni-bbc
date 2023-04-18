@@ -1,0 +1,230 @@
+/* pages/snap-up-list/snap-up-list.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.seckill-box image {
+  width: 100%;
+  height: 100%;
+}
+
+.banner {
+  position: relative;
+  width: 750rpx;
+  height: 284rpx;
+  padding-top: 24rpx;
+}
+
+.banner .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0;
+  width: 750rpx;
+  height: 220rpx;
+}
+
+.banner .img {
+  font-size: 0;
+  width: 710rpx;
+  height: 280rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.seckill-list {
+  padding: 20rpx;
+}
+
+.seckill-list .item {
+  background: #fff;
+  margin-top: 24rpx;
+  border-radius: 10rpx;
+  display: flex;
+  padding: 20rpx;
+}
+
+.seckill-list .item:first-child {
+  margin-top: 0;
+}
+
+.seckill-list .item .img-box {
+  position: relative;
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.seckill-list .item .goods-msg {
+  flex: 1;
+  max-width: 60%;
+  margin-left: 20rpx;
+}
+
+.seckill-list .item .goods-msg .countdown-box {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 4rpx;
+}
+
+.seckill-list .item .goods-msg .countdown-box .tip {
+  margin-right: 10rpx;
+}
+
+.seckill-list .item .goods-msg .countdown-box .text {
+  margin: 0 6rpx;
+}
+
+.seckill-list .item .goods-msg .countdown-box .num {
+  font-family: arial;
+  font-size: 24rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 0 6rpx;
+  border-radius: 4rpx;
+}
+
+.seckill-list .item .goods-msg .goods-name {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.seckill-list .item .goods-msg .goods-name .discounts {
+  margin-right: 10rpx;
+  background: #F81A1A;
+  padding: 4rpx 10rpx;
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 20rpx;
+  font-weight: 400;
+}
+
+.seckill-list .item .goods-msg .goods-name .name {
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+
+.seckill-list .item .goods-msg .progress-box {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.seckill-list .item .goods-msg .progress-box .bg-box {
+  flex: 1;
+  height: 22rpx;
+  background: #ffebeb;
+  border-radius: 22rpx;
+  overflow: hidden;
+}
+
+.seckill-list .item .goods-msg .progress-box .bg-box .progress {
+  height: 22rpx;
+  border-radius: 22rpx;
+  background: #ee1c1e;
+}
+
+.seckill-list .item .goods-msg .progress-box .text {
+  font-size: 24rpx;
+  color: #F81A1A;
+  margin-left: 20rpx;
+}
+
+.seckill-list .item .goods-msg .goods-price {
+  display: flex;
+  align-items: baseline;
+  margin-top: 26rpx;
+}
+
+.seckill-list .item .goods-msg .goods-price .price-box {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+}
+
+.seckill-list .item .goods-msg .goods-price .price-box .current-price {
+  color: #F81A1A;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.seckill-list .item .goods-msg .goods-price .price-box .current-price .sub {
+  font-size: 24rpx;
+}
+
+.seckill-list .item .goods-msg .goods-price .price-box .original-price {
+  font-size: 24rpx;
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 10rpx;
+}
+
+.seckill-list .item .goods-msg .goods-price .residue {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 10rpx;
+  position: relative;
+  line-height: 1.5;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.seckill-list .item .goods-msg .goods-price .residueEn {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 10rpx;
+  position: relative;
+  line-height: 1.5;
+  word-wrap: break-word;
+  word-break: break-all;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 加载完成 */
+.loadall {
+  margin: 20rpx 0;
+  line-height: 2em;
+  font-size: 28rpx;
+  color: #aaa;
+  text-align: center;
+}
+
+/* 列表为空 */
+.empty {
+  margin-top: 100rpx;
+  text-align: cneter;
+}
+.empty-icon {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+}
+.empty-icon > image {
+  width: 100%;
+  height: 100%;
+}
+.empty-text {
+  font-size: 28rpx;
+  text-align: center;
+  color: #999;
+  line-height: 2em;
+}

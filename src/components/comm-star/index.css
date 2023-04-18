@@ -1,0 +1,13 @@
+.stars {
+  display: flex;
+  margin-left: 3px;
+}
+.stars image {
+  width: 35rpx;
+  height: 35rpx;
+}
+.stars.write image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right:20rpx;
+}

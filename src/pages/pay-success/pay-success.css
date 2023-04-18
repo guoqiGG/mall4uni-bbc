@@ -1,0 +1,148 @@
+
+.pay-success {
+  padding-top: 180rpx;
+}
+
+.pay-success .pay-det {
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.pay-success .pay-det .number {
+  font-family: arial;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-weight: 600;
+  margin-top: 20rpx;
+}
+
+.pay-success .pay-det .number .price {
+  font-size: 56rpx;
+  color: #333;
+}
+
+.pay-success .pay-bottom {
+  position: absolute;
+  margin-top: 40rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.pay-success .pay-bottom .view-code {
+  width: 220rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: auto;
+  border-radius: 70rpx;
+  background: #F81A1A;
+  color: #fff;
+}
+
+.pay-success .pay-bottom .other-action {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pay-success .pay-bottom .other-action .item {
+  padding: 0 30rpx;
+  color: #F81A1A;
+}
+
+.pay-success .pay-bottom .other-action .item.bl {
+  border-left: 1px solid #eee;
+}
+
+/* 查看提货码弹窗 */
+.popup-hide {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.popup-hide .popup-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.popup-hide .code-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30rpx;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.popup-hide .code-box .con-tit {
+  padding-bottom: 30rpx;
+  font-size: 28rpx;
+  text-align: center;
+  font-weight: 600;
+}
+
+.popup-hide .code-box .address {
+  font-size: 24rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx dashed #ddd;
+}
+
+.popup-hide .code-box .address .item {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.popup-hide .code-box .address .item .label {
+  color: #999;
+}
+
+.popup-hide .code-box .address .item .det {
+  flex: 1;
+}
+
+.popup-hide .code-box .code {
+  width: 340rpx;
+  height: 340rpx;
+  padding: 20rpx;
+  border: 2rpx solid #eee;
+  font-size: 0;
+  margin: 40rpx auto 20rpx;
+}
+
+.popup-hide .code-box .code image {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-hide .code-box .code-num {
+  text-align: center;
+  font-family: arial;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.popup-hide .code-box .code-btn {
+  height: 70rpx;
+  line-height: 70rpx;
+  margin: 40rpx 40rpx 10rpx;
+  border-radius: 70rpx;
+  background: #F81A1A;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+}
+.container{
+  height: 680rpx
+}

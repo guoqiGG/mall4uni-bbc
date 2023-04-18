@@ -1,0 +1,176 @@
+/* pages/special-discount/special-discount.wxss */
+
+/* 限时特惠 */
+
+.discount-list {
+  padding: 10rpx 20rpx 20rpx;
+  position: relative;
+}
+
+.discount-list .list-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 250rpx;
+}
+
+.discount-list .item {
+  width: 100%;
+  height: 260rpx;
+  position: relative;
+  margin-top: 26rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.discount-list .item.no-bg {
+  background: #999;
+}
+
+.discount-list .item .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.discount-list .item .text-box {
+  padding: 30rpx;
+  position: relative;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.discount-list .item .info {
+  font-size: 38rpx;
+  color: #fff;
+  font-weight: 600;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.discount-list .item .shop {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.discount-list .item .shop .arr {
+  display:inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+}
+
+.discount-list .item .time {
+  font-size: 24rpx;
+  color: #fff;
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.discount-list .item .time .time-icon {
+    width: 22rpx;
+    height: 22rpx;
+    border: 2rpx solid #fff;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 10rpx;
+}
+
+.discount-list .item .time .time-icon::before,
+.discount-list .item .time .time-icon::after {
+    position: absolute;
+    display: block;
+    content: " ";
+    background: #fff;
+}
+
+.discount-list .item .time .time-icon::before {
+    width: 2rpx;
+    height: 10rpx;
+    top: 6rpx;
+    left: 10rpx;
+}
+
+.discount-list .item .time .time-icon::after {
+    width: 6rpx;
+    height: 2rpx;
+    top: 14rpx;
+    right: 6rpx;
+}
+
+.discount-list .item .time .much-time {
+  display: flex;
+  align-items: center;
+}
+
+.discount-list .item .time .much-time .day {
+    color: #f6e59e;
+    font-family: arial;
+    margin: 0 6rpx;
+}
+
+.discount-list .item .time .number-box {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    margin-left: 10rpx;
+}
+
+.discount-list .item .time .number-box .number {
+  font-family: arial;
+  padding: 2rpx 6rpx;
+  text-align: center;
+  background: rgba(0,0,0,.7);
+  border-radius: 4rpx;
+  font-size: 24rpx;
+}
+
+.discount-list .item .time .number-box .colon {
+  font-family: arial;
+  margin: 0 6rpx;
+}
+
+/* 限时特惠 end */
+
+/* 已加载全部 */
+.loadall {
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #aaa;
+  line-height: 2em;
+}
+
+/* 空 */
+.empty {
+  font-size: 28rpx;
+  color: #aaa;
+  height: 2em;
+  line-height: 2em;
+  margin-top: 360rpx;
+  text-align: center;
+}
+.empty .empty-icon{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.empty .empty-icon image{
+  width: 100%;
+  height: 100%;
+}

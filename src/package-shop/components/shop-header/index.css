@@ -1,0 +1,125 @@
+/* 店铺信息 */
+
+.shop {
+  display: flex;
+  padding: 20rpx;
+  padding-top: 30rpx;
+  box-sizing: border-box;
+  height: 206rpx;
+  position: relative;
+  top: 0;
+  /* background: linear-gradient(
+    #121a2a,
+    #102b6a
+  );  */
+  /* 标准的语法（必须放在最后） */
+}
+
+.shopInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.shopInfo .sl {
+  display: flex;
+  align-items: center;
+  max-width: 75%;
+}
+
+.shopInfo .shopLogo {
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  background: #ffffff;
+  border-radius: 8rpx;
+}
+
+.shopInfo .shopLogo image {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+}
+.shopInfo .shopTitle {
+  display: inline-block;
+  margin-left: 16rpx;
+  padding: 13rpx 0;
+  box-sizing: border-box;
+  font-size: 24rpx;
+}
+.shopInfo .shopTitle .shopname {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 8rpx;
+  font-size: 30rpx;
+  /* color: #fff; */
+  font-weight: bold;
+  line-height: 1.5em;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+}
+.shopInfo .shopTitle .shopIntro {
+  display: flex;
+  align-items: center;
+  /* color: #fff; */
+  font-size: 24rpx;
+  line-height: 1.5em;
+  margin-top: 8px;
+}
+.shopInfo .shopTitle .shopIntro-en {
+  display: block;
+  margin-top: 10rpx;
+}
+.shopInfo .shopTitle .shopIntro-en .fol {
+  margin-top: 10rpx;
+}
+.self-operate {
+  display: inline-block;
+  background-color: #F81A1A;
+  background-image: linear-gradient(to bottom, #F81A1A, #f86323);
+  color: #fff;
+  font-size: 23rpx;
+  padding: 3px;
+  border-radius: 3px;
+  margin-right: 8px;
+  line-height: 1em;
+}
+.shopInfo .follow-btn {
+  justify-content: flex-end;
+  background-color: #F81A1A;
+  background-image: linear-gradient(to right, #F81A1A, #f86323);
+  line-height: 1em;
+  padding: 3px 6px;
+  font-size: 24rpx;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.shopInfo .follow-btn.followed {
+  background: transparent;
+  border: 1px solid #bbb;
+  color: #bbb;
+}
+.shopInfo .follow-btn .fol {
+  display: flex;
+  align-items: center;
+}
+.shopInfo .follow-btn .col-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 4px;
+}
+
+/* 店铺首页 */
+.shop-index .shopInfo .shopTitle .shopname,
+.shop-index .fol,
+.shop-index .shopInfo .follow-btn.followe {
+  color: #fff;
+}

@@ -1,0 +1,99 @@
+.withdrawal-mian{
+  margin: 0;
+  padding: 0;
+  font-size: 25rpx;
+}
+
+.withdrawal-tab1{
+   display: flex;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: 1rpx solid ghostwhite;
+  
+}
+.withdrawal-tab1 image{
+  height: 75rpx;
+  width: 75rpx;
+  border-radius: 50%;
+  margin-left: 50rpx;
+  display: inline-block;
+  margin-top: 12rpx;
+}
+.withdrawal-tab2{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1rpx solid #f0f0f0;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+.withdrawal-tab2 input{
+  display: inline-block;
+  /* width: 60%; */
+  line-height: 2em;
+  vertical-align: middle;
+  max-width: 60%;
+  /* color: #F81A1A; */
+}
+.withdrawal-tab2-text2{
+  color: #F81A1A;
+}
+.withdrawal-tab3{
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+   border: 1rpx solid ghostwhite;
+}
+.withdrawal-tab3-text{
+  margin-left: 20rpx;
+}
+.withdrawal-tab3 input{
+  width: 400rpx;
+  height: 28rpx;
+  margin-left: 180rpx;
+  margin-top: -76rpx;
+}
+
+.withdrawal-tab3-text2{
+  float: right;
+  margin-right:-135rpx;
+  margin-top: -75rpx;
+  color: grey;
+  
+}
+.line{
+  border: none;
+  height: 60rpx;
+  border-right: 1px solid silver;
+  float: right;
+  margin-right: 150rpx;
+  margin-top: -50rpx;
+
+}
+.withdrawal-btn{
+  width: 95%;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  color: white;
+  background-color: #F81A1A;
+
+   
+}
+
+
+
+/* 提现tips */
+.rule-block{
+  margin: 25rpx 25rpx 0;
+}
+.rule-block .tip{
+  display: block;
+  font-size: 26rpx;
+  line-height: 1.5em;
+  color: #888888;
+}

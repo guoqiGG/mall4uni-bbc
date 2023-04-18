@@ -1,0 +1,298 @@
+/* pages/salesman-level/salesman-level.wxss */
+page {
+  /* position: fixed; */
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+  /* overflow: auto; */
+}
+.toplevelshow {
+  background-image: linear-gradient(#323444 20%, #565969 80%);
+  color: #eeeeee;
+}
+.level-txt {
+  padding: 50rpx 0 30rpx;
+  font-size: 34rpx;
+  text-align: center;
+}
+
+/* 立即升级 */
+.upgrade-now {
+  width: 80%;
+  text-align: center;
+  background: #bea379;
+  /* border-top: 1rpx solid #f1f1f1; */
+  margin: 0 auto;
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
+}
+.upgrade {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #fff;
+  padding: 1em 0 1em;
+  line-height: 1em;
+  margin: 0 auto;
+}
+
+
+.level-progress {
+  position: relative;
+  padding: 20rpx 20rpx 50rpx;
+  display: flex;
+  justify-content: space-around;
+  font-size: 25rpx;
+}
+/* 小方形块 */
+.square-block {
+  width: 10rpx;
+  height: 10rpx;
+  background: #bbbbbb;
+  opacity: 08;
+  margin: 0 auto;
+}
+/* /小方形块 */
+.level-block-txt {
+  margin-top: 15rpx;
+  color: #bbbbbb;
+  opacity: 08;
+}
+/* 线 */
+.level-block {
+  position: relative;
+}
+.level-block::after {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 60%;
+  top: 5rpx;
+  height: 1rpx;
+  background: #b1b1b1;
+}
+/* length == 2 */
+.width2::after{
+  width: 550%;
+}
+/* length == 3 */
+.width3::after{
+  width: 360%;
+}
+/* length == 4 */
+.width4::after {
+  width: 260%;
+}
+/* length == 5 */
+.width5::after{
+  width: 205%;
+}
+.level-progress .level-block:last-child::after {
+  display: none;
+}
+/* /线 */
+/* 当前等级 */
+.current-level .square-block {
+  background: #d3ab6b;
+}
+.current-level .level-block-txt {
+  color: #d3ab6b;
+}
+.current-color {
+  color: #ffffff;
+  opacity: 1;
+}
+.current-bg {
+  background: #ffffff;
+  opacity: 1;
+}
+
+
+/* 佣金百分比 */
+.commission-percentage {
+  background: #fff;
+  margin-bottom: 30rpx;
+  padding: 20rpx 0;
+}
+.commission-percentage image {
+  width: 100%;
+  height: 100%;
+}
+.percentage-type {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  text-align: center;
+}
+.vertical-line {
+  display: inline-block;
+}
+.commission-percentage {
+  position: relative;
+}
+.vertical-line {
+  position: absolute;
+  width: 1rpx;
+  height: 64rpx;
+  left: 50%;
+}
+.per-icon {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 1rpx solid #eeeeee;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.per-msg-box {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 25rpx;
+  color: #d3ab6b;
+}
+
+
+/* 规则和&益介绍 */
+.rules-wrapper {
+  background: #ffffff;
+  padding: 30rpx 50rpx;
+}
+.intro-icon image {
+  width: 100%;
+  height: 100%;
+}
+.riles-title {
+  padding-bottom: 40rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+.riles-title-txt {
+  display: inline-block;
+  vertical-align: middle;
+}
+.horizontal {
+  display: inline-block;
+  width: 60rpx;
+  height: 2rpx;
+  background: #ddd;
+  vertical-align: middle;
+}
+.riles-title view:nth-child(1) {
+  margin-right: 40rpx;
+}
+.riles-title view:nth-child(3) {
+  margin-left: 40rpx;
+}
+.introduction-rules {
+  display: none;
+  padding-bottom: 40rpx;
+}
+/* 当前等级规则 */
+.current-rules {
+  display: block;
+}
+/* /当前等级规则 */
+.intro-level-tit {
+  display: inline-block;
+  color: #fff;
+  background: #bea379;
+  padding: 8rpx 10rpx 10rpx;
+  line-height: 1em;
+}
+.intron-rule {
+  margin-top: 32rpx;
+}
+.rule-desc-tit {
+  margin-bottom: 20rpx;
+}
+.rule-desc-tit .intro-icon {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.intro-title {
+  display: inline-block;
+  font-size: 32rpx;
+  vertical-align: middle;
+}
+.intro-detailed {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 45rpx;
+}
+/* 右三角 */
+.triangle {
+  display: inline-block;
+  width: 8rpx;
+  height: 8rpx;
+  background: #bea379;
+  /* border: 8rpx solid transparent; */
+  /* border-left: 8px solid #bea379; */
+  vertical-align: middle;
+  margin-right: .5em;
+}
+/* /右三角 */
+
+.intro-detailed text {
+  color: #bea379;
+}
+.condition-box {
+  margin-bottom: 30rpx;
+  padding-left: 60rpx;
+}
+/* .condition {
+  padding-left: 20rpx;
+} */
+.buyprod image {
+  width: 100%;
+  height: 100%;
+}
+.buy-tit {
+  font-size: 28rpx;
+  line-height: 1em;
+  margin-bottom: 1em;
+  color: #333333;
+}
+.prod-msg {
+  background: #f6f6f6;
+  padding: 15rpx 15rpx 6rpx;
+  margin-bottom: 10rpx;
+}
+.prod-img {
+  display: inline-block;
+  width: 150rpx;
+  height: 150rpx;
+  background: #ffffff;
+}
+.prod-name {
+  display: inline-block;
+  width: 70%;
+  vertical-align: top;
+}
+.prod-name-txt {
+  width: 100%;
+  box-sizing: border-box;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /*设定显示行数*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  padding-left: 1em;
+}
+
+/* 线 */
+.line{
+	display: block;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 25rpx;
+	height: 1rpx;
+	background: #b1b1b1;
+	width: 100%;
+}

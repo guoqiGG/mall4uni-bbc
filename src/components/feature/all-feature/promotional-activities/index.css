@@ -1,0 +1,205 @@
+/* 秒杀 */
+.snap-up {
+  margin: 20rpx auto;
+  padding: 0 20rpx;
+}
+::-webkit-scrollbar{
+  width: 0 !important;
+  height: 0 !important;
+  color: transparent !important;
+}
+uni-scroll-view .uni-scroll-view::-webkit-scrollbar {
+	/* 隐藏滚动条，但依旧具备可以滚动的功能 */
+	width: 0 !important;
+	height: 0 !important;
+	color: transparent !important;
+}
+.group-number {
+  font-size: 18rpx;
+  color: white;
+  background: #F81A1A;
+  padding: 6rpx 12rpx;
+  border-radius: 20rpx;
+  line-height: 20rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  z-index: 2;
+}
+.more-icon > image,
+.img-box > image {
+  width: 100%;
+  height: 100%;
+}
+.img-box {
+	position: relative;
+}
+.imgs_shelves {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.6);
+}
+.imgs_shelves image {
+	width: 200rpx;
+}
+.imgs_shelves .been_imgs {
+  width: 100%;
+  height: 100%;
+}
+.snap-up-head {
+  padding: 20rpx 0;
+  padding-bottom: 10rpx;
+}
+.snap-up-tit {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.snap-up-time {
+  padding: 5rpx 10rpx;
+  padding-right: 1rpx;
+  font-size: 24rpx;
+  background: red;
+  border-radius: 30rpx;
+  margin: 0 15rpx;
+}
+.white {
+  color: white;
+}
+.snap-up-countdown {
+  margin-right: 2rpx;
+  margin-left: 10rpx;
+  background: #fff;
+  color: red;
+  border-radius: 0 15rpx 15rpx 0;
+  padding: 5rpx 10rpx 0 8rpx;
+}
+.snap-up-time {
+  display: inline-block;
+}
+.more-goods {
+  float: right;
+  font-size: 25rpx;
+  color: #777;
+  padding-top: 0.5em;
+  line-height: 1em;
+  display: flex;
+
+}
+.more-goods-txt {
+  vertical-align: middle;
+  color: #aaa;
+}
+.more-icon {
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  vertical-align: middle;
+  padding-left: 5rpx;
+}
+/* 清除浮动 */
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+/* 列表 */
+.snap-up-goods-show {
+  box-sizing: border-box;
+  padding: 20rpx 20rpx 0;
+  width: 100%;
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-top: 10rpx;
+}
+.snap-up-goods-show::-webkit-scrollbar{
+  display: none;
+}
+
+.snap-up-goods-box {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 20rpx;
+	overflow:-moz-scrollbars-none;
+	scrollbar-width: none;
+}
+.snap-up-goods-box:not(:last-child) {
+  margin-right: 20rpx;
+}
+.snap-up-goods-box .img-box {
+  display: block;
+  width: 210rpx;
+  height: 200rpx;
+  font-size: 0;
+}
+.purchase-conditions {
+  margin-top: 10rpx;
+  line-height: 1.5em;
+}
+.group-number {
+font-size: 18rpx;
+color: white;
+background: #F81A1A;
+padding: 6rpx 12rpx;
+border-radius: 20rpx;
+line-height: 20rpx;
+position: absolute;
+top: 10rpx;
+left: 10rpx;
+}
+.snap-up-price {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #F81A1A;
+  line-height: 1.5em;
+  text-align: center;
+  padding-top: 8rpx;
+  font-family: arial;
+}
+
+.snap-up-price .symbol {
+  font-size: 24rpx;
+}
+
+.original-price {
+  text-align: center;
+  font-size: 25rpx;
+  line-height: 1em;
+  color: #999;
+  text-decoration: line-through;
+}
+/* 查看更多 */
+.view-more {
+  display: inline-block;
+  width: 30rpx;
+  padding: 0 10rpx;
+  height: 146px;
+  line-height: 30rpx;
+  writing-mode: vertical-lr;
+  font-size: 23rpx;
+  color: #888;
+  background: #eee;
+  vertical-align: top;
+  text-align: center;
+  letter-spacing: 3px;
+}
+.view-more-icon {
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 9rpx;
+}

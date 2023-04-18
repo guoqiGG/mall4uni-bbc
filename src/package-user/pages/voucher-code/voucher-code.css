@@ -1,0 +1,163 @@
+/* 虚拟商品-查看券码 */
+page {
+  background: #f4f4f4;
+}
+image {
+  width: 100%;
+  height: 100%;
+}
+.weak {
+  color: #999;
+}
+.view-voucher-code {
+  margin: 30rpx;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+.view-voucher-code .card-vouchers {
+  padding: 30rpx;
+  background: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 6rpx rgba(0,0,0,0.05);
+}
+.view-voucher-code .card-vouchers .item {
+  position: relative;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx dashed #ddd;
+}
+.view-voucher-code .card-vouchers .item::before,
+.view-voucher-code .card-vouchers .item::after {
+  position: absolute;
+  bottom: -20rpx;
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: #f4f4f4; 
+  content: " ";
+  font-size: 0;
+}
+.view-voucher-code .card-vouchers .item::before {
+  left: -56rpx;
+}
+.view-voucher-code .card-vouchers .item::after {
+  right: -56rpx;
+}
+/* 卡券样式-半圆 */
+/* .view-voucher-code .card-vouchers.card-model {
+  background: radial-gradient(circle at left bottom, transparent 20rpx,  #ffffff 0) top left / 51% 30% no-repeat,
+              radial-gradient(circle at right bottom, transparent 20rpx,  #ffffff 0) top right /51% 30% no-repeat,
+              radial-gradient(circle at left top, transparent 20rpx, #ffffff 0) bottom left /51% 71% no-repeat,
+              radial-gradient(circle at right top, transparent 20rpx, #ffffff 0) bottom right /51% 71% no-repeat;
+  filter: drop-shadow(2px 3px 3px rgba(163, 163, 163, 0.1));
+} */
+.view-voucher-code .card-vouchers.card-model .top-half {
+  display: block;
+  min-height: 200rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+}
+.view-voucher-code .card-vouchers.card-model .bottom-half {
+  position: relative;
+  display: block;
+  min-height: 600rpx;
+  margin-top: 60rpx;
+  margin-bottom: 20rpx;
+}
+.view-voucher-code .card-vouchers.card-model .top-half .prod-name {
+  color: #333333;
+  font-weight: bold;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.view-voucher-code .card-vouchers.card-model .top-half .total-num {
+  margin-bottom: 10rpx;
+}
+.view-voucher-code .card-vouchers.card-model .top-half .expiry-date {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10rpx;
+}
+.view-voucher-code .card-vouchers.card-model .top-half .expiry-date .lf {
+  white-space: nowrap;
+}
+.view-voucher-code .card-vouchers.card-model .top-half .expiry-date .rg text {
+  word-wrap: break-word;
+}
+
+/* 条形码 & 二维码 */
+.view-voucher-code .card-vouchers .bottom-half .bar-code {
+  font-size: 0;
+  margin: auto;
+  width: 610rpx;
+  height: 150rpx;
+}
+.view-voucher-code .card-vouchers .bottom-half .bar-code >>> uni-image,
+.view-voucher-code .card-vouchers .bottom-half .bar-code .tki-barcode image {
+  max-width: 100%;
+}
+.view-voucher-code .card-vouchers .bottom-half .code-number {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 28rpx;
+}.view-voucher-code .card-vouchers .bottom-half .tips {
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 22rpx;
+}
+.view-voucher-code .card-vouchers .bottom-half .qr-code .qicode-tips {
+  color: #005EA7;
+  text-align: center;
+}
+.view-voucher-code .card-vouchers .bottom-half .code {
+  width: 400rpx;
+  height: 400rpx;
+  margin: 50rpx auto 30rpx;
+}
+.view-voucher-code .card-vouchers .bottom-half .code .qrcode-img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* 券码列表 */
+.view-voucher-code .code-list {
+  padding: 30rpx;
+  background: #fff;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 6rpx rgba(0,0,0,0.05);
+}
+.view-voucher-code .code-list .code-item:not(:last-child) {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+.view-voucher-code .code-list .code-item .text-list {
+  max-height: 470rpx;
+  overflow-y: auto;
+}
+.view-voucher-code .code-list .code-item .text {
+  line-height: 1.5em;
+}
+.view-voucher-code .code-list .code-item .text:not(:last-child) {
+  margin-bottom: 12rpx;
+}
+.view-voucher-code .code-list .code-item.used .text .used-code {
+  color: #999;
+}
+.view-voucher-code .code-list .code-item.used .text .used-code .code {
+  text-decoration: line-through;
+}
+.view-voucher-code .code-list .code-item.used .text .right {
+  float: right;
+  color: #999;
+}

@@ -1,0 +1,26 @@
+.search-bar-container {
+  background-color: #fff;
+  padding: 16rpx 24rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  border-radius: 2px;
+  height: 56rpx;
+  background: #eeeeee;
+  color: #999999;
+  border-radius: 2px;
+  justify-content: flex-start;
+}
+.search-bar > image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.search-bar > text {
+  font-size: 26rpx;
+}

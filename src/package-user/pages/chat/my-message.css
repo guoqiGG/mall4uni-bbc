@@ -1,0 +1,341 @@
+
+page {
+    background: #f2f3f7;
+  }
+  
+  .my-message {
+    padding-bottom: env(safe-area-inset-bottom)
+  }
+  
+  /* 筛选栏 */
+  .my-message .tab {
+    display: flex;
+    align-items: center;
+    padding: 26rpx 30rpx 30rpx;
+    background: #fff;
+    box-shadow: 0 6rpx 6rpx rgba(0,0,0,.01);
+    border-radius: 0 0 10rpx 10rpx;
+  }
+  
+  .my-message .tab .tab-item {
+    position: relative;
+    line-height: 44rpx;
+    padding: 0 10rpx;
+    flex: 1;
+    text-align: center;
+    font-size: 28rpx;
+    color: #999;
+  }
+  
+  .my-message .tab .tab-item::after {
+    position: absolute;
+    bottom: -10rpx;
+    left: 40%;
+    right: 40%;
+    display: block;
+    width: auto;
+    height: 4rpx;
+    border-radius: 4rpx;
+    content: " ";
+    font-size: 0;
+    background: #fff;
+  }
+  
+  .my-message .tab .tab-item.active {
+    font-weight: 600;
+    color: #000;
+  }
+  
+  .my-message .tab .tab-item.active::after {
+    background: linear-gradient(to right, #fc1b35, #fff);
+  }
+  
+  .my-message .tab .tab-item.unread-tip::before {
+    position: absolute;
+    left: 50%;
+    top: 8rpx;
+    display: block;
+    width: 10rpx;
+    height: 10rpx;
+    border-radius: 50%;
+    content: " ";
+    background: #fc1b35;
+    margin-left: 58rpx;
+  }
+  
+  /* 客服消息 */
+  .my-message .service-message {
+    padding: 0 30rpx;
+    margin-top: 20rpx;
+    border-radius: 10rpx;
+    background: #fff;
+  }
+  
+  .my-message .service-message .item {
+    display: flex;
+    align-items: center;
+    padding: 30rpx 0;
+    position: relative;
+  }
+  
+  .my-message .service-message .item::after {
+    position: absolute;
+    left: 114rpx;
+    right: 0;
+    bottom: 0;
+    display: block;
+    height: 2rpx;
+    content: " ";
+    font-size: 0;
+    background: #f9f9f9;
+  }
+  
+  .my-message .service-message .item:last-child::after {
+    height: 0;
+  }
+  
+  .my-message .service-message .item .logo {
+    width: 90rpx;
+    height: 90rpx;
+    border: 2rpx solid #f5f5f5;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .my-message .service-message .item .logo image{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .my-message .service-message .item .text-box {
+    flex: 1;
+    margin: 0 20rpx;
+  }
+  
+  .my-message .service-message .item .text-box .name {
+    font-size: 28rpx;
+    font-weight: 600;
+    height: 40rpx;
+    line-height: 40rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
+  
+  .my-message .service-message .item .text-box .des {
+    font-size: 12px;
+    height: 32rpx;
+    line-height: 32rpx;
+    color: #999;
+    margin-top: 10rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
+  
+  .my-message .service-message .item .time-box .time {
+    color: #999;
+    height: 40rpx;
+    line-height: 40rpx;
+  }
+  
+  .my-message .service-message .item .time-box .unread-box {
+    height: 32rpx;
+    margin-top: 10rpx;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .my-message .service-message .item .time-box .unread-box .number {
+    background: #fff;
+    font-size: 0;
+  }
+  
+  .my-message .service-message .item.unread .time-box .unread-box .number {
+    min-width: 32rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    border-radius: 32rpx;
+    padding: 0 10rpx;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 20rpx;
+    content: " ";
+    background: #fc1b35;
+  }
+  
+  /* 平台公告 */
+  .my-message .platform-message {
+    padding: 30rpx;
+  }
+  
+  .my-message .platform-message .item {
+    padding: 30rpx;
+    border-radius: 10rpx;
+    margin-top: 30rpx;
+    background: #fff;
+  }
+  
+  .my-message .platform-message .item:first-child {
+    margin-top: 0;
+  }
+  
+  .my-message .platform-message .item .tit-box {
+    display: flex;
+    align-items: center;
+  }
+  
+  .my-message .platform-message .item .tit-box .tit {
+    flex: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 28rpx;
+    font-weight: 600;
+    position: relative;
+  }
+  
+  .my-message .platform-message .item.unread .tit-box .tit {
+    padding-left: 20rpx;
+  }
+  
+  .my-message .platform-message .item.unread .tit-box .tit::before {
+    position: absolute;
+    left: 0;
+    top: 8rpx;
+    display: block;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    content: " ";
+    background: #fc1b35;
+  }
+  
+  .my-message .platform-message .item .tit-box .time {
+    color: #999;
+  }
+  
+  .my-message .platform-message .item .text-box {
+    margin: 20rpx 0;
+    color: #999;
+    max-height: 72rpx;
+    line-height: 36rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .my-message .platform-message .item .text-arrow {
+    padding-top: 20rpx;
+    border-top: 2rpx solid #f9f9f9;
+  }
+  
+  .my-message .platform-message .item .text-arrow::after {
+    width: 10rpx;
+    height: 10rpx;
+    top: 72%;
+    right: 10rpx;
+  }
+  
+  /* 系统通知 */
+  .my-message .notice-message {
+    padding: 30rpx;
+  }
+  
+  .my-message .notice-message .item {
+    margin-top: 30rpx;
+  }
+  
+  .my-message .notice-message .item:first-child {
+    margin-top: 0;
+  }
+  
+  .my-message .notice-message .item .time {
+    color: #999;
+    text-align: center;
+  }
+  
+  .my-message .notice-message .item .item-box {
+    background: #fff;
+    border-radius: 10rpx;
+    padding: 30rpx;
+    margin-top: 20rpx;
+  }
+  
+  .my-message .notice-message .item .item-box .tit {
+    font-size: 28rpx;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .my-message .notice-message .item.unread .item-box .tit {
+    padding-left: 20rpx;
+  }
+  
+  .my-message .notice-message .item.unread .item-box .tit::before {
+    position: absolute;
+    left: 0;
+    top: 8rpx;
+    display: block;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    content: " ";
+    background: #fc1b35;
+  }
+  
+  .my-message .notice-message .item .item-box .text-box {
+    margin: 20rpx 0;
+    color: #999;
+    max-height: 72rpx;
+    line-height: 36rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 30rpx;
+  }
+  
+  .my-message .notice-message .item .item-box .text-box.text-arrow::after {
+    width: 12rpx;
+    height: 12rpx;
+    border-color: #999;
+    right: 8rpx;
+  }
+
+  /* 无客服消息时 */
+  .empty {
+    margin-top: 100rpx;
+    text-align: cneter;
+  }
+
+  .my-message .empty .img{
+    width: 260rpx;
+    height: 260rpx;
+    margin: 0 auto;
+    margin-bottom: 20rpx;
+  }
+  .my-message .empty .img image{
+    width: 100%;
+    height: 100%;
+  }
+
+  .my-message .empty .text{
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+  }

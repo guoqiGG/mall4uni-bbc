@@ -1,0 +1,197 @@
+page{
+  background: #fff;
+  height: 100%;
+  position: relative;
+}
+.con{
+  padding: 100rpx 0 160rpx 0;
+}
+.logo {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 99rpx;
+  margin-bottom: 101rpx;
+  object-fit: contain;
+}
+.logo .logo-con {
+  display: inline-block;
+}
+.logo .logo-con image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.login-form{
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 10%;
+}
+.authorized-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #F81A1A;
+  border: 1rpx solid #F81A1A;
+  color: #fff;
+  border-radius: 14rpx;
+  font-size: 30rpx;
+  margin-top: 80rpx;
+}
+.item {
+	display: block;
+	margin-bottom: 40rpx;
+}
+.account{
+  display: flex;
+  background: #fff;
+  padding: 20rpx 16rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  align-items: center;
+  border: 1px solid #E1E1E1;
+  border-radius: 14rpx;
+  justify-content: space-between;
+}
+
+.account .input-item{
+  padding-right: 14rpx;
+  border-right: 1px solid #DBDDDF;
+}
+
+.account input{
+  padding-left: 20rpx;
+  width:75%;
+}
+.account .image-box{
+  width: 26rpx;
+  margin: 0 28rpx;
+}
+.account .input-suffix{
+  border-left: 1px solid #DADADA;
+  padding-left: 10rpx;
+  color: #999999;
+  width: 5em;
+  font-size: 28rpx;
+  text-align: right;
+}
+.account .login-code{
+  color: #F81A1A;
+}
+.inp-palcehoder{
+  font-size: 28rpx;
+}
+
+button::after{
+  border: 0 !important;
+}
+
+/* 错误提示 */
+.error .error-text {
+	display: block;
+	width: 100%;
+	font-size: 28rpx;
+	color: #F81A1A;
+  text-align: left;
+  margin-top: 10rpx;
+}
+.error .error-text .warning-icon {
+  display: inline-block;
+  color: #fff;
+  width: 26rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+  background: #F81A1A;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 12rpx;
+  font-size: 22rpx;
+}
+
+.statement-label {
+  display: flex;
+  align-items: flex-start;
+}
+.statement-label:active {
+  background-color: none;
+}
+
+/* 条款声明 */
+.statement{
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  line-height: 2em;
+  color: #999999;
+}
+.statement text{
+  color: #F81A1A;
+  cursor: pointer;
+}
+.statement .check-box {
+  transform: scale(.8);
+}
+
+.footer {
+  position: fixed;
+  top: calc(100% - 216rpx);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.footer .other-login-text {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.footer .other-login-text::before {
+  content: "——————";
+  color: #E1E1E1;
+  margin-right: 16rpx;
+}
+
+.footer .other-login-text::after {
+  content: "——————";
+  color: #E1E1E1;
+  margin-left: 16rpx;
+}
+
+.footer .other-login {
+  display: flex;
+  justify-content: center;
+}
+
+.footer .other-login image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.footer .other-login-one {
+  margin-right: 116rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .other-login-two {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-login {
+  color: #666666;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+}
+
+.error-box {
+  display: flex;
+  align-items: center;
+}

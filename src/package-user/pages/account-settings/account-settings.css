@@ -1,0 +1,85 @@
+/* 账户设置 */
+page {
+  background-color: #F6F6F6;
+  font-size: 28rpx;
+  color: #333333;
+}
+.cloumn-item image.right-img {
+  width: 32rpx;
+  height: 32rpx;
+}
+/* 栏 */
+.item-wrap {
+  background-color: #FFFFFF;
+  margin-top: 20rpx;
+  border-radius: 14rpx;
+  padding: 0 30rpx;
+}
+.item-wrap .cloumn-item {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+  
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.item-wrap .cloumn-item .txt-wrap {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.item-wrap .cloumn-item:not(:first-child) {
+  border-top: #E1E1E1 1rpx solid;
+}
+/* 头像昵称 & 手机 */
+.left-infor image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.left-infor {
+  /* width: 50%; */
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  align-items: center;
+  -webkit-align-items: center;
+  max-width: 70%;
+}
+.left-infor .nick-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  flex: 1;
+  word-wrap:break-word
+}
+view.right-img {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  align-items: center;
+  -webkit-align-items: center;
+  
+  color: #666666;
+  width: 50%;
+}
+
+/* 退出登录 */
+.out-btns button {
+  padding: 0;
+  margin: 50rpx 30rpx 0;
+  background-color: #F81A1A;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 14rpx;
+}

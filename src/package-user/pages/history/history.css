@@ -1,0 +1,107 @@
+page {
+	background: #f2f3f7;
+}
+
+.history {
+	padding-bottom: env(safe-area-inset-bottom)
+}
+
+.history .history-item {
+	margin-top: 20rpx;
+}
+
+.history .history-item .date {
+	color: #999;
+	padding: 10rpx 30rpx;
+	font-size: 24rpx;
+}
+
+.history .line-prods {
+	background: #fff;
+	padding: 30rpx;
+	border-radius: 10rpx;
+	margin-top: 20rpx;
+}
+
+.history .line-prods .item {
+	display: flex;
+	margin-bottom: 30rpx;
+}
+
+.history .line-prods .item .text-box {
+	flex: 1;
+	margin-left: 20rpx;
+	position: relative;
+	max-width: 490rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.history .line-prods .item .text-box .name {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	word-break: break-word;
+	font-size: 24rpx;
+
+}
+
+.history .line-prods .item .text-box .price-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.history .line-prods .item .text-box .price-box .price {
+	display: flex;
+}
+.history .line-prods .item .img {
+	width: 180rpx;
+	/* min-width: 180rpx; */
+	height: 180rpx;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.history .line-prods .item .text-box .price-box .btn {
+	font-weight: normal;
+	font-size: 22rpx;
+	border: 2rpx solid #F81A1A;
+	padding: 6rpx 20rpx;
+	border-radius: 30rpx;
+	color: #F81A1A;
+}
+
+.integral-icon {
+	width: 24rpx;
+	height: 24rpx;
+}
+
+/* 列表为空 */
+.empty {
+	margin-top: 100rpx;
+	text-align: cneter;
+}
+
+.empty-icon {
+	display: block;
+	width: 80rpx;
+	height: 80rpx;
+	margin: 0 auto;
+	margin-bottom: 20rpx;
+}
+
+.empty-icon>image {
+	width: 100%;
+	height: 100%;
+}
+
+.empty-text {
+	font-size: 28rpx;
+	text-align: center;
+	color: #999;
+	line-height: 2em;
+}

@@ -1,0 +1,137 @@
+page {
+  display: block;
+  min-height: 100%;
+  background-color: #f8f8f9;
+}
+
+.main {
+  padding: 30rpx;
+}
+
+.section {
+  display: flex;
+  margin: 20rpx 0;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input {
+  padding: 16rpx 32rpx;
+  box-sizing: border-box;
+  height: 100rpx;
+  width: 100%;
+  background: #fff;
+  border: 1rpx solid #ddd;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  border-radius: 6rpx;
+  box-shadow: inset 0 1rpx 2rpx rgba(0, 0, 0, 0.06);
+}
+
+.submit-btn {
+  margin-top:40rpx;
+  width: 100%;
+  font-size: 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #F81A1A;
+  border-radius: 6rpx;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.submit-btn text {
+  color: #fff;
+}
+
+.submit-btn.plain-btn {
+  background: #fff;
+  border: 2rpx solid #F81A1A;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+.submit-btn.plain-btn text {
+  color: #F81A1A;
+}
+
+/* input列表 */
+.input-box {
+  margin-top: 30rpx;
+  width: 100%;
+  background: #fff;
+}
+
+.section text {
+  width: 20%;
+}
+
+.section picker{
+  width: 70%;
+  padding: 0 30rpx;
+}
+.section .pca{
+  width: 70%;
+}
+
+.section .arrow {
+  width: 8%;
+  color: #ccc;
+}
+.section .arrow image{
+  width:40rpx;
+  height:40rpx;
+}
+/* end input列表 */
+
+.upload{
+  margin:20rpx 0;
+  height:360rpx;
+  border:3px dashed #ccc;
+  border-radius:10rpx;
+  background:#fff;
+  line-height:360rpx;
+  text-align:center;
+  color: #999;
+}
+.upload image{
+  width:100%;
+  height:100%;
+}
+
+.system-decision {
+  font-size: 28rpx;
+  margin-top: 30rpx;
+}
+
+.system-decision-title {
+  font-weight: 600;
+}
+
+.requirements {
+  margin: 20rpx 0;
+}
+
+.requirement-item {
+  font-size: 26rpx;
+  margin-bottom: 10rpx;
+}
+
+.prod-title {
+  margin-bottom: 20rpx;
+}
+
+.prod-con {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 0;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.prod-con .prod-items {
+  width: 48%;
+  margin: 0 0 30rpx 0;
+}

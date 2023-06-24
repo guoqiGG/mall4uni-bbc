@@ -22,12 +22,8 @@
       <!-- 左侧菜单start -->
       <scroll-view scroll-y="true" class="leftmenu">
         <block v-for="(item, index) in categoryList" :key="index">
-          <view
-            :class="'menu-item ' + (selIndex == index ? 'active' : '')"
-            :data-index="index"
-            :data-id="item.categoryId"
-            @tap="onMenuTab"
-          >
+          <view :class="'menu-item ' + (selIndex == index ? 'active' : '')" :data-index="index" :data-id="item.categoryId"
+            @tap="onMenuTab">
             <text class="menu-text">{{ item.categoryName }}</text>
           </view>
         </block>
@@ -43,10 +39,7 @@
           </view>
         </view>
 
-        <block
-          v-for="(item, subCateIndex) in proSubCategoryList"
-          :key="subCateIndex"
-        >
+        <block v-for="(item, subCateIndex) in proSubCategoryList" :key="subCateIndex">
           <view class="sub-category">
             <view class="sub-category-con">
               <view class="sub-cate-title">
@@ -61,23 +54,11 @@
                 >{{ i18n.viewAll }}</text> -->
               </view>
               <view v-if="item.categories" class="th-cate-con">
-                <block
-                  v-for="(thCateItem, categoryId) in item.categories"
-                  :key="categoryId"
-                >
-                  <view
-                    class="sub-category-item"
-                    :data-categoryid="thCateItem.categoryId"
-                    :data-parentid="item.categoryId"
-                    @tap="toCatePage"
-                  >
-                    <image
-                      v-if="thCateItem.imgsrcTail"
-                      :src="thCateItem.pic"
-                      mode="widthFix"
-                      class="sub-category-item-pic"
-                      @error="thCateItem.pic='../../static/images/icon/def.png'"
-                    />
+                <block v-for="(thCateItem, categoryId) in item.categories" :key="categoryId">
+                  <view class="sub-category-item" :data-categoryid="thCateItem.categoryId"
+                    :data-parentid="item.categoryId" @tap="toCatePage">
+                    <image v-if="thCateItem.imgsrcTail" :src="thCateItem.pic" mode="widthFix"
+                      class="sub-category-item-pic" @error="thCateItem.pic = '../../static/images/icon/def.png'" />
                     <!-- 默认图 -->
                     <image v-else src="/static/images/icon/def.png" class="sub-category-item-pic" mode="widthFix" />
                     <text class="sub-category-item-name">{{ thCateItem.categoryName }}</text>
@@ -137,19 +118,22 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    if(!uni.getStorageSync('bbcUserInfo')){
+      this.queryUserInfo()
+    }
     this.getCategory()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // 加载导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.classifiedGoods
@@ -174,20 +158,20 @@ export default {
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     const that = this
     setTimeout(() => {
-      that.getCategory()
+      that.getCateorgy()
       wx.stopPullDownRefresh() // 停止下拉刷新
     }, 100)
   },
@@ -195,22 +179,42 @@ export default {
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {},
+  onShareAppMessage: function () { },
   methods: {
+    /**
+    * 获取用户信息
+    */
+    queryUserInfo: function () {
+      const params = {
+        url: '/p/user/userInfo',
+        method: 'GET',
+        data: {},
+        dontTrunLogin: true,
+        callBack: (res) => {
+          console.log(1)
+          this.userInfo = res
+          uni.setStorageSync('bbcUserInfo', res)
+        }
+      }
+      http.request(params)
+    },
     getCategory() {
+     
       var ths = this // 加载分类列表
       const params = {
         url: '/category/categoryInfo',
         method: 'GET',
         data: {
-          parentId: ''
+          parentId: '',
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
-        callBack: function(res) {
+        callBack: function (res) {
+          console.log(2)
           ths.setData({
             categoryImg: res[0].pic,
             categoryList: res
@@ -233,7 +237,7 @@ export default {
     /**
      * 分类点击事件，获取子分类
      */
-    onMenuTab: function(e) {
+    onMenuTab: function (e) {
       util.tapLog(3)
       // console.log(e);
       // var id = e.currentTarget.dataset.id
@@ -246,7 +250,7 @@ export default {
       })
     },
     // 跳转搜索页
-    toSearchPage: function() {
+    toSearchPage: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/package-search/pages/search-page/search-page'
@@ -262,7 +266,8 @@ export default {
         url: '/category/categoryInfo',
         method: 'GET',
         data: {
-          parentId: categoryId
+          parentId: categoryId,
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: (res) => {
           this.setData({
@@ -274,16 +279,15 @@ export default {
     },
 
     // 跳转子分类商品页面
-    toCatePage: function(e) {
+    toCatePage: function (e) {
       util.tapLog(3)
       const { type, parentid, categoryid, subcateindex } =
         e.currentTarget.dataset
       uni.navigateTo({
-        url: `/package-prod/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${
-          type == 'all'
+        url: `/package-prod/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${type == 'all'
             ? this.subCategoryList[subcateindex].categories[0].categoryId
             : categoryid
-        }`
+          }`
       })
     }
   }

@@ -128,7 +128,8 @@ export default {
         url: '/category/categoryInfo',
         method: 'GET',
         data: {
-          parentId: this.parentId
+          parentId: this.parentId,
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: res => {
           this.setData({

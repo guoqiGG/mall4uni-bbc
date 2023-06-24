@@ -987,6 +987,12 @@ export default {
     }, 100)
     // 获取用户信息
     this.queryUserInfo()
+    if(uni.getStorageSync('bbcUserInfo').station){
+      this.selStationItem.province=uni.getStorageSync('bbcUserInfo').station.province?uni.getStorageSync('bbcUserInfo').station.province:''
+      this.selStationItem.city=uni.getStorageSync('bbcUserInfo').station.city?uni.getStorageSync('bbcUserInfo').station.city:''
+      this.selStationItem.area=uni.getStorageSync('bbcUserInfo').station.area?uni.getStorageSync('bbcUserInfo').station.area:''
+      this.selStationItem.addr=uni.getStorageSync('bbcUserInfo').station.addr?uni.getStorageSync('bbcUserInfo').station.addr:''
+    }
   },
 
   /**

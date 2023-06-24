@@ -839,7 +839,7 @@ export default {
         data: {},
         dontTrunLogin: true,
         callBack: (res) => {
-          console.log(res)
+          uni.setStorageSync('bbcUserInfo', res)
           uni.setStorageSync('userID', res.userId)
           this.getUserWatchTime()
         }

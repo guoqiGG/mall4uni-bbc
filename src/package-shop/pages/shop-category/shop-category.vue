@@ -225,7 +225,8 @@ export default {
         url: '/category/categoryInfo',
         method: 'GET',
         data: {
-          shopId
+          shopId,
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: res => {
           if (res.length === 0) return

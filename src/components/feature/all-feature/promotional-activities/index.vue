@@ -142,7 +142,7 @@ export default {
         return
       }
       uni.navigateTo({
-        url: '/pages/prod/prod?prodId=' + item.prodId
+        url: '/package-prod/pages/prod/prod?prodId=' + item.prodId
       })
     },
     /**

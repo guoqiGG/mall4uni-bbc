@@ -42,11 +42,11 @@
               }}</view>
             </view>
           </view>
-          <view class="date">{{
+          <!-- <view class="date">{{
             userLevelInfo.levelType == 1
               ? userLevelInfo.endTime + i18n.expire
               : i18n.notPayingMember
-          }}</view>
+          }}</view> -->
         </view>
       </view>
     </view>

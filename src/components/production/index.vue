@@ -105,7 +105,7 @@ export default {
 
     toProdPage() {
       this.$Router.push({
-        path: '/pages/prod/prod',
+        path: '/package-prod/pages/prod/prod',
         query: {
           prodId: this.item.prodId
         }

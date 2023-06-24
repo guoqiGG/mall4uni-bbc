@@ -443,7 +443,7 @@ export default {
     // 去商品页面
     toProd(prod) {
       this.$Router.push({
-        path: '/pages/prod/prod',
+        path: '/package-prod/pages/prod/prod',
         query: { prodId: prod.prodId }
       })
     },
@@ -582,14 +582,14 @@ export default {
      * 立即使用
      */
     useCoupon(e) {
-      let url = '/pages/prod-classify/prod-classify?sts=4'
+      let url = '/package-prod/pages/prod-classify/prod-classify?sts=4'
       const couponId = e.currentTarget.dataset.couponid
       var title = this.i18n.couponEventGoods
       var prodList = e.currentTarget.dataset.prodlist
 
       if (prodList && prodList.length == 1) {
         this.$Router.push({
-          path: '/pages/prod/prod',
+          path: '/package-prod/pages/prod/prod',
           query: { prodId: prodList[0].prodId }
         })
       } else {

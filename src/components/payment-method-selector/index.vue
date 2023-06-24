@@ -137,7 +137,7 @@ export default {
       this.$emit('setPayType', paymentInfo)
     }
   }
-}
+} 
 </script>
 <style>
 .ways {

@@ -55,7 +55,6 @@
 
 <script>
 const http = require('../../../utils/http.js')
-
 export default {
   components: {},
   props: {},

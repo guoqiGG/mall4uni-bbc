@@ -720,7 +720,7 @@ export default {
         callBack: res => {
           console.log(res)
           uni.navigateTo({
-            url: `/pages/submit-order/submit-order?prodType=${this.prodType}&orderPath=${res}`
+            url: `/package-prod/pages/submit-order/submit-order?prodType=${this.prodType}&orderPath=${res}`
           })
         }
       }
@@ -730,7 +730,7 @@ export default {
     //  零售价购买
     toProdDetailsPage: function(e) {
       uni.navigateTo({
-        url: '/pages/prod/prod?prodId=' + this.seckilldet.prodId
+        url: '/package-prod/pages/prod/prod?prodId=' + this.seckilldet.prodId
       })
     },
 

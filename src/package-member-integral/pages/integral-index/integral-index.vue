@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <!-- 积分商城 -->
+  <!-- 氢春豆商城 -->
   <view class="Mall4j integral-index">
     <view class="integral-msg">
       <image src="../../static/images/icon/integral-bg.png" class="bg" />
@@ -93,7 +93,7 @@ export default {
     uni.setNavigationBarTitle({
       title: this.i18n.pointCenter
     })
-    // 获取当前积分信息
+    // 获取当前氢春豆信息
     this.getScoreInfo()
   },
 
@@ -141,7 +141,7 @@ export default {
     },
 
     /**
-     * 获取当前积分信息
+     * 获取当前氢春豆信息
      */
     getScoreInfo() {
       const params = {
@@ -158,7 +158,7 @@ export default {
     },
 
     /**
-     * 获取积分商品列表
+     * 获取氢春豆商品列表
      */
     getScoreProdList() {
       this.isLoaded = false
@@ -169,7 +169,8 @@ export default {
           current: this.current,
           size: this.size,
           prodType: 3,
-          sort: 2
+          sort: 2,
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: (res) => {
           this.isLoaded = true

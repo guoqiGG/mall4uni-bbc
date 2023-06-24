@@ -259,7 +259,8 @@ export default {
           isAllProdType: true,
           size: 20,
           sort: 0,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: res => {
           this.isLoaded = true
@@ -280,7 +281,7 @@ export default {
 
     // 跳转商品详情页
     toProdPage: function(prodId) {
-      this.$Router.push({ path: '/pages/prod/prod', query: { prodId }})
+      this.$Router.push({ path: '/package-prod/pages/prod/prod', query: { prodId }})
     },
     // 图片加载失败时显示默认图片
     handlePicError(index) {

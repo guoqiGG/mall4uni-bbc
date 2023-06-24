@@ -249,7 +249,7 @@ export default {
     toSearchPage: function() {
       util.tapLog(3)
       uni.navigateTo({
-        url: '/pages/search-page/search-page'
+        url: '/package-search/pages/search-page/search-page'
       })
     },
 
@@ -279,7 +279,7 @@ export default {
       const { type, parentid, categoryid, subcateindex } =
         e.currentTarget.dataset
       uni.navigateTo({
-        url: `/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${
+        url: `/package-prod/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${
           type == 'all'
             ? this.subCategoryList[subcateindex].categories[0].categoryId
             : categoryid

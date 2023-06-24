@@ -16,11 +16,7 @@
         <view class="head-shop">
           <view class="btn choose-btn">
             <label class="check-box-label">
-              <checkbox
-                :checked="shopCart.checked"
-                color="#F81A1A"
-                @tap="handleCheckShop(shopIndex)"
-              />
+              <checkbox :checked="shopCart.checked" color="#F81A1A" @tap="handleCheckShop(shopIndex)" />
             </label>
           </view>
           <view class="shop-box" @tap="toShopIndex(shopCart.shopId)">
@@ -32,23 +28,23 @@
         </view>
         <!-- /头部店铺 -->
 
-        <view v-for="(shopCartItem, shopCartItemIndex) in shopCart.shopCartItemDiscounts" :key="shopCartItemIndex" class="shop-item-detail">
-          <view :class="'prod-block ' + (shopCartItem.chooseDiscountItemDto || shopCartItem.chooseComboItemDto ?'discount':'')">
+        <view v-for="(shopCartItem, shopCartItemIndex) in shopCart.shopCartItemDiscounts" :key="shopCartItemIndex"
+          class="shop-item-detail">
+          <view
+            :class="'prod-block ' + (shopCartItem.chooseDiscountItemDto || shopCartItem.chooseComboItemDto ? 'discount' : '')">
             <!-- 满减提示 -->
             <view v-if="shopCartItem.chooseDiscountItemDto" class="discount-tips">
               <view class="combo-item">
-                <text
-                  class="text-block"
-                >{{ [i18n.amount, i18n.pieces, i18n.amountDiscount, i18n.piecesDiscount][shopCartItem.chooseDiscountItemDto.discountRule] }}</text>
-                <text
-                  class="text-list"
-                >{{ parseDiscountMsg(shopCartItem.chooseDiscountItemDto.discountRule,shopCartItem.chooseDiscountItemDto.needAmount,shopCartItem.chooseDiscountItemDto.discount,curLang) }}</text>
+                <text class="text-block">{{ [i18n.amount, i18n.pieces, i18n.amountDiscount,
+                i18n.piecesDiscount][shopCartItem.chooseDiscountItemDto.discountRule] }}</text>
+                <text class="text-list">{{
+                  parseDiscountMsg(shopCartItem.chooseDiscountItemDto.discountRule, shopCartItem.chooseDiscountItemDto.needAmount, shopCartItem.chooseDiscountItemDto.discount, curLang)
+                }}</text>
               </view>
               <view>
-                <text
-                  v-if="shopCartItem.chooseDiscountItemDto.reduceAmount >0"
-                  class="text-list reduce-amount"
-                >{{ i18n.haveDiscount }}￥{{ parsePrice(shopCartItem.chooseDiscountItemDto.reduceAmount)[0] }}.{{ parsePrice(shopCartItem.chooseDiscountItemDto.reduceAmount)[1] }}
+                <text v-if="shopCartItem.chooseDiscountItemDto.reduceAmount > 0" class="text-list reduce-amount">{{
+                  i18n.haveDiscount }}￥{{ parsePrice(shopCartItem.chooseDiscountItemDto.reduceAmount)[0] }}.{{
+    parsePrice(shopCartItem.chooseDiscountItemDto.reduceAmount)[1] }}
                 </text>
               </view>
             </view>
@@ -59,7 +55,9 @@
                 <text class="text-list combo-name">{{ shopCartItem.chooseComboItemDto.name }}</text>
               </view>
               <view class="combo-item">
-                <text class="text-list reduce-amount">{{ i18n.haveDiscount }}￥{{ parsePrice(shopCartItem.chooseComboItemDto.preferentialAmount)[0] }}.{{ parsePrice(shopCartItem.chooseComboItemDto.preferentialAmount)[1] }}</text>
+                <text class="text-list reduce-amount">{{ i18n.haveDiscount }}￥{{
+                  parsePrice(shopCartItem.chooseComboItemDto.preferentialAmount)[0] }}.{{
+    parsePrice(shopCartItem.chooseComboItemDto.preferentialAmount)[1] }}</text>
               </view>
             </view>
 
@@ -70,15 +68,10 @@
                 <view class="item">
                   <view class="prodinfo" @tap="toProdPage(prod.prodId)">
                     <view class="info-row">
-                      <view :class="['btn', prod.comboId && prod.parentBasketId !==0 ? 'hide' : '']">
+                      <view :class="['btn', prod.comboId && prod.parentBasketId !== 0 ? 'hide' : '']">
                         <label>
-                          <checkbox
-                            :value="toString(prod.prodId)"
-                            :checked="prod.checked"
-                            color="#F81A1A"
-                            class="checkbox"
-                            @tap.stop="handleCheckProdItem(shopIndex, shopCartItemIndex, prodIndex)"
-                          />
+                          <checkbox :value="toString(prod.prodId)" :checked="prod.checked" color="#F81A1A"
+                            class="checkbox" @tap.stop="handleCheckProdItem(shopIndex, shopCartItemIndex, prodIndex)" />
                         </label>
                       </view>
                       <view class="pic">
@@ -88,14 +81,12 @@
                       <view class="opt">
                         <view class="prod-name">{{ prod.prodName }}</view>
                         <view class="prod-center-row">
-                          <view :class="'prod-info-text ' + (prod.skuName?'':'empty-n')" @tap.stop="getSkuListByProdId(prod, shopCartItem)">
+                          <view :class="'prod-info-text ' + (prod.skuName ? '' : 'empty-n')"
+                            @tap.stop="getSkuListByProdId(prod, shopCartItem)">
                             {{ prod.skuName || '' }}</view>
-                          <view v-if="prod.discounts.length>0" class="prod-discount">
-                            <text
-                              class="prod-discount-tit"
-                              @tap.stop="onChooseDiscount(prod)"
-                            >
-                              {{ getCurrDiscountName(prod.discountId,prod.discounts, curLang) }}
+                          <view v-if="prod.discounts.length > 0" class="prod-discount">
+                            <text class="prod-discount-tit" @tap.stop="onChooseDiscount(prod)">
+                              {{ getCurrDiscountName(prod.discountId, prod.discounts, curLang) }}
                             </text>
                           </view>
                         </view>
@@ -103,7 +94,8 @@
                           <view class="price">
                             <text class="symbol">￥</text>
                             <text class="big-num">{{ parsePrice(prod.comboId ? prod.comboPrice : prod.price)[0] }}</text>
-                            <text class="small-num">.{{ parsePrice(prod.comboId ? prod.comboPrice : prod.price)[1] }}</text>
+                            <text class="small-num">.{{ parsePrice(prod.comboId ? prod.comboPrice : prod.price)[1]
+                            }}</text>
                             <!-- 套装内的商品的数量 -->
                             <text v-if="prod.comboId" class="combo-count"> x {{ prod.prodCount }}</text>
                           </view>
@@ -116,8 +108,10 @@
                       </view>
                     </view>
                     <view v-if="prod.giveaway" class="gift-con">
-                      <view v-for="(giveawayItem, giveawayIndex) in prod.giveaway.giveawayProds" :key="giveawayIndex" class="gift-item" @tap.stop="toProdPage(giveawayItem.prodId)">
-                        <view class="gift-name">【{{ i18n.Giveaways }}】{{ giveawayItem.prodName }}<text v-if="giveawayItem.skuName" class="gift-sku">{{ giveawayItem.skuName||'' }}</text></view>
+                      <view v-for="(giveawayItem, giveawayIndex) in prod.giveaway.giveawayProds" :key="giveawayIndex"
+                        class="gift-item" @tap.stop="toProdPage(giveawayItem.prodId)">
+                        <view class="gift-name">【{{ i18n.Giveaways }}】{{ giveawayItem.prodName }}<text
+                            v-if="giveawayItem.skuName" class="gift-sku">{{ giveawayItem.skuName || '' }}</text></view>
                         <view class="gift-count">
                           <view>x {{ giveawayItem.giveawayNum }}</view>
                           <image src="../../static/images/icon/more.png" mode="" />
@@ -137,9 +131,11 @@
               </view>
               <view class="combo-count">
                 <view class="m-numSelector">
-                  <view class="minus" @tap.stop="updateBasket(shopCart.shopId, shopCartItem.shopCartItems[0], -1, null, shopCartItem.chooseComboItemDto.comboCount)" />
+                  <view class="minus"
+                    @tap.stop="updateBasket(shopCart.shopId, shopCartItem.shopCartItems[0], -1, null, shopCartItem.chooseComboItemDto.comboCount)" />
                   <input type="number" :value="shopCartItem.chooseComboItemDto.comboCount" disabled></input>
-                  <view class="plus" @tap.stop="updateBasket(shopCart.shopId, shopCartItem.shopCartItems[0], 1, null, shopCartItem.chooseComboItemDto.comboCount)" />
+                  <view class="plus"
+                    @tap.stop="updateBasket(shopCart.shopId, shopCartItem.shopCartItems[0], 1, null, shopCartItem.chooseComboItemDto.comboCount)" />
                 </view>
               </view>
             </view>
@@ -150,11 +146,7 @@
 
     <!-- 底部按钮 -->
     <!-- 英文时候购物车底部字体出现遮蔽 -->
-    <view
-      v-if="shopCarts.length>0"
-      class="cart-footer"
-      :style="i18n.instantReduction.length>2?'height:130rpx':''"
-    >
+    <view v-if="shopCarts.length > 0" class="cart-footer" :style="i18n.instantReduction.length > 2 ? 'height:130rpx' : ''">
       <view class="btn all">
         <label @tap="handleCheckAll">
           <checkbox :checked="allChecked" color="#F81A1A" />{{ i18n.selectAll }}
@@ -173,10 +165,11 @@
               <text class="small-num">.{{ parsePrice(finalMoney)[1] }}</text>
             </view>
           </view>
-          <view v-if="subtractMoney>0" class="total-msg">
+          <view v-if="subtractMoney > 0" class="total-msg">
 
             <!-- {{i18n.instantReduction}}:￥{{parsePrice(subtractMoney)[0] + '.' + parsePrice(subtractMoney)[1]}}</view> -->
-            {{ i18n.instantReduction }}:￥{{ toFixxed(subtractMoney) }}</view>
+            {{ i18n.instantReduction }}:￥{{ toFixxed(subtractMoney) }}
+          </view>
           <!-- 总额:￥{{toPrice(totalMoney)}}  -->
         </view>
         <view class="arrow-icon" @tap.stop="showPriDet">
@@ -199,11 +192,7 @@
           <radio-group v-if="reDraw" @change="radioChange">
             <label v-for="(item, index) in prodDiscounts" :key="index">
               <view class="radio-item">
-                <radio
-                  color="#F81A1A"
-                  :value="String(item.discountId)"
-                  :checked="item.discountId==discountId"
-                />
+                <radio color="#F81A1A" :value="String(item.discountId)" :checked="item.discountId == discountId" />
                 <view class="radio-text">
                   {{ item.discountName }}
                 </view>
@@ -211,7 +200,7 @@
             </label>
             <label>
               <view class="radio-item">
-                <radio color="#F81A1A" value="-1" :checked="discountId==-1" />
+                <radio color="#F81A1A" value="-1" :checked="discountId == -1" />
                 <view class="radio-text">
                   {{ i18n.notPromotion }}
                 </view>
@@ -245,11 +234,7 @@
     </view>
 
     <!-- 空列表或加载全部提示 -->
-    <EmptyAllTips
-      v-if="isLoaded"
-      :isEmpty="!shopCarts.length"
-      :emptyTips="i18n.shoppingTips"
-    />
+    <EmptyAllTips v-if="isLoaded" :isEmpty="!shopCarts.length" :emptyTips="i18n.shoppingTips" />
 
     <!-- 商品配送方式选择 -->
     <view v-if="showDeliveryWay" class="select-distribution modals-bottom-dialog">
@@ -262,7 +247,7 @@
             <view class="p-tit">{{ i18n.expressDelivery }}</view>
             <view class="p-con">
               <view class="prods-item">
-                <view v-for="(item,index) in hasShopDeliveryList" :key="index" class="pic">
+                <view v-for="(item, index) in hasShopDeliveryList" :key="index" class="pic">
                   <ImgShow :src="item.pic" />
                   <view class="prod-count">x{{ item.prodCount }}</view>
                 </view>
@@ -279,7 +264,7 @@
             <view class="p-tit">{{ i18n.sameDelivery }}</view>
             <view class="p-con">
               <view class="prods-item">
-                <view v-for="(item,index) in hasCityDeliveryList" :key="index" class="pic">
+                <view v-for="(item, index) in hasCityDeliveryList" :key="index" class="pic">
                   <ImgShow :src="item.pic" />
                   <view class="prod-count">x{{ item.prodCount }}</view>
                 </view>
@@ -295,7 +280,7 @@
             <view class="p-tit">{{ i18n.pickStore }}</view>
             <view class="p-con">
               <view class="prods-item">
-                <view v-for="(item,index) in hasUserPickUpList" :key="index" class="pic">
+                <view v-for="(item, index) in hasUserPickUpList" :key="index" class="pic">
                   <ImgShow :src="item.pic" />
                   <view class="prod-count">x{{ item.prodCount }}</view>
                 </view>
@@ -312,18 +297,11 @@
     </view>
 
     <!-- sku弹窗组件 -->
-    <prod-sku-select
-      v-if="showSkuPop && currentProdItem.skuList"
-      :pic="currentProdItem.pic"
-      :least-num="currentProdItem.leastNum"
-      :sku-id="currentProdItem.skuId"
-      :sku-name="currentProdItem.skuName"
-      :activity-info="currentProdItem"
-      :sku-list="currentProdItem.skuList"
-      :is-main="Boolean(currentProdItem.comboId && currentProdItem.parentBasketId===0)"
-      @setSku="handleSetSku"
-      @closeSkuPop="handleCloseSkuPop"
-    />
+    <prod-sku-select v-if="showSkuPop && currentProdItem.skuList" :pic="currentProdItem.pic"
+      :least-num="currentProdItem.leastNum" :sku-id="currentProdItem.skuId" :sku-name="currentProdItem.skuName"
+      :activity-info="currentProdItem" :sku-list="currentProdItem.skuList"
+      :is-main="Boolean(currentProdItem.comboId && currentProdItem.parentBasketId === 0)" @setSku="handleSetSku"
+      @closeSkuPop="handleCloseSkuPop" />
   </view>
 </template>
 
@@ -394,19 +372,19 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     util.transTabbar()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.prodListStyle = {}
     uni.setNavigationBarTitle({
       title: this.i18n.shoppingCart2
@@ -431,7 +409,7 @@ export default {
       this.loadBasketData(null)
     }
   },
-  onHide: function() {
+  onHide: function () {
     this.hidePriModal = true
     this.hideModal = true
   },
@@ -478,7 +456,7 @@ export default {
     /**
      * 结算(结算按钮)
      */
-    toFirmOrder: function() {
+    toFirmOrder: function () {
       this.setData({
         hideModal: true,
         hidePriModal: true
@@ -579,13 +557,23 @@ export default {
             this.fadeIn()
           }, 200)
         } else {
+          if (hasUserPickUpProdCount && hasShopDeliveryProdCount == 0) {
+            uni.navigateTo({
+              url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=2' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+            })
+          }
           uni.navigateTo({
-            url: '/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=1' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+            url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=1' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
           })
         }
       } else {
+        if (hasUserPickUpProdCount && hasShopDeliveryProdCount == 0) {
+          uni.navigateTo({
+            url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=2' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+          })
+        }
         uni.navigateTo({
-          url: '/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=1' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+          url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=1' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
         })
       }
     },
@@ -637,7 +625,7 @@ export default {
     /**
      * 单个店铺去结算
      */
-    toSubmitOrder: function(dvyType) {
+    toSubmitOrder: function (dvyType) {
       util.tapLog()
       const basketIds = []
       if (dvyType == 1) { // 快递
@@ -655,7 +643,7 @@ export default {
       }
       uni.setStorageSync('bbcBasketIds', JSON.stringify(basketIds))
       uni.navigateTo({
-        url: '/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=' + dvyType
+        url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=' + dvyType
       })
     },
 
@@ -672,7 +660,7 @@ export default {
       })
       this.animation = animation
       that.fadeDown()
-      setTimeout(function() {
+      setTimeout(function () {
         that.setData({
           showDeliveryWay: false
         })
@@ -805,7 +793,7 @@ export default {
      * @param {Number} count 商品数量增量
      * @param {Object} sku 修改的sku
      */
-    updateBasket: throttle(function(shopId, prod, count, sku = null, packageNum = null) {
+    updateBasket: throttle(function (shopId, prod, count, sku = null, packageNum = null) {
       // 商品数量为1 且点击 -1
       if (count === -1 && prod.prodCount === 1) {
         return
@@ -1000,8 +988,8 @@ export default {
     },
 
     /**
-			 * 隐藏sku弹窗
-			 */
+       * 隐藏sku弹窗
+       */
     handleCloseSkuPop() {
       this.showSkuPop = false
     },
@@ -1024,14 +1012,14 @@ export default {
       }, 720)
     },
     // 动画集
-    fadeIn: function() {
+    fadeIn: function () {
       this.animation.translateY(0).step()
       this.setData({
         animationData: this.animation.export() // 动画实例的export方法导出动画数据传递给组件的animation属性
 
       })
     },
-    fadeDown: function() {
+    fadeDown: function () {
       this.animation.translateY(300).step()
       this.setData({
         animationData: this.animation.export()
@@ -1039,12 +1027,12 @@ export default {
     },
 
     /**
-			 * 跳转到商品详情
-			 */
+       * 跳转到商品详情
+       */
     toProdPage(prodId) {
       util.tapLog()
       this.$Router.push({
-        path: '/pages/prod/prod',
+        path: '/package-prod/pages/prod/prod',
         query: {
           prodId: prodId
         }
@@ -1052,8 +1040,8 @@ export default {
     },
 
     /**
-			 * 金额明细弹窗
-			 */
+       * 金额明细弹窗
+       */
     showPriDet() {
       util.tapLog()
       if (this.hidePriModal == true) {
@@ -1091,8 +1079,8 @@ export default {
     },
 
     /**
-			 * 满减信息处理
-			 */
+       * 满减信息处理
+       */
     parseDiscountMsg(discountRule, needAmount, discount, lang) {
       if (discountRule == 0) {
         return lang == 'zh_CN' ? '购满' + needAmount + '元减' + discount + '元' : 'Over ' + needAmount + ' minus ' + discount
@@ -1132,7 +1120,7 @@ export default {
         callBack: (res) => {
           let url = '/package-shop/pages/shop-page/shop-page?shopId=' + shopId
           if (res.renovationId) {
-            url = '/package-shop/pages/feature-index/feature-index0?shopId=' + shopId +	'&renovationId=' + res.renovationId
+            url = '/package-shop/pages/feature-index/feature-index0?shopId=' + shopId + '&renovationId=' + res.renovationId
           }
           uni.navigateTo({
             url
@@ -1151,5 +1139,5 @@ export default {
 }
 </script>
 <style>
-	@import "./basket.css";
+@import "./basket.css";
 </style>

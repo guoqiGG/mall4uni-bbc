@@ -12,15 +12,8 @@
   <view class="Mall4j index-stytle">
     <!-- 骨架屏 -->
     <!-- #ifndef H5-->
-    <navigationBar
-      v-if="navigationBarIsShow"
-      bg-color="bg-gradual-pink"
-      :show-back="false"
-      :navigation-bar-style="tabConfig"
-      :is-left="false"
-      :is-bg-img="isBgImg"
-      :title="title"
-    />
+    <navigationBar v-if="navigationBarIsShow" bg-color="bg-gradual-pink" :show-back="false"
+      :navigation-bar-style="tabConfig" :is-left="false" :is-bg-img="isBgImg" :title="title" />
     <!-- #endif -->
     <view v-if="showScreen" class="screen">
       <view class="screen-bg-sear" />
@@ -47,23 +40,13 @@
       <!-- 导航&公告 -->
       <view :class="['content']">
         <!-- swiper -->
-        <swiper
-          v-if="indexImgs.length"
-          circular="true"
-          :autoplay="autoplay"
-          :indicator-color="indicatorColor"
-          :interval="interval"
-          :duration="duration"
-          :indicator-active-color="indicatorActiveColor"
-          class="card-swiper"
-          indicator-dots
-          previous-margin="20rpx"
-          next-margin="20rpx"
-        >
+        <swiper v-if="indexImgs.length" circular="true" :autoplay="autoplay" :indicator-color="indicatorColor"
+          :interval="interval" :duration="duration" :indicator-active-color="indicatorActiveColor" class="card-swiper"
+          indicator-dots previous-margin="20rpx" next-margin="20rpx">
           <block v-for="(item, seq) in indexImgs" :key="seq">
             <swiper-item class="banner-item">
               <view class="img-box">
-                <ImgShow :src="item.imgUrl" :classList="['banner']" @handleTap="()=>toIndexImgContent(item)" />
+                <ImgShow :src="item.imgUrl" :classList="['banner']" @handleTap="() => toIndexImgContent(item)" />
               </view>
             </swiper-item>
           </block>
@@ -72,199 +55,73 @@
 
         <!-- 板块 -->
         <view class="cat-item">
-          <view class="item" data-sts="1" @tap="toClassifyPage">
-            <image src="/static/images/icon/newProd.png" />
-            <text>{{ i18n.newProduct }}</text>
+          <view class="item" @tap="toMemberInteral">
+            <image src="/static/images/icon/spring-bean-exchange.png" />
           </view>
-          <view class="item" data-sts="2" @tap="toSpecialDiscount">
-            <image src="/static/images/icon/timePrice.png" />
-            <text>{{ i18n.limitedTimeOffer }}</text>
-          </view>
-          <view class="item" @tap="toAbulkPage">
-            <image src="/static/images/icon/group.png" />
-            <text>{{ i18n.groupDiscount }}</text>
-          </view>
-          <view class="item" data-sts="3" @tap="toSecKillPage">
-            <image src="/static/images/icon/neweveryday.png" />
-            <text>{{ i18n.spikeSpecial }}</text>
-          </view>
-          <view class="item" @tap="toCouponCenter">
-            <image src="/static/images/icon/newprods.png" />
-            <text>{{ i18n.couponCenter }}</text>
+          <view class="item" @tap="toPointsCenter">
+            <image src="/static/images/icon/check-in.png" />
+            <view class="watch-time">{{ signTime >= 50 ? '已签到' : (watchTime + ':' + watchSecond) }}</view>
           </view>
         </view>
         <!-- 板块end -->
-
-        <!-- 消息播放 -->
-        <view v-if="news.length" class="message-play" @tap="onNewsPage">
-          <image src="/static/images/icon/horn.png" class="hornpng" />
-          <swiper
-            vertical="true"
-            autoplay="true"
-            duration="1000"
-            circular="true"
-            class="swiper-cont"
-          >
-            <block v-for="(item, id) in news" :key="id">
-              <swiper-item class="items">{{ item.title }}</swiper-item>
-            </block>
-          </swiper>
-          <text class="arrow" />
-        </view>
-        <!-- 消息播放end -->
       </view>
-      <!-- 导航&公告end -->
-
-      <!-- 直播列表入口 -->
-      <!-- #ifdef MP-WEIXIN -->
-      <!-- <view class="live-enter" @tap="toLiveListPage">
-				<image src="/static/images/liveBroadcast/live-enter.png"></image>
-			</view>	 -->
-      <!-- #endif -->
-
-      <!-- 秒杀 -->
-      <view v-if="snapUpList.length" class="snap-up clearfix">
-        <!-- 头部 -->
-        <view class="snap-up-head clearfix">
-          <text class="snap-up-tit">{{ i18n.spike }}</text>
-          <!-- 更多 -->
-          <view class="more-goods" @tap="toSnapUpPage">
-            <text class="more-goods-txt">{{ i18n.moreSpikes }}</text>
-            <view class="more-icon">
-              <image src="/static/images/icon/more.png" />
-            </view>
-          </view>
-        </view>
-
-        <!-- 列表 -->
-        <view class="snap-up-goods-show">
-          <!-- 商品盒子 -->
-          <view
-            v-for="(item, index) in snapUpList"
-            :key="index"
-            class="snap-up-goods-box"
-            @tap="toProdDetail(item.prodId)"
-          >
-            <view class="img-box">
-              <ImgShow :src="item.pic" img-mode="aspectFit" />
-            </view>
-            <view
-              class="snap-up-price"
-            ><text class="symbol">￥</text>{{ toPrice(item.activityPrice) }}</view>
-            <view class="original-price">￥{{ toPrice(item.price) }}</view>
-          </view>
-          <!-- 查看更多 -->
-          <view
-            v-if="snapUpList.length > 3"
-            class="view-more"
-            @tap="toSnapUpPage"
-          >{{ i18n.seeMore }}
-            <image class="view-more-icon" src="/static/images/icon/more-icon.png" />
-          </view>
-        </view>
-      </view>
-      <!-- 秒杀end -->
-
-      <!-- 团购 -->
-      <view v-if="aBulkList.length" class="abulk clearfix">
-        <!-- 头部 -->
-        <view class="snap-up-head clearfix">
-          <text class="snap-up-tit">{{ i18n.groupBuy }}</text>
-          <!-- 更多 -->
-          <view class="more-goods" @tap="toAbulkPage">
-            <text class="more-goods-txt">{{ i18n.moreGroupBuy }}</text>
-            <view class="more-icon">
-              <image src="/static/images/icon/more.png" />
-            </view>
-          </view>
-        </view>
-
-        <!-- 列表 -->
-        <view class="snap-up-goods-show">
-          <!-- 商品盒子 -->
-          <view
-            v-for="(item, index) in aBulkList"
-            :key="index"
-            class="snap-up-goods-box"
-            @tap="toProdDetail(item.prodId)"
-          >
-            <view class="img-box">
-              <ImgShow :src="item.pic" img-mode="aspectFit" />
-            </view>
-            <view class="purchase-conditions">
-              <view class="group-number">{{ item.groupActivitySearchVO.groupNumber }}{{ i18n.join }}</view>
-              <view class="snap-up-price"><text class="symbol">￥</text>{{ toPrice(item.activityPrice) }}</view>
-            </view>
-            <view class="original-price">￥{{ toPrice(item.price) }}</view>
-          </view>
-          <!-- 查看更多 -->
-          <view
-            v-if="aBulkList.length > 3"
-            class="view-more"
-            @tap="toAbulkPage"
-          >{{ i18n.seeMore }}
-            <image class="view-more-icon" src="/static/images/icon/more-icon.png" />
-          </view>
-        </view>
-      </view>
-      <!-- 团购end -->
-
-      <!-- 商城热卖 -->
-      <view class="goods-list">
-        <view class="title">
-          <text>{{ i18n.hotSale }}</text>
-        </view>
-        <view class="goods-item-cont">
-          <block v-for="(prod, prodId) in hotSalesList" :key="prodId">
-            <view class="prod-items" @tap="toProdDetail(prod.prodId)">
-              <view class="goods-item-imagecont">
-                <image v-if="prod.pic && !prod.isPicError" :src="prod.pic" class="goods-item-img" mode="aspectFit" @error="handlePicError(prod)" />
-                <image v-else src="/static/images/icon/def.png" mode="aspectFit" class="goods-item-img" />
-              </view>
-              <view class="goods-item-text">
-                <view class="goods-item-prod-text">
-                  <view v-if="prod.activityInProgress && prod.prodType != 0" class="activity-box">
-                    <view class="activity">
-                      {{ prodTypeArr[prod.prodType] }}
-                    </view>
-                  </view>
-                  {{ prod.prodName }}
-                </view>
-                <view class="prod-info">{{ prod.brief || '' }}</view>
-                <view class="prod-text-info">
-                  <view class="price">
-                    <text class="symbol">￥</text>
-                    <text class="big-num">{{ parsePrice(prod.price)[0] }}</text>
-                    <text class="small-num">.{{ parsePrice(prod.price)[1] }}</text>
-                  </view>
-                </view>
-              </view>
-            </view>
+      <!-- 消息播放 -->
+      <view v-if="news.length" class="message-play" @tap="onNewsPage">
+        <image src="/static/images/icon/horn.png" class="hornpng" />
+        <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
+          <block v-for="(item, id) in news" :key="id">
+            <swiper-item class="items">{{ item.title }}</swiper-item>
           </block>
-          <!-- 空列表或加载全部提示 -->
-          <EmptyAllTips
-            v-if="isLoaded"
-            :isAll="isAll"
-            :allTips="i18n.allLoaded"
-          />
+        </swiper>
+        <text class="arrow" />
+      </view>
+      <!-- 消息播放end -->
+      <view :style="liveBroadcastList.length > 0 ? 'padding-bottom:10rpx;' : ''">
+        <view class="live-title">
+          直播列表
+        </view>
+        <view class="live-container" v-for="(item, index) in liveBroadcastList" :key="index" :data-roomid="item.roomId"
+          :data-anchorwechat="item.anchorWechat" :data-roomStatus="item.liveStatus" @tap="toLivePage">
+          <view class="live-item">
+            <view class="live-left">
+              <image class="image" :src="'http://img.zzqct.com/shop/' + item.coverImg"></image>
+              <view class="b-situation bg-white">
+                <image class="like-icon" src="/static/images/icon/icon-live.png"></image>
+                <view class="b-processing "><text class="state">{{
+                  item.liveStatus == 101 ? i18n.liveing : item.liveStatus == 102 ? i18n.notStarted : item.liveStatus ==
+                    103
+                    ? i18n.finished : item.liveStatus == 104 ? i18n.noBroadcasting : item.liveStatus == 105 ? i18n.suspend
+                      :
+                      item.liveStatus == 106 ? i18n.abnormal : item.liveStatus == 107 ? i18n.expired : ''
+                }}</text></view>
+              </view>
+              <view class="like bg-white">
+                <image class="like-icon" src="/static/images/icon/icon-product.png"></image>
+                <view class="like-num"> 商品 999+</view>
+              </view>
+            </view>
+            <view class="live-right">
+              <view class="top">
+                <image class="image" :src="item.feedsImg"></image>
+              </view>
+              <view class="bottom">
+                <image class="image" :src="item.shareImg"></image>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
 
+      <!-- 回到顶部 -->
+      <!-- <back-top-btn v-if="showBacktop" /> -->
+      <!-- <privacy-pop v-if="showPop" @hidePop="hidePop" /> -->
     </view>
-    <view v-if="renovationId">
-      <feature
-        ref="featureIndex"
-        :page-load="pageLoad"
-        :page-id="renovationId"
-        :shop-id="0"
-        :page-scorll-top="pageScorllTop"
-        @pageLoaded="pageLoaded"
-      />
+    <view class="kefu" @tap="gotoChat">
+      <image src="/static/images/icon/kefu1.png" />
     </view>
-
-    <!-- 回到顶部 -->
-    <back-top-btn v-if="showBacktop" />
-    <privacy-pop v-if="showPop" @hidePop="hidePop" />
+    <!-- 空列表或加载全部提示 -->
+    <EmptyAllTips v-if="isLoaded" :isEmpty="!liveBroadcastList.length" :emptyTips="i18n.liveBroadcastTips"
+      :isAll="liveBroadcastList.length > 5 && loadAll" />
   </view>
 </template>
 
@@ -329,11 +186,24 @@ export default {
         fontColor: '#FFFFFF',
         iconColor: '#FFFFFF'
       },
-      title: '',
+      title: '氢春态欢乐团',
       isBgImg: false,
       titleTextColor: '#ffffff',
       prodTypeArr: [],
-      isLoaded: false
+      isLoaded: false,
+      scene: '',
+      watchTime: '00',
+      sign: wx.getStorageSync('sign'),
+      watchSecond: '00',
+      signTime: 0,
+      size: 10,
+      pages: 1,
+      searchType: 1, // searchType 搜索类型 1.搜索直播间信息 2搜索商品名
+      searchKey: '', // 搜索key
+      prodId: '', // 商品id（商品详情页跳转列表时）
+      liveBroadcastList: [],
+      timer: null,//计时器,
+      isWechat: false, // 是否为微信环境
     }
   },
   computed: {
@@ -353,12 +223,33 @@ export default {
       this.i18n.prodType4
     ]
   },
-  onLoad: function() {
+  onLoad: function (options) {
+    // #ifdef H5
+    this.isWechat = Wechat.isWechat()
+    // #endif
+    // #ifdef APP-PLUS
+    this.isWechat = false
+    // #endif
+    // #ifdef MP-WEIXIN
+    this.isWechat = true
+    // #endif
     uni.showNavigationBarLoading()
     util.transTabbar()
     // 获取装修数据
     this.getFeatureIndex()
-
+    // 加载分销员推广
+    if (this.$Route.query.scene) {
+      http.request({
+        url: `/p/distribution/register/bindUser/${this.$Route.query.scene}`,
+        method: 'POST',
+        callBack: (res) => {
+          uni.showToast({
+            title: '邀请成功',
+            icon: 'none',
+          })
+        }
+      })
+    }
     // #ifdef APP-PLUS
     if (
       !uni.getStorageSync('bbcIsPrivacy') ||
@@ -369,7 +260,8 @@ export default {
     }
     // #endif
   },
-  onShow: function() {
+  onShow: function () {
+    this.clear()
     // #ifndef H5
     var logData = uni.getStorageSync('bbcFlowAnalysisLogDto')
     uni.setStorageSync('bbcStep', uni.getStorageSync('bbcStep') / 1 + 1)
@@ -381,34 +273,41 @@ export default {
     }
     // #endif
     http.getCartCount() // 重新计算购物车总数量
+    this.queryLiveList()
+    this.getSignTime() // 直播间签到的时长
+    this.queryUserInfo() // 获取用户信息
+  },
+  onUnload() {
+    this.clear()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     if (this.renovationId) {
       this.$refs.featureIndex.getNextPage()
     } else {
       this.getNextPage()
     }
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     // 模拟加载
     this.current = 1
     setTimeout(() => {
       this.getFeatureIndex()
+      this.queryLiveList()
       wx.stopPullDownRefresh() // 停止下拉刷新
     }, 100)
   },
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     return {
       path: 'pages/index/index'
     }
   },
 
   // 页面滚动到指定位置指定元素固定在顶部
-  onPageScroll: function(e) {
+  onPageScroll: function (e) {
     this.scrollTop = e.scrollTop
     this.pageScorllTop = e.scrollTop
     if (this.scrollTop > 800) {
@@ -445,11 +344,11 @@ export default {
             this.getAllData()
             uni.setNavigationBarTitle({
               // title: this.i18n.yamiMultiStore
-              title: uni.getStorageSync('bbcUniTitleContent')
+              title: '氢春态欢乐团'
             })
 
             // 头部标题
-            this.title = uni.getStorageSync('bbcUniTitleContent')
+            this.title = '氢春态欢乐团'
           }
           this.showScreen = false
           if (!this.renovationId) {
@@ -471,7 +370,7 @@ export default {
         title: e.detail.title
       })
       this.bgImg = e.detail.bgImg
-      this.title = e.detail.title
+      this.title = '氢春态欢乐团'
       // 头部标题
       this.titleTextColor = e.detail.textColor || '#ffffff'
       this.tabConfig.fontColor = this.titleTextColor || '#ffffff'
@@ -500,18 +399,18 @@ export default {
       uni.setNavigationBarColor({
         frontColor: this.titleTextColor,
         backgroundColor: '#F81A1A',
-        complete: (res) => {}
+        complete: (res) => { }
       })
     },
 
     /**
      * 跳转到商品详情页
      */
-    toProdDetail: function(prodId) {
+    toProdDetail: function (prodId) {
       util.tapLog(3)
       if (prodId) {
         this.$Router.push({
-          path: '/pages/prod/prod',
+          path: '/package-prod/pages/prod/prod',
           query: {
             prodId
           }
@@ -519,7 +418,7 @@ export default {
       }
     },
     // 点击轮播图跳转相应页面
-    toIndexImgContent: function(item) {
+    toIndexImgContent: function (item) {
       util.tapLog(3)
       if (item.type !== 0) {
         return
@@ -534,7 +433,7 @@ export default {
         callBack: (res) => {
           if (res) {
             this.$Router.push({
-              path: '/pages/prod/prod',
+              path: '/package-prod/pages/prod/prod',
               query: {
                 prodId: prodId,
                 bannerEnter: '1'
@@ -544,26 +443,15 @@ export default {
         }
       })
     },
-    toCouponCenter: function() {
+    toCouponCenter: function () {
       uni.navigateTo({
         url: '/package-activities/pages/coupon-center/coupon-center'
       })
     },
-
-    /**
-     * 跳转到直播列表
-     */
-    toLiveListPage: function() {
-      util.tapLog(3)
-      uni.navigateTo({
-        url: '/pages/live-broadcast/live-broadcast'
-      })
-    },
-
     /**
      * 秒杀
      */
-    getSnapUpList: function() {
+    getSnapUpList: function () {
       const params = {
         // url: "/seckill/pageProd",
         url: '/search/page',
@@ -572,7 +460,8 @@ export default {
           size: 20,
           current: 1,
           prodType: 2,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: (res) => {
           const result = res.records[0].products.filter(
@@ -592,7 +481,7 @@ export default {
     /**
      * 跳转秒杀列表页
      */
-    toSnapUpPage: function() {
+    toSnapUpPage: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/package-activities/pages/snap-up-list/snap-up-list'
@@ -602,7 +491,7 @@ export default {
     /**
      * 团购
      */
-    getAbulk: function() {
+    getAbulk: function () {
       var param = {
         url: '/search/page',
         method: 'GET',
@@ -610,7 +499,8 @@ export default {
           current: 1,
           size: 5,
           prodType: 1,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: (res) => {
           this.setData({
@@ -624,7 +514,7 @@ export default {
     /**
      * 跳转团购列表页
      */
-    toAbulkPage: function() {
+    toAbulkPage: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/package-activities/pages/a-bulk-list/a-bulk-list'
@@ -632,17 +522,17 @@ export default {
     },
 
     // 跳转搜索页
-    toSearchPage: function() {
+    toSearchPage: function () {
       util.tapLog(3)
       uni.navigateTo({
-        url: '/pages/search-page/search-page'
+        url: '/package-search/pages/search-page/search-page'
       })
     },
     // 跳转商品活动页面
-    toClassifyPage: function(e) {
+    toClassifyPage: function (e) {
       util.tapLog(3)
       var url =
-        '/pages/prod-classify/prod-classify?sts=' + e.currentTarget.dataset.sts
+        '/package-prod/pages/prod-classify/prod-classify?sts=' + e.currentTarget.dataset.sts
       var id = e.currentTarget.dataset.id
       var title = e.currentTarget.dataset.title
 
@@ -654,18 +544,18 @@ export default {
         url: url
       })
     },
-    toSecKillPage: function() {
+    toSecKillPage: function () {
       uni.navigateTo({
         url: '/package-activities/pages/snap-up-list/snap-up-list'
       })
     },
-    toSpecialDiscount: function() {
+    toSpecialDiscount: function () {
       this.$Router.push(
         '/package-activities/pages/special-discount/special-discount'
       )
     },
     // 跳转公告列表页面
-    onNewsPage: function() {
+    onNewsPage: function () {
       uni.navigateTo({
         url: '/package-user/pages/recent-news/recent-news'
       })
@@ -674,9 +564,9 @@ export default {
     getAllData() {
       this.getIndexImgs()
       this.getNoticeList()
-      this.getHotSalesProds()
-      this.getSnapUpList()
-      this.getAbulk()
+      // this.getHotSalesProds()
+      // this.getSnapUpList()
+      // this.getAbulk()
     },
 
     // 加载轮播图
@@ -728,7 +618,8 @@ export default {
           size: 20,
           sort: 2,
           orderBy: 1,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: (res) => {
           this.isLoaded = true
@@ -756,7 +647,8 @@ export default {
         this.setData({
           current: this.current + 1
         })
-        this.getHotSalesProds()
+        // this.getHotSalesProds()
+        this.queryLiveList()
       } else {
         this.setData({
           isAll: true
@@ -768,7 +660,212 @@ export default {
      */
     handlePicError(item) {
       this.$set(item, 'isPicError', true)
-    }
+    },
+    /**
+   * 跳转到和客服聊天的界面
+   */
+    gotoChat() {
+      util.checkAuthInfo(() => {
+        uni.navigateTo({
+          url: '/package-user/pages/chat/chat-im?shopId=0'
+        })
+      })
+    },
+    // 氢春豆中心
+    toPointsCenter: function () {
+      // util.tapLog(3)
+      util.checkAuthInfo(() => {
+        uni.navigateTo({
+          url: '/package-member-integral/pages/member-index/member-index'
+        })
+      })
+    },
+
+    /**
+       * 跳转氢春豆中心
+       */
+    toMemberInteral() {
+      // util.tapLog(3)
+      util.checkAuthInfo(() => {
+        uni.navigateTo({
+          url: '/package-member-integral/pages/integral-index/integral-index'
+        })
+      })
+    },
+    queryLiveList: function () {
+      this.isLoaded = false
+      const params = {
+        url: '/live/liveRoom/page',
+        method: 'GET',
+        data: {
+          name: this.searchKey,
+          searchType: this.searchType,
+          current: this.current,
+          size: this.size,
+          prodId: this.prodId
+        },
+        callBack: (res) => {
+          this.isLoaded = true
+          var list = []
+          if (res.current == 1) {
+            list = res.records
+          } else {
+            list = this.liveBroadcastList
+            list = list.concat(res.records)
+          }
+          this.liveBroadcastList = list
+          if (!this.liveBroadcastList.length) {
+            this.watchSecond = '00'
+          }
+          this.pages = res.pages
+          this.current = res.current
+        }
+      }
+      http.request(params)
+    },
+    /**
+      * 前往直播页面
+      */
+    toLivePage: function (e) {
+      util.checkAuthInfo(() => {
+        this.roomId = e.currentTarget.dataset.roomid // 填写具体的房间号
+        this.url = e.currentTarget.dataset.url
+        this.anchorwechat = e.currentTarget.dataset.anchorwechat
+        console.log(e)
+        wx.setStorageSync('liveStatus', e.currentTarget.dataset.roomstatus)
+        util.checkAuthInfo(this.toLivePlayer)
+      })
+    },
+    toLivePlayer: function () {
+      const roomId = this.roomId
+      const url = this.url
+      if (uni.getStorageSync('sign')) {
+        uni.removeStorageSync('sign')
+      }
+      if (this.isWechat) {
+        // 开发者在直播间页面路径上携带自定义参数（如示例中的path和pid参数），后续可以在分享卡片链接和跳转至商详页时获取
+        const customParams = encodeURIComponent(JSON.stringify({
+          path: url
+        }))
+
+        if (this.roomid !== wx.getStorageSync('liveRoomId')) {
+          this.clear()
+        }
+        wx.setStorageSync('liveRoomId', roomId)
+        if (wx.getStorageSync('liveStatus') == 101) {
+          let aa = wx.getStorageSync('isWatchTime')
+          console.log('已观看时长', aa)
+          this.timer = setInterval(() => {
+            aa += 1
+            if (aa > uni.getStorageSync('signTime')) {
+              console.log('签到')
+              if (!uni.getStorageSync('sign')) {
+                this.userSign()
+              }
+            }
+            if (aa % 60 == 0) {
+              console.log('插入签到')
+              this.watchTimes()
+              this.watchSecond = '00'
+            }
+            if (aa % 60 !== 0) {
+              let bb = (aa % 60).toString().length == 1 ? '0' + (aa % 60).toString() : (aa % 60).toString()
+              this.watchSecond = bb
+              console.log('已观看时长', bb)
+            }
+          }, 1000)
+        }
+        wx.navigateTo({
+          url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${roomId}&custom_params=${customParams}`
+        }) // 其中wx2b03c6e691cd7370是直播组件appid不能修改
+      } else {
+        uni.showToast({
+          title: this.i18n.pleaseOpenInWechat,
+          icon: 'none'
+        })
+      }
+    },
+    // 获取直播签到时长的限制
+    getSignTime: function () {
+      const params = {
+        url: '/p/score/getViewTime',
+        method: 'GET',
+        callBack: (res) => {
+          console.log(res)
+          wx.setStorageSync('signTime', Number(res) * 60)
+        }
+      }
+      http.request(params)
+    },
+    // 签到
+    userSign: function () {
+      const params = {
+        url: '/p/score/updateUserScore',
+        method: 'GET',
+        data: {
+          bizId: wx.getStorageSync('liveRoomId')
+        },
+        callBack: (res) => {
+          if (res) {
+            wx.setStorageSync('sign', '签到成功')
+          }
+        }
+      }
+      http.request(params)
+    },
+    // 插入观看时间
+    watchTimes() {
+      const params = {
+        url: '/live/liveRoom/putRealTime',
+        method: 'POST',
+        data: {
+          userId: wx.getStorageSync('userID'), // 用户ID
+          roomId: wx.getStorageSync('liveRoomId'), // 房间ID
+          anchorwechat: this.anchorwechat, // 主播ID
+        },
+        callBack: (res) => {
+          if (res) {
+            console.log('插入成功')
+          }
+        }
+      }
+      http.request(params)
+    },
+    // 获取用户信息
+    queryUserInfo: function () {
+      const params = {
+        url: '/p/user/userInfo',
+        method: 'GET',
+        data: {},
+        dontTrunLogin: true,
+        callBack: (res) => {
+          console.log(res)
+          uni.setStorageSync('userID', res.userId)
+          this.getUserWatchTime()
+        }
+      }
+      http.request(params)
+    },
+    //  获取用户观看直播时间
+    getUserWatchTime: function () {
+      const params = {
+        url: '/live/liveRoom/getRealTime',
+        method: 'GET',
+        data: {
+          userId: wx.getStorageSync('userID')
+        },
+        callBack: (res) => {
+          wx.setStorageSync('isWatchTime', Number(res) * 60)
+          this.watchTime = res.length > 1 ? res : '0' + res.toString()
+        }
+      }
+      http.request(params)
+    },
+    // 清除计时器 
+    clear: function () {
+      clearInterval(this.timer)
+      this.timer = null
+    },
   }
 }
 </script>

@@ -1,0 +1,113 @@
+
+.select-type{
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  font-size: 28rpx;
+  background-color: #f8f8f8;
+  color: #333;
+  font-family: PingFang SC;
+
+  .without{
+    margin-top: 20rpx;
+    color: #999;
+    text-align: center;
+
+  }
+
+  .title{
+    border-radius: 10px;
+    // height: 170rpx;
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+
+
+    input{
+      background-color: #F7F8FA;
+      height: 64rpx;
+      border-radius: 32rpx;
+      padding-left: 30rpx;
+      font-size: 24rpx;
+    }
+    .uni-searchbar{
+      padding: 0;
+    }
+
+    .type{
+      display: flex;
+      justify-content:center;
+
+      view{
+        width: 345rpx;
+        height: 98rpx;
+        text-align: center;
+        line-height: 98rpx;
+        color: #999999;
+      }
+      .active{
+        color: #000;
+        font-weight: bold;
+        position: relative;
+      }
+
+      .active::after{
+        display:block;
+        content:'';
+        width: 32rpx;
+        height: 4rpx;
+        background: linear-gradient(270deg, #FFFFFF 0%, #082BA6 100%);
+        position: absolute;
+        left: 158rpx;
+        top: 74rpx;
+
+
+      }
+
+    }
+  }
+  .select{
+    padding: 0 30rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-top: 20rpx;
+
+    .active{
+      color: #082BA6;
+    }
+
+    .pitchOn{
+      font-size: 20rpx;
+    }
+
+
+    .category{
+      height: 82rpx;
+      line-height: 80rpx;
+      box-sizing: border-box;
+      border-bottom: 2rpx solid #F2F2F2;
+      color: #999999;
+
+      .active{
+        color: #082BA6;
+      }
+
+    }
+
+    .list{
+      height: 82rpx;
+      line-height: 80rpx;
+      box-sizing: border-box;
+      border-bottom: 2rpx solid #F2F2F2;
+      display: flex;
+      justify-content:space-between;
+
+      .check{
+        font-size: 34rpx;
+        color: #082BA6;
+      }
+    }
+  }
+}

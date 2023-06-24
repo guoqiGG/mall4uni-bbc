@@ -65,6 +65,14 @@
             </view>
             <view class="item">
               <view class="income-money">
+                {{ toPrice(unsettledAmount) }}
+              </view>
+              <view class="income-text">
+                {{ i18n.amountToBeSettled }}
+              </view>
+            </view>
+            <view class="item">
+              <view class="income-money">
                 {{ toPrice(addupAmount) }}
               </view>
               <view class="income-text">
@@ -76,6 +84,7 @@
             <view class="draw-btn-left" @tap="toWithdrawal">
               <view class="btn-text" style="background-color: #F81A1A">{{ i18n.withdrawalsNow }}</view>
             </view>
+            <view></view>
             <view class="draw-btn-right" @tap="toWalletCashPage">
               <view class="btn-text">{{ i18n.withdrawalsRecord }}</view>
             </view>
@@ -86,13 +95,13 @@
 
     <!-- 分销业务栏 -->
     <view class="lists">
-      <view class="list-item" @tap="toPromotionProdPage">
+      <view class="list-item" @tap="toPublishProdPage">
         <view class="icon">
           <image src="../../static/images/icon/list1.png" wid />
         </view>
         <view class="item-text">
           <view class="item-text-title">
-            {{ i18n.promoteGoods }}
+            {{ i18n.publishProduct }} 
           </view>
           <view class="item-text-desc">
             {{ i18n.distributionWinWin }}
@@ -124,13 +133,13 @@
           <view class="list-title">{{ i18n.myFriends }}</view>
           <text class="arrow" />
         </view>
-        <view class="menu-cont-list" @tap="toMyUserPage">
+        <!-- <view class="menu-cont-list" @tap="toMyUserPage">
           <view class="icon">
             <image src="../../static/images/icon/menu_4.png" mode="widthFix" />
           </view>
           <view class="list-title">{{ i18n.myUser }}</view>
           <text class="arrow" />
-        </view>
+        </view> -->
         <view class="menu-cont-list" @tap="toPromotionOrderPage">
           <view class="icon">
             <image src="../../static/images/icon/menu_2.png" mode="widthFix" />
@@ -143,6 +152,14 @@
             <image src="../../static/images/icon/menu_3.png" mode="widthFix" />
           </view>
           <view class="list-title">{{ i18n.incomeBreakdown }}</view>
+          <text class="arrow" />
+        </view>
+        
+        <view class="menu-cont-list" @tap="toIntegralTurnoverPage">
+          <view class="icon">
+            <image src="../../static/images/icon/menu_4.png" mode="widthFix" />
+          </view>
+          <view class="list-title">{{ i18n.integralTurnover }}</view>
           <text class="arrow" />
         </view>
       </view>
@@ -206,6 +223,9 @@ export default {
         url: '/p/distribution/user/distributionUserInfo',
         method: 'GET',
         callBack: (res) => {
+          if(res?.distributionUserId){
+            uni.setStorageSync('distributionUserId',res.distributionUserId)
+          }
           if (res.state === -1) {
             uni.showModal({
               title: '',
@@ -291,7 +311,8 @@ export default {
         callBack: (res) => {
           this.setData({
             settledAmount: res.distributionUserWallet.settledAmount,
-            addupAmount: res.distributionUserWallet.addupAmount
+            addupAmount: res.distributionUserWallet.addupAmount,
+            unsettledAmount: res.distributionUserWallet.unsettledAmount
           })
         },
         errCallBack: (res) => {
@@ -377,6 +398,15 @@ export default {
     },
 
     /**
+     * 跳转到我的发布商品 
+     */ 
+     toPublishProdPage:function(){
+      uni.navigateTo({
+        url:'/package-publish-prod/pages/publish-prod/publish-prod'
+      })
+     },
+
+    /**
      * 跳转到邀请好友页面
      */
     toInvitationCards: function() {
@@ -397,7 +427,15 @@ export default {
     /*
 				跳转到分销员列表，已写好入口，等待对接
 			*/
-    toDistributorListPage: function() {}
+    toDistributorListPage: function() {},
+    /*
+    * 跳转到氢春豆流水页面
+    */ 
+    toIntegralTurnoverPage:function(){
+      uni.navigateTo({
+        url: '/package-distribution/pages/turnover/turnover'
+      })
+    },
   }
 }
 </script>

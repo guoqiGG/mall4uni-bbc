@@ -125,12 +125,15 @@ export const index = {
   'uploadIDHand': 'Please upload a hand-held ID photo',
   'enterRealName': 'please enter your real name',
   'enterRealNameR': 'please enter the correct real name',
+  'areaIDNotNull':'Application area cannot be empty',
+  'noPartnersInIhisArea':'There is no partner in this area, please select another area',
   'applicationSubmitted': 'Application has been submitted, please wait for review',
   'autoCheck': 'The application will be automatically approved after submission if one of the following conditions is met',
   'consumptionTimes': 'The number of consumption is greater than or equal to',
   'spendingAmount': 'Spending amount greater than or equal to',
   'buyDesignatedProd': 'Purchase any one of the following items,',
   'afterConfirm': 'counting after confirmation of receipt',
+
 
   // applyRefund.vue
   'orderNumber': 'Order number',
@@ -303,8 +306,10 @@ export const index = {
   'vip': 'Vip',
   'myBalance': 'Withdrawal balance (yuan)',
   'totalIncome': 'Total income (yuan)',
+  'amountToBeSettled': 'Amount to be settled (yuan)',
   'withdrawalsNow': 'Withdrawals now',
   'promoteGoods': 'Promote goods',
+  'publishProduct': 'Publish product',
   'distributionWinWin': 'Distribution win-win',
   'inviteFriends': 'Invite friends',
   'promoteRewards': 'Promote Rewards',
@@ -313,6 +318,7 @@ export const index = {
   'myPromotion': 'My promotion',
   'distributorList': 'Distributor list',
   'incomeBreakdown': 'Income breakdown',
+  'integralTurnover': 'Integral turnover',
   'withdrawalsRecord': 'Withdrawals record',
 
   // discountDetail.vue
@@ -906,6 +912,7 @@ export const index = {
   'enterContactNumber': 'Please enter your contact number',
   'yourRegion': 'Area',
   'selectProvinceCity': 'Please select the province and city',
+  'selectArea':'Please select a region',
   'enteDetailedAddress': 'Please enter the detailed address',
   'selectPickUpAddress': 'Select pick up address',
   'fillPersonInformation': 'Fill in pick up person information',
@@ -1069,6 +1076,7 @@ export const index = {
   'currentPoints': 'Current points',
   'dailySignIn': 'Daily sign in',
   'signIn': 'Sign in',
+  'noSignIn':'NO sign in',
   'signedIn': 'Signed in',
   'dayItem': '',
   'integralActivity': 'Integral activity',
@@ -1100,7 +1108,7 @@ export const index = {
   'rechargeGetPoints': 'Recharge balance to get bonus points',
   'registerEarnPoints': 'Get points for registration',
   'platformChanges': 'System changes',
-
+  'pointsSource':'Points source',
   // IntegralGoodsList/IntegralGoodsList.vue
   'marketValue': 'Market value',
   'thankYourPatronage': 'Thank you for your patronage',

@@ -121,7 +121,8 @@ export default {
         method: 'GET',
         responseType: 'arraybuffer',
         data: {
-          page: 'package-distribution/pages/apply-dist/apply-dist',
+          // page: 'package-distribution/pages/apply-dist/apply-dist',
+          page: 'pages/index/index',
           scene: cardno
         },
         callBack: (res) => {

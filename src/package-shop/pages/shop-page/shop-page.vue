@@ -225,7 +225,7 @@ export default {
         callBack: res => {
           if (res) {
             this.$Router.push({
-              path: '/pages/prod/prod',
+              path: '/package-prod/pages/prod/prod',
               query: {
                 prodId: prodId,
                 bannerEnter: '1'
@@ -304,7 +304,7 @@ export default {
 
     // 跳转商品详情页
     toProdPage: function(prodId) {
-      this.$Router.push({ path: '/pages/prod/prod', query: { prodId: prodId }})
+      this.$Router.push({ path: '/package-prod/pages/prod/prod', query: { prodId: prodId }})
     },
 
     // 获取店铺商品
@@ -317,7 +317,8 @@ export default {
           shopId: this.shopId,
           current: 1,
           size: 20,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: res => {
           console.log(res)

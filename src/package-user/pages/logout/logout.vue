@@ -138,6 +138,7 @@ export default {
           uni.removeStorageSync('bbcCode')
           uni.removeStorageSync('bbcUserInfo')
           uni.removeStorageSync('bbcExpiresTimeStamp')
+          uni.removeStorageSync('watchSecond')
           util.removeTabBadge()
           // 重置uuid、uuidSession、sessionTimeStamp、step、flowAnalysisLogDto
           uni.setStorageSync('bbcUuid', util.getUuid())

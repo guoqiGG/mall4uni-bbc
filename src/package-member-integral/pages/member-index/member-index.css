@@ -190,7 +190,7 @@
   margin-top: 10rpx;
 }
 
-/* 每日签到、积分活动、积分任务 */
+/* 每日签到、氢春豆活动、氢春豆任务 */
 
 .member-index .sign-in,
 .member-index .activity,
@@ -346,9 +346,9 @@
   background: #ccc;
 }
 
-/* 每日签到、积分活动、积分任务 end */
+/* 每日签到、氢春豆活动、氢春豆任务 end */
 
-/* 积分兑换 */
+/* 氢春豆兑换 */
 
 .integral-list {
   padding: 50rpx 30rpx 30rpx;
@@ -419,4 +419,4 @@
   font-family: arial;
 } */
 
-/* 积分兑换 end */
+/* 氢春豆兑换 end */

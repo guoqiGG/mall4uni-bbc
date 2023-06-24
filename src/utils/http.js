@@ -199,12 +199,13 @@ function hideLoad(globalData) {
  * 上传文件统一接口
  */
 function upload(params) {
+  console.log(params)
   wx.uploadFile({
     url: config.domain + params.url,
     filePath: params.filePath,
     name: params.name,
     header: {
-      'Authorization': params.login ? undefined : wx.getStorageSync('bbcToken')
+      'Authorization': params.login ? undefined : wx.getStorageSync('bbcToken'),
     },
     dataType: 'json',
     responseType: params.responseType == undefined ? 'json' : params.responseType,
@@ -264,7 +265,7 @@ function getCartCount() {
         pl = 'mp'
         // #endif
         wx.setTabBarBadge({
-          index: pl == 'mp' ? 3 : 2,
+          index: pl == 'mp' ? 2 : 2,
           text: res > 99 ? '99+' : res + ''
         })
         const app = getApp().globalData

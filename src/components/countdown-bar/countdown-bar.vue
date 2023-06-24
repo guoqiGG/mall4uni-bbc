@@ -104,7 +104,7 @@ export default {
         // 拼团结束，刷新当前页面
         setTimeout(() => {
           uni.redirectTo({
-            url: '/pages/prod/prod?prodId=' + this.prodId
+            url: '/package-prod/pages/prod/prod?prodId=' + this.prodId
           })
         }, 100)
         return

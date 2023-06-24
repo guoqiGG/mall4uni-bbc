@@ -238,7 +238,8 @@ export default {
           orderBy: this.orderBy,
           shopId: this.shopId,
           isAllProdType: true,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: (res) => {
           this.isLoaded = true
@@ -309,7 +310,7 @@ export default {
       this.toLoadData()
     },
     toProdPage: function(prodId) {
-      this.$Router.push({ path: '/pages/prod/prod', query: { prodId }})
+      this.$Router.push({ path: '/package-prod/pages/prod/prod', query: { prodId }})
     }
   }
 }

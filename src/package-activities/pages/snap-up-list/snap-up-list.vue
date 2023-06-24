@@ -216,7 +216,8 @@ export default {
           current: this.current,
           size: 20,
           prodType: 2,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: (res) => {
           this.isLoaded = true
@@ -343,7 +344,7 @@ export default {
     // 跳转秒杀商品详情页
     toSeckillDetaile: function(prodId) {
       uni.navigateTo({
-        url: '/pages/prod/prod?prodId=' + prodId
+        url: '/package-prod/pages/prod/prod?prodId=' + prodId
       })
     },
     // 图片加载失败时显示默认图片

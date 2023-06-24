@@ -239,7 +239,7 @@ const getPageInfo = (to) => {
   var pageInfo = {}
   if (path == '/pages/index/index' || path == '' || path == '*') {
     pageInfo.pageId = 1
-  } else if (path == '/pages/prod/prod' && !query.seckillId && !query.groupActivityId) {
+  } else if (path == '/package-prod/pages/prod/prod' && !query.seckillId && !query.groupActivityId) {
     pageInfo.pageId = query.bannerEnter == '1' ? 2 : 3
     pageInfo.bizType = 0
     pageInfo.bizData = query.prodId
@@ -247,7 +247,7 @@ const getPageInfo = (to) => {
     pageInfo.pageId = 4
     pageInfo.bizType = 2
     pageInfo.bizData = query.seckillId
-  } else if (path == '/pages/prod/prod' && query.groupActivityId) {
+  } else if (path == '/package-prod/pages/prod/prod' && query.groupActivityId) {
     pageInfo.pageId = 5
     pageInfo.bizType = 1
     pageInfo.bizData = query.prodId
@@ -259,10 +259,10 @@ const getPageInfo = (to) => {
     pageInfo.pageId = 8
   } else if (path == '/package-user/pages/order-detail/order-detail') {
     pageInfo.pageId = 9
-  } else if (path == '/pages/pay-way/pay-way') {
+  } else if (path == '/package-pay/pages/pay-way/pay-way') {
     pageInfo.pageId = 10
     pageInfo.bizData = query.orderNumbers
-  } else if (path == '/pages/pay-result/pay-result') {
+  } else if (path == '/package-pay/pages/pay-result/pay-result') {
     pageInfo.pageId = 11
     pageInfo.bizData = query.orderNumbers
   }	else if (path == '/pages/user/user') {
@@ -429,16 +429,16 @@ const transTabbar = () => {
     text: i18n.t('index.classification')
   })
   // #ifdef MP-WEIXIN
+  // uni.setTabBarItem({
+  //   index: 2,
+  //   text: i18n.t('index.tabbarLive')
+  // })
   uni.setTabBarItem({
     index: 2,
-    text: i18n.t('index.tabbarLive')
-  })
-  uni.setTabBarItem({
-    index: 3,
     text: i18n.t('index.cart')
   })
   uni.setTabBarItem({
-    index: 4,
+    index: 3,
     text: i18n.t('index.myself')
   })
   // #endif
@@ -463,7 +463,7 @@ const removeTabBadge = () => {
   pl = 'mp'
   // #endif
   uni.removeTabBarBadge({
-    index: pl == 'mp' ? 3 : 2
+    index: pl == 'mp' ? 2 : 2
   })
 }
 
@@ -496,7 +496,7 @@ const featureRoute = (item) => {
   // item.type: 1商品详情; 2购物车; 3个人中心; 4自定义页面;
   if (item.type == 1) {
     uni.navigateTo({
-      url: '/pages/prod/prod?prodId=' + item.link
+      url: '/package-prod/pages/prod/prod?prodId=' + item.link
     })
   }
   // 跳转自定义页面
@@ -663,7 +663,7 @@ const previousPage = (isRefreshToken) => {
   const routeUrlAfterLogin = uni.getStorageSync('bbcRouteUrlAfterLogin')
   const pages = getCurrentPages()
   const nowRoute = pages[pages.length - 1].route
-  if (nowRoute === 'pages/prod/prod' || nowRoute === 'package-activities/pages/spell-group-details/spell-group-details') {
+  if (nowRoute === 'package-prod/pages/prod/prod' || nowRoute === 'package-activities/pages/spell-group-details/spell-group-details') {
     // 如果当前页面是商品详情页或拼团详情页，则不跳转其它页面
     uni.removeStorageSync('bbcRouteUrlAfterLogin')
     return
@@ -779,7 +779,7 @@ const getUniWebConfig = () => {
     method: 'GET',
     callBack: res => {
       uni.setStorageSync('bbcUniLoginLogoImg', res.uniLoginLogoImg || require('@/static/images/website-config/logo.png'))
-      uni.setStorageSync('bbcUniTitleContent', res.uniTitleContent || '蓝海-宇宙版')
+      uni.setStorageSync('bbcUniTitleContent', res.uniTitleContent || '氢春态欢乐团')
     }
   }
   http.request(params)
@@ -996,13 +996,13 @@ const toRedirectLink = async(type, link, shopId) => {
   switch (type) {
     case '1': // 跳转到商品
       uni.navigateTo({
-        url: '/pages/prod/prod?prodId=' + link
+        url: '/package-prod/pages/prod/prod?prodId=' + link
       })
       break
     case '2': // 跳转到分类
       if (Array.isArray(link)) {
         uni.navigateTo({
-          url: `/pages/sub-category/sub-category?parentId=${link[1].value}&categoryId=${link[2].value}`
+          url: `/package-prod/pages/sub-category/sub-category?parentId=${link[1].value}&categoryId=${link[2].value}`
         })
       } else {
         uni.navigateTo({
@@ -1088,7 +1088,7 @@ const toRedirectLink = async(type, link, shopId) => {
       break
     case '5': // 跳转到微页面
       uni.navigateTo({
-        url: '/pages/feature-index/feature-index0?renovationId=' + link + '&shopId=' + shopId
+        url: '/package-prod/pages/feature-index/feature-index0?renovationId=' + link + '&shopId=' + shopId
       })
       break
     case '6': // 跳转到自定义链接
@@ -1123,7 +1123,7 @@ const toRedirectLink = async(type, link, shopId) => {
         // #ifdef MP-WEIXIN
         const url = encodeURIComponent(newUrl)
         uni.navigateTo({
-          url: '/pages/web-view/web-view?url=' + url
+          url: '/package-prod/pages/web-view/web-view?url=' + url
         })
         // #endif
         // #ifdef APP-PLUS
@@ -1143,7 +1143,7 @@ const toRedirectLink = async(type, link, shopId) => {
 
 const mobileLoginList = [ // 移动端需要登录页面
   '/package-user/pages/order-list/order-list',
-  '/pages/prod-classify/prod-classify?sts=5',
+  '/package-prod/pages/prod-classify/prod-classify?sts=5',
   '/package-member-integral/pages/integral-index/integral-index',
   '/package-member-integral/pages/member-index/member-index',
   '/package-distribution/pages/dis-center/dis-center'

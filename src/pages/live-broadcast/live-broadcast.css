@@ -147,6 +147,7 @@ image.search-icon {
   bottom: 20rpx;
   color: #fff;
   text-align: center;
+  z-index: 5;
 }
 .like-icon {
   display: block;

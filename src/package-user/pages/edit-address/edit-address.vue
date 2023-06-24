@@ -14,11 +14,11 @@
     <view v-if="!isMap" class="input-box">
       <view class="section">
         <text>{{ i18n.recipient }}</text>
-        <input :placeholder="i18n.recipientName" type="text" maxlength="15" :value="receiver" @input="onReceiverInput"></input>
+        <input :placeholder="i18n.recipientName" type="text" maxlength="15" :value="receiver" @input="onReceiverInput"/>
       </view>
       <view class="section">
         <text>{{ i18n.mobilePhone }}</text>
-        <input :placeholder="i18n.mobileNumberLength" type="number" maxlength="11" :value="mobile" @input="onMobileInput"></input>
+        <input :placeholder="i18n.mobileNumberLength" type="number" maxlength="11" :value="mobile" @input="onMobileInput"/>
       </view>
       <view class="section" @tap="translate">
         <text>{{ i18n.area }}</text>
@@ -45,7 +45,6 @@
               </picker-view>
             </view>
           </view>
-
         </template>
         <view class="arrow">
           <image src="/static/images/icon/more.png" />
@@ -53,7 +52,7 @@
       </view>
       <view class="section">
         <text>{{ i18n.detailedAddress }}</text>
-        <input class="addr" :placeholder="i18n.addressTips" type="text" :value="addr" maxlength="50" @input="onAddrInput"></input>
+        <input class="addr" :placeholder="i18n.addressTips" type="text" :value="addr" maxlength="50" @input="onAddrInput"/>
         <view class="arrow add-icon" @tap="selectLoaction">
           <image src="/static/images/icon/submit-address.png" />
         </view>
@@ -92,7 +91,6 @@ var t = 0
 var show = false
 var moveY = 200
 let index = [18, 0, 0]
-console.log(index)
 export default {
 
   components: {},

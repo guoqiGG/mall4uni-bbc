@@ -109,7 +109,6 @@ export default {
   watch: {
     imgs: {
       handler: function(val, oldVal) {
-        console.log(val)
         this.imgsList = val ? val.split(',') : ['']
       },
       immediate: true

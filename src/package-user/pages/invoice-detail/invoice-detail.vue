@@ -169,7 +169,7 @@ export default {
   methods: {
     toSpuDetail(spuId) {
       uni.navigateTo({
-        url: '/pages/prod/prod?prodId=' + spuId
+        url: '/package-prod/pages/prod/prod?prodId=' + spuId
       })
     },
     toShopIndex(shopId) {

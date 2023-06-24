@@ -278,7 +278,7 @@ export default {
     toDiscountProdDet(prodId) {
       if (prodId) {
         uni.navigateTo({
-          url: '/pages/prod/prod?prodId=' + prodId
+          url: '/package-prod/pages/prod/prod?prodId=' + prodId
         })
       }
     },

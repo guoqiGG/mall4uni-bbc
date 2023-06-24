@@ -18,7 +18,8 @@
     "build:mp-weixin-test": "cross-env VUE_APP_CUSTOM_ENV=test NODE_ENV=production UNI_PLATFORM=mp-weixin UNI_OUTPUT_DIR=dist/test/mp-weixin vue-cli-service uni-build",
     "build:app-plus-test": "cross-env VUE_APP_CUSTOM_ENV=test NODE_ENV=production UNI_PLATFORM=app-plus UNI_OUTPUT_DIR=dist/test/app-plus vue-cli-service uni-build",
     "dev:h5-test": "cross-env VUE_APP_CUSTOM_ENV=test NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve",
-    "dev:mp-weixin-test": "cross-env VUE_APP_CUSTOM_ENV=test NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch"
+    "dev:mp-weixin-test": "cross-env VUE_APP_CUSTOM_ENV=test NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
+    "dev_t": "set NODE_OPTIONS=\"--openssl-legacy-provider\" & npm run dev\n"
   },
   "dependencies": {
     "@dcloudio/uni-app": "^2.0.2-3061820230117002",
@@ -44,6 +45,7 @@
     "@vue/shared": "^3.2.45",
     "core-js": "3.23.3",
     "crypto-js": "4.1.1",
+    "dayjs": "^1.11.7",
     "flyio": "^0.6.14",
     "regenerator-runtime": "^0.12.1",
     "uni-read-pages": "1.0.5",
@@ -82,8 +84,10 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss": "7",
+    "vue-template-compiler": "^2.6.11",
     "postcss-comment": "^2.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "sass": "^1.43.4",
+    "sass-loader": "^8.0.2"
   },
   "browserslist": [
     "Android >= 4.4",

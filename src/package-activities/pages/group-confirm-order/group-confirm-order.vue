@@ -477,7 +477,7 @@ export default {
         callBack: res => {
           const orderType = 1 // 1拼团 2秒杀
           uni.redirectTo({
-            url: '/pages/pay-way/pay-way?orderNumbers=' + res.orderNumbers +
+            url: '/package-pay/pages/pay-way/pay-way?orderNumbers=' + res.orderNumbers +
 								'&orderType=' + orderType
           })
         },

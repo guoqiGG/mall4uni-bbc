@@ -14,20 +14,12 @@
     <view class="search-bar">
       <view class="select" @tap="changeShopOrProd">
         <image src="/static/images/icon/switch2.png" class="arrow" />
-        <view class="key">{{ searchType == 1?i18n.liveBroadcast:i18n.commodity }}</view>
+        <view class="key">{{ searchType == 1 ? i18n.liveBroadcast : i18n.commodity }}</view>
       </view>
       <view class="search">
         <image src="/static/images/liveBroadcast/search.png" class="search-icon" />
-        <input
-          type="text"
-          class="search-int"
-          :value="searchKey"
-          confirm-type="search"
-          :placeholder="i18n.inputBlogger"
-          placeholder-class="placeholder"
-          @input="getInputValue"
-          @confirm="search"
-        ></input>
+        <input type="text" class="search-int" :value="searchKey" confirm-type="search" :placeholder="i18n.inputBlogger"
+          placeholder-class="placeholder" @input="getInputValue" @confirm="search" />
       </view>
     </view>
 
@@ -37,13 +29,18 @@
     </view>
 
     <view v-if="liveBroadcastList.length > 0" class="broadcast-list">
-      <view v-for="(item, index) in liveBroadcastList" :key="index" class="item" :data-roomid="item.roomId" @tap="toLivePage">
+      <view v-for="(item, index) in liveBroadcastList" :key="index" class="item" :data-roomid="item.roomId"
+        :data-anchorwechat="item.anchorWechat" :data-roomStatus="item.liveStatus" @tap="toLivePage">
         <view class="b-video">
           <view class="img-box">
             <image class="b-img" :src="item.feedsImg" />
           </view>
           <view class="b-situation">
-            <view class="b-processing"><text class="dot">●</text><text class="state">{{ item.liveStatus==101?i18n.liveing:item.liveStatus==102?i18n.notStarted:item.liveStatus==103?i18n.finished:item.liveStatus==104?i18n.noBroadcasting:item.liveStatus==105?i18n.suspend:item.liveStatus==106?i18n.abnormal:item.liveStatus==107?i18n.expired:'' }}</text></view>
+            <view class="b-processing"><text class="dot">●</text><text class="state">{{
+              item.liveStatus == 101 ? i18n.liveing : item.liveStatus == 102 ? i18n.notStarted : item.liveStatus == 103
+                ? i18n.finished : item.liveStatus == 104 ? i18n.noBroadcasting : item.liveStatus == 105 ? i18n.suspend :
+                  item.liveStatus == 106 ? i18n.abnormal : item.liveStatus == 107 ? i18n.expired : ''
+            }}</text></view>
             <!-- <view class="people-num">{{item.viewerNum}}观看</view> -->
           </view>
           <view class="like">
@@ -55,14 +52,16 @@
           <view class="b-tit">{{ item.name }}</view>
           <view class="b-name">{{ item.anchorName }}</view>
           <view v-if="item.liveProdStores.length" class="b-prod-list">
-            <block v-for="(prod,idx) in item.liveProdStores" :key="idx">
+            <block v-for="(prod, idx) in item.liveProdStores" :key="idx">
               <view v-if="idx < 2" class="b-prod b-prod-img">
-                <image class="" :src="prod.coverPic" :data-roomid="item.roomId" :data-url="prod.url" @tap="toLivePage" />
+                <image class="" :src="prod.coverPic" :data-roomid="item.roomId" :data-anchorwechat="item.anchorWechat"
+                  :data-roomStatus="item.liveStatus" :data-url="prod.url" @tap="toLivePage" />
               </view>
             </block>
             <view class="b-prod b-prod-num">
               <view class="b-num">
-                <view class="prod-num"><text v-if="item.liveProdStores.length > 2">+</text>{{ item.liveProdStores.length > 2 ? item.liveProdStores.length-2 : item.liveProdStores.length }}</view>
+                <view class="prod-num"><text v-if="item.liveProdStores.length > 2">+</text>{{ item.liveProdStores.length >
+                  2 ? item.liveProdStores.length - 2 : item.liveProdStores.length }}</view>
                 <view class="b-more">{{ i18n.more }}</view>
               </view>
             </view>
@@ -73,15 +72,10 @@
     <!-- <view v-if="!liveBroadcastList.length && !liveTopList.length" class="empty">{{ i18n.liveBroadcastTips }}</view>
     <view v-if="liveBroadcastList.length > 5 && loadAll" class="loadall">{{ i18n.endTips }}</view> -->
     <!-- 空列表或加载全部提示 -->
-    <EmptyAllTips
-      v-if="isLoaded"
-      :isEmpty="!liveBroadcastList.length && !liveTopList.length"
-      :emptyTips="i18n.liveBroadcastTips"
-      :isAll="liveBroadcastList.length > 5 && loadAll"
-    />
+    <EmptyAllTips v-if="isLoaded" :isEmpty="!liveBroadcastList.length && !liveTopList.length"
+      :emptyTips="i18n.liveBroadcastTips" :isAll="liveBroadcastList.length > 5 && loadAll" />
 
   </view>
-
 </template>
 
 <script>
@@ -136,7 +130,8 @@ export default {
       searchType: 1, // searchType 搜索类型 1.搜索直播间信息 2搜索商品名
       searchKey: '', // 搜索key
       prodId: '', // 商品id（商品详情页跳转列表时）
-      isLoaded: false
+      isLoaded: false,
+      timer: null//计时器
     }
   },
 
@@ -147,9 +142,9 @@ export default {
   },
 
   /**
-		 * 生命周期函数--监听页面加载
-		 */
-  onLoad: function(options) {
+     * 生命周期函数--监听页面加载
+     */
+  onLoad: function (options) {
     // #ifdef H5
     this.isWechat = Wechat.isWechat()
     // #endif
@@ -169,25 +164,31 @@ export default {
     }
   },
 
-  onShow: function() {
+  onShow: function () {
+    this.clear()
     // 头部导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.liveList
     })
     this.queryLiveList() // 播放列表
     this.queryTopLiveList() // 置顶直播列表
+    this.getSignTime() // 直播间签到的时长
+    this.queryUserInfo() // 获取用户信息
   },
 
   /**
-		 * 生命周期函数--监听页面隐藏
-		 */
-  onHide: function() {
+     * 生命周期函数--监听页面隐藏
+     */
+  onHide: function () {
     this.searchKey = ''
   },
+  onUnload() {
+    this.clear()
+  },
   /**
-		 * 页面上拉触底事件的处理函数
-		 */
-  onReachBottom: function() {
+     * 页面上拉触底事件的处理函数
+     */
+  onReachBottom: function () {
     if (this.current < this.pages) {
       this.setData({
         current: this.current + 1
@@ -209,9 +210,9 @@ export default {
     },
 
     /**
-			 * 置顶直播间列表信息
-			 */
-    queryTopLiveList: function() {
+       * 置顶直播间列表信息
+       */
+    queryTopLiveList: function () {
       this.isLoaded = false
       const params = {
         url: '/live/liveRoom/pageTopRoom',
@@ -231,9 +232,9 @@ export default {
     },
 
     /**
-			 * 直播列表
-			 */
-    queryLiveList: function() {
+       * 直播列表
+       */
+    queryLiveList: function () {
       this.isLoaded = false
       const params = {
         url: '/live/liveRoom/page',
@@ -263,9 +264,9 @@ export default {
     },
 
     /**
-			 * 改变选择店铺搜索或者商品搜索
-			 */
-    changeShopOrProd: function() {
+       * 改变选择店铺搜索或者商品搜索
+       */
+    changeShopOrProd: function () {
       // searchType 搜索类型 1.搜索直播间信息(直播间/博主) 2搜索商品名
       var searchType = this.searchType
       searchType == 1 ? searchType = 2 : searchType = 1
@@ -276,38 +277,73 @@ export default {
     },
 
     /**
-			 * 搜索输入框
-			 */
-    getInputValue: function(e) {
+       * 搜索输入框
+       */
+    getInputValue: function (e) {
       this.setData({
         searchKey: e.detail.value
       })
     },
 
     /**
-			 * 搜索
-			 */
-    search: function() {
+       * 搜索
+       */
+    search: function () {
       this.current = 1
       this.queryLiveList()
     },
 
     /**
-			 * 前往直播页面
-			 */
-    toLivePage: function(e) {
+       * 前往直播页面
+       */
+    toLivePage: function (e) {
       this.roomId = e.currentTarget.dataset.roomid // 填写具体的房间号
       this.url = e.currentTarget.dataset.url
+      this.anchorwechat = e.currentTarget.dataset.anchorwechat
+      console.log(e)
+      wx.setStorageSync('liveStatus', e.currentTarget.dataset.roomstatus)
       util.checkAuthInfo(this.toLivePlayer)
+
     },
-    toLivePlayer: function() {
+    toLivePlayer: function () {
       const roomId = this.roomId
       const url = this.url
+      if (uni.getStorageSync('sign')) {
+        uni.removeStorageSync('sign')
+      }
       if (this.isWechat) {
         // 开发者在直播间页面路径上携带自定义参数（如示例中的path和pid参数），后续可以在分享卡片链接和跳转至商详页时获取
         const customParams = encodeURIComponent(JSON.stringify({
           path: url
         }))
+
+        if (this.roomid !== wx.getStorageSync('liveRoomId')) {
+          this.clear()
+        }
+        wx.setStorageSync('liveRoomId', roomId)
+        if (wx.getStorageSync('liveStatus') == 101) {
+          let aa = wx.getStorageSync('isWatchTime')
+          console.log('已观看时长', aa)
+          this.timer = setInterval(() => {
+            aa += 1
+            if (aa > uni.getStorageSync('signTime')) {
+              console.log('签到')
+              if (!uni.getStorageSync('sign')) {
+                this.userSign()
+              }
+            }
+            if (aa % 60 == 0) {
+              console.log('插入签到')
+              this.watchTime()
+            }
+            if (aa % 60 !== 0) {
+              let bb = (aa % 60).toString().length == 1 ? '0' + (aa % 60).toString() : (aa % 60).toString()
+              console.log(bb)
+              uni.setStorageSync('watchSecond', bb)
+              console.log('观看的秒', uni.getStorageSync('watchSecond'))
+            }
+          }, 1000)
+        }
         wx.navigateTo({
           url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${roomId}&custom_params=${customParams}`
         }) // 其中wx2b03c6e691cd7370是直播组件appid不能修改
@@ -317,11 +353,92 @@ export default {
           icon: 'none'
         })
       }
-    }
+    },
+    // 获取直播签到时长的限制
+    getSignTime: function () {
+      const params = {
+        url: '/p/score/getViewTime',
+        method: 'GET',
+        callBack: (res) => {
+          console.log(res)
+          wx.setStorageSync('signTime', Number(res) * 60)
+        }
+      }
+      http.request(params)
+    },
+    // 签到
+    userSign: function () {
+      const params = {
+        url: '/p/score/updateUserScore',
+        method: 'GET',
+        data: {
+          bizId: wx.getStorageSync('liveRoomId')
+        },
+        callBack: (res) => {
+          if (res) {
+            wx.setStorageSync('sign', '签到成功')
+          }
+        }
+      }
+      http.request(params)
+    },
+    // 插入观看时间
+    watchTime() {
+      const params = {
+        url: '/live/liveRoom/putRealTime',
+        method: 'POST',
+        data: {
+          userId: wx.getStorageSync('userID'), // 用户ID
+          roomId: wx.getStorageSync('liveRoomId'), // 房间ID
+          anchorwechat: this.anchorwechat, // 主播ID
+        },
+        callBack: (res) => {
+          if (res) {
+            console.log('插入成功')
+          }
+        }
+      }
+      http.request(params)
+    },
+    // 获取用户信息
+    queryUserInfo: function () {
+      const params = {
+        url: '/p/user/userInfo',
+        method: 'GET',
+        data: {},
+        dontTrunLogin: true,
+        callBack: (res) => {
+          console.log(res)
+          uni.setStorageSync('userID', res.userId)
+          this.getUserWatchTime()
+        }
+      }
+      http.request(params)
+    },
+    //  获取用户观看直播时间
+    getUserWatchTime: function () {
+      const params = {
+        url: '/live/liveRoom/getRealTime',
+        method: 'GET',
+        data: {
+          userId: wx.getStorageSync('userID')
+        },
+        callBack: (res) => {
+          wx.setStorageSync('isWatchTime', Number(res) * 60)
+        }
+      }
+      http.request(params)
+    },
+    // 清除计时器 
+    clear: function () {
+      clearInterval(this.timer)
+      this.timer = null
+    },
+
   }
 }
 </script>
 
 <style>
-	@import "./live-broadcast.css";
+@import "./live-broadcast.css";
 </style>

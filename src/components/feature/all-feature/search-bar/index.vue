@@ -93,7 +93,7 @@ export default {
     toSearchPage() {
       // 平台首页，跳转到平台搜索页面
       uni.navigateTo({
-        url: this.shopId === 0 ? '/pages/search-page/search-page' : '/package-shop/pages/shop-search/shop-search'
+        url: this.shopId === 0 ? '/package-search/pages/search-page/search-page' : '/package-shop/pages/shop-search/shop-search'
       })
     }
   }

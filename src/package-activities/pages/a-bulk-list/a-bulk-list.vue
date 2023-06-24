@@ -161,7 +161,8 @@ export default {
           current: this.current,
           size: this.size,
           prodType: 1,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: (res) => {
           this.isLoaded = true
@@ -190,7 +191,7 @@ export default {
      */
     toAbulkListPage(prodId) {
       this.$Router.push({
-        path: '/pages/prod/prod',
+        path: '/package-prod/pages/prod/prod',
         query: {
           prodId
         }

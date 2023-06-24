@@ -393,7 +393,7 @@ export default {
       }
       uni.setStorageSync('bbcOrderItem', Object.assign({}, orderItem))
       uni.navigateTo({
-        url: `/pages/submit-order/submit-order?orderEntry=1&orderType=1&mold=${this.mold}`
+        url: `/package-prod/pages/submit-order/submit-order?orderEntry=1&orderType=1&mold=${this.mold}`
       })
     },
     showSku: function() {

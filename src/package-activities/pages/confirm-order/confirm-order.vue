@@ -308,7 +308,6 @@ export default {
     getInvoiceData(data) {
       // invoiceDataFrom
       this.invoiceDataFrom = data
-      console.log(data)
     },
     closePopup: function() {
       this.setData({
@@ -446,7 +445,7 @@ export default {
             if (res) {
               uni.hideLoading()
               clearTimeout(this.seckillOrderStsTimer)
-              this.$Router.replace({ path: '/pages/pay-way/pay-way?orderNumbers=' + this.seckillOrderNumber })
+              this.$Router.replace({ path: '/package-pay/pages/pay-way/pay-way?orderNumbers=' + this.seckillOrderNumber })
             } else {
               this.pollingTimes++
               this.seckillOrderStsTimer = setTimeout(this.checkSeckillOrderSubmitStatus, 3000)

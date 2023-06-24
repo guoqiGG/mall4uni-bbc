@@ -81,7 +81,7 @@ router.beforeEach((to, from, next) => {
     uni.setStorageSync('bbcStep', step)
     uni.setStorageSync('bbcFlowAnalysisLogDto', flowAnalysisLogDto)
     uni.setStorageSync('bbcSessionTimeStamp', new Date().getTime()) // 更新会话时间
-    if (to.path != '/pages/pay-result/pay-result') {
+    if (to.path != '/package-pay/pages/pay-result/pay-result') {
       http.saveLog(flowAnalysisLogDto, 1)
     }
   }

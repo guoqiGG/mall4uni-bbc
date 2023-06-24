@@ -12,41 +12,26 @@
   <view class="Mall4j container">
     <!-- 自定义导航头 -->
     <!-- #ifndef H5-->
-    <navigationBar
-      v-if="navigationBarIsShow"
-      :show-back="false"
-      :navigation-bar-style="tabConfig"
-      :is-left="false"
-      :is-bg-img="isBgImg"
-      :is-mine-page="true"
-      :title="i18n.personalCenter"
-    />
+    <navigationBar v-if="navigationBarIsShow" :show-back="false" :navigation-bar-style="tabConfig" :is-left="false"
+      :is-bg-img="isBgImg" :is-mine-page="true" :title="i18n.personalCenter" />
     <!-- #endif -->
     <view class="top-wrap">
-      <image
-        class="top-bg-img"
-        src="@/static/images/icon/bg-2.png"
-      />
+      <image class="top-bg-img" src="@/static/images/icon/bg-2.png" />
       <view v-if="isAuthInfo" class="top-infor-wrap">
 
         <!-- 用户信息（登录） -->
         <view v-if="isAuthInfo" class="userinfo-wrap">
           <view class="left-infor">
             <!-- 头像 -->
-            <image
-              class="avatsr"
-              :src="userInfo.pic? userInfo.pic : '/static/images/icon/head04.png'"
-              mode="scaleToFill"
-              @tap="toPersonalInformation"
-              @error="imageError(userInfo,'pic')"
-            />
+            <image class="avatsr" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'" mode="scaleToFill"
+              @tap="toPersonalInformation" @error="imageError(userInfo, 'pic')" />
             <view class="infor-wrap">
               <!-- 姓名 -->
               <view class="user-name" @tap="toPersonalInformation">
                 {{ userInfo.nickName }}
               </view>
               <!-- vip称号 -->
-              <view v-if="userLevelInfo.levelType==1" class="pay-vip-wrap menbers vip-img" @tap="toPointsCenter">
+              <view v-if="userLevelInfo.levelType == 1" class="pay-vip-wrap menbers vip-img" @tap="toPointsCenter">
                 <!-- <view class="priming-vip-txt">{{ userLevelInfo.levelName }}</view> -->
                 <!-- <image
                   class="default-img"
@@ -64,20 +49,10 @@
             </view>
           </view>
           <view class="right-infor">
-            <image
-              class="scan-code"
-              src="/static/images/icon/icon_codes.png"
-              @tap="sacnCode"
-            />
-            <image
-              class="sign-in"
-              src="/static/images/icon/icon_sign.png"
-              @tap="toPointsCenter"
-            />
+            <image class="scan-code" src="/static/images/icon/icon_codes.png" @tap="sacnCode" />
+            <image class="sign-in" src="/static/images/icon/icon_sign.png" @tap="toPointsCenter" />
             <view class="message" @tap="toMyMessage">
-              <image
-                src="/static/images/icon/icon_message.png"
-              />
+              <image src="/static/images/icon/icon_message.png" />
               <view v-if="messageCount > 0" class="quantity-tip-dots">{{ messageCount }}</view>
             </view>
 
@@ -92,25 +67,24 @@
               <view class="infor-txt">{{ i18n.balance }}</view>
             </view>
             <view class="cloumn-item" @tap="toMemberInteral">
-              <view class="numbers-txt">{{ (userLevelInfo.score?userLevelInfo.score:'0') | millionNumber }}</view>
+              <view class="numbers-txt">{{ (userLevelInfo.score ? userLevelInfo.score : '0') | millionNumber }}</view>
               <view class="infor-txt">{{ i18n.prodType4 }}</view>
             </view>
             <view class="cloumn-item" @tap="toMyCouponPage">
               <view class="numbers-txt">{{ couponNum }}</view>
               <view class="infor-txt">{{ i18n.coupon }}</view>
             </view>
-            <view class="cloumn-item" @tap="myCollectionHandle">
+            <!-- <view class="cloumn-item" @tap="myCollectionHandle">
               <view class="numbers-txt">{{ collectionCount }}</view>
               <view class="infor-txt">{{ i18n.collection }}</view>
-            </view>
+            </view> -->
           </view>
-          <view class="vip-column" @tap="toBuyMember">
+          <!-- <view class="vip-column" @tap="toBuyMember">
             <image
               src="@/static/images/icon/VIP_bg.png"
               mode="widthFix"
             />
             <view v-if="powerNumber" class="txt-seat">
-              <!-- 您已开通付费会员，会员还有**天到期 -->
               <view v-if="vipRemainingDay">
                 {{ i18n.privilegesTxt7 + ' ' + vipRemainingDay + ' ' + i18n.privilegesTxt8 }}
               </view>
@@ -139,11 +113,11 @@
               </view>
             </view>
             <view v-else class="txt-seat">{{ i18n.privilegesTxt }}</view>
-            <!-- 按钮 -->
+         
             <view class="bth-seat">{{ vipRemainingDay ? i18n.renewNow : i18n.openNow }}</view>
-          </view>
+          </view> -->
         </view>
-      <!-- 钱包数据 end -->
+        <!-- 钱包数据 end -->
       </view>
       <!-- end 用户信息 -->
 
@@ -151,12 +125,7 @@
       <view v-else class="default-userinfor-wrap top-infor-wrap">
         <view class="left-infor">
           <!-- 头像 -->
-          <image
-            class="avatsr"
-            src="/static/images/icon/head04.png"
-            mode="scaleToFill"
-            @tap="onGotUserInfo"
-          />
+          <image class="avatsr" src="/static/images/icon/head04.png" mode="scaleToFill" @tap="onGotUserInfo" />
           <view class="sign-in-txt" @tap="onGotUserInfo">
             {{ i18n.loginNow }}
           </view>
@@ -183,160 +152,115 @@
               <view class="infor-txt">{{ i18n.collection }}</view>
             </view>
           </view>
-          <view class="vip-column" @tap="onGotUserInfo">
+          <!-- <view class="vip-column" @tap="onGotUserInfo">
             <image
               src="@/static/images/icon/VIP_bg.png"
               mode="widthFix"
             />
             <view class="txt-seat">{{ i18n.privilegesTxt }}</view>
             <view class="bth-seat">{{ i18n.openNow }}</view>
-          </view>
+          </view> -->
         </view>
-      <!-- 钱包数据 end -->
+        <!-- 钱包数据 end -->
       </view>
       <!-- 未登录 end -->
     </view>
-
     <!-- 我的订单 -->
     <view class="my-order-wrap">
       <view class="top-title">
         <view class="title-left">{{ i18n.myOrder }}</view>
         <view class="title-right" data-sts="0" @tap="toOrderListPage">
           <text>{{ i18n.allOrder }}</text>
-          <image
-            src="/static/images/icon/arrow-right.png"
-          />
+          <image src="/static/images/icon/arrow-right.png" />
         </view>
       </view>
       <view class="cloumn-wrap">
         <view class="cloumn-item" data-sts="1" @tap="toOrderListPage">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_unpaid.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_unpaid.png" />
           <view class="infor-txt">{{ i18n.toBePaid }}</view>
-          <view v-if="orderAmount.unPay>0" class="quantity-tip-dots">{{ orderAmount.unPay }}</view>
+          <view v-if="orderAmount.unPay > 0" class="quantity-tip-dots">{{ orderAmount.unPay }}</view>
         </view>
         <view class="cloumn-item" data-sts="2" @tap="toOrderListPage">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_delivery.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_delivery.png" />
           <view class="infor-txt">{{ i18n.toBeDelivered }}</view>
-          <view v-if="orderAmount.payed>0" class="quantity-tip-dots">{{ orderAmount.payed }}</view>
+          <view v-if="orderAmount.payed > 0" class="quantity-tip-dots">{{ orderAmount.payed }}</view>
         </view>
         <view class="cloumn-item" data-sts="3" @tap="toOrderListPage">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_logistics.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_logistics.png" />
           <view class="infor-txt">{{ i18n.toBeReceived }}</view>
-          <view v-if="orderAmount.consignment>0" class="quantity-tip-dots">{{ orderAmount.consignment }}</view>
+          <view v-if="orderAmount.consignment > 0" class="quantity-tip-dots">{{ orderAmount.consignment }}</view>
         </view>
         <view class="cloumn-item" data-sts="5" @tap="toOrderListPage">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_complete.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_complete.png" />
           <view class="infor-txt">{{ i18n.complete }}</view>
         </view>
         <view class="cloumn-item" @tap="toAfterSalesPage">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_refund.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_refund.png" />
           <view class="infor-txt">{{ i18n.refundAfterSale }}</view>
-          <view v-if="orderAmount.refund>0" class="quantity-tip-dots">{{ orderAmount.refund }}</view>
+          <view v-if="orderAmount.refund > 0" class="quantity-tip-dots">{{ orderAmount.refund }}</view>
         </view>
       </view>
     </view>
     <!-- end 我的订单 -->
 
-    <!-- 分销中心 & 积分商店 -->
+    <!-- 分销中心 & 氢春豆商店 -->
     <view class="distribution-points-wrap">
       <view class="distribution-item" @tap="toDistCenter">
         <view class="txt-left">
-          <text>{{ i18n.distributionUser }}</text>
+          <text>{{ isDistributionUserInfo ? '团长管理' : i18n.distributionUser }}</text>
           <text>{{ i18n.shareGet }}</text>
         </view>
-        <image
-          class="img-right"
-          src="/static/images/icon/distribution-center.png"
-        />
+        <image class="img-right" src="/static/images/icon/distribution-center.png" />
       </view>
       <view class="points-item" @tap="toMemberInteral">
         <view class="txt-left">
           <text>{{ i18n.pointsMall }}</text>
           <text>{{ i18n.savePoints }}</text>
         </view>
-        <image
-          class="img-right"
-          src="/static/images/icon/integral-mall.png"
-        />
+        <image class="img-right" src="/static/images/icon/integral-mall.png" />
       </view>
     </view>
-    <!-- end 分销中心 & 积分商店 -->
+    <!-- end 分销中心 & 氢春豆商店 -->
 
     <!-- 服务与工具 -->
     <view class="tools-wrap">
       <view class="title-txt">{{ i18n.servicesTools }}</view>
       <view class="cloumn-wrap">
         <view class="cloumn-item" @tap="toPointsCenter">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_members.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_members.png" />
           <view class="infor-txt">{{ i18n.membershipUser }}</view>
         </view>
         <view class="cloumn-item" @tap="toCouponCenter">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_coupons.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_coupons.png" />
           <view class="infor-txt">{{ i18n.couponCenter }}</view>
         </view>
         <view class="cloumn-item" @tap="toAddressList">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_address.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_address.png" />
           <view class="infor-txt">{{ i18n.addressManagenment }}</view>
         </view>
-        <view class="cloumn-item" @tap="myHistory">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_footprint.png"
-          />
+        <!-- <view class="cloumn-item" @tap="myHistory">
+          <image class="item-img" src="/static/images/icon/icon_footprint.png" />
           <view class="infor-txt">{{ i18n.history }}</view>
-        </view>
-        <view class="cloumn-item" @tap="changeLangs">
+        </view> -->
+        <!-- <view class="cloumn-item" @tap="changeLangs">
           <image
             class="item-img"
             src="/static/images/icon/icon_switch.png"
           />
           <view class="infor-txt">{{ i18n.switchLanguages }}</view>
-        </view>
+        </view> -->
         <!-- <view class="cloumn-item" @tap="gotoMessageBox"> -->
-        <view class="cloumn-item" @tap="gotoChat">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_service.png"
-          />
+        <!-- <view class="cloumn-item" @tap="gotoChat">
+          <image class="item-img" src="/static/images/icon/icon_service.png" />
           <view class="infor-txt">{{ i18n.officialService }}</view>
-        </view>
-        <view class="cloumn-item" @tap="merchantInclusion">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_tenants.png"
-          />
+        </view> -->
+        <!-- <view class="cloumn-item" @tap="merchantInclusion">
+          <image class="item-img" src="/static/images/icon/icon_tenants.png" />
           <view class="infor-txt">{{ i18n.merchantEntry }}</view>
-        </view>
+        </view> -->
 
         <view class="cloumn-item" @tap="toSystemSetUp">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_set.png"
-          />
+          <image class="item-img" src="/static/images/icon/icon_set.png" />
           <view class="infor-txt">{{ i18n.systemSetup }}</view>
         </view>
       </view>
@@ -344,46 +268,24 @@
     <!-- end 服务与工具 -->
 
     <!-- 为您推荐 -->
-    <view v-if="hotSalesList.length != 0" class="recommend">
-      <image
-        class="before-img"
-        src="/static/images/icon/decor-1.png"
-        mode="widthFix"
-      />
+    <!-- <view v-if="hotSalesList.length != 0" class="recommend">
+      <image class="before-img" src="/static/images/icon/decor-1.png" mode="widthFix" />
       <view class="title-txt">
         {{ i18n.RecommendedYou }}
       </view>
-      <image
-        class="after-img"
-        src="/static/images/icon/decor-2.png"
-        mode="widthFix"
-      />
-    </view>
+      <image class="after-img" src="/static/images/icon/decor-2.png" mode="widthFix" />
+    </view> -->
     <!-- end 为您推荐 -->
     <!-- 推荐内容 -->
-    <view v-if="hotSalesList.length != 0" class="recommend-products">
-      <block
-        v-for="(item, index) in hotSalesList"
-        :key="index"
-      >
-        <view
-          class="column-item"
-          @tap="toProdDetail(item.prodId)"
-        >
-          <image
-            v-if="item.pic && !item.isPicError"
-            class="pro-img"
-            :src="item.pic"
-            mode="aspectFit"
-            @error="handlePicError(item)"
-          />
+    <!-- <view v-if="hotSalesList.length != 0" class="recommend-products">
+      <block v-for="(item, index) in hotSalesList" :key="index">
+        <view class="column-item" @tap="toProdDetail(item.prodId)">
+          <image v-if="item.pic && !item.isPicError" class="pro-img" :src="item.pic" mode="aspectFit"
+            @error="handlePicError(item)" />
           <image v-else src="/static/images/icon/def.png" class="pro-img" mode="aspectFit" />
 
           <view class="pro-title">
-            <text
-              v-if="item.activityInProgress && item.prodType != 0"
-              class="pro-activity-tag"
-            >
+            <text v-if="item.activityInProgress && item.prodType != 0" class="pro-activity-tag">
               {{ prodTypeArr[item.prodType] }}
             </text>
             <text class="pro-title-name">{{ item.prodName }}</text>
@@ -396,12 +298,8 @@
           </view>
         </view>
       </block>
-    </view>
-    <EmptyAllTips
-      v-if="isLoaded"
-      :isAll="current >= pages"
-      :allTips="i18n.allLoaded2"
-    />
+    </view> -->
+    <!-- <EmptyAllTips v-if="isLoaded" :isAll="current >= pages" :allTips="i18n.allLoaded2" /> -->
     <!-- 回到顶部 -->
     <back-top-btn v-if="showBacktop" />
   </view>
@@ -483,14 +381,15 @@ export default {
       messageCount: 0,
       // 优惠券数量
       couponNum: 0,
-      // 用户积分
+      // 用户氢春豆
       score: 0,
       // 用户余额
       totalBalance: 0,
       notifyNum: 0,
       // 应用类型
       appType: uni.getStorageSync('bbcAppType'),
-      isLoaded: false
+      isLoaded: false,
+      isDistributionUserInfo: false
     }
   },
 
@@ -514,21 +413,21 @@ export default {
   },
 
   /**
-		 * 生命周期函数--监听页面加载
-		 */
-  onLoad: function(options) {
+     * 生命周期函数--监听页面加载
+     */
+  onLoad: function (options) {
     util.transTabbar()
   },
 
   /**
-		 * 生命周期函数--监听页面初次渲染完成
-		 */
-  onReady: function() {},
+     * 生命周期函数--监听页面初次渲染完成
+     */
+  onReady: function () { },
 
   /**
-		 * 生命周期函数--监听页面显示
-		 */
-  onShow: function() {
+     * 生命周期函数--监听页面显示
+     */
+  onShow: function () {
     uni.setNavigationBarTitle({
       title: this.i18n.personalCenter
     })
@@ -565,54 +464,57 @@ export default {
       // 钱包数据
       this.queryUserData()
       // 查询所有的收藏量
-      this.showCollectionCount()
+      // this.showCollectionCount()
+      // 查看用户是否是团长
+      this.getIsDistributionUserInfo()
     } else {
-      this.getHotSalesProds() // 获取热销商品推荐
+      // this.getHotSalesProds() // 获取热销商品推荐
       this.isAuthInfo = false
       const emptyObj = {}
       this.setData({
         orderAmount: emptyObj,
         couponNum: 0, // 优惠券数量
-        score: 0, // 用户积分
+        score: 0, // 用户氢春豆
         totalBalance: 0, // 用户余额
         notifyNum: 0, // 消息提醒
         messageCount: 0,
-        collectionCount: 0 // 总收藏数量
+        collectionCount: 0, // 总收藏数量
+        isDistributionUserInfo: false
       })
     }
   },
 
   /**
-		 * 生命周期函数--监听页面隐藏
-		 */
-  onHide: function() {},
+     * 生命周期函数--监听页面隐藏
+     */
+  onHide: function () { },
 
   /**
-		 * 生命周期函数--监听页面卸载
-		 */
-  onUnload: function() {},
+     * 生命周期函数--监听页面卸载
+     */
+  onUnload: function () { },
 
   /**
-		 * 页面相关事件处理函数--监听用户下拉动作
-		 */
-  onPullDownRefresh: function() {},
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+  onPullDownRefresh: function () { },
 
   /**
-		 * 页面上拉触底事件的处理函数
-		 */
-  onReachBottom: function() {
+     * 页面上拉触底事件的处理函数
+     */
+  onReachBottom: function () {
     this.getNextPage()
   },
 
   /**
-		 * 用户点击右上角分享
-		 */
-  onShareAppMessage: function() {},
+     * 用户点击右上角分享
+     */
+  onShareAppMessage: function () { },
 
   /**
-		 * 页面滚动到指定位置指定元素固定在顶部
-		 */
-  onPageScroll: function(e) {
+     * 页面滚动到指定位置指定元素固定在顶部
+     */
+  onPageScroll: function (e) {
     this.scrollTop = e.scrollTop
     if (this.scrollTop > 800) {
       this.setData({
@@ -631,7 +533,7 @@ export default {
      */
     merchantInclusion() {
       uni.showModal({
-        content: `${this.i18n.registerTxt}\n${config.merchantPlatformUrl}`,
+        content: `${this.i18n.registerTxt}\r\n秦先生:${config.merchantPlatformUrl}`,
         showCancel: false,
         confirmColor: '#F81A1A',
         confirmText: this.i18n.copyUrl,
@@ -655,16 +557,16 @@ export default {
     getNextPage() {
       if (this.current >= this.pages) return
       ++this.current
-      this.getHotSalesProds()
+      // this.getHotSalesProds()
     },
     /**
      * 跳转到商品详情页
      */
-    toProdDetail: function(prodId) {
+    toProdDetail: function (prodId) {
       util.tapLog(3)
       if (prodId) {
         this.$Router.push({
-          path: '/pages/prod/prod',
+          path: '/package-prod/pages/prod/prod',
           query: {
             prodId
           }
@@ -680,7 +582,8 @@ export default {
       let paramUrl = '/search/page'
       const paramData = {
         current: this.current,
-        size: 20
+        size: 20,
+        userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
       }
       // prodRecommendation 0:关(新品推荐)  1:开(个性化推荐)
       if (userInfo && userInfo.prodRecommendation === 1) {
@@ -715,8 +618,8 @@ export default {
       http.request(param)
     },
     /**
-			 * 获取未读消息数量
-			 */
+       * 获取未读消息数量
+       */
     getMyNotifyRemind() {
       const params = {
         url: '/p/myNotifyLog/unReadCount',
@@ -734,8 +637,8 @@ export default {
       http.request(params)
     },
     /**
-			 * 跳转站内消息
-			 */
+       * 跳转站内消息
+       */
     toMyMessage() {
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -744,8 +647,8 @@ export default {
       })
     },
     /**
-			 * 切换语言
-			 */
+       * 切换语言
+       */
     changeLangs() {
       // const locale = uni.getStorageSync('bbcLang').indexOf('zh') !== -1 ? 'en' : 'zh_CN'
       // this._i18n.locale = locale
@@ -756,9 +659,9 @@ export default {
       })
     },
     /**
-			 * 钱包数据
-			 */
-    queryUserData: function() {
+       * 钱包数据
+       */
+    queryUserData: function () {
       const params = {
         url: '/p/user/getUserInfo',
         method: 'GET',
@@ -768,7 +671,7 @@ export default {
           if (uni.getStorageSync('bbcToken')) {
             this.setData({
               couponNum: res.couponNum, // 优惠券数量
-              score: res.score, // 用户积分
+              score: res.score, // 用户氢春豆
               totalBalance: res.totalBalance, // 用户余额
               notifyNum: res.notifyNum // 消息提醒
             })
@@ -812,9 +715,9 @@ export default {
     },
 
     /**
-			 * 扫一扫
-			 */
-    sacnCode: util.debounce(function() {
+       * 扫一扫
+       */
+    sacnCode: util.debounce(function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         // #ifdef H5
@@ -847,9 +750,9 @@ export default {
           } else {
             uni.navigateTo({
               url:
-                  '/package-user/pages/station-order-list/station-order-list?' +
-                  (flag ? 'shopId=' : 'stationId=') +
-                  code
+                '/package-user/pages/station-order-list/station-order-list?' +
+                (flag ? 'shopId=' : 'stationId=') +
+                code
             })
           }
         }, () => {
@@ -900,9 +803,9 @@ export default {
     }, 1000),
 
     /**
-			 * 获取用户信息
-			 */
-    queryUserInfo: function() {
+       * 获取用户信息
+       */
+    queryUserInfo: function () {
       const params = {
         url: '/p/user/userInfo',
         method: 'GET',
@@ -911,15 +814,15 @@ export default {
         callBack: (res) => {
           this.userInfo = res
           uni.setStorageSync('bbcUserInfo', res)
-          this.getHotSalesProds() // 获取热销商品推荐
+          // this.getHotSalesProds() // 获取热销商品推荐
         }
       }
       http.request(params)
     },
 
     /**
-			 * 查询分销相关信息
-			 */
+       * 查询分销相关信息
+       */
     getDistInfo() {
       // 查询分销开关是否开启
       http.request({
@@ -938,9 +841,9 @@ export default {
     },
 
     /**
-			 * 跳转注销账号
-			 */
-    cancellation: function() {
+       * 跳转注销账号
+       */
+    cancellation: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -950,9 +853,9 @@ export default {
     },
 
     /**
-			 * 跳转分销员中心
-			 */
-    toDistCenter: function() {
+       * 跳转分销员中心
+       */
+    toDistCenter: function () {
       // 判断分销中心功能是否开启
       if (!this.canDistribution) {
         return uni.showToast({
@@ -960,6 +863,8 @@ export default {
           icon: 'none'
         })
       }
+      console.log('分销中心功能已开启')
+
       util.tapLog(3)
       util.checkAuthInfo(() => {
         http.request({
@@ -987,7 +892,7 @@ export default {
 
                 success(res2) {
                   if (res2.confirm) {
-                    if (res.recruitState) {
+                    if (res.recruitState) {// 0下线 1上线
                       uni.navigateTo({
                         url: '/package-distribution/pages/apply-dist/apply-dist'
                       })
@@ -1032,7 +937,7 @@ export default {
 
               })
             } else {
-              if (res.recruitState) {
+              if (res?.recruitState) { //  0下线 1上线）
                 uni.navigateTo({
                   url: '/package-distribution/pages/apply-dist/apply-dist'
                 })
@@ -1046,7 +951,21 @@ export default {
         })
       })
     },
-    toSystemSetUp: function() {
+    // 查看是否已经是团长
+    getIsDistributionUserInfo: function () {
+      http.request({
+        url: '/p/distribution/user/distributionUserInfo',
+        method: 'GET',
+        callBack: res => {
+          if (res && res.state == 1 && res.userMobile) {
+            this.setData({
+              isDistributionUserInfo: true
+            })
+          }
+        }
+      })
+    },
+    toSystemSetUp: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1054,7 +973,7 @@ export default {
         })
       })
     },
-    toAfterSalesPage: function() {
+    toAfterSalesPage: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1062,8 +981,8 @@ export default {
         })
       })
     },
-    // 积分中心
-    toPointsCenter: function() {
+    // 氢春豆中心
+    toPointsCenter: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1071,7 +990,7 @@ export default {
         })
       })
     },
-    toCouponCenter: function() {
+    toCouponCenter: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/package-activities/pages/coupon-center/coupon-center'
@@ -1082,7 +1001,7 @@ export default {
       // 	})
       // })
     },
-    toMyCouponPage: function() {
+    toMyCouponPage: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1090,7 +1009,7 @@ export default {
         })
       })
     },
-    toAddressList: function() {
+    toAddressList: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1098,7 +1017,7 @@ export default {
         })
       })
     },
-    toOrderListPage: function(e) {
+    toOrderListPage: function (e) {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         var sts = e.currentTarget.dataset.sts
@@ -1115,9 +1034,9 @@ export default {
     },
 
     /**
-			 * 查询所有的收藏量
-			 */
-    showCollectionCount: function() {
+       * 查询所有的收藏量
+       */
+    showCollectionCount: function () {
       const params = {
         url: '/p/user/collection/collectionCount',
         method: 'GET',
@@ -1129,22 +1048,22 @@ export default {
     },
 
     /**
-			 * 我的收藏跳转
-			 */
-    myCollectionHandle: function() {
-      util.tapLog(3)
-      util.checkAuthInfo(() => {
-        var url = '/pages/prod-classify/prod-classify?sts=5'
-        var id = 0
-        var title = this.i18n.myCollection
-        if (id) {
-          url += '&tagid=' + id + '&title=' + title
-        }
-        uni.navigateTo({
-          url: url
-        })
-      })
-    },
+       * 我的收藏跳转
+       */
+    // myCollectionHandle: function () {
+    //   util.tapLog(3)
+    //   util.checkAuthInfo(() => {
+    //     var url = '/package-prod/pages/prod-classify/prod-classify?sts=5'
+    //     var id = 0
+    //     var title = this.i18n.myCollection
+    //     if (id) {
+    //       url += '&tagid=' + id + '&title=' + title
+    //     }
+    //     uni.navigateTo({
+    //       url: url
+    //     })
+    //   })
+    // },
 
     myHistory() {
       util.checkAuthInfo(() => {
@@ -1155,9 +1074,9 @@ export default {
     },
 
     /**
-			 * 跳转修改密码
-			 */
-    setPassword: function() {
+       * 跳转修改密码
+       */
+    setPassword: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/pages/user-login/user-login?isForgetPassword=true' + '&isPersonalCenter=true'
@@ -1165,9 +1084,9 @@ export default {
     },
 
     /**
-			 * 跳转到修改用户头像昵称资料
-			 */
-    toPersonalInformation: function() {
+       * 跳转到修改用户头像昵称资料
+       */
+    toPersonalInformation: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/package-user/pages/personal-information/personal-information'
@@ -1175,17 +1094,17 @@ export default {
     },
 
     /**
-			 * 获取用户信息
-			 */
-    onGotUserInfo: function(e) {
+       * 获取用户信息
+       */
+    onGotUserInfo: function (e) {
       util.tapLog(3)
       util.checkAuthInfo()
     },
 
     /**
-			 * 跳转到我的店铺
-			 */
-    enterMyShop: function(e) {
+       * 跳转到我的店铺
+       */
+    enterMyShop: function (e) {
       if (this.shopStatus == 0 || this.shopStatus == 2 || this.shopStatus == 3) {
         uni.showModal({
           title: this.i18n.tips,
@@ -1203,8 +1122,8 @@ export default {
       }
     },
     /**
-			 * 跳转到和客服聊天的界面
-			 */
+       * 跳转到和客服聊天的界面
+       */
     gotoChat() {
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1213,8 +1132,8 @@ export default {
       })
     },
     /**
-			 * 跳转到和商家客服聊天的界面
-			 */
+       * 跳转到和商家客服聊天的界面
+       */
     gotoMessageBox() {
       util.checkAuthInfo(() => {
         uni.navigateTo({
@@ -1223,8 +1142,8 @@ export default {
       })
     },
     /**
-			 * 获取会员积分详情
-			 */
+       * 获取会员氢春豆详情
+       */
     getUserLevelInfo() {
       const params = {
         url: '/p/score/scoreInfo',
@@ -1285,8 +1204,8 @@ export default {
     },
 
     /**
-			 * 跳转购买会员
-			 */
+       * 跳转购买会员
+       */
     toBuyMember() {
       util.tapLog(3)
       util.checkAuthInfo(() => {
@@ -1297,8 +1216,8 @@ export default {
     },
 
     /**
-			 * 跳转积分中心
-			 */
+       * 跳转氢春豆中心
+       */
     toMemberInteral() {
       util.tapLog(3)
       util.checkAuthInfo(() => {
@@ -1309,9 +1228,9 @@ export default {
     },
 
     /**
-			 * 退出登录
-			 */
-    logout: function() {
+       * 退出登录
+       */
+    logout: function () {
       util.tapLog(3)
       uni.navigateTo({
         url: '/package-user/pages/logout/logout'
@@ -1338,5 +1257,5 @@ export default {
 }
 </script>
 <style>
-	@import "./user.css";
+@import "./user.css";
 </style>

@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <!-- 积分商品列表组件 -->
+  <!-- 氢春豆商品列表组件 -->
   <view class="Mall4j integral-item" @tap="toScoreProdDet(data.prodId)">
     <view class="img">
       <image v-if="data.pic" :src="data.pic" mode="aspectFit" @error="handlePicError()" />
@@ -61,11 +61,11 @@ export default {
 
   methods: {
     /**
-     * 跳转积分商品详情
+     * 跳转氢春豆商品详情
      */
     toScoreProdDet(prodId) {
       uni.navigateTo({
-        url: 'pages/prod/prod?prodId=' + prodId
+        url: 'package-prod/pages/prod/prod?prodId=' + prodId
       })
     },
     /**

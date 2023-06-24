@@ -388,7 +388,7 @@ export default {
           }
         })
       }
-      this.path = '/pages/prod/prod?prodId=' + this.shareProdId + '&cardno=' + cardno
+      this.path = '/package-prod/pages/prod/prod?prodId=' + this.shareProdId + '&cardno=' + cardno
     },
 
     // 海报绘制完成
@@ -503,7 +503,7 @@ export default {
         var sharedata = {
           title: this.shareProdName, // 分享标题
           imgUrl: this.sharePic, // 分享图标
-          link: config.domainAddress + '/pages/prod/prod?prodId=' + this.shareProdId + '&cardno=' + cardno, // 分享链接
+          link: config.domainAddress + '/package-prod/pages/prod/prod?prodId=' + this.shareProdId + '&cardno=' + cardno, // 分享链接
           desc: this.i18n.shartTips // 分享描述
         }
         Wechat.callWexinShare(sharedata, () => {
@@ -544,7 +544,7 @@ export default {
         var cardno = uni.getStorageSync('bbcDistCardNo')
         return {
           title: this.shareProdName,
-          path: '/pages/prod/prod?prodId=' + this.shareProdId + '&cardno=' + cardno + '&type=' + this.shareType,
+          path: '/package-prod/pages/prod/prod?prodId=' + this.shareProdId + '&cardno=' + cardno + '&type=' + this.shareType,
           imageUrl: this.sharePic,
           success: function(res) {
             // 转发成功
@@ -567,7 +567,7 @@ export default {
       })
 
       // #ifdef H5 || APP-PLUS
-      const code = `${config.domainAddress}/pages/prod/prod?prodId=${this.shareProdId}&cardno=${cardNo}`
+      const code = `${config.domainAddress}/package-prod/pages/prod/prod?prodId=${this.shareProdId}&cardno=${cardNo}`
       this.shareWxCode = Qr.createQrCodeImg(code, { size: 250 })
       // this.wxCodeShow = true
       // this.shareShow = false
@@ -700,7 +700,7 @@ export default {
         header: {
           'Authorization': wx.getStorageSync('bbcToken')
         },
-        url: config.domain + '/p/distribution/qrCode/invitation?page=pages/prod/prod&scene=' + this.shareProdId + ',' +
+        url: config.domain + '/p/distribution/qrCode/invitation?page=package-prod/pages/prod/prod&scene=' + this.shareProdId + ',' +
 						cardno,
         success: (res) => {
           // 图片保存到本地

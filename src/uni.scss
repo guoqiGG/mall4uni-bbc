@@ -74,3 +74,161 @@ $uni-color-subtitle: #555555; // 二级标题颜色
 $uni-font-size-subtitle:36rpx;
 $uni-color-paragraph: #3F536E; // 文章段落颜色
 $uni-font-size-paragraph:30rpx;
+
+// 确认框样式
+uni-modal .uni-modal__bd {
+    color: #333 !important;
+    font-size: 32rpx !important;
+    padding: 64rpx 32rpx;
+  }
+  
+  // 输入框样式
+  .uni-easyinput__content {
+    height: 88rpx;
+    font-size: 28rpx;
+    background: #F6F8FA;
+    border: none !important;
+    border-radius: 10rpx;
+  }
+  
+  // 按钮
+  button {
+    &::after {
+      display: none;
+    }
+    font-size: 26rpx;
+    border-radius: 80rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    // 默认按钮
+    &[type=default] {
+      color: #fff;
+      background-color: $uni-color-primary;
+      border: 2rpx solid $uni-color-primary;
+    }
+    // 默认按钮-镂空
+    &[type=default][plain] {
+      background-color: #fff;
+      border-color: $uni-color-primary;
+      color: $uni-color-primary;
+    }
+  }
+  
+  /*
+  *改变checkbox样式
+  *自定义样式
+  */
+  // uni-checkbox-group {
+  // 	width: 100% !important;
+  // }
+  // uni-checkbox-group uni-label{
+  // 	width: 33% !important;
+  // 	display: inline-block;
+  // 	margin-bottom: 20rpx;
+  // }
+  /*checkbox 选项框大小  */
+  uni-checkbox .uni-checkbox-input{
+      width: 36rpx !important;
+      height: 36rpx !important;
+      border-radius: 50%!important;
+  }
+  /*checkbox选中后样式  */
+  uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked{
+      background: #082BA6;
+      border: 1px solid transparent !important;
+  }
+  /*checkbox选中后图标样式  */
+  uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked::before{
+      display: inline-block;
+      width: 20rpx;
+      height: 20rpx;
+      line-height: 20rpx;
+      text-align: center;
+      font-size: 20rpx;
+      color: #fff;
+      background: transparent;
+      transform: translate(-50%, -50%) scale(.8);
+      -webkit-transform: translate(-50%, -50%) scale(.8);
+  }
+  
+  /* #ifdef MP-WEIXIN */
+  /*checkbox 选项框大小  */
+  checkbox .wx-checkbox-input {
+    border-radius: 50%;
+    width: 36rpx;
+    height: 36rpx;
+  }
+  /*checkbox选中后样式  */
+  checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+    background: #082BA6;
+    border-color: #082BA6;
+  }
+  /*checkbox选中后图标样式  */
+  checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+    text-align: center;
+    font-size: 20rpx;
+    color: #fff;
+    background: transparent;
+    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+  }
+  /* #endif */
+  
+  /*
+  弹框遮罩层
+  */
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  
+  // uni-ui 组件兼容小程序样式
+  /*  #ifdef  MP-WEIXIN  */
+  ::v-deep .uni-stat__select {
+    cursor: none !important;
+    padding: 0 0 0 30rpx;
+    .uni-stat__actived {
+      outline: none;
+    }
+    .uni-select {
+      border: none;
+      padding: 0;
+      .uni-select__input-box{
+        min-height: 34rpx;
+        .uni-select__input-text {
+          font-size: 24rpx;
+          width:78rpx
+        }
+        .uni-icons{
+          margin-top: 8rpx;
+        }
+      }
+      .uni-select__selector{
+        left: -30rpx;
+        width: 152rpx;
+        border-radius:2px;
+        .uni-popper__arrow{
+          display: none;
+        }
+        .uni-select__selector-item{
+          padding: 0;
+          margin: 0 20rpx;
+          font-size: 24rpx;
+          display: flex;
+          justify-content: center;
+          border-bottom: 1px solid #F2F2F2;
+        }
+        .uni-select__selector-item:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  /*  #endif  */
+  

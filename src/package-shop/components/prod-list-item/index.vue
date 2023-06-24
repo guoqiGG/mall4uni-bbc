@@ -68,7 +68,7 @@ export default {
   methods: {
     toProdPage: function(prodId) {
       this.$Router.push({
-        path: '/pages/prod/prod',
+        path: '/package-prod/pages/prod/prod',
         query: { prodId }
       })
     },

@@ -152,7 +152,7 @@ export default {
 </script>
 <style>
 @import "./app.css";
-
+@import url('@/static/iconfont/iconfont.css');
 /* 隐藏头部 */
 uni-page-head {
   display: none;

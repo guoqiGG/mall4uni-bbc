@@ -10,6 +10,7 @@
 
 import Vue from 'vue'
 import App from './App'
+import store from '@/store'
 import wechat from './utils/wechat.js'
 import { router, RouterMount } from './router/index.js'
 // 国际化模块
@@ -58,7 +59,8 @@ if (!uni.getStorageSync('bbcLang')) {
   // 设置默认语言
   uni.getSystemInfo({
     success: (res) => {
-      uni.setStorageSync('bbcLang', (res.language.indexOf('zh') != -1) ? 'zh_CN' : 'en')
+      // uni.setStorageSync('bbcLang', (res.language.indexOf('zh') != -1) ? 'zh_CN' : 'en')
+      uni.setStorageSync('bbcLang', 'zh_CN')
     }
   })
 }
@@ -134,7 +136,8 @@ App.mpType = 'app'
 
 const app = new Vue({
   i18n, // 国际化
-  ...App
+  ...App,
+  store
 })
 
 // v1.3.5起 H5端 你应该去除原有的app.$mount();使用路由自带的渲染方式

@@ -10,7 +10,7 @@
 
 <template>
   <view class="Mall4j">
-    <!-- 积分明细 -->
+    <!-- 氢春豆明细 -->
     <view class="integral-detail">
       <view class="number-box">
         <image
@@ -30,7 +30,7 @@
       <view class="detail-list">
         <view v-for="(item, logId) in scoreDetails" :key="logId" class="item">
           <view class="text-box">
-            <!-- source来源 0注册送积分 1. 购物 2.会员等级提升加积分 3.签到加积分 4购物抵扣使用积分 5积分过期 6充值获赠 -->
+            <!-- source来源 0注册送氢春豆 1. 购物 2.会员等级提升加氢春豆 3.签到加氢春豆 4购物抵扣使用氢春豆 5氢春豆过期 6充值获赠 -->
             <!-- ioType出入类型 0=支出 1=收入 -->
             <view v-if="item.source == 0" class="tit">{{
               i18n.registerEarnPoints
@@ -87,7 +87,7 @@
       />
     </view>
 
-    <!-- 积分攻略弹框 -->
+    <!-- 氢春豆攻略弹框 -->
     <view v-if="showPop" class="score-strategy">
       <view class="mask" />
       <view class="explain-card">
@@ -104,9 +104,9 @@
         </view>
       </view>
     </view>
-    <!-- /积分攻略弹框 -->
+    <!-- /氢春豆攻略弹框 -->
 
-    <!-- /积分明细 -->
+    <!-- /氢春豆明细 -->
   </view>
 </template>
 
@@ -122,12 +122,12 @@ export default {
       current: 1,
       size: 20,
       scoreDetails: [],
-      // 积分明细列表
+      // 氢春豆明细列表
       isAll: false,
       userInfo: {},
-      // 用户积分等级信息
+      // 用户氢春豆等级信息
       scoreExplain: {},
-      // 积分说明
+      // 氢春豆说明
       showPop: false, // 攻略弹框显隐
       isLoaded: false
     }
@@ -143,10 +143,10 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 请求积分明细
-    this.getScoreDetails() // 获取用户积分等级信息
+    // 请求氢春豆明细
+    this.getScoreDetails() // 获取用户氢春豆等级信息
 
-    this.getUserScore() // 积分攻略
+    this.getUserScore() // 氢春豆攻略
 
     this.getScoreExplain()
   },
@@ -193,7 +193,7 @@ export default {
   onShareAppMessage: function() {},
   methods: {
     /**
-     * 获取用户积分等级信息
+     * 获取用户氢春豆等级信息
      */
     getUserScore: function() {
       var param = {
@@ -213,7 +213,7 @@ export default {
     },
 
     /**
-     * 请求积分明细
+     * 请求氢春豆明细
      */
     getScoreDetails: function() {
       this.isLoaded = false
@@ -265,7 +265,7 @@ export default {
     },
 
     /**
-     * 积分攻略
+     * 氢春豆攻略
      */
     getScoreExplain: function() {
       var param = {
@@ -273,6 +273,7 @@ export default {
         method: 'GET',
         data: {},
         callBack: (res) => {
+          console.log(res)
           this.setData({
             scoreExplain: res
           })
@@ -283,7 +284,7 @@ export default {
     },
 
     /**
-     * 积分攻略弹框显隐
+     * 氢春豆攻略弹框显隐
      */
     clikcPop: function() {
       var showPop = !this.showPop

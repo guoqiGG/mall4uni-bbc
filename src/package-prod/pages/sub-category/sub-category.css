@@ -1,0 +1,75 @@
+/* package-prod/pages/sub-category/sub-category.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.category-tit {
+  width: 100%;
+  white-space: nowrap;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  background-color: #fff;
+  border-bottom: 2rpx solid #f4f4f4;
+  font-size: 30rpx;
+}
+
+.category-tit .category-item {
+  display: inline-block;
+  padding: 20rpx 10rpx;
+  margin: 0 20rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+.prod-item {
+  margin-top: 100rpx;
+}
+
+.on {
+  border-bottom: 4rpx solid #F81A1A;
+  color: #F81A1A;
+}
+/* 清除 scroll-view 滚动条 */
+::-webkit-scrollbar {  
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.empty-tips{
+  text-align: center;
+  margin-top: 150rpx; 
+  color: #888888;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+}
+
+/* 列表为空 */
+.empty {
+  margin-top: 200rpx;
+  text-align: cneter;
+}
+.empty-icon {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+}
+.empty-icon > image {
+  width: 100%;
+  height: 100%;
+}
+.empty-text {
+  font-size: 28rpx;
+  text-align: center;
+  color: #bbb;
+  line-height: 2em;
+}
+
+/* 加载完毕 */
+.all{
+	margin-top: 30rpx
+}

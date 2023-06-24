@@ -395,7 +395,7 @@ export default {
     backToPre() {
       if (this.prodId) {
         this.$Router.replace({
-          path: "/pages/prod/prod",
+          path: "/package-prod/pages/prod/prod",
           query: { prodId: this.prodId },
         });
       } else {
@@ -683,7 +683,7 @@ export default {
           //接受新传过来的消息，加入到聊天栏
           let msgItem = result.data;
           if (msgItem.type == 1) {
-            msgItem.content = config.picDomain + msgItem.content;
+            msgItem.content = config.picDomain+'/shop/'+ msgItem.content;
           }
           if (this.sendType === msgItem.chatType) {
             this.msgItems.push(msgItem);
@@ -733,7 +733,7 @@ export default {
                 item.content =
                   item.content.indexOf(config.picDomain) === 0
                     ? item.content
-                    : config.picDomain + item.content;
+                    : config.picDomain+'/shop/'+ item.content;
               }
 
               // 往已读列表添加
@@ -961,7 +961,7 @@ export default {
       });
 
       if (messageInfo.msgType === 1) {
-        messageInfo.content = config.picDomain + messageInfo.content;
+        messageInfo.content = config.picDomain+'/shop/' + messageInfo.content;
       }
 
       // 发送商品链接需要由JSON格式转换为对象
@@ -1197,6 +1197,7 @@ export default {
         sourceType: [type],
         sizeType: ["original", "compressed"], //可以指定是原图还是压缩图，默认二者都有
         success: (res) => {
+          console.log(res)
           for (let i = 0; i < res.tempFilePaths.length; i++) {
             uni.getImageInfo({
               src: res.tempFilePaths[i],
@@ -1206,6 +1207,7 @@ export default {
                   filePath: res.tempFilePaths[i],
                   name: 'file',
                   callBack: (res) => {
+                    console.log(res)
                     let messageInfo = {
                       toId: this.shopId,
                       content: res.filePath,
@@ -1259,7 +1261,7 @@ export default {
         });
       } else {
         uni.navigateTo({
-          url: "/pages/prod/prod?prodId=" + prodInfo.prodId,
+          url: "/package-prod/pages/prod/prod?prodId=" + prodInfo.prodId,
         });
       }
     },

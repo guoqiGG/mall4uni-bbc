@@ -24,7 +24,7 @@
               v-if="prodItem.pic && !prodItem.isPicError"
               style="height: 180rpx;"
               mode="aspectFit"
-              :src="prodItem.pic.indexOf('http')===-1?picDomain + prodItem.pic:prodItem.pic"
+              :src="prodItem.pic.indexOf('http')===-1?picDomain+'shop/' + prodItem.pic:prodItem.pic"
               @error="handlePicError(prodItem)"
             />
             <image v-else mode="aspectFit" src="/static/images/icon/def.png" style="height: 180rpx;" />
@@ -34,7 +34,7 @@
             <!-- <view class="sku">{{ prodItem.sellingPoint }}</view> -->
             <view class="price-box">
               <!-- <view v-if="prodItem.spuType === 3" class="price">
-                <view class="big">{{ prodItem.scoreFee }}积分</view>
+                <view class="big">{{ prodItem.scoreFee }}氢春豆</view>
                 <view v-if="prodItem.priceFee" class="symbol">+￥</view>
                 <view v-if="prodItem.priceFee" class="big">{{ wxs.parsePrice(prodItem.priceFee)[0] }}</view>
                 <view v-if="prodItem.priceFee" class="symbol">.{{ wxs.parsePrice(prodItem.priceFee)[1] }}</view>
@@ -213,7 +213,7 @@ export default {
     },
     toProdDetail(prodId) {
       uni.navigateTo({
-        url: '/pages/prod/prod?prodId=' + prodId
+        url: '/package-prod/pages/prod/prod?prodId=' + prodId
       })
     },
     /**

@@ -236,7 +236,8 @@ export default {
           orderBy: this.orderBy,
           size: 10,
           isAllProdType: true,
-          isActive: 1 // 过滤掉活动商品
+          isActive: 1, // 过滤掉活动商品
+          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
         },
         callBack: res => {
           this.isLoaded = true

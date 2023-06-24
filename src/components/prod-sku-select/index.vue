@@ -161,7 +161,7 @@
             {{ i18n.JoinGroupNow }}
           </view>
         </view>
-        <!-- 积分商品: 兑换按钮 -->
+        <!-- 氢春豆商品: 兑换按钮 -->
         <view v-if="prodType == 3" :class="'pup-sku-footer ' + (findSku && !prodNumBiggerThanStock() ? '':'gray')">
           <view class="btn buy" @tap="handleBuyNow(3)">
             {{ i18n.redeemNow }}
@@ -249,7 +249,7 @@ export default {
       type: Object,
       default: () => {}
     },
-    // 页面类型: 0非商品详情页(套餐/购物车/团购详情:参团页面)  1普通商品(团购)  2秒杀商品  3积分商品  5活动商品
+    // 页面类型: 0非商品详情页(套餐/购物车/团购详情:参团页面)  1普通商品(团购)  2秒杀商品  3氢春豆商品  5活动商品
     pageType: {
       type: Number,
       default: 0
@@ -602,7 +602,7 @@ export default {
 
     /**
 		 * 立即购买
-     * @param {Number} orderType 订单类型  0普通 1团购 2秒杀 3积分
+     * @param {Number} orderType 订单类型  0普通 1团购 2秒杀 3氢春豆
 		 */
     handleBuyNow(orderType) {
       if (!this.findSku || this.prodNumBiggerThanStock()) {

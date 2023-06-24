@@ -341,20 +341,20 @@
     </view>
     <!-- 其他登录方式 -->
     <view v-if="!isForgetPassword" class="footer" :style="{top: regLocation}">
-      <view class="other-login-text">
+    <!--  <view class="other-login-text">
         {{ i18n.otherLogMethods }}
-      </view>
+      </view> -->
       <view class="other-login">
         <!-- #ifdef MP-WEIXIN -->
-        <view class="other-login-one" @tap="otherLogin(1)">
+        <!-- <view class="other-login-one" @tap="otherLogin(1)">
           <image :src="loginStatus === 0 || loginStatus === 1 ? '../../static/images/icon/weixin.png' :'../../static/images/icon/mobile-phone.png'" mode="heightFix" />
           <view>{{ loginStatus == 0 || loginStatus == 1 ? i18n.wechatLogin : i18n.phoneLogin }}</view>
-        </view>
+        </view> -->
         <!-- #endif -->
-        <view class="other-login-two" @tap="otherLogin(2)">
+      <!--  <view class="other-login-two" @tap="otherLogin(2)">
           <image :src="loginStatus === 1 || loginStatus === 2 ? '../../static/images/icon/password.png' :'../../static/images/icon/mobile-phone.png'" mode="heightFix" />
           <view>{{ loginStatus === 1 || loginStatus === 2 ? i18n.accountLogin : i18n.phoneLogin }}</view>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

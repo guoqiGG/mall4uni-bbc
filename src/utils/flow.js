@@ -21,7 +21,7 @@ function getPageInfo(to) {
   var pageInfo = {}
   if (path == '/pages/index/index' || path == '' || path == '*') {
     pageInfo.pageId = 1
-  } else if (path == '/pages/prod/prod' && !query.seckillId && !query.groupActivityId) {
+  } else if (path == '/package-prod/pages/prod/prod' && !query.seckillId && !query.groupActivityId) {
     pageInfo.pageId = query.bannerEnter == '1' ? 2 : 3
     pageInfo.bizType = 0
     pageInfo.bizData = query.prodId
@@ -29,7 +29,7 @@ function getPageInfo(to) {
     pageInfo.pageId = 4
     pageInfo.bizType = 2
     pageInfo.bizData = query.seckillId
-  } else if (path == '/pages/prod/prod' && query.groupActivityId) {
+  } else if (path == '/package-prod/pages/prod/prod' && query.groupActivityId) {
     pageInfo.pageId = 5
     pageInfo.bizType = 1
     pageInfo.bizData = query.prodId
@@ -41,10 +41,10 @@ function getPageInfo(to) {
     pageInfo.pageId = 8
   } else if (path == '/package-user/pages/order-detail/order-detail') {
     pageInfo.pageId = 9
-  } else if (path == '/pages/pay-way/pay-way') {
+  } else if (path == '/package-pay/pages/pay-way/pay-way') {
     pageInfo.pageId = 10
     pageInfo.bizData = query.orderNumbers
-  } else if (path == '/pages/pay-result/pay-result') {
+  } else if (path == '/package-pay/pages/pay-result/pay-result') {
     pageInfo.pageId = 11
     pageInfo.bizData = query.orderNumbers
   }	else if (path == '/pages/user/user') {

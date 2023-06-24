@@ -160,7 +160,7 @@ export default {
 
       // birthDate: '',   //用户生日
       nickName: '', // 用户昵称
-      score: 0, // 积分
+      score: 0, // 氢春豆
       sex: '', // 性别
       oldSex: '', // 原先性别
       sexNumber: 0, // 判断有无滑动
@@ -282,7 +282,7 @@ export default {
         callBack: (res) => {
           this.date = res.birthDate// 用户生日
           this.nickName = res.nickName// 用户昵称
-          this.score = res.score// 积分
+          this.score = res.score// 氢春豆
           if (res.sex === '1' || res.sex === '0') {
             this.sex = Number(res.sex)
             this.oldSex = Number(res.sex) // 原本的性别

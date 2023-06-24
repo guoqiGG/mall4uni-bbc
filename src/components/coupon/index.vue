@@ -171,7 +171,7 @@ export default {
      */
     useCoupon() {
       util.checkAuthInfo(() => {
-        var url = '/pages/prod-classify/prod-classify?sts=' + this.stsType
+        var url = '/package-prod/pages/prod-classify/prod-classify?sts=' + this.stsType
         var id = this.item.couponId
         var title = this.i18n.couponEventGoods
 

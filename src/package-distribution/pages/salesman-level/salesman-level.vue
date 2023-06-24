@@ -235,7 +235,7 @@ export default {
 			 */
     toProdPage: function(prodId) {
       if (prodId) {
-        this.$Router.push({ path: '/pages/prod/prod', query: { prodId }})
+        this.$Router.push({ path: '/package-prod/pages/prod/prod', query: { prodId }})
       }
     },
 

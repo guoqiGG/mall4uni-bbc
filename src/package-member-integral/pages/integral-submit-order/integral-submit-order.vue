@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <!-- 积分商品提交订单页面 -->
+  <!-- 氢春豆商品提交订单页面 -->
   <view class="Mall4j container">
     <view class="submit-order">
       <!-- 收货地址 -->
@@ -55,7 +55,7 @@
                   </text>
                   <text class="prodcount">x{{ productItemDto.prodCount }}</text>
                 </view>
-                <!-- 积分 -->
+                <!-- 氢春豆 -->
                 <view class="integral-num">
                   <text decode="true">{{ productItemDto.scorePrice / productItemDto.prodCount }} {{ i18n.integral }}</text>
                 </view>
@@ -130,7 +130,7 @@
           <text v-if="actualTotal" class="small-num">.{{ parsePrice(actualTotal)[1] }}</text>
           <text v-if="actualTotal" class="small-num" decode="true">&ensp;+&ensp;</text>
         </view>
-          <!-- 积分 -->
+          <!-- 氢春豆 -->
           <view class="integral-num">
             <text decode="true">{{ scorePrice }} {{ i18n.integral }}</text>
           </view>
@@ -171,7 +171,7 @@ export default {
       scorePrice: 0,
       remarks: '',
       // 留言
-      isPurePoints: false // 是否纯积分商品
+      isPurePoints: false // 是否纯氢春豆商品
     }
   },
   computed: {
@@ -273,7 +273,7 @@ export default {
             freeTransfee: res.freeTransfee,
             // 运费
             transfee: transfee >= 0 ? transfee : 0,
-            scorePrice: res.productItemDto.scorePrice, // 商品所需积分
+            scorePrice: res.productItemDto.scorePrice, // 商品所需氢春豆
             orderReduce: res.orderReduce
           })
         }
@@ -299,7 +299,7 @@ export default {
 			 * 提交订单
 			 */
     submitOrder: function() {
-      var isPurePoints = this.actualTotal > 0 ? '' : 1 // 是否纯积分: 1是
+      var isPurePoints = this.actualTotal > 0 ? '' : 1 // 是否纯氢春豆: 1是
       if (isPurePoints) {
         uni.showModal({
           title: this.i18n.prompt,
@@ -332,7 +332,7 @@ export default {
         },
         callBack: res => {
           uni.navigateTo({
-            url: '/pages/pay-way/pay-way?orderNumbers=' + res.orderNumbers + '&isPurePoints=' + isPurePoints
+            url: '/package-pay/pages/pay-way/pay-way?orderNumbers=' + res.orderNumbers + '&isPurePoints=' + isPurePoints
           })
         },
         errCallBack: (errMsg) => {

@@ -17,8 +17,9 @@ uni-page-wrapper{
   position: fixed;
   display: flex;
   overflow: hidden;
-  margin-top: 100rpx;
-  height: calc(100% - 100rpx);
+  /* margin-top: 100rpx; */
+  /* height: calc(100% - 100rpx); */
+  height: calc(100% - 0rpx);
 	width: 100%;
 }
 

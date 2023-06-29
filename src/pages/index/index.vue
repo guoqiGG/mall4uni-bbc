@@ -39,6 +39,18 @@
 
       <!-- 导航&公告 -->
       <view :class="['content']">
+        <!-- 消息播放 -->
+        <view v-if="news.title" class="message-play">
+          <image src="/static/images/icon/horn.png" class="hornpng" />
+          <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
+            <block>
+              <swiper-item class="items">{{ news.title }}</swiper-item>
+              <swiper-item class="items" v-if="news.content"><rich-text :nodes="news.content" /></swiper-item>
+            </block>
+          </swiper>
+          <!-- <text class="arrow" /> -->
+        </view>
+        <!-- 消息播放end -->
         <!-- swiper -->
         <swiper v-if="indexImgs.length" circular="true" :autoplay="autoplay" :indicator-color="indicatorColor"
           :interval="interval" :duration="duration" :indicator-active-color="indicatorActiveColor" class="card-swiper"
@@ -65,18 +77,7 @@
         </view>
         <!-- 板块end -->
       </view>
-      <!-- 消息播放 -->
-      <view v-if="news.title" class="message-play" @tap="onNewsPage">
-        <image src="/static/images/icon/horn.png" class="hornpng" />
-        <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
-          <block>
-            <swiper-item class="items">{{ news.title }}</swiper-item>
-            <swiper-item class="items" v-if="news.content"><rich-text :nodes="news.content"/></swiper-item>
-          </block>
-        </swiper>
-        <text class="arrow" />
-      </view>
-      <!-- 消息播放end -->
+
       <view v-if="liveBroadcastList.length > 0" :style="liveBroadcastList.length > 0 ? 'padding-bottom:10rpx;' : ''">
         <view class="live-title">
           直播列表
@@ -114,6 +115,8 @@
       </view>
 
       <view v-else style="padding-top: 10rpx;margin:10rpx 15rpx">
+        <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
+        <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
         <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
       </view>
 

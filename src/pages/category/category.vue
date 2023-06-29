@@ -11,12 +11,12 @@
 <template>
   <view class="Mall4j container">
     <!-- 头部搜索区 -->
-    <view class="search-bar">
+    <!-- <view class="search-bar">
       <view class="search-box" @tap="toSearchPage">
         <image src="/static/images/icon/search.png" class="search-img" />
         <text class="sear-input">{{ i18n.searchGoods }}</text>
       </view>
-    </view>
+    </view> -->
     <!-- 滚动内容区 -->
     <view class="main">
       <!-- 左侧菜单start -->

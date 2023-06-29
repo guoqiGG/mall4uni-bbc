@@ -116,7 +116,7 @@ export default {
   onShareAppMessage: function() {},
   methods: {
     getProd: function() {
-      // 获取氢春豆商品信息
+      // 获取青春豆商品信息
       const params = {
         url: '/prod/prodInfo',
         method: 'GET',

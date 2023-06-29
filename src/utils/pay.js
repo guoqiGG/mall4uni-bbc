@@ -22,11 +22,11 @@ export default {
      * 订单支付
      * @param {Number} payType 支付类型;见util/constant.js
      * @param {String} orderNumbers 订单编号
-     * @param {Boolean} isPurePoints 是否纯氢春豆订单(氢春豆+钱订单与普通订单一致)
+     * @param {Boolean} isPurePoints 是否纯青春豆订单(青春豆+钱订单与普通订单一致)
      * @param {Boolean} dvyType // 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
      * @param {Number/String} vipId 要购买的会员等级id
      * @param {Number/String} balance 余额充值
-     * @param {Number/String} orderType 订单类型 0普通 1团购 2秒杀 3氢春豆
+     * @param {Number/String} orderType 订单类型 0普通 1团购 2秒杀 3青春豆
      * @param {Number/String} ordermold 1虚拟商品
      */
   toOrderPay(payType, orderNumbers, isPurePoints, dvyType, vipId, balance, orderType, ordermold) {
@@ -69,7 +69,7 @@ export default {
       data: vipId ? buyVipOrderData : balanceId ? rechargeBalanceData : commonOrderData,
       callBack: (res) => {
         const _this = this
-        // 氢春豆订单: 纯氢春豆 isPurePoints=1 或者 纯氢春豆支付
+        // 青春豆订单: 纯青春豆 isPurePoints=1 或者 纯青春豆支付
         if (isPurePoints == 1 || payType == 0) {
           uni.redirectTo({
             url: '/package-pay/pages/pay-result/pay-result?sts=1&orderNumbers=' + orderNumbers + '&orderType=' + orderType

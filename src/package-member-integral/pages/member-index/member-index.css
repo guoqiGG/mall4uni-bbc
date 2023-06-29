@@ -163,6 +163,11 @@
   display: flex;
   align-items: center;
 }
+.member-tit2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 .member-tit .text {
   flex: 1;
@@ -190,7 +195,7 @@
   margin-top: 10rpx;
 }
 
-/* 每日签到、氢春豆活动、氢春豆任务 */
+/* 每日签到、青春豆活动、青春豆任务 */
 
 .member-index .sign-in,
 .member-index .activity,
@@ -346,9 +351,9 @@
   background: #ccc;
 }
 
-/* 每日签到、氢春豆活动、氢春豆任务 end */
+/* 每日签到、青春豆活动、青春豆任务 end */
 
-/* 氢春豆兑换 */
+/* 青春豆兑换 */
 
 .integral-list {
   padding: 50rpx 30rpx 30rpx;
@@ -419,4 +424,4 @@
   font-family: arial;
 } */
 
-/* 氢春豆兑换 end */
+/* 青春豆兑换 end */

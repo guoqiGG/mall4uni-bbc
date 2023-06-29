@@ -24,8 +24,8 @@
             <text class="name">{{ userInfo.nickName }}</text>
             <view class="level">
               <image :src="userMemberInfo.levelType == 0
-                  ? '/static/images/icon/normal-icon.png'
-                  : '/static/images/icon/integral-icon.png'
+                ? '/static/images/icon/normal-icon.png'
+                : '/static/images/icon/integral-icon.png'
                 " class="l-bg" />
               <view v-if="userMemberInfo.userLevel" class="text">{{
                 userMemberInfo.userLevel.levelName
@@ -134,7 +134,7 @@
       </view>
     </view>
     <!-- /签到 -->
-    <!-- 氢春豆活动 -->
+    <!-- 青春豆活动 -->
     <!-- <view class="activity">
       <view class="member-tit">
         <view class="text">{{ i18n.integralActivity }}</view>
@@ -152,22 +152,22 @@
         </view>
       </view>
     </view> -->
-    <!-- /氢春豆活动 -->
+    <!-- /青春豆活动 -->
     <!-- 任务 -->
-    <view class="mission">
+    <!-- <view class="mission">
       <view class="member-tit">
-        <view class="text">{{ i18n.integralTask }}</view>
-        <!-- <view class="more">查看更多</view> -->
-      </view>
-      <view class="con-box">
-        <!-- <view class="item">
+        <view class="text">{{ i18n.integralTask }}</view> -->
+    <!-- <view class="more">查看更多</view> -->
+    <!-- </view> -->
+    <!-- <view class="con-box"> -->
+    <!-- <view class="item">
         <view class="mission-box">
           <view class="name">购买付费会员</view>
-          <view class="mission-des">购买付费会员可获得氢春豆/次</view>
+          <view class="mission-des">购买付费会员可获得青春豆/次</view>
         </view>
         <view class="btn" bindtap="buyMember">去购买</view>
       </view> -->
-        <view class="item">
+    <!-- <view class="item">
           <view class="mission-box">
             <view class="name">{{ i18n.shoppingMall }}</view>
             <view class="mission-des">{{ i18n.shoppingMallGet }}，{{ userCenterInfo.shopScore
@@ -188,10 +188,10 @@
           }}</view>
         </view>
       </view>
-    </view>
+    </view> -->
     <!-- /任务 -->
-    <!-- 氢春豆兑换 -->
-    <view v-if="scoreProdList.length" class="integral-list">
+    <!-- 青春豆兑换 -->
+    <!-- <view v-if="scoreProdList.length" class="integral-list">
       <view class="member-tit">
         <view class="text">{{ i18n.pointsExchange }}</view>
         <view class="more" @tap="goodsListViewMore">{{ i18n.seeMore }}</view>
@@ -201,8 +201,19 @@
           <goodsitem :prod="prod" />
         </block>
       </view>
+    </view> -->
+    <!-- 青春豆兑换 -->
+
+    <!-- 青春豆攻略 -->
+    <view class="sign-in">
+      <view class="member-tit member-tit2">
+        <view class="text">{{ i18n.integralStrategy }}</view>
+        <view class="cont-det">
+          <view class="cont-det-text" v-html="scoreExplain.paramValue" />
+        </view>
+      </view>
     </view>
-    <!-- 氢春豆兑换 -->
+    <!-- /青春豆攻略 -->
   </view>
 </template>
 
@@ -220,16 +231,17 @@ export default {
     return {
       isAuthInfo: true,
       userCenterInfo: {},
-      signInItem: '', // 领取氢春豆签到第几个签到按钮，大于7天，一直为第六个签到按钮
+      signInItem: '', // 领取青春豆签到第几个签到按钮，大于7天，一直为第六个签到按钮
       current: 1,
       size: 20,
       scoreProdList: [],
-      // 氢春豆商品列表
+      // 青春豆商品列表
       userInfo: {},
       // 个人信息
       userMemberInfo: {}, // 用户等级信息,
       sevenDay: [],
-      dateList: []
+      dateList: [],
+      scoreExplain: {},// 青春豆攻略
     }
   },
 
@@ -244,7 +256,7 @@ export default {
    */
   onLoad: function (options) {
     // 获取会员中心信息
-    this.getMemberCenterInfo() // 请求氢春豆商品列表
+    this.getMemberCenterInfo() // 请求青春豆商品列表
 
     this.getScoreProdList() // 获取用户信息
 
@@ -255,6 +267,8 @@ export default {
     this.getSevenDay() // 计算最近7天的日期
 
     this.get7DayUserStore() //获取用户一周的签到展示
+
+    this.getScoreExplain() // 青春豆攻略
   },
 
   /**
@@ -300,6 +314,25 @@ export default {
    */
   onShareAppMessage: function () { },
   methods: {
+
+        /**
+     * 青春豆攻略
+     */
+     getScoreExplain: function() {
+      var param = {
+        url: '/p/score/getScoreQuestion',
+        method: 'GET',
+        data: {},
+        callBack: (res) => {
+          console.log(res)
+          this.setData({
+            scoreExplain: res
+          })
+          console.log(this.scoreExplain)
+        }
+      }
+      http.request(param)
+    },
     /**
      * 获取用户当前会员信息
      */
@@ -393,7 +426,7 @@ export default {
         method: 'GET',
         data: {},
         callBack: (res) => {
-          // 领取氢春豆签到第几个签到按钮，大于7天，一直为第六个签到按钮
+          // 领取青春豆签到第几个签到按钮，大于7天，一直为第六个签到按钮
           let signInItem = ''
           if (res.signInCount >= 7) {
             signInItem = 6
@@ -410,7 +443,7 @@ export default {
     },
 
     /**
-     * 获取氢春豆的方法（签到）
+     * 获取青春豆的方法（签到）
      */
     getPoints(e) {
       // var index = Number(e.currentTarget.dataset.index)
@@ -446,7 +479,7 @@ export default {
     },
 
     /**
-     * 跳转到氢春豆明细(当前氢春豆)
+     * 跳转到青春豆明细(当前青春豆)
      */
     toIntegralDetail: function () {
       uni.navigateTo({
@@ -480,7 +513,7 @@ export default {
     },
 
     /**
-     * 氢春豆兑换 查看更多
+     * 青春豆兑换 查看更多
      */
     goodsListViewMore: function () {
       uni.navigateTo({
@@ -489,7 +522,7 @@ export default {
     },
 
     /**
-     * 获取氢春豆商品列表
+     * 获取青春豆商品列表
      */
     getScoreProdList() {
       var param = {
@@ -500,7 +533,7 @@ export default {
           size: this.size,
           prodType: 3,
           sort: 2,
-          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: (res) => {
           this.setData({

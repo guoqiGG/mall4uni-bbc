@@ -27,14 +27,14 @@
 
     <view v-if="!renovationId" class="container">
       <!-- 搜索框 -->
-      <view class="bg-sear">
+      <!-- <view class="bg-sear">
         <view class="scrolltop">
           <view class="section" @tap="toSearchPage">
             <image src="/static/images/icon/search.png" class="search-img" />
             <text class="placeholder">{{ i18n.search }}</text>
           </view>
         </view>
-      </view>
+      </view> -->
       <!-- 搜索框end -->
 
       <!-- 导航&公告 -->
@@ -66,17 +66,18 @@
         <!-- 板块end -->
       </view>
       <!-- 消息播放 -->
-      <view v-if="news.length" class="message-play" @tap="onNewsPage">
+      <view v-if="news.title" class="message-play" @tap="onNewsPage">
         <image src="/static/images/icon/horn.png" class="hornpng" />
         <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
-          <block v-for="(item, id) in news" :key="id">
-            <swiper-item class="items">{{ item.title }}</swiper-item>
+          <block>
+            <swiper-item class="items">{{ news.title }}</swiper-item>
+            <swiper-item class="items" v-if="news.content"><rich-text :nodes="news.content"/></swiper-item>
           </block>
         </swiper>
         <text class="arrow" />
       </view>
       <!-- 消息播放end -->
-      <view :style="liveBroadcastList.length > 0 ? 'padding-bottom:10rpx;' : ''">
+      <view v-if="liveBroadcastList.length > 0" :style="liveBroadcastList.length > 0 ? 'padding-bottom:10rpx;' : ''">
         <view class="live-title">
           直播列表
         </view>
@@ -112,6 +113,10 @@
         </view>
       </view>
 
+      <view v-else style="padding-top: 10rpx;margin:10rpx 15rpx">
+        <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
+      </view>
+
       <!-- 回到顶部 -->
       <!-- <back-top-btn v-if="showBacktop" /> -->
       <!-- <privacy-pop v-if="showPop" @hidePop="hidePop" /> -->
@@ -120,8 +125,8 @@
       <image src="/static/images/icon/kefu1.png" />
     </view>
     <!-- 空列表或加载全部提示 -->
-    <EmptyAllTips v-if="isLoaded" :isEmpty="!liveBroadcastList.length" :emptyTips="i18n.liveBroadcastTips"
-      :isAll="liveBroadcastList.length > 5 && loadAll" />
+    <!-- <EmptyAllTips v-if="isLoaded" :isEmpty="!liveBroadcastList.length" :emptyTips="i18n.liveBroadcastTips"
+      :isAll="liveBroadcastList.length > 5 && loadAll" /> -->
   </view>
 </template>
 
@@ -596,9 +601,31 @@ export default {
         url: path,
         method: 'GET',
         callBack: (res) => {
-          this.setData({
-            news: res || []
-          })
+          if (res.length > 0) {
+            let path = '/notice/info/'
+            if (uni.getStorageSync('bbcToken')) {
+              path = '/p/notice/info/'
+            }
+            // 加载公告详情
+            const params = {
+              url: path + res[0].id,
+              method: 'GET',
+              callBack: res1 => {
+                // console.log(res1)
+                // if (res1.content) {
+                //   res1.content = util.formatHtml(res1.content)
+                //   console.log(res1.content)
+                // }
+                this.setData({
+                  news: res1 || {}
+                })
+              }
+            }
+            http.request(params)
+          }
+          // this.setData({
+          //   news: res || []
+          // })
         }
       }
       http.request(params)
@@ -671,7 +698,7 @@ export default {
         })
       })
     },
-    // 氢春豆中心
+    // 青春豆中心
     toPointsCenter: function () {
       // util.tapLog(3)
       util.checkAuthInfo(() => {
@@ -682,7 +709,7 @@ export default {
     },
 
     /**
-       * 跳转氢春豆中心
+       * 跳转青春豆中心
        */
     toMemberInteral() {
       // util.tapLog(3)

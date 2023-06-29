@@ -52,9 +52,9 @@ export default {
       hou: '', // 时
       min: '', // 分
       sec: '', // 秒
-      orderScore: 0, // 订单使用氢春豆
+      orderScore: 0, // 订单使用青春豆
       orderType: '', // 订单类型 1团购 2秒杀
-      isPurePoints: false, // 是否纯氢春豆订单
+      isPurePoints: false, // 是否纯青春豆订单
       payTypeStr: 'aliPay'
     }
   },
@@ -221,7 +221,7 @@ export default {
         return
       }
       if (this.orderScore > 0 && this.actualTotal <= 0) {
-        this.payType = 0 // 氢春豆支付
+        this.payType = 0 // 青春豆支付
       }
       Pay.toOrderPay(this.payType, this.orderNumbers, this.isPurePoints, this.dvyType, '', '', this.orderType, this.ordermold)
     }, 500)
@@ -232,7 +232,7 @@ export default {
     this.ordermold = options.ordermold
     this.orderNumbers = options.orderNumbers
     if (options.isPurePoints) {
-      // 纯氢春豆订单
+      // 纯青春豆订单
       this.isPurePoints = options.isPurePoints
     }
     if (options.dvyType) {

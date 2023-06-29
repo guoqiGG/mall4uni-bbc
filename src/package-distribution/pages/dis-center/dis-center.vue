@@ -429,7 +429,7 @@ export default {
 			*/
     toDistributorListPage: function() {},
     /*
-    * 跳转到氢春豆流水页面
+    * 跳转到青春豆流水页面
     */ 
     toIntegralTurnoverPage:function(){
       uni.navigateTo({

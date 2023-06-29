@@ -170,7 +170,7 @@
         </view>
       </picker>
 
-      <!-- 退货数量：(退货退款 && 单个商品退款 && 没有使用氢春豆) || (无需核销的虚拟商品允许选择数量) -->
+      <!-- 退货数量：(退货退款 && 单个商品退款 && 没有使用青春豆) || (无需核销的虚拟商品允许选择数量) -->
       <view
         v-if="(applyType == 2 && refundType == 2 && !orderScore) || orderMold === 1"
         class="refund-quantity clearfix"
@@ -201,7 +201,7 @@
       <view class="refund-sum-box" @click="voidClick">
         <view class="refund-sum">
           <label class="refund-sum-tit">{{ i18n.refundAmount }}</label>
-          <!-- 如果是(使用了平台分摊的优惠金额)或(有氢春豆的情况)或整单退，则不允许修改退款金额（输入框不可输入） -->
+          <!-- 如果是(使用了平台分摊的优惠金额)或(有青春豆的情况)或整单退，则不允许修改退款金额（输入框不可输入） -->
           <text v-if="(refundItem.platformShareReduce > 0 || orderScore > 0 || refundType == 1) && orderMold !== 1" class="refund-sum-num">{{ intShowStr }}</text>
           <!-- 否则，允许修改退款金额（输入框可以输入） -->
           <input
@@ -323,12 +323,12 @@ export default {
       isLastProd: false, // 是否最后一个订单项
       prodPrice: 0, // 商品单价
       isOnlyProd: false, // 是否仅一件商品
-      orderScore: 0, // 氢春豆
+      orderScore: 0, // 青春豆
       tipShowStr: '', // 最多可退提示
       intShowStr: '', // 输入框金额展示
       totalPrice: 0, // 用于判断的总额
 
-      orderType: 0, // 订单类型 0普通 1团购 2秒杀 3氢春豆
+      orderType: 0, // 订单类型 0普通 1团购 2秒杀 3青春豆
       orderMold: 0, // 订单模式 1虚拟商品订单
       needWriteOffs: false, // 是否需要核销
       maxRefundPieces: 0, // 最大可退款件数（虚拟商品：需要核销时展示）
@@ -350,7 +350,7 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 订单类型 0普通 1团购 2秒杀 3氢春豆
+    // 订单类型 0普通 1团购 2秒杀 3青春豆
     this.orderType = options.orderType ? Number(options.orderType) : 0
     // 订单模式 1虚拟商品订单
     this.orderMold = options.orderMold ? Number(options.orderMold) : 0
@@ -460,7 +460,7 @@ export default {
         actualTotal: refundItem.actualTotal, // 总额
         isLastProd: refundItem.isLastProd, // 是否最后一样商品
         isOnlyProd: refundItem.isOnlyProd, // 只有一件商品可以退运费
-        orderScore: refundItem.useScore // 单个退氢春豆
+        orderScore: refundItem.useScore // 单个退青春豆
       })
       // 单个
       if (refundType == 2) {
@@ -485,7 +485,7 @@ export default {
       if (refundType == 1) { // 整单退款
         this.setData({
           orderItemDtos: refundItem.orderItemDtos, // 商品列表
-          orderScore: refundItem.orderScore // 整单氢春豆
+          orderScore: refundItem.orderScore // 整单青春豆
         })
         this.orderItemDtos.forEach(el => {
           if (el.giveawayList && el.giveawayList.length) {
@@ -635,15 +635,15 @@ export default {
       var refundAmount = new Big(this.refundAmount).valueOf() // 实际退款金额
       var refundType = this.refundType // 退款单类型（1:整单退款,2:单个退款）
       var actualTotal = new Big(this.actualTotal).valueOf() // 总额
-      var orderScore = this.orderScore // 氢春豆
+      var orderScore = this.orderScore // 青春豆
       var isLastProd = this.isLastProd // 是否最后一个订单项item
       // 可退金额
       const canRefundAmount = new Big(refundItem.canRefundAmount)
       // 运费
       const transfee = refundItem.isLastProd ? refundItem.canRefundAmount - this.actualTotal > refundItem.transfee ? new Big(refundItem.transfee) : canRefundAmount.minus(actualTotal).valueOf() : new Big(refundItem.transfee)
       // var freeTransfee = new Big(refundItem.freeTransfee).valueOf() // 运费减免
-      var tipShow = [] // 最多可退提示——格式：单件退（金额+运费+氢春豆） 整单退（金额(含运费) + 氢春豆）
-      var intShow = [] // 输入框——格式： 金额（含运费）+ 氢春豆
+      var tipShow = [] // 最多可退提示——格式：单件退（金额+运费+青春豆） 整单退（金额(含运费) + 青春豆）
+      var intShow = [] // 输入框——格式： 金额（含运费）+ 青春豆
 
       // 金额
       if (actualTotal && actualTotal > 0) {
@@ -683,7 +683,7 @@ export default {
         intShow = []
       }
 
-      // 氢春豆
+      // 青春豆
       if (orderScore && orderScore > 0) {
         var score = orderScore + this.i18n.integral
         tipShow.push(score)

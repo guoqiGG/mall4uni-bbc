@@ -1,7 +1,7 @@
 /* pages/user/user.wxss */
 
 page {
-  background-color: #F6F6F6; 
+  background-color: #f6f6f6;
 }
 .top-infor-wrap {
   /* height: 447rpx; */
@@ -48,7 +48,7 @@ page {
   height: 100rpx;
   border-radius: 50%;
   margin-left: 20rpx;
-  border: 3rpx solid #FFFFFF;
+  border: 3rpx solid #ffffff;
 }
 .infor-wrap {
   /* display: flex;
@@ -72,7 +72,6 @@ page {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-
 }
 .infor-wrap .menbers {
   /* width: 150rpx; */
@@ -87,11 +86,11 @@ page {
 }
 
 .infor-wrap .vip-img {
-  background: #fea54e url('/static/images/icon/vip-bg-2.png') no-repeat;
+  background: #fea54e url("/static/images/icon/vip-bg-2.png") no-repeat;
   background-size: 150rpx 100%;
 }
 .infor-wrap .menbers-img {
-  background: #92a7c7 url('/static/images/icon/vip-bg-1.png') no-repeat;
+  background: #92a7c7 url("/static/images/icon/vip-bg-1.png") no-repeat;
   background-size: 150rpx 100%;
 }
 
@@ -108,18 +107,18 @@ page {
 .infor-wrap .menbers .vip-txt {
   width: 100%;
   color: #fff;
-  font-size:28rpx;
+  font-size: 28rpx;
   /* left: 43rpx; */
   margin-left: 43rpx;
   line-height: 36rpx;
 }
 .infor-wrap .pay-vip-wrap .priming-vip-txt {
   color: transparent;
-  background-color: #FFA148;
+  background-color: #ffa148;
 
   height: 36rpx;
   border-radius: 20rpx;
-  font-size:28rpx;
+  font-size: 28rpx;
   margin-left: 43rpx;
 }
 
@@ -153,8 +152,8 @@ page {
   width: 710rpx;
 }
 .wallet-wrap .vip-column {
-  font-size:28rpx;
-  color: #D0C8B6;
+  font-size: 28rpx;
+  color: #d0c8b6;
   height: 140rpx;
   position: relative;
 }
@@ -185,10 +184,10 @@ page {
   line-height: 50rpx;
 }
 .wallet-wrap .infor-txt {
-  font-size:28rpx;
-  color: #5B5B5B;
+  font-size: 28rpx;
+  color: #5b5b5b;
 }
-.txt-seat{
+.txt-seat {
   width: 68%;
   height: 24rpx;
   line-height: 28rpx;
@@ -197,7 +196,7 @@ page {
   left: 30rpx;
 }
 .bth-seat {
-  font-size:28rpx;
+  font-size: 28rpx;
   position: absolute;
   font-weight: bold;
   bottom: 40rpx;
@@ -208,21 +207,21 @@ page {
   height: 58rpx;
   line-height: 58rpx;
   border-radius: 60rpx;
-  background-image: linear-gradient(to left, #F1CF97, #FDECBE);
+  background-image: linear-gradient(to left, #f1cf97, #fdecbe);
 }
 
 /* 我的订单 */
 .my-order-wrap {
   width: 710rpx;
   height: 215rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 12rpx;
   margin: 20rpx 20rpx 20rpx 20rpx;
   overflow: hidden;
-  font-size:28rpx;
-  color: #5B5B5B;
+  font-size: 28rpx;
+  color: #5b5b5b;
 }
-.my-order-wrap .top-title{
+.my-order-wrap .top-title {
   /* 标记 */
   width: 100%;
   height: 69rpx;
@@ -254,7 +253,7 @@ page {
   align-items: center;
   -webkit-align-items: center;
 }
-.my-order-wrap .cloumn-wrap{
+.my-order-wrap .cloumn-wrap {
   width: 660rpx;
   margin-left: 25rpx;
   height: 149rpx;
@@ -281,7 +280,7 @@ page {
 }
 .my-order-wrap .cloumn-item .item-img {
   margin-bottom: 8rpx;
-} 
+}
 .my-order-wrap .item-img {
   width: 48rpx;
   height: 48rpx;
@@ -293,14 +292,69 @@ page {
   white-space: nowrap;
 }
 
-/* 分销中心 & 氢春豆商店 */
+/* 我的当前自提点 */
+.my-pick-up-address {
+  width: 710rpx;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+  color: #5b5b5b;
+  padding: 30rpx 30rpx;
+  box-sizing: border-box;
+}
+.my-pick-up-address .pick-up-title {
+  color: #333;
+  font-weight: bold;
+}
+.my-pick-up-address .pick-up-item {
+  margin-top: 20rpx;
+  /* border-top: 2rpx solid #bbbbbb; */
+  display: flex;
+  flex-direction: row;
+}
+.my-pick-up-address .pick-up-item .pick-up-info {
+  flex: 6;
+}
+.my-pick-up-address .pick-up-item .pick-up-info .station-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+.my-pick-up-address .pick-up-item .pick-up-info .station-address {
+  font-weight: 500;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+  color: #5b5b5b;
+}
+.my-pick-up-address .pick-up-item .pick-up-info .station-phone {
+  margin-top: 10rpx;
+}
+.my-pick-up-address .pick-up-item .address-icon {
+  margin-top: 15rpx;
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my-pick-up-address .pick-up-item .address-icon image {
+  width: 35rpx;
+  height: 30rpx;
+  box-shadow: 0 2rpx 33rpx 2rpx rgba(0, 0, 0, 0.04);
+}
+.my-pick-up-address .pick-up-item .address-icon .text {
+  margin-top: 5rpx;
+  color: #ff5645;
+}
+/* 分销中心 & 青春豆商店 */
 .distribution-points-wrap {
   width: 710rpx;
   height: 126rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 12rpx;
   margin: 0 20rpx;
-  font-size:28rpx;
+  font-size: 28rpx;
   color: #333333;
   overflow: hidden;
   position: relative;
@@ -348,19 +402,19 @@ page {
   font-size: 28rpx;
 }
 .distribution-points-wrap .txt-left text:last-child {
-    color: #999999;
-    font-size:28rpx;
+  color: #999999;
+  font-size: 28rpx;
 }
 .distribution-points-wrap .img-right {
   width: 80rpx;
   height: 80rpx;
 }
 .distribution-points-wrap::after {
-  content: '';
+  content: "";
   display: inline-block;
   width: 2rpx;
   height: 60rpx;
-  background-color: #E1E1E1;
+  background-color: #e1e1e1;
   position: absolute;
   top: 0;
   left: 0;
@@ -374,12 +428,12 @@ page {
 .tools-wrap {
   width: 710rpx;
   height: 329rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   border-radius: 12rpx;
   margin: 20rpx 20rpx 0rpx 20rpx;
-  font-size:28rpx;
-  color: #5B5B5B;
+  font-size: 28rpx;
+  color: #5b5b5b;
   overflow: hidden;
 }
 .tools-wrap .title-txt {
@@ -417,7 +471,7 @@ page {
 }
 .tools-wrap .cloumn-item .item-img {
   margin-bottom: 8rpx;
-} 
+}
 
 .tools-wrap .item-img {
   width: 48rpx;
@@ -465,7 +519,7 @@ page {
   height: 28rpx;
   line-height: 28rpx;
   font-size: 22rpx;
-  background-color: #F52C32;
+  background-color: #f52c32;
   border-radius: 50rpx;
   text-align: center;
   color: #fff;
@@ -530,9 +584,9 @@ page {
   margin-top: 20rpx;
 }
 .recommend-products .pro-title .pro-activity-tag {
-  font-size:28rpx;
+  font-size: 28rpx;
   color: #fff;
-  background-color: #F81A1A;
+  background-color: #f81a1a;
   padding: 2rpx 10rpx;
   border-radius: 10rpx;
   display: inline-block;
@@ -548,7 +602,7 @@ page {
 }
 .recommend-products .pro-tag {
   color: #888888;
-  font-size:28rpx;
+  font-size: 28rpx;
   margin-top: 10rpx;
   width: 304rpx;
   overflow: hidden;
@@ -557,7 +611,7 @@ page {
   display: inline-block;
 }
 .recommend-products .pro-price {
-  color: #F81A1A;
+  color: #f81a1a;
   position: absolute;
   left: 20rpx;
   bottom: 20rpx;

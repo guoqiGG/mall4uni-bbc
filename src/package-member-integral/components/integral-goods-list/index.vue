@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <!-- 氢春豆商品列表组件 -->
+  <!-- 青春豆商品列表组件 -->
   <view class="Mall4j integral-item" @tap="toScoreProdDet(data.prodId)">
     <view class="img">
       <image v-if="data.pic" :src="data.pic" mode="aspectFit" @error="handlePicError()" />
@@ -61,7 +61,7 @@ export default {
 
   methods: {
     /**
-     * 跳转氢春豆商品详情
+     * 跳转青春豆商品详情
      */
     toScoreProdDet(prodId) {
       uni.navigateTo({

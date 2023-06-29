@@ -159,7 +159,7 @@
                 1、orderMold==1虚拟商品(支持买家申请退款时)
                 1.1 需要核销且还有未核销的券码
                 1.2 无需核销
-                2、金额为0且无使用氢春豆时不显示
+                2、金额为0且无使用青春豆时不显示
             -->
             <view
               v-if="!item.refundSn && canRefund && orderType !== 3 &&
@@ -376,7 +376,7 @@
             <view class="item-tit">{{ i18n.platformCoupons }}：</view>
             <view class="item-txt gray">-￥{{ parsePrice(platformCouponAmount)[0] }}.{{ parsePrice(platformCouponAmount)[1] }}</view>
           </view>
-          <!-- 氢春豆抵扣 -->
+          <!-- 青春豆抵扣 -->
           <view v-if="scoreAmount" class="item">
             <view class="item-tit">{{ i18n.pointsDeduction }}：</view>
             <view class="item-txt gray">-￥{{ parsePrice(scoreAmount)[0] }}.{{ parsePrice(scoreAmount)[1] }}</view>
@@ -438,13 +438,13 @@
           class="group-det"
           @tap="viewIinvoice(orderNumber,orderInvoiceId)"
         >{{ i18n.invoice.viewInvoice }}</view>
-        <view
+        <!-- <view
           v-if="isInvoice&&!isShowMore&&(!refundStatus || refundStatus === 4)"
           class="group-det"
           @tap="showInvoicePopup(shopId ,orderNumber)"
-        >{{ i18n.invoice.InvoicingRequest }}</view>
+        >{{ i18n.invoice.InvoicingRequest }}</view> -->
         <!-- 申请退款 -->
-        <!-- 金额为0且无使用氢春豆时不显示 -->
+        <!-- 金额为0且无使用青春豆时不显示 -->
         <view
           v-if="canAllRefund && orderType!=3 && orderMold !=1 && ((orderScore && !actualTotal) || actualTotal)"
           class="refund-full"
@@ -467,11 +467,11 @@
           class="more-popup-text"
           @tap="viewIinvoice(orderNumber,orderInvoiceId)"
         >{{ i18n.invoice.viewInvoice }}</view>
-        <view
+        <!-- <view
           v-if="isInvoice&&(!refundStatus || refundStatus === 4)"
           class="more-popup-text"
           @tap="showInvoicePopup(shopId ,orderNumber)"
-        >{{ i18n.invoice.InvoicingRequest }}</view>
+        >{{ i18n.invoice.InvoicingRequest }}</view> -->
       </view>
     </view>
     <invoiceEdit v-if="isShowInvoicePopup" :shop-id="invoiceShopId" :order-number="invoiceOrderNumber" @closePopup="closePopup" @getData="getOrderDataList" />
@@ -551,7 +551,7 @@ export default {
       stationName: '', // 自提点名称
 
       payType: '', // 订单支付类型
-      orderScore: 0, // 整单使用氢春豆
+      orderScore: 0, // 整单使用青春豆
       lat: '', // 经度
       lng: '', // 纬度
       // 当前订单可退金额
@@ -564,7 +564,7 @@ export default {
 
       // 优惠明细
       platformCouponAmount: 0, // 平台优惠券优惠金额
-      scoreAmount: 0, // 氢春豆抵扣
+      scoreAmount: 0, // 青春豆抵扣
       memberAmount: 0, // 会员折扣
       shopCouponMoney: 0, // 店铺优惠券
       discountMoney: 0, // 促销满减
@@ -740,7 +740,7 @@ export default {
         items.freeTransfee = this.freeTransfee // 运费减免
         items.status = this.status // 订单状态
         items.orderItemDtos = this.orderItemDtos
-        items.orderScore = this.orderScore // 整单氢春豆
+        items.orderScore = this.orderScore // 整单青春豆
         items.canRefundAmount = this.canRefundAmount
         items.buyerMobile = this.dvyType === 2 ? this.stationUserMobile : this.userAddrDto ? this.userAddrDto.mobile : ''
         // 将数据存储到本地
@@ -836,7 +836,7 @@ export default {
             canAllRefund: res.canAllRefund,
             payType: res.payType,
             dvyType: res.dvyType, // 配送类型 1:快递 2:自提 3：无需快递
-            orderScore: res.orderScore, // 整单使用氢春豆
+            orderScore: res.orderScore, // 整单使用青春豆
             // 当前订单可退款金额
             canRefundAmount: res.canRefundAmount,
             seckillId: res.seckillId,
@@ -846,7 +846,7 @@ export default {
             // 优惠明细
             freeTransfee: Math.abs(res.freeTransfee) || res.platformFreeFreightAmount, // 运费减免
             platformCouponAmount: res.platformCouponAmount, // 平台优惠券优惠金额
-            scoreAmount: res.scoreAmount, // 氢春豆抵扣
+            scoreAmount: res.scoreAmount, // 青春豆抵扣
             memberAmount: res.memberAmount, // 会员折扣
             shopCouponMoney: res.shopCouponMoney, // 店铺优惠券
             discountMoney: res.discountMoney, // 促销满减

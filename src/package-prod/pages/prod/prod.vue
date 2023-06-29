@@ -382,7 +382,7 @@
               <text>{{ prodType === 1 ? i18n.startAGroup : i18n.immediatelyBuy }}</text>
             </view>
           </block>
-          <!-- 氢春豆的按钮 -->
+          <!-- 青春豆的按钮 -->
           <block v-if="hadOnloaded && prodType == 3">
             <view class="btn pre-sale-buy cart-radius" @tap="showGroupSku">
               <text>{{ i18n.redeemNow }}</text>
@@ -755,7 +755,7 @@ export default {
       endOfGroupTimer: '',
       scene: '',
       prodDiscountList: [], // 商品促销活动列表
-      prodType: 0, // 商品类型(0普通商品 1拼团 2秒杀 3氢春豆 5活动商品)
+      prodType: 0, // 商品类型(0普通商品 1拼团 2秒杀 3青春豆 5活动商品)
       showDiscountPopup: false, // 促销弹窗显隐
       popupShowHiden: false, // 所有弹窗的显隐判断
 
@@ -824,7 +824,7 @@ export default {
     // #ifdef MP-WEIXIN
     this.isWechat = true
     // #endif
-console.log(1111,this.$Route.query.cardno)
+    // console.log(1111,this.$Route.query.cardno)
     this.setData({
       prodId: this.$Route.query.prodId,
       distributionCardNo: this.$Route.query.cardno || ''
@@ -1241,7 +1241,7 @@ console.log(1111,this.$Route.query.cardno)
             skuLoad: true,
             pic: res.pic,
             shopId: res.shopId,
-            prodType: prodType, // 商品类型(0普通商品 1拼团 2秒杀 3氢春豆 5活动商品)
+            prodType: prodType, // 商品类型(0普通商品 1拼团 2秒杀 3青春豆 5活动商品)
             mold: res.mold, // 1虚拟商品
             deliveryModeVO: res.deliveryModeVO, // 配送方式
             liveRoomParams: res.liveRoomParams, // 直播列表
@@ -1596,7 +1596,7 @@ console.log(1111,this.$Route.query.cardno)
 
     /**
      * 立即购买
-     * @param {Number} orderType 订单类型  0普通 1团购 2秒杀 3氢春豆
+     * @param {Number} orderType 订单类型  0普通 1团购 2秒杀 3青春豆
      */
     buyNow(orderType) {
       util.tapLog(3)
@@ -1618,7 +1618,7 @@ console.log(1111,this.$Route.query.cardno)
           shopId: this.shopId,
           distributionCardNo: this.distributionCardNo
         }
-        if (this.deliveryModeVO.hasUserPickUp == true && this.deliveryModeVO.hasShopDelivery == false) {
+        if (this.deliveryModeVO?.hasUserPickUp && !this.deliveryModeVO?.hasShopDelivery) {
           uni.setStorageSync('bbcDvyType', 2)
         }
         let url = `/package-prod/pages/submit-order/submit-order?orderEntry=1&orderType=${orderType}&mold=${this.mold}`
@@ -1649,10 +1649,10 @@ console.log(1111,this.$Route.query.cardno)
         }
         // else if (orderType == 3 && !this.defaultSku.price) {
         //   uni.setStorageSync('bbcOrderItem', Object.assign({}, orderItem))
-        //   // 纯氢春豆商品直接支付
+        //   // 纯青春豆商品直接支付
         //   return this.scorePay()
         // }
-        // 氢春豆商品需跳转支付页面
+        // 青春豆商品需跳转支付页面
         this.toSubmitOrder(orderItem, url)
       })
     },
@@ -1746,7 +1746,7 @@ console.log(1111,this.$Route.query.cardno)
     },
 
     /**
-     * 提交氢春豆订单
+     * 提交青春豆订单
      */
     submitScoreOrder(confirmOrderRes) {
       const orderShopParam = []

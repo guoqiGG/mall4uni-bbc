@@ -107,7 +107,7 @@
         <text class="message-tit">{{ i18n.OrderNotes }}：</text>
         <input class="message-int" maxlength="100" :placeholder="i18n.buyerTips" :value="remarks" @input="onRemarksInput"></input>
       </view>
-      <view class="item invoice">
+      <!-- <view class="item invoice">
         <view class="tit">{{ i18n.invoice.onvoiceIssuance }}：</view>
         <view
           v-if="!invoiceDataFrom.invoiceType || invoiceDataFrom.invoiceType === 2"
@@ -120,11 +120,10 @@
         </view>
         <view v-else class="item" @tap="showInvoicePopup(fullItemObj.shopId,invoiceDataFrom)">
           <view class="text-arrow">
-            <!-- <view class="text">本次不开具发票</view> -->
             <view class="text">{{ i18n.invoice.electronic }}({{ i18n.invoice.productDetails }}-{{ invoiceDataFrom.headerName || i18n.invoice.personal }})</view>
           </view>
         </view>
-      </view>
+      </view> -->
       <!-- <view v-if="mold == 1 && virtualRemarkList.length" class="item invoice all-msg">
         <view class="tit">全部留言：</view>
         <view class="item">

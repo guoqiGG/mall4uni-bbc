@@ -181,10 +181,10 @@
                   (item.orderInvoiceId && (item.status === 6 && item.refundStatus))) && item.status !== 1 && item.orderType !== 3 && (!item.returnMoneySts || item.returnMoneySts >= 6 || item.returnMoneySts === -1)"
                 class="button" @tap="viewIinvoice(item.orderNumber, item.orderInvoiceId)">{{ i18n.invoice.viewInvoice }}
               </view>
-              <view
+              <!-- <view
                 v-if="!item.orderInvoiceId && item.status !== 6 && item.status !== 1 && item.orderType !== 3 && (!item.returnMoneySts || item.returnMoneySts >= 6 || item.returnMoneySts === -1)"
                 class="button" @tap="showInvoicePopup(item.shopId, item.orderNumber)">{{ i18n.invoice.InvoicingRequest }}
-              </view>
+              </view> -->
               <text v-if="item.status == 1" class="button" @tap="onCancelOrder(item.orderNumber)">{{ i18n.cancelOrder
               }}</text>
               <text v-if="item.status == 1" class="button warn"
@@ -211,10 +211,10 @@
                 class="button" @tap="viewIinvoice(item.orderNumber, item.orderInvoiceId)">{{ i18n.invoice.viewInvoice }}
               </view>
 
-              <view
+              <!-- <view
                 v-if="!item.orderInvoiceId && item.status !== 6 && item.status !== 1 && item.orderType !== 3 && (!item.returnMoneySts || item.returnMoneySts >= 6 || item.returnMoneySts === -1)"
                 class="button" @tap="showInvoicePopup(item.shopId, item.orderNumber)">{{ i18n.invoice.InvoicingRequest }}
-              </view>
+              </view> -->
             </view>
           </view>
         </view>

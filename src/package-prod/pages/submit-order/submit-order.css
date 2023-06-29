@@ -163,13 +163,18 @@ page {
 
 .submit-order .address-box .tit {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	line-height: 40rpx;
 	font-size: 28rpx;
 }
 
 .submit-order .address-box .tit .text {
 	font-weight: 600;
+	margin-right: 10rpx;
+}
+.submit-order .address-box .tit .color{
+	font-weight: 400;
+	color: #000;
 }
 
 .submit-order .address-box .tit .total {
@@ -994,9 +999,9 @@ picker-view text {
 	color: #333;
 }
 
-/* 氢春豆抵扣 */
+/* 青春豆抵扣 */
 
-/* 会员氢春豆 */
+/* 会员青春豆 */
 .member-points {
 	display: flex;
 	justify-content: space-between;
@@ -1230,7 +1235,7 @@ picker-view text {
 	text-align: center;
 }
 
-/* 修改氢春豆弹出层 */
+/* 修改青春豆弹出层 */
 .score-pop {
 	position: absolute;
 	top: 50%;

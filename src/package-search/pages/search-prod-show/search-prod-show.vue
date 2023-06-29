@@ -251,8 +251,9 @@ export default {
         size: this.size,
         sort: this.sts || null,
         orderBy: this.sts ? this.orderBy : null,
-        isAllProdType: true,
-        isActive: 1 // 过滤掉活动商品
+        // isAllProdType: true,
+        isActive: 1 ,// 过滤掉活动商品
+        userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
       }
       this.isLoaded = false
       const params = {

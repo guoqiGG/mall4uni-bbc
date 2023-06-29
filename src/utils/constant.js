@@ -9,7 +9,7 @@
  */
 
 const PayType = {
-  SCOREPAY: 0, // 氢春豆支付
+  SCOREPAY: 0, // 青春豆支付
   WECHATPAY: 1, // 小程序支付
   ALIPAY: 2, // 支付宝支付
   WECHATPAY_SWEEP_CODE: 3, // 微信扫码支付

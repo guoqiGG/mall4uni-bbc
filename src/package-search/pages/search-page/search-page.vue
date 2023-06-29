@@ -26,7 +26,7 @@
           :value="searchKey"
           @confirm="toSearchProdPage"
           @input="getSearchContent"
-        ></input>
+        />
         <image src="/static/images/icon/search.png" class="search-img" />
       </view>
       <text class="search-hint" @tap="goBackIndex">{{ i18n.cancel }}</text>

@@ -235,7 +235,7 @@ export default {
       }
     },
 
-    // 获取用户氢春豆
+    // 获取用户青春豆
     getScore() {
       const params = {
         url: '/p/score/scoreInfo',

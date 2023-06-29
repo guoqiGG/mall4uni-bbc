@@ -202,6 +202,7 @@ swiper.pic-swiper .banner {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   text-align: left;
+  font-size: 32rpx;
 }
 .arrow {
   width: 15rpx;

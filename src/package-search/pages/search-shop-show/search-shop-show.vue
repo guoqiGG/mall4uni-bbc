@@ -21,7 +21,7 @@
             confirm-type="search"
             @input="getSearchContent"
             @confirm="toSearchConfirm"
-          ></input>
+          />
           <image src="/static/images/icon/search.png" class="search-img" />
         </view>
       </view>

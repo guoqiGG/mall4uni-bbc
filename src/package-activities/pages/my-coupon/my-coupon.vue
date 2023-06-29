@@ -23,11 +23,11 @@
         data-type="2"
         @tap="changeTab"
       >{{ i18n.usageRecord }}({{ useCount }})</view>
-      <view
+      <!-- <view
         :class="'h-tab ' + (type == 0 ? 'on' : '')"
         data-type="0"
         @tap="changeTab"
-      >{{ i18n.expired }}({{ expiredCount }})</view>
+      >{{ i18n.expired }}({{ expiredCount }})</view> -->
     </view>
     <view class="coupons">
       <block v-for="(item, id) in couponList" :key="id">

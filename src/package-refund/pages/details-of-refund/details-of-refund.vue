@@ -491,7 +491,7 @@ export default {
       // 退款原因
       buyerDesc: '', // 退款说明
       shopName: '', // 店铺名称
-      refundScore: '', // 氢春豆
+      refundScore: '', // 青春豆
       refundProdReasonArray: [], // 退款原因
       sellerMsg: '', // 卖家备注
       // 退款凭证
@@ -632,7 +632,7 @@ export default {
             // 退款原因
             buyerDesc: res.buyerDesc, // 退款说明
             shopName: res.shopName,
-            // 氢春豆数量
+            // 青春豆数量
             refundScore: res.refundScore,
             sellerMsg: res.sellerMsg, // 卖家备注
             // 退款凭证

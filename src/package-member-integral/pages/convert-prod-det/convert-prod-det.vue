@@ -10,7 +10,7 @@
 
 <template>
   <view :class="['Mall4j contenta', popupShowHiden ? 'page-hidden' : '']">
-    <!-- 氢春豆兑换商品详情 -->
+    <!-- 青春豆兑换商品详情 -->
     <view class="container">
       <!-- 轮播图 -->
       <view class="swiper-con">
@@ -59,7 +59,7 @@
         </view>
         <view class="sales-p">{{ brief }}</view>
 
-        <!-- 氢春豆商品价格 -->
+        <!-- 青春豆商品价格 -->
         <view v-if="defaultSku" class="integral-prod-price">
           <block
             v-if="price"
@@ -98,7 +98,7 @@
       <!-- 商品详情end -->
     </view>
 
-    <!-- 氢春豆 底部按钮 -->
+    <!-- 青春豆 底部按钮 -->
     <view class="ex-integral-foot">
       <view class="ex-integral-btn" @tap="redeemNow">{{ i18n.redeemNow }}</view>
     </view>
@@ -317,7 +317,7 @@ export default {
             pic: res.pic,
             shopId: res.shopId,
             video: res.video ? res.video : '',
-            scorePrice: res.scorePrice, // 氢春豆价格
+            scorePrice: res.scorePrice, // 青春豆价格
             defaultPrice: res.price
           })
           // 初始化视频

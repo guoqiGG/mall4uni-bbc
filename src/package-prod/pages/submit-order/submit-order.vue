@@ -16,58 +16,39 @@
         <!-- 收货方式 -->
         <view v-if="selectDistributionWay && mold !== 1" class="distribution-mode">
           <view class="item-box">
-            <view v-if="showMailHome&&!distributionUserId"  :class="[isDistribution ? 'active' : '', 'item']" @tap="changeDistribution(0)">{{ i18n.mailToHome }}</view>
-            <view :class="[isDistribution ? '' : 'active', 'item']" @tap="changeDistribution(1)">{{ i18n.pickStore }}</view>
+            <view v-if="showMailHome && !distributionUserId" :class="[isDistribution ? 'active' : '', 'item']"
+              @tap="changeDistribution(0)">{{ i18n.mailToHome }}</view>
+            <view :class="[isDistribution ? '' : 'active', 'item']" @tap="changeDistribution(1)">{{ i18n.pickStore }}
+            </view>
           </view>
         </view>
         <!-- 邮寄到家 -->
-        <view v-if="isDistribution && mold !== 1 && showMailHome&&!distributionUserId" class="address-box">
+        <view v-if="isDistribution && mold !== 1 && showMailHome && !distributionUserId" class="address-box">
           <view v-if="!userAddr || isEditAddr">
             <view class="tit">
               <view v-if="!addressList.length" class="text">{{ i18n.fillReceivingInformation }}</view>
               <view v-if="addressList.length" class="text">{{ i18n.historicalAddress }}</view>
-              <view v-if="addressList.length" class="total" @tap="addressListPop">{{ i18n.inTotal }}{{ addressList.length }}{{ i18n.itemGe }}</view>
+              <view v-if="addressList.length" class="total" @tap="addressListPop">{{ i18n.inTotal }}{{ addressList.length
+              }}{{ i18n.itemGe }}</view>
             </view>
             <view class="add-box">
               <view class="add-item">
                 <view class="text">{{ i18n.consignee }}</view>
-                <input
-                  type="text"
-                  class="input"
-                  :value="receiver"
-                  maxlength="15"
-                  :placeholder="i18n.consigneeTips"
-                  @input="onReceiverInput"
-                  @click="hideTabbar"
-                  @focus="hideTabbar"
-                  @blur="showTabbar"
-                >
+                <input type="text" class="input" :value="receiver" maxlength="15" :placeholder="i18n.consigneeTips"
+                  @input="onReceiverInput" @click="hideTabbar" @focus="hideTabbar" @blur="showTabbar">
               </view>
               <view class="add-item">
                 <view class="text">{{ i18n.mobilePhone }}</view>
-                <input
-                  type="number"
-                  class="input"
-                  :value="mobile"
-                  :placeholder="i18n.enterContactNumber"
-                  maxlength="11"
-                  @input="onMobileInput"
-                  @click="hideTabbar"
-                  @focus="hideTabbar"
-                  @blur="showTabbar"
-                >
+                <input type="number" class="input" :value="mobile" :placeholder="i18n.enterContactNumber" maxlength="11"
+                  @input="onMobileInput" @click="hideTabbar" @focus="hideTabbar" @blur="showTabbar">
               </view>
               <view class="add-item" @tap="translate">
                 <view class="text">{{ i18n.yourRegion }}</view>
                 <view class="area" @input="onMobileInput" @click="hideTabbar" @focus="hideTabbar" @blur="showTabbar">
                   <view v-if="province" class="area-content">{{ province + ' ' + city + ' ' + area }}</view>
                   <view v-if="!province || !saveEditFlag" class="placeholder-text">{{ i18n.selectProvinceCity }}</view>
-                  <view
-                    class="animation-element-wrapper"
-                    :animation="animation"
-                    :style="'visibility:' + (show ? 'visible' : 'hidden')"
-                    @tap.stop="hiddenFloatViewScreenClick"
-                  >
+                  <view class="animation-element-wrapper" :animation="animation"
+                    :style="'visibility:' + (show ? 'visible' : 'hidden')" @tap.stop="hiddenFloatViewScreenClick">
                     <view class="animation-element" @tap.stop="nono">
                       <text class="right-bt" @tap.stop="hiddenFloatView">{{ i18n.confirm }}</text>
                       <view class="line" />
@@ -91,17 +72,8 @@
               </view>
               <view class="add-item">
                 <view class="text">{{ i18n.detailedAddress }}</view>
-                <input
-                  type="text"
-                  maxlength="50"
-                  class="input"
-                  :value="addr"
-                  :placeholder="i18n.enteDetailedAddress"
-                  @input="onAddrInput"
-                  @click="hideTabbar"
-                  @focus="hideTabbar"
-                  @blur="showTabbar"
-                >
+                <input type="text" maxlength="50" class="input" :value="addr" :placeholder="i18n.enteDetailedAddress"
+                  @input="onAddrInput" @click="hideTabbar" @focus="hideTabbar" @blur="showTabbar">
                 <image class="addres-icon" src="/static/images/icon/submit-address.png" @tap="selectLoaction" />
               </view>
               <view class="add-item">
@@ -110,7 +82,8 @@
             </view>
           </view>
           <view v-if="userAddr && !isEditAddr" class="current-address">
-            <view class="c-address">{{ userAddr.province }}{{ userAddr.city }}{{ userAddr.area }}{{ userAddr.addr }}</view>
+            <view class="c-address">{{ userAddr.province }}{{ userAddr.city }}{{ userAddr.area }}{{ userAddr.addr }}
+            </view>
             <view class="c-user">{{ userAddr.receiver }} {{ userAddr.mobile }}</view>
             <view class="c-edit" @tap="toAddrListPage">
               <image src="/static/images/icon/revise.png" />
@@ -118,7 +91,8 @@
           </view>
           <view v-if="canChooseSameCity && canChooseSameCity !== -2" class="choose-way" @tap="distributionPop">
             <view class="text">{{ i18n.deliveryMethod }}</view>
-            <view class="go">{{ dvyType == 1 ? i18n.expressDelivery : dvyType == 4 ? i18n.sameDelivery : i18n.selectDeliveryMethod }}</view>
+            <view class="go">{{ dvyType == 1 ? i18n.expressDelivery : dvyType == 4 ? i18n.sameDelivery :
+              i18n.selectDeliveryMethod }}</view>
           </view>
         </view>
         <!-- /邮寄到家 -->
@@ -129,10 +103,14 @@
           <view class="self-raising">
             <view class="tit">
               <view class="text">{{ i18n.pickup }}</view>
+              <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
+              <view class="text color" v-if="station.phone">
+                {{ station.phonePrefix }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}</view>
             </view>
-            <view class="choose-store" @tap="goSelectStore">
+            <view class="choose-store" @tap="goSelectStore" v-if="!station.province">
               <image src="/static/images/icon/submit-address.png" class="img" />
-              <view v-if="selStationItem.province" class="text">{{ selStationItem.province }}{{ selStationItem.city }}{{ selStationItem.area }}{{ selStationItem.addr }}</view>
+              <view v-if="selStationItem.province" class="text">{{ selStationItem.province }}{{ selStationItem.city }}{{
+                selStationItem.area }}{{ selStationItem.addr }}</view>
               <view v-if="!selStationItem.province" class="text">{{ i18n.selectPickUpAddress }}</view>
             </view>
           </view>
@@ -147,33 +125,15 @@
             </view>
 
             <view class="user-info">
-              <input
-                type="text"
-                class="input"
-                :disabled="disabled"
-                :value="stationUserName"
-                :placeholder="i18n.enterNamePerson"
-                maxlength="15"
-                @input="getConsigneeInt"
-                @click="hideTabbar"
-                @focus="hideTabbar"
-                @blur="showTabbar"
-              >
+              <input type="text" class="input" :disabled="disabled" :value="stationUserName"
+                :placeholder="i18n.enterNamePerson" maxlength="15" @input="getConsigneeInt" @click="hideTabbar"
+                @focus="hideTabbar" @blur="showTabbar">
             </view>
             <view :class="['item', errorTips ? 'error' : '']">
               <view class="user-info">
-                <input
-                  type="number"
-                  class="input"
-                  :disabled="disabled"
-                  :value="stationUserMobile"
-                  :placeholder="i18n.enterPhonePerson"
-                  maxlength="11"
-                  @input="getConMobileInt"
-                  @click="hideTabbar"
-                  @focus="hideTabbar"
-                  @blur="showTabbar"
-                >
+                <input type="number" class="input" :disabled="disabled" :value="stationUserMobile"
+                  :placeholder="i18n.enterPhonePerson" maxlength="11" @input="getConMobileInt" @click="hideTabbar"
+                  @focus="hideTabbar" @blur="showTabbar">
               </view>
               <view v-if="errorTips == 1" class="error-text">
                 <text class="warning-icon">!</text>
@@ -182,10 +142,10 @@
             </view>
           </view>
           <!-- 提货时间 -->
-          <view class="choose-way" @tap="raisingTimePop">
+          <!-- <view class="choose-way" @tap="raisingTimePop">
             <view class="text">{{ i18n.takeDeliveryTime }}</view>
             <view class="go">{{ timeContent ? dateContent + ' ' + timeContent : i18n.choosePickUpTime }}</view>
-          </view>
+          </view> -->
         </view>
         <!-- /到店自提 -->
 
@@ -203,9 +163,11 @@
             <!-- 店铺商品明细 -->
             <view class="prod-item">
               <view v-for="(shopCartItem, index2) in shopCart.shopCartItemDiscounts" :key="index2">
-                <view :class="[ 'prod-block', shopCartItem.chooseDiscountItemDto || shopCartItem.chooseComboItemDto ? 'discount' : '', ]">
+                <view
+                  :class="['prod-block', shopCartItem.chooseDiscountItemDto || shopCartItem.chooseComboItemDto ? 'discount' : '',]">
                   <!-- 满减提示 -->
-                  <view v-if=" shopCartItem.chooseDiscountItemDto" class="discount-tips" :hidden="!shopCartItem.chooseDiscountItemDto">
+                  <view v-if="shopCartItem.chooseDiscountItemDto" class="discount-tips"
+                    :hidden="!shopCartItem.chooseDiscountItemDto">
                     <text class="text-block">{{
                       [
                         i18n.amount,
@@ -215,45 +177,54 @@
                       ][shopCartItem.chooseDiscountItemDto.discountRule]
                     }}</text>
                     <text class="text-list">
-                      {{ parseDiscountMsg( shopCartItem.chooseDiscountItemDto.discountRule, shopCartItem.chooseDiscountItemDto.needAmount, shopCartItem.chooseDiscountItemDto.discount, curLang ) }}
+                      {{ parseDiscountMsg(shopCartItem.chooseDiscountItemDto.discountRule,
+                        shopCartItem.chooseDiscountItemDto.needAmount, shopCartItem.chooseDiscountItemDto.discount, curLang
+                      ) }}
                     </text>
                     <text class="reduce-amount">
-                      {{ i18n.haveDiscount }} ￥{{ toFixxed( shopCartItem.chooseDiscountItemDto.reduceAmount ) }}
+                      {{ i18n.haveDiscount }} ￥{{ toFixxed(shopCartItem.chooseDiscountItemDto.reduceAmount) }}
                     </text>
                   </view>
                   <!-- 套餐提示 -->
-                  <view v-if="shopCartItem.chooseComboItemDto" class="discount-tips" :hidden="!shopCartItem.chooseComboItemDto">
+                  <view v-if="shopCartItem.chooseComboItemDto" class="discount-tips"
+                    :hidden="!shopCartItem.chooseComboItemDto">
                     <text class="text-block">{{ i18n.packages }}</text>
                     <text class="text-list">{{ shopCartItem.chooseComboItemDto.name }}</text>
-                    <text class="reduce-amount">{{ i18n.haveDiscount }} ￥{{ toFixxed( shopCartItem.chooseComboItemDto.preferentialAmount ) }}</text>
+                    <text class="reduce-amount">{{ i18n.haveDiscount }} ￥{{ toFixxed(
+                      shopCartItem.chooseComboItemDto.preferentialAmount) }}</text>
                   </view>
                   <!-- 商品信息 -->
                   <view class="item-box">
-                    <view v-for="(item, prodIndex) in shopCartItem.shopCartItems" :key="prodIndex" :class="[ false ? 'pre-sell' : '', 'item-cont', ]">
+                    <view v-for="(item, prodIndex) in shopCartItem.shopCartItems" :key="prodIndex"
+                      :class="[false ? 'pre-sell' : '', 'item-cont',]">
                       <view class="info-row">
                         <view class="prod-pic">
-                          <image v-if="item.pic && !item.isPicError" mode="aspectFit" :src="item.pic" @error="handlePicError(item)" />
+                          <image v-if="item.pic && !item.isPicError" mode="aspectFit" :src="item.pic"
+                            @error="handlePicError(item)" />
                           <image v-else src="/static/images/icon/def.png" mode="aspectFit" />
                         </view>
                         <view class="prod-info">
-                          <view class="prodname" :style="orderType ? '-webkit-line-clamp:1;' : '-webkit-line-clamp:2'">{{ item.prodName }}</view>
+                          <view class="prodname" :style="orderType ? '-webkit-line-clamp:1;' : '-webkit-line-clamp:2'">{{
+                            item.prodName }}</view>
                           <view class="prod-info-cont">
                             <!-- 订单类型 -->
                             <view v-if="orderType" class="order-type-icon">
                               <!-- 订单类型(0普通订单 1团购订单 2秒杀订单) -->
-                              {{ ['',i18n.aGroup,i18n.spike,i18n.integral][orderType] }}
+                              {{ ['', i18n.aGroup, i18n.spike, i18n.integral][orderType] }}
                             </view>
                             <!-- 订单类型 end -->
                             {{ item.skuName || '' }}
                           </view>
-                          <view v-if="item.preSellTime" class="prod-info-cont">{{ tsToDate(item.preSellTime) }}&nbsp;{{ $t('index.startDelivery') }}</view>
+                          <view v-if="item.preSellTime" class="prod-info-cont">{{ tsToDate(item.preSellTime) }}&nbsp;{{
+                            $t('index.startDelivery') }}</view>
                           <view class="price-nums">
                             <view class="prodprice">
                               <text v-if="item.price" class="symbol">￥</text>
                               <text v-if="item.price" class="big-num">{{ parsePrice(item.price)[0] }}</text>
                               <text v-if="item.price" class="small-num">.{{ parsePrice(item.price)[1] }}</text>
                               <text v-if="orderType === 3 && actualTotal > transFee" class="small-num"> + </text>
-                              <text v-if="orderType === 3" class="big-num">{{ item.scorePrice / item.prodCount }} {{ i18n.integral }}</text>
+                              <text v-if="orderType === 3" class="big-num">{{ item.scorePrice / item.prodCount }} {{
+                                i18n.integral }}</text>
                             </view>
                             <view class="prodcount">×{{ item.prodCount }}</view>
                           </view>
@@ -261,7 +232,8 @@
                       </view>
                       <!-- 赠品信息 -->
                       <view v-if="item.giveaway" class="gift-con">
-                        <view v-for="(giveawayItem, giveawayIndex) in item.giveaway .giveawayProds" :key="giveawayIndex" class="gift-item">
+                        <view v-for="(giveawayItem, giveawayIndex) in item.giveaway.giveawayProds" :key="giveawayIndex"
+                          class="gift-item">
                           <view class="gift-name">
                             【{{ i18n.Giveaways }}】{{ giveawayItem.prodName }}
                             <text v-if="giveawayItem.skuName" class="gift-sku">{{ giveawayItem.skuName || '' }}</text>
@@ -276,14 +248,9 @@
                             <text v-if="msgItem.isRequired" class="stress">*</text>
                           </view>
                           <view class="v-msg-con">
-                            <input
-                              v-model="msgItem.value"
-                              class="v-msg-input"
-                              placeholder-class="ph-class"
-                              :placeholder="i18n.pleaseEnter + `${msgItem.name}`"
-                              maxlength="20"
-                              @blur="handleInputBlur(msgItem.value, msgIndex, prodIndex, index2, index)"
-                            >
+                            <input v-model="msgItem.value" class="v-msg-input" placeholder-class="ph-class"
+                              :placeholder="i18n.pleaseEnter + `${msgItem.name}`" maxlength="20"
+                              @blur="handleInputBlur(msgItem.value, msgIndex, prodIndex, index2, index)">
                           </view>
                         </view>
                       </view>
@@ -323,7 +290,8 @@
                 <view class="text-box">
                   <text class="text">{{ i18n.coupon }}：</text>
                   <text v-if="!shopCart.shopCoupons.canUseLength" class="number">{{ i18n.notAvailable }}</text>
-                  <text v-else class="number">{{ shopCart.shopCoupons.canUseLength }}&nbsp;{{ i18n.zhangAvailable }}</text>
+                  <text v-else class="number">{{ shopCart.shopCoupons.canUseLength }}&nbsp;{{ i18n.zhangAvailable
+                  }}</text>
                 </view>
                 <view v-if="shopCart.shopCoupons.couponAmount > 0" class="amount">
                   <text class="symbol">-￥</text>
@@ -334,19 +302,10 @@
               <!-- / 店铺优惠券 -->
               <view class="item">
                 <view class="tit">{{ i18n.OrderNotes }}：</view>
-                <input
-                  class="input"
-                  maxlength="100"
-                  :placeholder="i18n.storeNotesTips"
-                  :value="shopCart.remarks"
-                  :data-index="index"
-                  @input="onRemarkIpt"
-                  @click="hideTabbar"
-                  @focus="hideTabbar"
-                  @blur="showTabbar"
-                >
+                <input class="input" maxlength="100" :placeholder="i18n.storeNotesTips" :value="shopCart.remarks"
+                  :data-index="index" @input="onRemarkIpt" @click="hideTabbar" @focus="hideTabbar" @blur="showTabbar">
               </view>
-              <view v-if="orderType !== 3" class="item invoice">
+              <!-- <view v-if="orderType !== 3" class="item invoice">
                 <view class="tit invoice-title">{{ i18n.invoice.onvoiceIssuance }}：</view>
                 <view v-if=" !shopCart.invoiceDataFrom || shopCart.invoiceDataFrom.invoiceType === 2 " @tap="showInvoicePopup(shopCart.shopId)">
                   <view class="text-arrow">
@@ -358,7 +317,7 @@
                     <view class="text">{{ i18n.invoice.electronic }}({{ i18n.invoice.productDetails }}-{{ shopCart.invoiceDataFrom.headerName || i18n.invoice.personal }})</view>
                   </view>
                 </view>
-              </view>
+              </view> -->
             </view>
             <!-- /店铺优惠券和买家留言 -->
           </view>
@@ -367,7 +326,8 @@
           <view v-if="filterShopItems && filterShopItems.length > 0" class="useless">
             <view class="u-reason">
               {{ i18n.productsNotSupported }}
-              {{ [ '', i18n.expressDelivery, i18n.pickStore, '', i18n.sameDelivery, ][dvyType] }}，{{ i18n.chooseAnotherDelivery }}
+              {{ ['', i18n.expressDelivery, i18n.pickStore, '', i18n.sameDelivery,][dvyType] }}，{{
+                i18n.chooseAnotherDelivery }}
             </view>
             <scroll-view scroll-x="true" class="u-con">
               <view class="u-box">
@@ -394,7 +354,7 @@
               <text class="small-num">.{{ parsePrice(platformCoupons.couponAmount)[1] }}</text>
             </view>
           </view>
-          <!-- 会员氢春豆 -->
+          <!-- 会员青春豆 -->
           <view v-if="maxUsableScore > 0" class="item coupon">
             <view class="member-points">
               <view class="integral-wrap">
@@ -416,12 +376,7 @@
                     <text class="tips">{{ i18n.notUsePoints }}</text>
                     <view class="integral-right-select">
                       <label>
-                        <checkbox
-                          color="#F81A1A"
-                          value="isScorePay"
-                          :checked="isChecked"
-                          @tap.stop="useMemberPoints"
-                        />
+                        <checkbox color="#F81A1A" value="isScorePay" :checked="isChecked" @tap.stop="useMemberPoints" />
                       </label>
                     </view>
                   </view>
@@ -471,9 +426,7 @@
             <view class="price">
               <text class="symbol">-￥</text>
               <text class="big-num">{{ parsePrice(totalLevelAmount)[0] }}</text>
-              <text
-                class="small-num"
-              >.{{ parsePrice(totalLevelAmount)[1] }}</text>
+              <text class="small-num">.{{ parsePrice(totalLevelAmount)[1] }}</text>
             </view>
           </view>
           <!-- 店铺优惠总额（优惠券+满减满折促销） -->
@@ -482,19 +435,15 @@
             <view class="price">
               <text class="symbol">-￥</text>
               <text class="big-num">{{ parsePrice(orderShopReduce)[0] }}</text>
-              <text
-                class="small-num"
-              >.{{ parsePrice(orderShopReduce)[1] }}</text>
+              <text class="small-num">.{{ parsePrice(orderShopReduce)[1] }}</text>
             </view>
           </view>
-          <view v-if="orderReduce && (orderType === 1 || orderType === 2) " class="item">
+          <view v-if="orderReduce && (orderType === 1 || orderType === 2)" class="item">
             <view class="item-tit">{{ orderType === 1 ? i18n.groupPurchaseOffer : i18n.seckillReduce }}：</view>
             <view class="price">
               <text class="symbol">-￥</text>
               <text class="big-num">{{ parsePrice(orderReduce)[0] }}</text>
-              <text
-                class="small-num"
-              >.{{ parsePrice(orderReduce)[1] }}</text>
+              <text class="small-num">.{{ parsePrice(orderReduce)[1] }}</text>
             </view>
           </view>
         </view>
@@ -521,7 +470,9 @@
             </view>
           </view>
         </view>
-        <view class="footer-box" :style="filterShopItems && filterShopItems.length > 0 && shopCartOrders.length === 0 ? 'background: #909399;' : 'background: #F81A1A;' " @tap.stop="toPay">
+        <view class="footer-box"
+          :style="filterShopItems && filterShopItems.length > 0 && shopCartOrders.length === 0 ? 'background: #909399;' : 'background: #F81A1A;'"
+          @tap.stop="toPay">
           {{ i18n.submitOrders }}
         </view>
       </view>
@@ -545,35 +496,26 @@
         <view :class="'popup-cnt ' + (couponSts == 2 ? 'on' : '')">
           <view v-if="couponSts == 1" class="coupon-con">
             <block v-for="(item, index) in showCoupons.canUseCoupons" :key="index">
-              <coupon
-                :item="item"
-                :order="order"
-                :index="index"
-                :is-shop-coupon="isShopCoupon"
-                :can-use="isCanUse"
-                @checkCoupon="checkCoupon"
-              />
+              <coupon :item="item" :order="order" :index="index" :is-shop-coupon="isShopCoupon" :can-use="isCanUse"
+                @checkCoupon="checkCoupon" />
             </block>
           </view>
           <view v-if="couponSts == 2" class="coupon-con">
             <block v-for="(item, index) in showCoupons.unCanUseCoupons" :key="index">
-              <coupon
-                :item="item"
-                :order="order"
-                :can-use="!isCanUse"
-                :is-shop-coupon="isShopCoupon"
-              />
+              <coupon :item="item" :order="order" :can-use="!isCanUse" :is-shop-coupon="isShopCoupon" />
             </block>
           </view>
-          <view v-if="couponSts == 1 && !showCoupons.canUseCoupons.length" class="botm-empty">{{ i18n.getCouponTips }}</view>
-          <view v-if="couponSts == 2 && !showCoupons.unCanUseCoupons.length" class="botm-empty">{{ i18n.NoRelevantCoupons }}</view>
+          <view v-if="couponSts == 1 && !showCoupons.canUseCoupons.length" class="botm-empty">{{ i18n.getCouponTips }}
+          </view>
+          <view v-if="couponSts == 2 && !showCoupons.unCanUseCoupons.length" class="botm-empty">{{ i18n.NoRelevantCoupons
+          }}</view>
         </view>
         <view v-if="couponSts == 1" class="coupon-ok">
           <view class="btn" @tap="choosedCoupon">{{ i18n.confirm }}</view>
         </view>
       </view>
     </view>
-    <!-- 氢春豆输入框弹窗 -->
+    <!-- 青春豆输入框弹窗 -->
     <view class="popup-hide" :hidden="!showScorePop">
       <view class="score-pop">
         <view class="popup-tit">
@@ -582,17 +524,8 @@
         </view>
         <view class="score-pop-con">
           <view class="score-pop-item">
-            <input
-              class="score-int"
-              type="number"
-              :value="userUseScore"
-              :placeholder="i18n.enterPoints"
-              maxlength="8"
-              @input="handleScoreInput"
-              @click="hideTabbar"
-              @focus="hideTabbar"
-              @blur="showTabbar"
-            >
+            <input class="score-int" type="number" :value="userUseScore" :placeholder="i18n.enterPoints" maxlength="8"
+              @input="handleScoreInput" @click="hideTabbar" @focus="hideTabbar" @blur="showTabbar">
             <text class="usable-tips">{{ orderScorePlaceHolder }}</text>
             <view v-if="shopUseScore > 100" class="usable-tips">{{ i18n.multipleOf10 }}</view>
           </view>
@@ -614,21 +547,11 @@
           <radio-group @change="disRadioChange">
             <label class="distribution-item">
               <view class="text">{{ i18n.expressDelivery }}</view>
-              <radio
-                color="#eb2444"
-                class="check"
-                value="1"
-                :checked="dvyType == 1"
-              />
+              <radio color="#eb2444" class="check" value="1" :checked="dvyType == 1" />
             </label>
             <label class="distribution-item">
               <view class="text">{{ i18n.sameDelivery }}</view>
-              <radio
-                color="#eb2444"
-                class="check"
-                value="4"
-                :checked="dvyType == 4"
-              />
+              <radio color="#eb2444" class="check" value="4" :checked="dvyType == 4" />
             </label>
           </radio-group>
         </view>
@@ -653,12 +576,7 @@
                 </view>
                 <view class="user">{{ item.receiver }} {{ item.mobile }}</view>
               </view>
-              <radio
-                color="#eb2444"
-                class="check"
-                :value="String(item.addrId)"
-                :checked="addrId == item.addrId"
-              />
+              <radio color="#eb2444" class="check" :value="String(item.addrId)" :checked="addrId == item.addrId" />
             </view>
           </radio-group>
         </view>
@@ -672,7 +590,7 @@
           <view class="close" @tap="closePopup" />
           <view class="tit-text">{{ i18n.historicalPickPerson }}</view>
         </view>
-        <view v-if="!stationUserInfo||stationUserInfo.length == 0" class="noData">{{ i18n.noData }}</view>
+        <view v-if="!stationUserInfo || stationUserInfo.length == 0" class="noData">{{ i18n.noData }}</view>
         <view v-if="stationUserInfo && stationUserInfo.length > 0" class="address-box">
           <radio-group v-for="(item, index) in stationUserInfo" :key="index" @change="stationRadioChange">
             <view class="item">
@@ -686,13 +604,8 @@
                   <view>{{ item.stationUserMobile }}</view>
                 </view>
               </view>
-              <radio
-                color="#eb2444"
-                class="check"
-                :value="String(index)"
-                :checked="stationIdx == index"
-                @tap="getStationItem(item)"
-              />
+              <radio color="#eb2444" class="check" :value="String(index)" :checked="stationIdx == index"
+                @tap="getStationItem(item)" />
             </view>
           </radio-group>
         </view>
@@ -708,25 +621,17 @@
         </view>
         <view class="time-box">
           <view v-if="selStationItem && timeParams" class="day-box">
-            <view
-              v-for="(item, dateIdx) in timeParams"
-              :key="dateIdx"
-              :class="['item', dateIndex == dateIdx ? 'active' : '']"
-              @tap="changeData(item, dateIdx)"
-            >{{ item.dateTime }}</view>
+            <view v-for="(item, dateIdx) in timeParams" :key="dateIdx"
+              :class="['item', dateIndex == dateIdx ? 'active' : '']" @tap="changeData(item, dateIdx)">{{ item.dateTime }}
+            </view>
           </view>
           <block v-if="timeParams[dateIndex]">
             <view v-if="timeParams[dateIndex].hourTimes" class="hour-box">
               <radio-group v-for="(timeItem, timeIdx) in timeParams[dateIndex].hourTimes" :key="timeIdx">
                 <view class="item" @tap="changeTime(timeItem, timeIdx)">
                   <view :class="['number', timeIndex == timeIdx ? 'red-word' : '']">{{ timeItem }}</view>
-                  <radio
-                    v-if="timeIndex == timeIdx"
-                    color="#eb2444"
-                    class="check"
-                    :checked="timeIndex == timeIdx"
-                    :value="String(timeIdx)"
-                  />
+                  <radio v-if="timeIndex == timeIdx" color="#eb2444" class="check" :checked="timeIndex == timeIdx"
+                    :value="String(timeIdx)" />
                 </view>
               </radio-group>
             </view>
@@ -756,14 +661,8 @@
       </view>
     </view>
 
-    <invoiceEdit
-      v-if="isShowInvoicePopup"
-      :invoice-data-from="invoiceDataFrom"
-      :shop-id="invoiceShopId"
-      :invoice-id="invoiceId"
-      @closePopup="closePopup"
-      @getInvoiceData="getInvoiceData"
-    />
+    <invoiceEdit v-if="isShowInvoicePopup" :invoice-data-from="invoiceDataFrom" :shop-id="invoiceShopId"
+      :invoice-id="invoiceId" @closePopup="closePopup" @getInvoiceData="getInvoiceData" />
   </view>
 </template>
 
@@ -789,7 +688,7 @@ export default {
     return {
       popupShow: false,
       orderEntry: '0', // 订单入口 0购物车 1立即购买
-      orderType: 0, // 订单类型(0普通商品 1拼团 2秒杀 3氢春豆)
+      orderType: 0, // 订单类型(0普通商品 1拼团 2秒杀 3青春豆)
       userAddr: null,
       orderItems: [],
       shopCartOrders: [],
@@ -816,24 +715,24 @@ export default {
       userChangeCoupon: 0, // 用户有没有对优惠券进行改变
       orderReduce: 0,
       choose: true,
-      totalScoreAmount: 0, // 氢春豆抵扣金额
-      totalUsableScore: 0, // 整个订单可以使用的氢春豆数
-      isScorePay: 0, // 用户是否选择氢春豆抵现(0不使用 1使用 默认不使用)
-      isChecked: false, // 是否选择会员氢春豆抵现
-      isProhibit: false, // （氢春豆抵现）checkbox是否禁止
+      totalScoreAmount: 0, // 青春豆抵扣金额
+      totalUsableScore: 0, // 整个订单可以使用的青春豆数
+      isScorePay: 0, // 用户是否选择青春豆抵现(0不使用 1使用 默认不使用)
+      isChecked: false, // 是否选择会员青春豆抵现
+      isProhibit: false, // （青春豆抵现）checkbox是否禁止
       totalLevelAmount: 0, // 等级抵扣金额
       freeTransFee: 0, // 用户等级免运费金额
       orderShopReduce: '', // 店铺总优惠金额（满减满折+店铺优惠券）
       isCanUse: true,
       order: true,
       editorFlag: false, // 用户点击编辑按钮所在区域隐藏
-      userUseScore: '', // 氢春豆数量
-      userUseScoreHis: '', // 氢春豆数量
-      scorePlaceholder: '', // 氢春豆抵扣的占位符
-      accountCanUseScore: 0, // 用户当前可用氢春豆
-      shopUseScore: '', // 氢春豆抵现比例
-      maxUsableScore: '', // 最大可用氢春豆
-      showScorePop: false, // 氢春豆输入弹窗显隐
+      userUseScore: '', // 青春豆数量
+      userUseScoreHis: '', // 青春豆数量
+      scorePlaceholder: '', // 青春豆抵扣的占位符
+      accountCanUseScore: 0, // 用户当前可用青春豆
+      shopUseScore: '', // 青春豆抵现比例
+      maxUsableScore: '', // 最大可用青春豆
+      showScorePop: false, // 青春豆输入弹窗显隐
       isEditAddr: false, // 编辑地址
       showDistributionPop: false, // 选择物流方式弹窗
       addressList: [], // 地址列表
@@ -875,7 +774,7 @@ export default {
       timeContent: '', // 选中的时间
       dateContent: '', // 选中的日期
       selectDistributionWay: false, // 选择订单发货方式
-      orderScorePlaceHolder: '', // 氢春豆弹窗输入框订单可使用氢春豆提示占位符
+      orderScorePlaceHolder: '', // 青春豆弹窗输入框订单可使用青春豆提示占位符
       disabled: false, // 是否禁止输入框输入
       selStation: '', // 是否选择自提点
       errorTips: 0, // 错误提示
@@ -921,8 +820,9 @@ export default {
       scorePrice: 0,
       startDeliveryFee: 0,
       module: '',
-      showMailHome:true,
-      distributionUserId:'',// 团长ID
+      showMailHome: true,
+      distributionUserId: '',// 团长ID
+      station: {}
     }
   },
 
@@ -935,13 +835,12 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 获取省市区列表数据
     // this.getAreaListInfo()
-    if(uni.getStorageSync('bbcDvyType')==2||options.dvyType==2){
-      this.showMailHome=false
+    if (uni.getStorageSync('bbcDvyType') == 2 || options.dvyType == 2) {
+      this.showMailHome = false
     }
-    const that = this
     this.dvyType = uni.getStorageSync('bbcDvyType') || options.dvyType || 1
     this.orderEntry = options.orderEntry || uni.getStorageSync('bbcOrderEntry') || 0
     this.module = options.module || ''
@@ -980,25 +879,23 @@ export default {
       provArray: this.provArray.unshift({})
     })
     this.loadAddressList().then(res => {
-      that.addressList = res
+      this.addressList = res
     }) // 加载地址列表
     setTimeout(() => {
-      that.isToPay = true
+      this.isToPay = true
     }, 100)
     // 获取用户信息
     this.queryUserInfo()
-    if(uni.getStorageSync('bbcUserInfo').station){
-      this.selStationItem.province=uni.getStorageSync('bbcUserInfo').station.province?uni.getStorageSync('bbcUserInfo').station.province:''
-      this.selStationItem.city=uni.getStorageSync('bbcUserInfo').station.city?uni.getStorageSync('bbcUserInfo').station.city:''
-      this.selStationItem.area=uni.getStorageSync('bbcUserInfo').station.area?uni.getStorageSync('bbcUserInfo').station.area:''
-      this.selStationItem.addr=uni.getStorageSync('bbcUserInfo').station.addr?uni.getStorageSync('bbcUserInfo').station.addr:''
+    if (uni.getStorageSync('bbcUserInfo').station) {
+      this.selStationItem = uni.getStorageSync('bbcUserInfo').station
+      this.station = uni.getStorageSync('bbcUserInfo').station
     }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     this.animation = wx.createAnimation({
       transformOrigin: '50% 50%',
       duration: 0,
@@ -1015,7 +912,7 @@ export default {
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // 设置头部导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.submitOrders
@@ -1034,7 +931,7 @@ export default {
       }
     }
     uni.removeStorageSync('bbcMsgList')
-    // 获取当前可用氢春豆
+    // 获取当前可用青春豆
     this.getUserLevelInfo()
     this.loadOrderData()
   },
@@ -1042,12 +939,12 @@ export default {
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     if (this.mold === 1) {
       // 清除虚拟商品留言缓存
       uni.removeStorageSync('bbcVirtualRemark')
@@ -1212,7 +1109,7 @@ export default {
       }
     },
     // 切换配送方式
-    changeDistribution: function(sts) {
+    changeDistribution: function (sts) {
       // sts:  0同城/邮寄   1自提
       this.isDistribution = sts === 0
       this.dvyType = sts === 0 ? 1 : 2
@@ -1222,14 +1119,14 @@ export default {
 
     // 选择配送方式
     disRadioChange(e) {
+      // this.loadOrderData()
       this.dvyType = e.detail.value
-      this.loadOrderData()
       this.showDistributionPop = false
       uni.setStorageSync('bbcDvyType', this.dvyType)
     },
 
     // 选择地址
-    selectAddr: function(item) {
+    selectAddr: function (item) {
       this.addrId = item.addrId
       this.showAddressListPop = false
       this.isEditAddr = false
@@ -1246,7 +1143,7 @@ export default {
       this.showRaisingUserList = false
       this.raisingUserList()
     },
-    getStationItem: function(item) {
+    getStationItem: function (item) {
       this.stationUserName = item.stationUserName
       this.stationUserMobile = item.stationUserMobile
       this.showRaisingUserList = false
@@ -1270,7 +1167,7 @@ export default {
       })
     },
     // 根据地址id请求地址详情
-    getAddrDet: function() {
+    getAddrDet: function () {
       const params = {
         url: '/p/address/addrInfo/' + this.addrId,
         method: 'GET',
@@ -1285,7 +1182,7 @@ export default {
     },
 
     /**
-     * 获取会员氢春豆详情
+     * 获取会员青春豆详情
      */
     getUserLevelInfo() {
       const params = {
@@ -1302,11 +1199,11 @@ export default {
       http.request(params)
     },
 
-    // 会员氢春豆抵现选择
-    useMemberPoints: function() {
+    // 会员青春豆抵现选择
+    useMemberPoints: function () {
       this.isChecked = !this.isChecked
       if (this.maxUsableScore > 0) {
-        // totalUsableScore整个订单可以使用的氢春豆数
+        // totalUsableScore整个订单可以使用的青春豆数
         this.setData({
           isScorePay: this.isChecked ? 1 : 0,
           userUseScore: this.isChecked ? this.maxUsableScore : 0,
@@ -1317,7 +1214,7 @@ export default {
     },
 
     /**
-     * 氢春豆输入弹窗显示
+     * 青春豆输入弹窗显示
      */
     handleScorePop() {
       this.setData({
@@ -1326,14 +1223,14 @@ export default {
     },
 
     /**
-     * 氢春豆抵扣输入框
+     * 青春豆抵扣输入框
      */
     handleScoreInput(e) {
       this.userUseScore = Number(e.detail.value.replace(/[^\d]/g, ''))
     },
 
     /**
-     * 修改氢春豆确定弹窗
+     * 修改青春豆确定弹窗
      */
     confirmScore() {
       if (!this.userUseScore || this.userUseScore < 0) {
@@ -1366,7 +1263,7 @@ export default {
     /**
      * 加载订单数据
      */
-    loadOrderData: function() {
+    loadOrderData:  function () {
       const orderParam = uni.getStorageSync('bbcOrderItem') || {}
       const dvyType = this.dvyType
       const url = this.orderType === 3 ? '/p/score/confirm' : this.orderType === 2 ? `/p/seckill/${this.orderPath}/confirm` : this.orderType === 1 ? '/p/group/order/confirm' : '/p/order/confirm'
@@ -1457,27 +1354,27 @@ export default {
             userAddr: res.userAddr, // 地址Dto
             transFee: transFee, // 总运费
             shopFreeTransFee: shopFreeTransFee, // 运费减免
-            orderReduce: res.orderReduce, // 订单优惠金额(所有店铺优惠金额和使用氢春豆抵现相加)
-            totalScoreAmount: res.totalScoreAmount, // 氢春豆抵扣金额
-            totalUsableScore: res.totalUsableScore, // 使用的氢春豆数量
-            isScorePay: res.isScorePay, // 用户是否选择氢春豆抵现(0不使用 1使用 默认不使用)
+            orderReduce: res.orderReduce, // 订单优惠金额(所有店铺优惠金额和使用青春豆抵现相加)
+            totalScoreAmount: res.totalScoreAmount, // 青春豆抵扣金额
+            totalUsableScore: res.totalUsableScore, // 使用的青春豆数量
+            isScorePay: res.isScorePay, // 用户是否选择青春豆抵现(0不使用 1使用 默认不使用)
             totalLevelAmount: res.totalLevelAmount, // 等级抵扣金额
             freeTransFee: res.freeTransFee, // 用户等级免运费金额
             couponIds: couponIds,
             couponUserIds: couponUserIds,
-            maxUsableScore: res.maxUsableScore, // 整个订单可以使用的氢春豆数
+            maxUsableScore: res.maxUsableScore, // 整个订单可以使用的青春豆数
             scorePlaceholder: scorePlaceholder,
             orderScorePlaceHolder: orderScorePlaceHolder,
-            shopUseScore: res.shopUseScore, // 氢春豆抵现比例;
+            shopUseScore: res.shopUseScore, // 青春豆抵现比例;
             filterShopItems: res.filterShopItems, // 过滤掉的商品项
             preSellStatus: res.preSellStatus, // 是否预售商品
             storeOfferAmount: storeOfferAmount, // 店铺优惠券优惠
             eventOfferAmount: eventOfferAmount, // 活动优惠
             orderShopReduce: res.orderShopReduce, // 店铺总优惠金额（促销满减+店铺优惠券）
             isFirst: false,
-            // 氢春豆金额
+            // 青春豆金额
             scorePrice: res.orderType === 'SCORE' ? shopCartOrders[0].shopCartItemDiscounts[0].shopCartItems[0].scorePrice : res.scorePrice,
-            // 使用的氢春豆数量
+            // 使用的青春豆数量
             userUseScore: res.totalUsableScore,
             userUseScoreHis: res.totalUsableScore,
             // 起送费 (同城配送)
@@ -1604,8 +1501,8 @@ export default {
     },
 
     /**
-		 * 虚拟商品留言输入框失焦
-		 */
+     * 虚拟商品留言输入框失焦
+     */
     handleInputBlur(value, msgIndex, prodIndex, discIndex, shopIndex) {
       if (!value) {
         return
@@ -1622,7 +1519,7 @@ export default {
     /**
      * 提交订单校验
      */
-    toPay: function() {
+    toPay: function () {
       if (!this.isToPay) return
       if (this.dvyType != 2) {
         if (!this.userAddr && this.mold != 1) {
@@ -1693,13 +1590,13 @@ export default {
           })
           return
         }
-        if (!this.dateContent || !this.timeContent) {
-          uni.showToast({
-            title: this.i18n.selectPickUpTime,
-            icon: 'none'
-          })
-          return
-        }
+        // if (!this.dateContent || !this.timeContent) {
+        //   uni.showToast({
+        //     title: this.i18n.selectPickUpTime,
+        //     icon: 'none'
+        //   })
+        //   return
+        // }
       }
 
       // 点击地址判断
@@ -1711,7 +1608,7 @@ export default {
         return
       }
 
-      // 氢春豆按钮选择判断
+      // 青春豆按钮选择判断
       if (this.isScorePay == 1 && this.userUseScore <= 0 && this.orderType !== 3) {
         uni.showToast({
           title: this.i18n.enterPoints,
@@ -1721,7 +1618,7 @@ export default {
       }
       // 虚拟商品留言校验
       if (this.allVirtualMsg.length &&
-          this.allVirtualMsg.find(el => el.value && !el.value.trim())) {
+        this.allVirtualMsg.find(el => el.value && !el.value.trim())) {
         uni.showToast({
           title: this.i18n.msgCannotBeAllSpaces,
           icon: 'none'
@@ -1729,7 +1626,7 @@ export default {
         return
       }
       if (this.allVirtualMsg.length &&
-          this.allVirtualMsg.find(el => el.isRequired && !el.value)) {
+        this.allVirtualMsg.find(el => el.isRequired && !el.value)) {
         uni.showToast({
           title: this.i18n.requiredMessage,
           icon: 'none'
@@ -1741,8 +1638,9 @@ export default {
     },
 
     // 提交订单
-    submitOrder: function() {
-      var isPurePoints = this.actualTotal > 0 ? '' : 1 // 是否纯氢春豆: 1是
+    submitOrder: function () {
+      console.log(22,this.actualTotal)
+      var isPurePoints = this.actualTotal > 0 ? '' : 1 // 是否纯青春豆: 1是
       var shopCartOrders = this.shopCartOrders
       var reg = /^\s+$/g
       var orderShopParam = []
@@ -1796,6 +1694,7 @@ export default {
       // } else {
       obj['orderShopParams'] = orderShopParam
       // }
+      console.log(222,obj)
       uni.removeStorageSync('bbcMsgList')
       const params = {
         url: this.orderType === 1 ? '/p/group/order/submit' : this.orderType === 2 ? `/p/seckill/${this.orderPath}/submit` : '/p/order/submit',
@@ -1911,13 +1810,13 @@ export default {
     },
 
     // 店铺切换可用/不可用优惠券列表
-    changeCouponSts: function(e) {
+    changeCouponSts: function (e) {
       this.setData({
         couponSts: e.currentTarget.dataset.sts
       })
     },
     // 店铺优惠券弹框
-    showCouponPopup: function(e) {
+    showCouponPopup: function (e) {
       var index = Number(e.currentTarget.dataset.index)
       var shopCartOrders = this.shopCartOrders
       this.setData({
@@ -1937,10 +1836,10 @@ export default {
       this.isShopCoupon = index !== -1
     },
     // 查看留言弹窗
-    showViewMsgPopup: function() {
+    showViewMsgPopup: function () {
       this.showViewMsg = true
     },
-    closePopup: function() {
+    closePopup: function () {
       this.setData({
         popupShow: false,
         showScorePop: false,
@@ -1997,7 +1896,7 @@ export default {
     /**
      * 去地址页面
      */
-    toAddrListPage: function() {
+    toAddrListPage: function () {
       // uni.navigateTo({
       // 	url: '/package-user/pages/delivery-address/delivery-address?order=0'
       // });
@@ -2015,7 +1914,7 @@ export default {
     /**
      * 确定选择好的优惠券
      */
-    choosedCoupon: function() {
+    choosedCoupon: function () {
       var couponIds = this.couponIds // 店铺优惠券单选操作
       var couponUserIds = this.couponUserIds
       if (!this.showCoupons) {
@@ -2054,7 +1953,7 @@ export default {
     /**
      * 优惠券子组件发过来
      */
-    checkCoupon: function(e) {
+    checkCoupon: function (e) {
       // console.log(e)
       var showCoupons = this.showCoupons // 店铺优惠券单选操作
 
@@ -2078,7 +1977,7 @@ export default {
     /**
      * 输入备注
      */
-    onRemarkIpt: function(e) {
+    onRemarkIpt: function (e) {
       var index = e.currentTarget.dataset.index
       var shopCartOrders = this.shopCartOrders
       shopCartOrders[index].remarks = e.detail.value
@@ -2177,7 +2076,7 @@ export default {
     /**
      * 禁止输入提货人信息
      */
-    disabledInput: function() {
+    disabledInput: function () {
       if (this.dvyType == 2 && !this.shopCartOrders.length) {
         this.disabled = true
       } else {
@@ -2188,29 +2087,33 @@ export default {
     /**
      * 获取历史提货人列表
      */
-    getStationUserInfo: function() {
+    getStationUserInfo: function () {
       const params = {
         url: '/p/orderSelfStation/getStationUserInfo',
         method: 'GET',
         data: {},
         callBack: (res) => {
           this.stationUserInfo = res
+          if(res.length>0){
+            this.stationUserName=res[0].stationUserName
+            this.stationUserMobile=res[0].stationUserMobile
+          }
         }
       }
       http.request(params)
     },
 
-    getConsigneeInt: function(e) {
+    getConsigneeInt: function (e) {
       this.stationUserName = e.detail.value
     },
-    getConMobileInt: function(e) {
+    getConMobileInt: function (e) {
       this.stationUserMobile = e.detail.value
     },
 
     /**
      * 改变预约自提日期选择
      */
-    changeData: function(item, dateIdx) {
+    changeData: function (item, dateIdx) {
       this.dateIndex = dateIdx
       // console.log(this.dateIndex, this.timeParams[this.dateIndex].hourTimes)
 
@@ -2226,7 +2129,7 @@ export default {
     /**
      * 改变预约自提时间选择
      */
-    changeTime: function(timeItem, timeIdx) {
+    changeTime: function (timeItem, timeIdx) {
       this.timeIndex = timeIdx
       this.showRaisingTimePop = false
       this.timeContent = timeItem
@@ -2236,7 +2139,7 @@ export default {
      * 获取当前日期零点的时间戳
      * @param date
      */
-    getStartTimestampOfDay: function() {
+    getStartTimestampOfDay: function () {
       const d = new Date()
       // let c = d.toISOString()
       // let b= c.replace(/\d{2}:\d{2}:\d{2}\.\d{3}/g, "00:00:00.000")
@@ -2248,7 +2151,7 @@ export default {
      * 处理当前日期与指定日期之间的关系
      * @param date
      */
-    getWeekDayMappingOfCurrent: function() {
+    getWeekDayMappingOfCurrent: function () {
       const current = this.getStartTimestampOfDay()
       if (current) {
         return {
@@ -2312,7 +2215,7 @@ export default {
     /**
      * 获取全部省份
      */
-    initCityData: async function(provinceId, cityId, areaId) {
+    initCityData: async function (provinceId, cityId, areaId) {
       // 获取省列表
       if (!this.provArray.length) {
         const provArray = await this.listAreaByParentId()
@@ -2336,7 +2239,7 @@ export default {
     /**
      * 根据省份ID获取 城市数据
      */
-    getCityArray: async function(provinceId, cityId, areaId) {
+    getCityArray: async function (provinceId, cityId, areaId) {
       const { curNode, areas } = this.getCurrentAreas(this.provArray, provinceId)
       let cityArray = areas
       if (!areas) {
@@ -2364,7 +2267,7 @@ export default {
     /**
      * 根据城市ID获取 区数据
      */
-    getAreaArray: async function(cityId, areaId) {
+    getAreaArray: async function (cityId, areaId) {
       const { curNode, areas } = this.getCurrentAreas(this.cityArray, cityId)
       let areaArray = areas
       if (!areas) {
@@ -2413,24 +2316,24 @@ export default {
       }
     },
 
-    bindRegionChange: function(e) {
+    bindRegionChange: function (e) {
       // console.log('picker发送选择改变，携带值为', e.detail.value)
       this.setData({
         region: e.detail.value
       })
     },
 
-    onReceiverInput: function(e) {
+    onReceiverInput: function (e) {
       this.setData({
         receiver: e.detail.value
       })
     },
-    onMobileInput: function(e) {
+    onMobileInput: function (e) {
       this.setData({
         mobile: e.detail.value
       })
     },
-    onAddrInput: function(e) {
+    onAddrInput: function (e) {
       this.setData({
         addr: e.detail.value
       })
@@ -2439,7 +2342,7 @@ export default {
     /**
      * 保存地址
      */
-    onSaveAddr: function() {
+    onSaveAddr: function () {
       var receiver = this.receiver
       var mobile = this.mobile
       var addr = this.addr
@@ -2578,7 +2481,7 @@ export default {
     },
 
     // 滑动事件
-    bindChange: function(e) {
+    bindChange: function (e) {
       const val = e.detail.value // 判断滑动的是第几个column
       // 若省份column做了滑动则定位到地级市和区县第一位
       if (this.value[0] != val[0]) {
@@ -2609,7 +2512,7 @@ export default {
     },
 
     // 移动按钮点击事件
-    translate: function(e) {
+    translate: function (e) {
       if (t == 0) {
         moveY = 0
         show = false
@@ -2656,7 +2559,7 @@ export default {
     },
 
     // 动画事件
-    animationEvents: function(that, moveY, show) {
+    animationEvents: function (that, moveY, show) {
       // console.log("moveY:" + moveY + "\nshow:" + show);
       that.animation = wx.createAnimation({
         transformOrigin: '50% 50%',
@@ -2671,7 +2574,7 @@ export default {
     },
 
     // 空方法
-    nono() {},
+    nono() { },
 
     /**
      * 满减信息处理
@@ -2710,10 +2613,10 @@ export default {
     moveHandle() {
 
     },
-        /**
-     * 获取用户信息
-     */
-     queryUserInfo: function () {
+    /**
+ * 获取用户信息
+ */
+    queryUserInfo: function () {
       const params = {
         url: '/p/user/userInfo',
         method: 'GET',
@@ -2722,8 +2625,8 @@ export default {
           this.setData({
             distributionUserId: res.distributionUserId
           })
-          if(res.distributionUserId){
-            this.isDistribution=false
+          if (res.distributionUserId) {
+            this.isDistribution = false
           }
         }
       }

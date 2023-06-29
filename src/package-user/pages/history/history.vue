@@ -34,7 +34,7 @@
             <!-- <view class="sku">{{ prodItem.sellingPoint }}</view> -->
             <view class="price-box">
               <!-- <view v-if="prodItem.spuType === 3" class="price">
-                <view class="big">{{ prodItem.scoreFee }}氢春豆</view>
+                <view class="big">{{ prodItem.scoreFee }}青春豆</view>
                 <view v-if="prodItem.priceFee" class="symbol">+￥</view>
                 <view v-if="prodItem.priceFee" class="big">{{ wxs.parsePrice(prodItem.priceFee)[0] }}</view>
                 <view v-if="prodItem.priceFee" class="symbol">.{{ wxs.parsePrice(prodItem.priceFee)[1] }}</view>

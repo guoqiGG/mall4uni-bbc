@@ -31,7 +31,7 @@
                 {{ userInfo.nickName }}
               </view>
               <!-- vip称号 -->
-              <view v-if="userLevelInfo.levelType == 1" class="pay-vip-wrap menbers vip-img" @tap="toPointsCenter">
+              <view v-if="userLevelInfo.levelType == 1" class="pay-vip-wrap menbers vip-img">
                 <!-- <view class="priming-vip-txt">{{ userLevelInfo.levelName }}</view> -->
                 <!-- <image
                   class="default-img"
@@ -39,7 +39,7 @@
                 /> -->
                 <text class="vip-txt">{{ userLevelInfo.levelName }}</text>
               </view>
-              <view v-else class="menbers menbers-img" @tap="toPointsCenter">
+              <view v-else class="menbers menbers-img">
                 <!-- <image
                   class="default-img"
                   src="/static/images/icon/vip-bg-1.png"
@@ -49,12 +49,12 @@
             </view>
           </view>
           <view class="right-infor">
-            <image class="scan-code" src="/static/images/icon/icon_codes.png" @tap="sacnCode" />
+            <!-- <image class="scan-code" src="/static/images/icon/icon_codes.png" @tap="sacnCode" />
             <image class="sign-in" src="/static/images/icon/icon_sign.png" @tap="toPointsCenter" />
             <view class="message" @tap="toMyMessage">
               <image src="/static/images/icon/icon_message.png" />
               <view v-if="messageCount > 0" class="quantity-tip-dots">{{ messageCount }}</view>
-            </view>
+            </view> -->
 
           </view>
         </view>
@@ -66,7 +66,7 @@
               <view class="numbers-txt">{{ totalBalance | millionNumber }}</view>
               <view class="infor-txt">{{ i18n.balance }}</view>
             </view>
-            <view class="cloumn-item" @tap="toMemberInteral">
+            <view class="cloumn-item" @tap="toInteralDetail">
               <view class="numbers-txt">{{ (userLevelInfo.score ? userLevelInfo.score : '0') | millionNumber }}</view>
               <view class="infor-txt">{{ i18n.prodType4 }}</view>
             </view>
@@ -147,10 +147,10 @@
               <view class="numbers-txt">-</view>
               <view class="infor-txt">{{ i18n.coupon }}</view>
             </view>
-            <view class="cloumn-item">
+            <!-- <view class="cloumn-item">
               <view class="numbers-txt">-</view>
               <view class="infor-txt">{{ i18n.collection }}</view>
-            </view>
+            </view> -->
           </view>
           <!-- <view class="vip-column" @tap="onGotUserInfo">
             <image
@@ -165,6 +165,7 @@
       </view>
       <!-- 未登录 end -->
     </view>
+
     <!-- 我的订单 -->
     <view class="my-order-wrap">
       <view class="top-title">
@@ -203,7 +204,29 @@
     </view>
     <!-- end 我的订单 -->
 
-    <!-- 分销中心 & 氢春豆商店 -->
+    <!-- 我的当前自提点 -->
+    <view class="my-pick-up-address">
+      <view class="pick-up-title">我的当前自提点</view>
+      <view class="pick-up-item" v-if="station.province">
+        <view class="pick-up-info">
+          <view class="station-name" v-if="station.stationName">{{ station.stationName }}</view>
+          <view class="station-address">{{ station.province }}{{ station.city }}{{ station.area }}{{ station.addr }}</view>
+          <view class="station-phone"><text
+              style="color:#333;font-weight: bold;">电话:</text>{{ station.mobile ? station.mobile : (station.phonePrefix + '-' + station.phone) }}
+          </view>
+        </view>
+        <view class="address-icon" @tap="selectLoaction(station.lat, station.lng,station.addr,(station.province+station.city+station.area+station.addr))">
+          <image src="/static/images/icon/submit-address.png"></image>
+          <view class="text">路线</view>
+        </view>
+      </view>
+      <view class="pick-up-item" v-else>
+        <view class="station-address">暂无自提点信息</view>
+      </view>
+    </view>
+    <!--end 我的当前自提点  -->
+
+    <!-- 分销中心 & 青春豆商店 -->
     <view class="distribution-points-wrap">
       <view class="distribution-item" @tap="toDistCenter">
         <view class="txt-left">
@@ -220,7 +243,7 @@
         <image class="img-right" src="/static/images/icon/integral-mall.png" />
       </view>
     </view>
-    <!-- end 分销中心 & 氢春豆商店 -->
+    <!-- end 分销中心 & 青春豆商店 -->
 
     <!-- 服务与工具 -->
     <view class="tools-wrap">
@@ -381,7 +404,7 @@ export default {
       messageCount: 0,
       // 优惠券数量
       couponNum: 0,
-      // 用户氢春豆
+      // 用户青春豆
       score: 0,
       // 用户余额
       totalBalance: 0,
@@ -389,7 +412,8 @@ export default {
       // 应用类型
       appType: uni.getStorageSync('bbcAppType'),
       isLoaded: false,
-      isDistributionUserInfo: false
+      isDistributionUserInfo: false,
+      station: {},// 自提点信息
     }
   },
 
@@ -467,6 +491,10 @@ export default {
       // this.showCollectionCount()
       // 查看用户是否是团长
       this.getIsDistributionUserInfo()
+      // 获取用户收货地址
+      if (!uni.getStorageSync('bbcUserInfo').station) {
+        this.getAddrList()
+      }
     } else {
       // this.getHotSalesProds() // 获取热销商品推荐
       this.isAuthInfo = false
@@ -474,12 +502,13 @@ export default {
       this.setData({
         orderAmount: emptyObj,
         couponNum: 0, // 优惠券数量
-        score: 0, // 用户氢春豆
+        score: 0, // 用户青春豆
         totalBalance: 0, // 用户余额
         notifyNum: 0, // 消息提醒
         messageCount: 0,
         collectionCount: 0, // 总收藏数量
-        isDistributionUserInfo: false
+        isDistributionUserInfo: false,
+        station: {}
       })
     }
   },
@@ -528,6 +557,22 @@ export default {
   },
 
   methods: {
+    /**
+    * 打开地图选择地址
+    */
+    selectLoaction(lat, lng,name,addr) {
+      console.log(lat,lng)
+      uni.openLocation({
+        type: 'gcj02',
+        latitude: lat, 
+        longitude:lng,
+        address:addr,
+        success: (res) => {
+        },
+        fail: () => {
+        }
+      })
+    },
     /**
      * 商家入驻弹框
      */
@@ -671,7 +716,7 @@ export default {
           if (uni.getStorageSync('bbcToken')) {
             this.setData({
               couponNum: res.couponNum, // 优惠券数量
-              score: res.score, // 用户氢春豆
+              score: res.score, // 用户青春豆
               totalBalance: res.totalBalance, // 用户余额
               notifyNum: res.notifyNum // 消息提醒
             })
@@ -815,6 +860,25 @@ export default {
           this.userInfo = res
           uni.setStorageSync('bbcUserInfo', res)
           // this.getHotSalesProds() // 获取热销商品推荐
+          if (uni.getStorageSync('bbcUserInfo').station) {
+            this.station = uni.getStorageSync('bbcUserInfo').station
+          }
+        }
+      }
+      http.request(params)
+    },
+
+    /**
+ * 获取收货地址列表
+ */
+    getAddrList: function () {
+      const params = {
+        url: '/p/address/list',
+        method: 'GET',
+        callBack: (res) => {
+          if (res) {
+            this.station = res[0]
+          }
         }
       }
       http.request(params)
@@ -981,7 +1045,7 @@ export default {
         })
       })
     },
-    // 氢春豆中心
+    // 青春豆中心
     toPointsCenter: function () {
       util.tapLog(3)
       util.checkAuthInfo(() => {
@@ -1142,7 +1206,7 @@ export default {
       })
     },
     /**
-       * 获取会员氢春豆详情
+       * 获取会员青春豆详情
        */
     getUserLevelInfo() {
       const params = {
@@ -1216,13 +1280,25 @@ export default {
     },
 
     /**
-       * 跳转氢春豆中心
+       * 跳转青春豆中心
        */
     toMemberInteral() {
       util.tapLog(3)
       util.checkAuthInfo(() => {
         uni.navigateTo({
           url: '/package-member-integral/pages/integral-index/integral-index'
+        })
+      })
+    },
+
+    /**
+   * 跳转青春豆明细
+   */
+    toInteralDetail() {
+      util.tapLog(3)
+      util.checkAuthInfo(() => {
+        uni.navigateTo({
+          url: '/package-member-integral/pages/integral-detail/integral-detail'
         })
       })
     },
@@ -1256,6 +1332,4 @@ export default {
   }
 }
 </script>
-<style>
-@import "./user.css";
-</style>
+<style>@import "./user.css";</style>

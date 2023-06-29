@@ -31,12 +31,12 @@
         </picker>
         <!-- <text class="search-hint" @tap="goBackIndex">{{ i18n.cancel }}</text> -->
       </view>
-    <!-- 氢春豆明细 -->
+    <!-- 青春豆明细 -->
     <view class="integral-detail">
       <view class="detail-list">
         <view v-for="(item, logId) in scoreDetails" :key="logId" class="item">
           <view class="text-box">
-            <!-- source来源 0注册送氢春豆 1. 购物 2.会员等级提升加氢春豆 3.签到加氢春豆 4购物抵扣使用氢春豆 5氢春豆过期 6充值获赠 -->
+            <!-- source来源 0注册送青春豆 1. 购物 2.会员等级提升加青春豆 3.签到加青春豆 4购物抵扣使用青春豆 5青春豆过期 6充值获赠 -->
             <!-- ioType出入类型 0=支出 1=收入 -->
             <view class="tit">{{ item.nickName }}</view>
             <view v-if="item.source == 0" class="tit">{{
@@ -99,13 +99,13 @@ export default {
       current: 1,
       size: 20,
       scoreDetails: [],
-      // 氢春豆明细列表
+      // 青春豆明细列表
       isAll: false,
       isLoaded: false,
       selectItem: 0, // 0 手机号 1 豆来源
       searchKey: '',// 搜索框内容
       index: 8,
-      array: ['注册送氢春豆', '订单', '等级提升获取', '看够直播时长签到得豆', ' 购物抵扣氢春豆', '氢春豆过期', '余额充值', '系统更改氢春豆']
+      array: ['注册送青春豆', '订单', '等级提升获取', '看够直播时长签到得豆', ' 购物抵扣青春豆', '青春豆过期', '余额充值', '系统更改青春豆']
     }
   },
 
@@ -152,7 +152,7 @@ export default {
       })
     },
     /**
-     * 获取团长下的团长及邀请用户的氢春豆流水
+     * 获取团长下的团长及邀请用户的青春豆流水
      */
     getScoreflowInfo: function () {
       const params = {

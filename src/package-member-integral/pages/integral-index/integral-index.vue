@@ -1,4 +1,4 @@
-<!--
+view<!--
   Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
 
   https://www.mall4j.com/
@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <!-- 氢春豆商城 -->
+  <!-- 青春豆商城 -->
   <view class="Mall4j integral-index">
     <view class="integral-msg">
       <image src="../../static/images/icon/integral-bg.png" class="bg" />
@@ -18,11 +18,13 @@
           <view class="text">{{ i18n.myIntegral }}</view>
           <view class="number">{{ scoreInfo.score }}</view>
         </view>
-        <view class="det" @tap="navigateTo('integral-detail')">{{ i18n.detailed }}<image src="/static/images/icon/white-arr.png" />
+        <view class="det" @tap="navigateTo('integral-detail')">{{ i18n.detailed }}
+          <image src="/static/images/icon/white-arr.png" />
         </view>
       </view>
-      <view class="make" @tap="navigateTo('member-index')">
-        <image src="/static/images/icon/make-integral.png" />{{ i18n.earnPoints }}</view>
+      <!-- <view class="make" @tap="navigateTo('member-index')">
+        <image src="/static/images/icon/make-integral.png" />{{ i18n.earnPoints }}
+      </view> -->
     </view>
     <view class="integral-list">
       <view class="member-tit">
@@ -38,11 +40,7 @@
       }}</view>
       <view v-if="!scoreProdList.length" class="empty">{{ i18n.noData }}</view> -->
       <!-- 空列表或加载全部提示 -->
-      <EmptyAllTips
-        v-if="isLoaded"
-        :isEmpty="!scoreProdList.length"
-        :isAll="scoreProdList.length > 10 && loadAll"
-      />
+      <EmptyAllTips v-if="isLoaded" :isEmpty="!scoreProdList.length" :isAll="scoreProdList.length > 10 && loadAll" />
     </view>
   </view>
 </template>
@@ -77,45 +75,45 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.getScoreProdList()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     uni.setNavigationBarTitle({
       title: this.i18n.pointCenter
     })
-    // 获取当前氢春豆信息
+    // 获取当前青春豆信息
     this.getScoreInfo()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     if (this.current < this.pages) {
       this.current = this.current + 1
       this.getScoreProdList()
@@ -129,7 +127,7 @@ export default {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {},
+  onShareAppMessage: function () { },
   methods: {
     /**
      * 跳转
@@ -141,7 +139,7 @@ export default {
     },
 
     /**
-     * 获取当前氢春豆信息
+     * 获取当前青春豆信息
      */
     getScoreInfo() {
       const params = {
@@ -158,7 +156,7 @@ export default {
     },
 
     /**
-     * 获取氢春豆商品列表
+     * 获取青春豆商品列表
      */
     getScoreProdList() {
       this.isLoaded = false
@@ -170,7 +168,7 @@ export default {
           size: this.size,
           prodType: 3,
           sort: 2,
-          userId:uni.getStorageSync('bbcUserInfo')?uni.getStorageSync('bbcUserInfo').userId:''
+          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: (res) => {
           this.isLoaded = true

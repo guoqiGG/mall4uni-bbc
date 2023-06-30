@@ -63,11 +63,11 @@
             maxlength="15"
             @input="getNickNameInt"
           >
-          <image
+          <!-- <image
             class="right-img"
             src="/static/images/icon/arrow-right.png"
             mode="scaleToFill"
-          />
+          /> -->
         </view>
       </view>
       <view class="cloumn-item" @tap="translate">

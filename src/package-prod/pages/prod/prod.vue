@@ -343,11 +343,11 @@
           <view class="btn icon" @tap="toHomePage">
             <image src="/static/images/tabbar/homepage.png" />{{ i18n.homepage }}
           </view>
-          <view class="btn icon" @tap="handleCustomService">
+          <!-- <view class="btn icon" @tap="handleCustomService">
             <image src="/static/images/icon/shop-customer-service.png" />
             {{ i18n.service }}
-          </view>
-          <view class="btn icon" @tap="toCartPage">
+          </view> -->
+          <view class="btn icon" @tap="toCartPage" v-if="prodType!=3">
             <image src="/static/images/tabbar/basket.png" />
             {{ i18n.shoppingCart }}
             <view v-if="totalCartNum > 0" class="badge">
@@ -384,7 +384,7 @@
           </block>
           <!-- 青春豆的按钮 -->
           <block v-if="hadOnloaded && prodType == 3">
-            <view class="btn pre-sale-buy cart-radius" @tap="showGroupSku">
+            <view  class="btn pre-sale-buy cart-radius" style="margin-left: 250rpx;" @tap="showGroupSku">
               <text>{{ i18n.redeemNow }}</text>
             </view>
           </block>
@@ -569,9 +569,9 @@
         <!-- 回到顶部 && 普通分享 -->
         <view class="promo-con">
           <!-- #ifdef MP-WEIXIN -->
-          <button v-if="!(isDist && isDistProd)" class="suspension-btn btn-type" open-type="share">
+          <!-- <button v-if="!(isDist && isDistProd)" class="suspension-btn btn-type" open-type="share">
             <image src="/static/images/icon/share-prod.png" />
-          </button>
+          </button> -->
           <!-- #endif -->
 
           <!-- 赚字浮层 -->

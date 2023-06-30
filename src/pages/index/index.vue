@@ -731,7 +731,7 @@ export default {
           name: this.searchKey,
           searchType: this.searchType,
           current: this.current,
-          size: this.size,
+          size: 2,
           prodId: this.prodId
         },
         callBack: (res) => {
@@ -761,7 +761,6 @@ export default {
         this.roomId = e.currentTarget.dataset.roomid // 填写具体的房间号
         this.url = e.currentTarget.dataset.url
         this.anchorwechat = e.currentTarget.dataset.anchorwechat
-        console.log(e)
         wx.setStorageSync('liveStatus', e.currentTarget.dataset.roomstatus)
         util.checkAuthInfo(this.toLivePlayer)
       })
@@ -809,6 +808,7 @@ export default {
           url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${roomId}&custom_params=${customParams}`
         }) // 其中wx2b03c6e691cd7370是直播组件appid不能修改
       } else {
+        getSignTime
         uni.showToast({
           title: this.i18n.pleaseOpenInWechat,
           icon: 'none'
@@ -821,7 +821,6 @@ export default {
         url: '/p/score/getViewTime',
         method: 'GET',
         callBack: (res) => {
-          console.log(res)
           wx.setStorageSync('signTime', Number(res) * 60)
         }
       }

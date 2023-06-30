@@ -11,14 +11,16 @@
 <script>
 // app.js
 const util = require('./utils/util.js')
+const http = require('@/utils/http.js')
 import { AppType } from './utils/constant.js'
 import Vue from 'vue'
+let livePlayer = requirePlugin('live-player-plugin')
 export default {
-  onLaunch: function(options) {
+  onLaunch: function (options) {
     console.log('mall4j.v230327')
     // #ifdef H5
     uni.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         // 客户端平台，值域为：ios、android
         if (res.platform == 'ios') {
           uni.setStorageSync('bbcIosUrl', window.location.href.split('#')[0])
@@ -84,7 +86,7 @@ export default {
 
     // #ifndef H5
     uni.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         // px转换到rpx的比例
         const pxToRpxScale = 750 / res.windowWidth
         const systems = {
@@ -101,7 +103,8 @@ export default {
     })
     // #endif
   },
-  onShow: function() {},
+  onShow: function (options) {
+  },
   globalData: {
     // 定义全局请求队列
     requestQueue: [],
@@ -120,16 +123,16 @@ export default {
      */
     checkMiniUpdate() {
       const updateManager = wx.getUpdateManager()
-      updateManager.onCheckForUpdate(function(res) {
+      updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
         console.log(res.hasUpdate)
       })
 
-      updateManager.onUpdateReady(function() {
+      updateManager.onUpdateReady(function () {
         wx.showModal({
           title: '更新提示',
           content: '新版本已经准备好，是否重启应用？',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
               updateManager.applyUpdate()
@@ -138,7 +141,7 @@ export default {
         })
       })
 
-      updateManager.onUpdateFailed(function() {
+      updateManager.onUpdateFailed(function () {
         // 新版本下载失败
         uni.showToast({
           title: '新版本下载失败,请重试',
@@ -147,12 +150,13 @@ export default {
         })
       })
     }
-  }
+  },
 }
 </script>
 <style>
 @import "./app.css";
 @import url('@/static/iconfont/iconfont.css');
+
 /* 隐藏头部 */
 uni-page-head {
   display: none;
@@ -169,11 +173,12 @@ uni-swiper .uni-swiper-dots-horizontal {
 }
 
 /* 解决使用ImgShow组件小程序图片不显示问题 */
-img-show{
+img-show {
   width: 100% !important;
   height: 100% !important;
 }
-.img-show-box{
+
+.img-show-box {
   width: 100%;
   height: 100%;
 }

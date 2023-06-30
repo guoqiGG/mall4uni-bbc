@@ -68,11 +68,16 @@
           <image src="/static/images/icon/more.png" />
         </view> -->
       </view>
+      <!-- 详细地址 -->
+      <view class="section section-address" v-if="stationHave == 1">
+        <input style="padding-right: 70rpx;" placeholder="详细地址" :value="addr" type="text" maxlength="18"
+          @input="onAddrInput" />
+        <image class="addres-icon" src="/static/images/icon/submit-address.png" @tap="selectLoaction" />
+      </view>
       <!-- 自提点名称 -->
       <view class="section" v-if="stationHave == 1">
         <input placeholder="自提点名称" type="text" maxlength="18" @input="onStationNameInput" />
       </view>
-
       <view v-if="neddIdCardPic">
         <view class="upload" @tap="uploadIdCardFront">
           <image v-if="identityCardPicFrontCom" :src="identityCardPicFrontCom" @error="identityCardPicFrontCom = ''" />
@@ -162,6 +167,7 @@ export default {
       realName: '',
       sharerCardNo: '',
       shopId: 1,
+      addr: '',
       stationName: '',
       stationHave: 1,
       userMobile: '',
@@ -191,6 +197,8 @@ export default {
       cityArray: [],
       areaArray: [],
       animation: '',
+      lat: '',
+      lng: ''
     }
   },
   computed: {
@@ -271,6 +279,76 @@ export default {
     this.showPicker = false
   },
   methods: {
+    /**
+    * 打开地图选择地址
+    */
+    selectLoaction() {
+      // #ifdef MP-WEIXIN
+      uni.chooseLocation({
+        success: (res) => {
+          console.log('地址1', res)
+          this.onGetLocation(res)
+        },
+        fail: (failMsg) => {
+          uni.getSetting({
+            success: (res) => {
+
+              if (!res.authSetting['scope.userLocation']) {
+                uni.authorize({
+                  scope: 'scope.userLocation',
+                  success: () => {
+                    uni.chooseLocation({
+                      success: (res) => {
+                        console.log('地址2', res)
+                        this.onGetLocation(res)
+                      }
+                    })
+                  },
+                  fail: () => {
+                    uni.showToast({
+                      title: this.i18n.authorityTips,
+                      icon: 'none'
+                    })
+                  }
+                })
+              }
+            }
+          })
+        }
+      })
+      // #endif
+    },
+    onGetLocation(loc) {
+
+      // #ifdef MP-WEIXIN
+      this.lat = loc.latitude // 纬度
+      this.lng = loc.longitude // 经度
+      this.addr = loc.address // 详细地址
+      this.name = loc.name // 详细地址
+      // #endif
+
+      util.area(this.addr, this.name).then(res => {
+        if (!res) return
+        this.addr = this.addr.replace(res[0].name + res[1].name + res[2].name, '') || res.poiname
+        this.setData({
+          value: [res[0].index, res[1].index, res[2].index],
+          province: res[0].name,
+          city: res[1].name,
+          area: res[2].name,
+          provinceId: res[0].areaId,
+          cityId: res[1].areaId,
+          areaId: res[2].areaId,
+          provArray: res[3],
+          cityArray: res[4],
+          areaArray: res[5]
+        })
+      })
+
+
+
+
+    },
+
     /**
      * 返回首页
      */
@@ -663,6 +741,11 @@ export default {
         identityCardNumber: e.detail.value
       })
     },
+    onAddrInput: function (e) {
+      this.setData({
+        addr: e.detail.value
+      })
+    },
     onStationNameInput: function (e) {
       this.setData({
         stationName: e.detail.value
@@ -670,8 +753,28 @@ export default {
     },
     changeStationHave: function (isHave) {
       this.setData({
-        stationHave: isHave
+        stationHave: isHave,
+
       })
+      if (isHave == 0) {
+        this.setData({
+          stationName: '',
+          addr: '',
+          province: '',
+          city: '',
+          area: '',
+          provArray: [],
+          cityArray: [],
+          areaArray: [],
+          province: '',
+          provinceId: 0,
+          cityId: 0,
+          areaId: 0,
+          lat: '',
+          lng: ''
+        })
+
+      }
     },
 
     uploadIdCardFront: function () {
@@ -779,6 +882,7 @@ export default {
       var needRealName = this.needRealName
       var areaId = this.areaId
       var stationName = this.stationName
+      var addr = this.addr
       if (userMobile.length == 0) {
         uni.showToast({
           title: this.i18n.enterMobileNumber,
@@ -829,57 +933,49 @@ export default {
           title: '自提点名称不能为空',
           icon: 'none'
         })
+      }
+      else if (this.stationHave == 1 && addr == '') {
+        uni.showToast({
+          title: '自提点详细地址不能为空',
+          icon: 'none'
+        })
       } else {
         // 查询地区是否有店铺
         console.log(1, '查询店铺')
         if (this.stationHave == 1) {
           const params = {
-            url: '/shop/searchShopByAreaId',
-            method: 'get',
+            url: '/p/distribution/register/addDistributionUser',
+            method: 'post',
             data: {
-              areaId: this.areaId
+              identityCardNumber: identityCardNumber,
+              identityCardPicBack: identityCardPicBack,
+              identityCardPicFront: identityCardPicFront,
+              identityCardPicHold: identityCardPicHold,
+              realName: realName,
+              sharerCardNo: distributionCardNo,
+              userMobile: userMobile,
+              stationName: stationName,
+              stationHave: this.stationHave,
+              addr: addr,
+              provinceId: this.provinceId,
+              province: this.province,
+              cityId: this.cityId,
+              city: this.city,
+              areaId: this.areaId,
+              area: this.area,
+              lat: this.lat,
+              lng: this.lng
             },
             callBack: res => {
-              if (res == [] || res.length == 0) {
-                console.log(11)
-                uni.showToast({
-                  title: this.i18n.noPartnersInIhisArea,
-                  icon: 'none'
-                })
-              } else {
-                this.setData({
-                  shopId: res[0].shopId
-                })
-                console.log(1)
-                const params = {
-                  url: '/p/distribution/register/addDistributionUser',
-                  method: 'post',
-                  data: {
-                    identityCardNumber: identityCardNumber,
-                    identityCardPicBack: identityCardPicBack,
-                    identityCardPicFront: identityCardPicFront,
-                    identityCardPicHold: identityCardPicHold,
-                    realName: realName,
-                    sharerCardNo: distributionCardNo,
-                    userMobile: userMobile,
-                    shopId: this.shopId,
-                    stationName: stationName,
-                    stationHave: this.stationHave
-                  },
-                  callBack: res => {
-                    uni.showModal({
-                      content: this.i18n.applicationSubmitted,
-                      showCancel: false,
-                      cancelText: this.i18n.cancel,
-                      confirmText: this.i18n.confirm,
-                      complete: () => {
-                        this.$Router.pushTab('/pages/user/user')
-                      }
-                    })
-                  }
+              uni.showModal({
+                content: this.i18n.applicationSubmitted,
+                showCancel: false,
+                cancelText: this.i18n.cancel,
+                confirmText: this.i18n.confirm,
+                complete: () => {
+                  this.$Router.pushTab('/pages/user/user')
                 }
-                http.request(params)
-              }
+              })
             }
           }
           http.request(params)
@@ -895,9 +991,17 @@ export default {
               realName: realName,
               sharerCardNo: distributionCardNo,
               userMobile: userMobile,
-              shopId: this.shopId,
               stationName: stationName,
-              stationHave: this.stationHave
+              stationHave: this.stationHave,
+              addr: addr,
+              provinceId: this.provinceId,
+              province: this.province,
+              cityId: this.cityId,
+              city: this.city,
+              areaId: this.areaId,
+              area: this.area,
+              lat: this.lat,
+              lng: this.lng
             },
             callBack: res => {
               uni.showModal({

@@ -7,7 +7,7 @@
   height: 90rpx;
   background: #fff;
   margin: auto;
-  padding: 0 60rpx 0 100rpx;
+  padding: 0 10rpx 0 100rpx;
   box-sizing: border-box;
   border-top: 1px solid #f9f9f9;
 }
@@ -35,7 +35,12 @@
   -webkit-box-orient: vertical;
   text-align: left;
 }
-.arrow {
+
+.message-play .swiper-cont sweiper-item rich-text p{
+  font-size: 26rpx;
+  line-height: 90rpx;
+}
+/* .arrow {
   width: 15rpx;
   height: 15rpx;
   border-top: 3rpx solid #686868;
@@ -44,4 +49,4 @@
   position: absolute;
   right: 30rpx;
   top: 34rpx;
-}
+} */

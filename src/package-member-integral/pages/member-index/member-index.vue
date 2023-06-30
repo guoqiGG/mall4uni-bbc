@@ -43,11 +43,11 @@
       <view class="grow-box">
         <view class="item">
           <view class="text">{{ i18n.currentGrowthValue }}</view>
-          <view class="number-box" @tap="toMemberCenter">
+          <view class="number-box">
             <text class="number">{{ userCenterInfo.growth }}</text>
-            <view class="arr">
+            <!-- <view class="arr">
               <image src="/static/images/icon/white-arr.png" />
-            </view>
+            </view> -->
           </view>
         </view>
         <view class="item">

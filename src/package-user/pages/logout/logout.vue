@@ -146,7 +146,9 @@ export default {
           uni.setStorageSync('bbcSessionTimeStamp', new Date().getTime())
           uni.setStorageSync('bbcStep', 0)
           uni.setStorageSync('bbcFlowAnalysisLogDto', '')
-          util.toHomePage()
+          // util.toHomePage()
+          // 跳转到登录页
+          uni.navigateTo({ url: '/pages/user-login/user-login' })
         },
         errCallBack: errMsg => {
           console.log(errMsg)

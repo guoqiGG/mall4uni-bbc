@@ -64,16 +64,28 @@
           <view class="cloumn-wrap">
             <view class="cloumn-item" @tap="toMyWallet">
               <view class="numbers-txt">{{ totalBalance | millionNumber }}</view>
-              <view class="infor-txt">{{ i18n.balance }}</view>
+              <view class="infor-con">
+                <view class="infor-txt">{{ i18n.balance }}
+                </view>
+                <view class="arr">
+                  <image src="/static/images/icon/arrow-right.png" />
+                </view>
+              </view>
             </view>
             <view class="cloumn-item" @tap="toInteralDetail">
               <view class="numbers-txt">{{ (userLevelInfo.score ? userLevelInfo.score : '0') | millionNumber }}</view>
-              <view class="infor-txt">{{ i18n.prodType4 }}</view>
+              <view class="infor-con">
+                <view class="infor-txt">{{ i18n.prodType4 }}
+                </view>
+                <view class="arr">
+                  <image src="/static/images/icon/arrow-right.png" />
+                </view>
+              </view>
             </view>
-            <view class="cloumn-item" @tap="toMyCouponPage">
+            <!-- <view class="cloumn-item" @tap="toMyCouponPage">
               <view class="numbers-txt">{{ couponNum }}</view>
               <view class="infor-txt">{{ i18n.coupon }}</view>
-            </view>
+            </view> -->
             <!-- <view class="cloumn-item" @tap="myCollectionHandle">
               <view class="numbers-txt">{{ collectionCount }}</view>
               <view class="infor-txt">{{ i18n.collection }}</view>
@@ -137,16 +149,18 @@
           <view class="cloumn-wrap">
             <view class="cloumn-item">
               <view class="numbers-txt">-</view>
-              <view class="infor-txt">{{ i18n.balance }}</view>
+              <view class="infor-txt">{{ i18n.balance }}
+              </view>
             </view>
             <view class="cloumn-item">
               <view class="numbers-txt">-</view>
-              <view class="infor-txt">{{ i18n.prodType4 }}</view>
+              <view class="infor-txt">{{ i18n.prodType4 }}
+              </view>
             </view>
-            <view class="cloumn-item">
+            <!-- <view class="cloumn-item">
               <view class="numbers-txt">-</view>
               <view class="infor-txt">{{ i18n.coupon }}</view>
-            </view>
+            </view> -->
             <!-- <view class="cloumn-item">
               <view class="numbers-txt">-</view>
               <view class="infor-txt">{{ i18n.collection }}</view>
@@ -206,16 +220,20 @@
 
     <!-- 我的当前自提点 -->
     <view class="my-pick-up-address">
-      <view class="pick-up-title">我的当前自提点</view>
-      <view class="pick-up-item" v-if="station.province">
+      <view class="pick-up-title">{{ station.province ? '门店自提地址' : '自提地址' }}</view>
+      <view class="pick-up-item" v-if="(station.province || address.province) && isAuthInfo">
         <view class="pick-up-info">
-          <view class="station-name" v-if="station.stationName">{{ station.stationName }}</view>
-          <view class="station-address">{{ station.province }}{{ station.city }}{{ station.area }}{{ station.addr }}</view>
-          <view class="station-phone"><text
-              style="color:#333;font-weight: bold;">电话:</text>{{ station.mobile ? station.mobile : (station.phonePrefix + '-' + station.phone) }}
+          <view class="station-name">{{ station.provience ? station.stationName : address.stationName }}</view>
+          <view class="station-address">
+            {{ station.province ? (station.province + station.city + station.area + station.addr) : (address.province +
+              address.city + address.area + address.addr) }}
+          </view>
+          <view class="station-phone"><text style="color:#333;font-weight: bold;">电话:</text>{{ station.province ?
+            ((station.phonePrefix?(station.phonePrefix + '-'):'') + station.phone) : address.mobile }}
           </view>
         </view>
-        <view class="address-icon" @tap="selectLoaction(station.lat, station.lng,station.addr,(station.province+station.city+station.area+station.addr))">
+        <view class="address-icon"
+          @tap="selectLoaction(station.provience ? station.lat : address.lat, station.provience ? station.lng : address.lng)">
           <image src="/static/images/icon/submit-address.png"></image>
           <view class="text">路线</view>
         </view>
@@ -251,11 +269,11 @@
       <view class="cloumn-wrap">
         <view class="cloumn-item" @tap="toPointsCenter">
           <image class="item-img" src="/static/images/icon/icon_members.png" />
-          <view class="infor-txt">{{ i18n.membershipUser }}</view>
+          <view class="infor-txt">优惠券</view>
         </view>
         <view class="cloumn-item" @tap="toCouponCenter">
           <image class="item-img" src="/static/images/icon/icon_coupons.png" />
-          <view class="infor-txt">{{ i18n.couponCenter }}</view>
+          <view class="infor-txt">礼品券</view>
         </view>
         <view class="cloumn-item" @tap="toAddressList">
           <image class="item-img" src="/static/images/icon/icon_address.png" />
@@ -414,6 +432,7 @@ export default {
       isLoaded: false,
       isDistributionUserInfo: false,
       station: {},// 自提点信息
+      address: {},//用户默认收货地址 近期使用/添加的一个
     }
   },
 
@@ -492,9 +511,7 @@ export default {
       // 查看用户是否是团长
       this.getIsDistributionUserInfo()
       // 获取用户收货地址
-      if (!uni.getStorageSync('bbcUserInfo').station) {
-        this.getAddrList()
-      }
+      this.getAddrList()
     } else {
       // this.getHotSalesProds() // 获取热销商品推荐
       this.isAuthInfo = false
@@ -560,13 +577,11 @@ export default {
     /**
     * 打开地图选择地址
     */
-    selectLoaction(lat, lng,name,addr) {
-      console.log(lat,lng)
+    selectLoaction(lat, lng) {
       uni.openLocation({
         type: 'gcj02',
-        latitude: lat, 
-        longitude:lng,
-        address:addr,
+        latitude: lat,
+        longitude: lng,
         success: (res) => {
         },
         fail: () => {
@@ -876,8 +891,8 @@ export default {
         url: '/p/address/list',
         method: 'GET',
         callBack: (res) => {
-          if (res) {
-            this.station = res[0]
+          if (res.length > 0) {
+            this.address = res[0]
           }
         }
       }
@@ -1332,4 +1347,6 @@ export default {
   }
 }
 </script>
-<style>@import "./user.css";</style>
+<style>
+@import "./user.css";
+</style>

@@ -1044,7 +1044,7 @@ export const index = {
   'cannotBuyLower': '付费会员期间无法购买低等级会员',
 
   // convertProdDet.vue
-  'redeemNow': '立即兑换',
+  'redeemNow': '立即购买',
   'insufficientProductInventory': '商品库存不足！',
 
   // exchangeDetails.vue
@@ -1074,7 +1074,7 @@ export const index = {
   'currentGrowthFull': '当前成长值已满',
   'upgradeStillNeeded': '升级还需',
   'growthValue': '成长值',
-  'memberGrowthDescription': '会员成长说明',
+  'memberGrowthDescription': '会员级别',
   'grade': '等级',
   'correspondingGrowthValue': '所需成长值',
   'exclusiveMembers': '会员专属权益',

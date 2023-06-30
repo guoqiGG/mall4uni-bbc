@@ -20,44 +20,23 @@
       <!-- 账号 -->
       <view :class="['item', errorTips == 1 ? 'error' : '']">
         <view class="account">
-          <input
-            v-model="principal"
-            type="text"
-            data-type="account"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterUsername"
-            @blur="principalInput"
-            @confirm="login"
-          >
+          <input v-model="principal" type="text" data-type="account" placeholder-class="inp-palcehoder"
+            :placeholder="i18n.enterUsername" @blur="principalInput" @confirm="login">
         </view>
-        <view
-          v-if="errorTips == 1"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.usernameWarn }}
+        <view v-if="errorTips == 1" class="error-text"><text class="warning-icon">!</text>{{ i18n.usernameWarn }}
         </view>
       </view>
       <!-- 密码 -->
       <view :class="['item', errorTips == 2 ? 'error' : '']">
         <view class="account">
-          <input
-            v-model="credentials"
-            type="text"
-            :password="passwordType"
-            data-type="password"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterPassword"
-            @blur="principalInput"
-            @confirm="login"
-          >
+          <input v-model="credentials" type="text" :password="passwordType" data-type="password"
+            placeholder-class="inp-palcehoder" :placeholder="i18n.enterPassword" @blur="principalInput" @confirm="login">
           <div class="image-box">
             <image :src="passwordImage" style="width:26rpx;height:18rpx" mode="heightFix" @tap="showPassword" />
           </div>
           <text class="input-suffix" @tap="forgotPassword">{{ i18n.forgetPwd }}</text>
         </view>
-        <view
-          v-if="errorTips == 2"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterPassword }}
+        <view v-if="errorTips == 2" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterPassword }}
         </view>
       </view>
       <!-- 按钮 -->
@@ -65,26 +44,16 @@
         <button class="authorized-btn" @tap="login">{{ i18n.login }}</button>
       </view>
       <!-- 服务条款 -->
-      <view
-        v-if="serviceTermsSwitch || privacyPolicySwitch"
-        class="item statement"
-      >
+      <view v-if="serviceTermsSwitch || privacyPolicySwitch" class="item statement">
         <label class="statement-label" @tap.stop="handlePrivacyClick">
           <checkbox class="check-box" :checked="isPrivacy === 1" />
           <view style="color: #999999">
             {{ i18n.loginAgree }}
-            <text
-              v-if="serviceTermsSwitch"
-              @tap.stop="toTermsOfService('serviceTerms')"
-            >《{{ i18n.termsOfService }}》</text>
-            <text
-              v-if="privacyPolicySwitch && serviceTermsSwitch"
-              style="color: #999999"
-            >{{ i18n.and }}</text>
-            <text
-              v-if="privacyPolicySwitch"
-              @tap.stop="toTermsOfService('servicePolicy')"
-            >《{{ i18n.privacyPolicy }}》</text>
+            <text v-if="serviceTermsSwitch" @tap.stop="toTermsOfService('serviceTerms')">《{{ i18n.termsOfService
+            }}》</text>
+            <text v-if="privacyPolicySwitch && serviceTermsSwitch" style="color: #999999">{{ i18n.and }}</text>
+            <text v-if="privacyPolicySwitch" @tap.stop="toTermsOfService('servicePolicy')">《{{ i18n.privacyPolicy
+            }}》</text>
           </view>
         </label>
       </view>
@@ -94,60 +63,34 @@
     <view v-if="!isForgetPassword && loginStatus === 1" class="login-form">
       <!-- 手机号 -->
       <view :class="['item', errorTips ? 'error' : '']">
-        <view class="account" :style="{justifyContent:'unset',background: errorTips === 1 ? '#FBEFEF' : '#fff'}">
+        <view class="account" :style="{ justifyContent: 'unset', background: errorTips === 1 ? '#FBEFEF' : '#fff' }">
           <text class="input-item">+86</text>
-          <input
-            v-model="principal"
-            type="number"
-            maxlength="11"
-            data-type="account"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterMobileNumber"
-            @confirm="login"
-          >
+          <input v-model="principal" type="number" maxlength="11" data-type="account" placeholder-class="inp-palcehoder"
+            :placeholder="i18n.enterMobileNumber" @confirm="login">
         </view>
-        <view
-          v-if="errorTips == 1"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.phoneWarn }}
+        <view v-if="errorTips == 1" class="error-text"><text class="warning-icon">!</text>{{ i18n.phoneWarn }}
         </view>
-        <view
-          v-if="!principal && errorTips == 8"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterPhone }}</view>
-        <view
-          v-if="errorTips == 9"
-          class="error-box"
-        >
+        <view v-if="!principal && errorTips == 8" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterPhone
+        }}</view>
+        <view v-if="errorTips == 9" class="error-box">
           <view class="error-text">
             {{ i18n.hadBind }}
           </view>
-          <image src="@/static/images/icon/icon-prompt.png" style="width:28rpx;height:28rpx;margin-top: 10rpx;" mode="heightFix" />
+          <image src="@/static/images/icon/icon-prompt.png" style="width:28rpx;height:28rpx;margin-top: 10rpx;"
+            mode="heightFix" />
         </view>
       </view>
       <!-- 验证码 -->
       <view :class="['item', errorTips ? 'error' : '']">
         <view class="account">
-          <input
-            v-model="validCode"
-            type="number"
-            maxlength="6"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterCode"
-            @confirm="login"
-          >
+          <input v-model="validCode" type="number" maxlength="6" placeholder-class="inp-palcehoder"
+            :placeholder="i18n.enterCode" @confirm="login">
           <text v-if="show" class="login-code" @tap="getCode">{{ i18n.getCode }}</text>
           <text v-if="!show" class="input-btn">{{ count }} s</text>
         </view>
-        <view
-          v-if="errorTips == 3"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterCode }}
+        <view v-if="errorTips == 3" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterCode }}
         </view>
-        <view
-          v-if="errorTips == 6"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterCodeFirst }}
+        <view v-if="errorTips == 6" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterCodeFirst }}
         </view>
       </view>
       <!-- 按钮 -->
@@ -155,26 +98,16 @@
         <button class="authorized-btn" @tap="login">{{ i18n.login }}</button>
       </view>
       <!-- 服务条款 -->
-      <view
-        v-if="serviceTermsSwitch || privacyPolicySwitch"
-        class="item statement"
-      >
+      <view v-if="serviceTermsSwitch || privacyPolicySwitch" class="item statement">
         <label class="statement-label" @tap.stop="handlePrivacyClick">
           <checkbox class="check-box" :checked="isPrivacy === 1" />
           <view style="color: #999999">
             {{ i18n.regAgree }}
-            <text
-              v-if="serviceTermsSwitch"
-              @tap.stop="toTermsOfService('serviceTerms')"
-            >《{{ i18n.termsOfService }}》</text>
-            <text
-              v-if="privacyPolicySwitch && serviceTermsSwitch"
-              style="color: #999999"
-            >{{ i18n.and }}</text>
-            <text
-              v-if="privacyPolicySwitch"
-              @tap.stop="toTermsOfService('servicePolicy')"
-            >《{{ i18n.privacyPolicy }}》</text>
+            <text v-if="serviceTermsSwitch" @tap.stop="toTermsOfService('serviceTerms')">《{{ i18n.termsOfService
+            }}》</text>
+            <text v-if="privacyPolicySwitch && serviceTermsSwitch" style="color: #999999">{{ i18n.and }}</text>
+            <text v-if="privacyPolicySwitch" @tap.stop="toTermsOfService('servicePolicy')">《{{ i18n.privacyPolicy
+            }}》</text>
           </view>
         </label>
       </view>
@@ -183,30 +116,21 @@
     <view v-if="!isForgetPassword && loginStatus === 2" class="login-form">
       <!-- 按钮 -->
       <view>
-        <button v-if="!isPrivacy" class="authorized-btn" @tap="maskBtn">{{ i18n.wechatOneKeyLogin }}  </button>
-        <button v-else open-type="getPhoneNumber" class="authorized-btn" @getphonenumber="getPhoneNumberLogin">{{ i18n.wechatOneKeyLogin }}</button>
+        <button v-if="!isPrivacy" class="authorized-btn" @tap="maskBtn">{{ i18n.wechatOneKeyLogin }} </button>
+        <button v-else open-type="getPhoneNumber" class="authorized-btn" @getphonenumber="getPhoneNumberLogin">{{
+          i18n.wechatOneKeyLogin }}</button>
       </view>
       <!-- 服务条款 -->
-      <view
-        v-if="serviceTermsSwitch || privacyPolicySwitch"
-        class="item statement"
-      >
+      <view v-if="serviceTermsSwitch || privacyPolicySwitch" class="item statement">
         <label class="statement-label" @tap.stop="handlePrivacyClick">
           <checkbox class="check-box" :checked="isPrivacy === 1" />
           <view style="color: #999999">
             {{ i18n.regAgree }}
-            <text
-              v-if="serviceTermsSwitch"
-              @tap.stop="toTermsOfService('serviceTerms')"
-            >《{{ i18n.termsOfService }}》</text>
-            <text
-              v-if="privacyPolicySwitch && serviceTermsSwitch"
-              style="color: #999999"
-            >{{ i18n.and }}</text>
-            <text
-              v-if="privacyPolicySwitch"
-              @tap.stop="toTermsOfService('servicePolicy')"
-            >《{{ i18n.privacyPolicy }}》</text>
+            <text v-if="serviceTermsSwitch" @tap.stop="toTermsOfService('serviceTerms')">《{{ i18n.termsOfService
+            }}》</text>
+            <text v-if="privacyPolicySwitch && serviceTermsSwitch" style="color: #999999">{{ i18n.and }}</text>
+            <text v-if="privacyPolicySwitch" @tap.stop="toTermsOfService('servicePolicy')">《{{ i18n.privacyPolicy
+            }}》</text>
           </view>
         </label>
       </view>
@@ -216,110 +140,61 @@
       <!-- 手机号 -->
       <view v-if="!nextBtn" :class="['item', errorTips ? 'error' : '']">
         <view class="account">
-          <input
-            v-if="!isPersonalCenter"
-            v-model="principal"
-            type="number"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterPhone"
-            maxlength="11"
-            @confirm="nextStep"
-          >
+          <input v-if="!isPersonalCenter" v-model="principal" type="number" placeholder-class="inp-palcehoder"
+            :placeholder="i18n.enterPhone" maxlength="11" @confirm="nextStep">
           <view v-else>{{ privacyNumber }}</view>
         </view>
-        <view
-          v-if="errorTips == 1"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.phoneWarn }}
+        <view v-if="errorTips == 1" class="error-text"><text class="warning-icon">!</text>{{ i18n.phoneWarn }}
         </view>
-        <view
-          v-if="!principal && errorTips == 8"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterPhone }}</view>
+        <view v-if="!principal && errorTips == 8" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterPhone
+        }}</view>
       </view>
       <!-- 验证码 -->
       <view v-if="!nextBtn" :class="['item', errorTips ? 'error' : '']">
         <view class="account">
-          <input
-            v-model="validCode"
-            type="text"
-            class="int-yzm"
-            maxlength="6"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterCode"
-            @confirm="nextStep"
-          >
+          <input v-model="validCode" type="text" class="int-yzm" maxlength="6" placeholder-class="inp-palcehoder"
+            :placeholder="i18n.enterCode" @confirm="nextStep">
           <text v-if="show" class="login-code" @tap="getCode">{{
             i18n.getCode
           }}</text>
           <text v-if="!show" class="input-btn">{{ count }} s</text>
         </view>
-        <view
-          v-if="errorTips == 3"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterCode }}
+        <view v-if="errorTips == 3" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterCode }}
         </view>
-        <view
-          v-if="errorTips == 6"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterCodeFirst }}
+        <view v-if="errorTips == 6" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterCodeFirst }}
         </view>
       </view>
       <!-- 新密码 -->
       <view v-if="nextBtn" :class="['item', errorTips ? 'error' : '']">
         <view class="account">
-          <input
-            type="text"
-            :password="newPasswordType"
-            data-type="0"
-            :value="newPassWord"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterNew"
-            @input="getPassInputVal"
-            @confirm="changePassWord"
-          ><div class="image-box">
+          <input type="text" :password="newPasswordType" data-type="0" :value="newPassWord"
+            placeholder-class="inp-palcehoder" :placeholder="i18n.enterNew" @input="getPassInputVal"
+            @confirm="changePassWord">
+          <div class="image-box">
             <image :src="newPasswordImage" style="width:26rpx;height:18rpx" mode="heightFix" @tap="showNewPassword" />
           </div>
         </view>
-        <view
-          v-if="errorTips == 4"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterNew }}</view>
-        <view
-          v-if="errorTips == 9"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.passwordVerification }}</view>
-        <view
-          v-if="errorTips == 10"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterNewPasswordTips }}</view>
+        <view v-if="errorTips == 4" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterNew }}</view>
+        <view v-if="errorTips == 9" class="error-text"><text class="warning-icon">!</text>{{ i18n.passwordVerification }}
+        </view>
+        <view v-if="errorTips == 10" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterNewPasswordTips }}
+        </view>
       </view>
       <!-- 确认密码 -->
       <view v-if="nextBtn" :class="['item', errorTips ? 'error' : '']">
         <view class="account">
-          <input
-            type="text"
-            :password="conNewPasswordType"
-            data-type="1"
-            :value="comNewPassWord"
-            placeholder-class="inp-palcehoder"
-            :placeholder="i18n.enterNewAgain"
-            @input="getPassInputVal"
-            @confirm="changePassWord"
-          >
+          <input type="text" :password="conNewPasswordType" data-type="1" :value="comNewPassWord"
+            placeholder-class="inp-palcehoder" :placeholder="i18n.enterNewAgain" @input="getPassInputVal"
+            @confirm="changePassWord">
           <div class="image-box">
-            <image :src="conNewPasswordImage" style="width:26rpx;height:18rpx" mode="heightFix" @tap="showConNewPassword" />
+            <image :src="conNewPasswordImage" style="width:26rpx;height:18rpx" mode="heightFix"
+              @tap="showConNewPassword" />
           </div>
         </view>
-        <view
-          v-if="errorTips == 5"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.enterNewAgain }}
+        <view v-if="errorTips == 5" class="error-text"><text class="warning-icon">!</text>{{ i18n.enterNewAgain }}
         </view>
-        <view
-          v-if="errorTips == 7 && !identical"
-          class="error-text"
-        ><text class="warning-icon">!</text>{{ i18n.comparedPassword }}</view>
+        <view v-if="errorTips == 7 && !identical" class="error-text"><text class="warning-icon">!</text>{{
+          i18n.comparedPassword }}</view>
       </view>
 
       <view v-if="isForgetPassword && !nextBtn" style="text-align: center;">
@@ -340,8 +215,8 @@
       </view>
     </view>
     <!-- 其他登录方式 -->
-    <view v-if="!isForgetPassword" class="footer" :style="{top: regLocation}">
-    <!--  <view class="other-login-text">
+    <view v-if="!isForgetPassword" class="footer" :style="{ top: regLocation }">
+      <!--  <view class="other-login-text">
         {{ i18n.otherLogMethods }}
       </view> -->
       <view class="other-login">
@@ -351,7 +226,7 @@
           <view>{{ loginStatus == 0 || loginStatus == 1 ? i18n.wechatLogin : i18n.phoneLogin }}</view>
         </view> -->
         <!-- #endif -->
-      <!--  <view class="other-login-two" @tap="otherLogin(2)">
+        <!--  <view class="other-login-two" @tap="otherLogin(2)">
           <image :src="loginStatus === 1 || loginStatus === 2 ? '../../static/images/icon/password.png' :'../../static/images/icon/mobile-phone.png'" mode="heightFix" />
           <view>{{ loginStatus === 1 || loginStatus === 2 ? i18n.accountLogin : i18n.phoneLogin }}</view>
         </view> -->
@@ -426,7 +301,7 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     if (options && options.isForgetPassword) {
       this.isForgetPassword = options.isForgetPassword
       uni.setNavigationBarTitle({
@@ -455,7 +330,7 @@ export default {
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     uni.getSystemInfo({
       success: res => {
         // 根据屏幕高度设置 top 值
@@ -467,7 +342,7 @@ export default {
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // 头部导航标题
     uni.setNavigationBarTitle({
       title: this.isForgetPassword
@@ -487,22 +362,22 @@ export default {
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () { },
 
   methods: {
     // 获取网站配置
@@ -593,7 +468,7 @@ export default {
     /**
      * 获取服务条款或隐私策略开关相关配置
      */
-    getSwitch: function() {
+    getSwitch: function () {
       const params = {
         url: '/sys/config/info/getSysServiceSwitch',
         method: 'GET',
@@ -608,7 +483,7 @@ export default {
     /**
      * 输入框的值
      */
-    getInputVal: function(e) {
+    getInputVal: function (e) {
       const type = e.currentTarget.dataset.type
       // 手机号码
       if (type == 'account') {
@@ -623,7 +498,7 @@ export default {
       }
     },
 
-    getPassInputVal: function(e) {
+    getPassInputVal: function (e) {
       var type = e.currentTarget.dataset.type
       if (type == 0) {
         this.newPassWord = e.detail.value
@@ -841,7 +716,7 @@ export default {
     /**
      * 获取验证码
      */
-    getCode: function() {
+    getCode: function () {
       if (!this.principal.trim()) {
         this.errorTips = 8
         return

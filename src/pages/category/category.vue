@@ -119,7 +119,7 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(!uni.getStorageSync('bbcUserInfo')){
+    if (!uni.getStorageSync('bbcUserInfo')) {
       this.queryUserInfo()
     }
     this.getCategory()
@@ -204,7 +204,7 @@ export default {
       http.request(params)
     },
     getCategory() {
-     
+
       var ths = this // 加载分类列表
       const params = {
         url: '/category/categoryInfo',
@@ -285,8 +285,8 @@ export default {
         e.currentTarget.dataset
       uni.navigateTo({
         url: `/package-prod/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${type == 'all'
-            ? this.subCategoryList[subcateindex].categories[0].categoryId
-            : categoryid
+          ? this.subCategoryList[subcateindex].categories[0].categoryId
+          : categoryid
           }`
       })
     }

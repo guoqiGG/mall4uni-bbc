@@ -100,12 +100,31 @@
         <!-- 到店自提 -->
         <view v-if="!isDistribution && mold !== 1" class="address-box">
           <!-- 选择自提点 -->
-          <view class="self-raising">
+          <!-- 有团长 -->
+          <view class="self-raising" v-if="station.province">
+            <view class="tit">
+              <view class="text" style="width: 100rpx;">{{ i18n.pickup }}</view>
+              <view>
+                <view style="display: flex;flex-deriction:row;">
+                  <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
+                  <view class="text color" v-if="station.phone">
+                    {{ station.phonePrefix }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}</view>
+                </view>
+                <view v-if="station.province" class="text color">{{ station.province }}{{ selStationItem.city }}{{
+                  station.area }}{{ station.addr }}</view>
+              </view>
+            </view>
+          </view>
+          <!-- 无团长 -->
+          <view class="self-raising" v-else>
             <view class="tit">
               <view class="text">{{ i18n.pickup }}</view>
               <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
               <view class="text color" v-if="station.phone">
                 {{ station.phonePrefix }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}</view>
+              <view v-if="selStationItem.province" class="text color">{{ selStationItem.province }}{{ selStationItem.city
+              }}{{
+  selStationItem.area }}{{ selStationItem.addr }}</view>
             </view>
             <view class="choose-store" @tap="goSelectStore" v-if="!station.province">
               <image src="/static/images/icon/submit-address.png" class="img" />
@@ -114,15 +133,16 @@
               <view v-if="!selStationItem.province" class="text">{{ i18n.selectPickUpAddress }}</view>
             </view>
           </view>
+
           <!-- 历史提货人 -->
           <view class="raising-user">
-            <view class="tit">
+            <!-- <view class="tit">
               <view v-if="false" class="text">{{ i18n.fillPersonInformation }}</view>
               <view class="text">{{ i18n.historicalPickPerson }}</view>
               <view v-if="stationUserInfo" class="total" @tap="raisingUserList">
                 {{ i18n.inTotal }}{{ stationUserInfo ? stationUserInfo.length : '0' }}{{ i18n.itemGe }}
               </view>
-            </view>
+            </view> -->
 
             <view class="user-info">
               <input type="text" class="input" :disabled="disabled" :value="stationUserName"
@@ -131,7 +151,7 @@
             </view>
             <view :class="['item', errorTips ? 'error' : '']">
               <view class="user-info">
-                <input type="number" class="input" :disabled="disabled" :value="stationUserMobile"
+                <input type="number" class="input" disabled="disabled" :value="stationUserMobile"
                   :placeholder="i18n.enterPhonePerson" maxlength="11" @input="getConMobileInt" @click="hideTabbar"
                   @focus="hideTabbar" @blur="showTabbar">
               </view>
@@ -854,11 +874,11 @@ export default {
       this.selStationItem = uni.getStorageSync('bbcSelStationItem')
       this.timeParams = this.selStationItem.timeParams
       const info = uni.getStorageSync('bbcSelectedPickupinfor') || {}
-      if (info) {
-        this.stationUserName = info.stationUserName
-        this.stationUserMobile = info.stationUserMobile
-        this.stationIdx = info.stationIdx
-      }
+      // if (info) {
+      //   this.stationUserName = info.stationUserName
+      //   this.stationUserMobile = info.stationUserMobile
+      //   this.stationIdx = info.stationIdx
+      // }
     } else {
       // 定位回跳后获取位置信息
       if (this.module === 'locationPicker') {
@@ -923,11 +943,11 @@ export default {
       this.timeParams = selStationItem.timeParams
       if (selStationItem.pickUpPointSelected) {
         const info = uni.getStorageSync('bbcSelectedPickupinfor') || {}
-        if (info) {
-          this.stationUserName = info.stationUserName
-          this.stationUserMobile = info.stationUserMobile
-          this.stationIdx = info.stationIdx
-        }
+        // if (info) {
+        //   this.stationUserName = info.stationUserName
+        //   this.stationUserMobile = info.stationUserMobile
+        //   this.stationIdx = info.stationIdx
+        // }
       }
     }
     uni.removeStorageSync('bbcMsgList')
@@ -1263,7 +1283,7 @@ export default {
     /**
      * 加载订单数据
      */
-    loadOrderData:  function () {
+    loadOrderData: function () {
       const orderParam = uni.getStorageSync('bbcOrderItem') || {}
       const dvyType = this.dvyType
       const url = this.orderType === 3 ? '/p/score/confirm' : this.orderType === 2 ? `/p/seckill/${this.orderPath}/confirm` : this.orderType === 1 ? '/p/group/order/confirm' : '/p/order/confirm'
@@ -1639,7 +1659,7 @@ export default {
 
     // 提交订单
     submitOrder: function () {
-      console.log(22,this.actualTotal)
+      console.log(22, this.actualTotal)
       var isPurePoints = this.actualTotal > 0 ? '' : 1 // 是否纯青春豆: 1是
       var shopCartOrders = this.shopCartOrders
       var reg = /^\s+$/g
@@ -1694,7 +1714,7 @@ export default {
       // } else {
       obj['orderShopParams'] = orderShopParam
       // }
-      console.log(222,obj)
+      console.log(222, obj)
       uni.removeStorageSync('bbcMsgList')
       const params = {
         url: this.orderType === 1 ? '/p/group/order/submit' : this.orderType === 2 ? `/p/seckill/${this.orderPath}/submit` : '/p/order/submit',
@@ -2094,9 +2114,9 @@ export default {
         data: {},
         callBack: (res) => {
           this.stationUserInfo = res
-          if(res.length>0){
-            this.stationUserName=res[0].stationUserName
-            this.stationUserMobile=res[0].stationUserMobile
+          if (res.length > 0) {
+            // this.stationUserName = res[0].stationUserName
+            // this.stationUserMobile = res[0].stationUserMobile
           }
         }
       }
@@ -2622,8 +2642,11 @@ export default {
         method: 'GET',
         data: {},
         callBack: (res) => {
+          console.log(res)
           this.setData({
-            distributionUserId: res.distributionUserId
+            distributionUserId: res.distributionUserId,
+            stationUserName: res.nickName, 
+            stationUserMobile: res.userMobile
           })
           if (res.distributionUserId) {
             this.isDistribution = false
@@ -2635,6 +2658,4 @@ export default {
   }
 }
 </script>
-<style>
-@import './submit-order.css';
-</style>
+<style>@import './submit-order.css';</style>

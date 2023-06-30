@@ -18,8 +18,8 @@ uni-page-wrapper{
   display: flex;
   overflow: hidden;
   /* margin-top: 100rpx; */
-  /* height: calc(100% - 100rpx); */
   height: calc(100% - 0rpx);
+  /* height: calc(100% - 0rpx); */
 	width: 100%;
 }
 
@@ -86,7 +86,7 @@ uni-page-wrapper{
   padding-bottom: 100rpx;
   /*  #endif  */
   /*  #ifdef  MP-WEIXIN  */
-  height: calc(100vh - 100rpx);
+  height: calc(100vh - 0rpx);
   /*  #endif  */
   box-sizing: border-box;
   background-color: #f5f6f7;

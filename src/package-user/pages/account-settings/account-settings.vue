@@ -51,15 +51,15 @@
           />p -->
         </view>
       </view>
-      <view class="cloumn-item" @tap.stop="setPassword">
+      <!-- <view class="cloumn-item" @tap.stop="setPassword">
         <view class="txt-wrap">{{ i18n.changePass }}</view>
         <image
           class="right-img"
           src="/static/images/icon/arrow-right.png"
           mode="scaleToFill"
         />
-      </view>
-      <view class="cloumn-item" @tap.stop="goPersonalRecommend">
+      </view> -->
+      <!-- <view class="cloumn-item" @tap.stop="goPersonalRecommend">
         <view class="txt-wrap">{{ i18n.personRec }}</view>
         <view class="right-img">
           <view class="txt-wrap">{{ userInfo.prodRecommendation?i18n.open:i18n.close }}</view>
@@ -69,7 +69,7 @@
             mode="scaleToFill"
           />
         </view>
-      </view>
+      </view> -->
       <view class="cloumn-item" @tap="cancellation">
         <view class="txt-wrap">{{ i18n.cancellationAccount }}</view>
         <image

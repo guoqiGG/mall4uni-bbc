@@ -14,18 +14,13 @@
     <!-- 会员信息 -->
     <view class="member-msg">
       <view class="member-container">
-        <image
-          src="../../static/images/icon/memberLevelBg.png"
-          :class="'m-bg ' + (isSmallScreen ? 'small-screen' : '')"
-        />
+        <image src="../../static/images/icon/memberLevelBg.png"
+          :class="'m-bg ' + (isSmallScreen ? 'small-screen' : '')" />
         <view class="member-info">
           <view class="member-info-top">
             <view class="user-info">
-              <image
-                class="user-avatar"
-                :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'"
-                @error="userInfo.pic=''"
-              />
+              <image class="user-avatar" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'"
+                @error="userInfo.pic = ''" />
               <view class="user-nickname">
                 <view class="nickname">{{ memberInfo.nickName }}</view>
               </view>
@@ -43,19 +38,10 @@
                 <text v-if="currentGrowthFull">{{
                   i18n.currentGrowthFull
                 }}</text>
-                <text
-                  v-else
-                >{{ i18n.upgradeStillNeeded }} {{ upgradeNeedGrowth }}
-                  {{ i18n.growthValue }}</text>
-                <progress
-                  class="level-progress"
-                  :percent="percent"
-                  backgroundColor="#feeee0"
-                  activeColor="#9e642e"
-                  active="true"
-                  border-radius="8"
-                  stroke-width="4"
-                />
+                <!-- <text v-else>{{ i18n.upgradeStillNeeded }} {{ upgradeNeedGrowth }}
+                  {{ i18n.growthValue }}</text> -->
+                <progress class="level-progress" :percent="percent" backgroundColor="#feeee0" activeColor="#9e642e"
+                  active="true" border-radius="8" stroke-width="4" />
                 <view class="level-span">
                   <text v-if="memberInfo.userLevel">{{
                     memberInfo.userLevel.levelName
@@ -63,15 +49,9 @@
                   <text>{{ memberInfo.nextLevelName }}</text>
                 </view>
               </view>
-              <view
-                v-if="memberInfo.nextGrowth"
-                class="level-text"
-              >{{ i18n.growthValue }} {{ memberInfo.growth }} /
+              <!-- <view v-if="memberInfo.nextGrowth" class="level-text">{{ i18n.growthValue }} {{ memberInfo.growth }} /
                 {{ memberInfo.nextGrowth }}</view>
-              <view
-                v-else
-                class="level-text"
-              >{{ i18n.growthValue }} {{ memberInfo.growth }}</view>
+              <view v-else class="level-text">{{ i18n.growthValue }} {{ memberInfo.growth }}</view> -->
             </view>
           </view>
         </view>
@@ -89,11 +69,11 @@
         <view class="value-table">
           <view class="tr">
             <view class="td-left th">{{ i18n.grade }}</view>
-            <view class="td-right th">{{ i18n.correspondingGrowthValue }}</view>
+            <!-- <view class="td-right th">{{ i18n.correspondingGrowthValue }}</view> -->
           </view>
           <view v-for="(item, id) in userLevels" :key="id" class="tr">
             <view class="td-left">{{ item.levelName }}</view>
-            <view class="td-right">{{ item.needGrowth }}</view>
+            <!-- <view class="td-right">{{ item.needGrowth }}</view> -->
           </view>
         </view>
       </view>
@@ -102,7 +82,7 @@
     <!-- /会员成长说明 -->
 
     <!-- vip专属权益 -->
-    <view class="member-growth member-rights">
+    <!-- <view class="member-growth member-rights">
       <view class="member-tit">
         <view class="text">{{ i18n.exclusiveMembers }}</view>
         <text
@@ -126,7 +106,7 @@
           </view>
         </block>
       </view>
-    </view>
+    </view> -->
     <!-- /vip专属权益 -->
 
     <!-- 弹窗Swiper -->
@@ -136,14 +116,8 @@
           <image src="/static/images/icon/close-white.png" />
         </view>
       </view>
-      <swiper
-        indicator-dots
-        indicator-active-color="#fff"
-        indicator-color="rgba(255,255,255,.2)"
-        :duration="duration"
-        next-margin="20rpx"
-        previous-margin="50rpx"
-      >
+      <swiper indicator-dots indicator-active-color="#fff" indicator-color="rgba(255,255,255,.2)" :duration="duration"
+        next-margin="20rpx" previous-margin="50rpx">
         <block v-for="(levelItem, id) in userLevels" :key="id">
           <swiper-item class="member-item">
             <view class="swiper-box">
@@ -151,17 +125,13 @@
                 <ImgShow :src="levelItem.img" :classList="['member-bg']" />
                 <view class="top-con">
                   <view class="member-title">{{ levelItem.levelName }}</view>
-                  <view
-                    class="member-desc"
-                  >{{ levelItem.userRights.length }} {{ i18n.itemXiang }}
-                    <text class="member-desc-text">{{ i18n.exclusiveMembers }}</text></view>
+                  <view class="member-desc">{{ levelItem.userRights.length }} {{ i18n.itemXiang }}
+                    <text class="member-desc-text">{{ i18n.exclusiveMembers }}</text>
+                  </view>
                 </view>
               </view>
               <view class="rights-item-con">
-                <block
-                  v-for="(right, rightsId) in levelItem.userRights"
-                  :key="rightsId"
-                >
+                <block v-for="(right, rightsId) in levelItem.userRights" :key="rightsId">
                   <view class="rights-item">
                     <view class="rights-img">
                       <ImgShow :src="right.icon" img-mode="heightFix" />
@@ -214,7 +184,7 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     uni.getSystemInfo({
       success: (res) => {
         this.isSmallScreen = res.screenHeight <= 568
@@ -229,12 +199,12 @@ export default {
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // 设置头部导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.membershipCentre
@@ -244,27 +214,27 @@ export default {
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {},
+  onShareAppMessage: function () { },
   methods: {
     /**
      * 跳转

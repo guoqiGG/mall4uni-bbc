@@ -42,12 +42,18 @@
         <!-- 消息播放 -->
         <view v-if="news.title" class="message-play">
           <image src="/static/images/icon/horn.png" class="hornpng" />
-          <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
+          <!-- <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
             <block>
               <swiper-item class="items">{{ news.title }}</swiper-item>
               <swiper-item class="items" v-if="news.content"><rich-text :nodes="news.content" /></swiper-item>
             </block>
-          </swiper>
+          </swiper> -->
+          <view class="scroll-news-content" :style="'transform: translateX(' + move + 'px);'">
+            <view class="news-content">
+              <view class="content"> {{ news.title }}</view>
+              <view class="content" v-html="news.content"></view>
+            </view>
+          </view>
           <!-- <text class="arrow" /> -->
         </view>
         <!-- 消息播放end -->
@@ -64,7 +70,6 @@
           </block>
         </swiper>
         <!-- end swiper -->
-
         <!-- 板块 -->
         <view class="cat-item">
           <view class="item" @tap="toMemberInteral">
@@ -126,6 +131,7 @@
     </view>
     <view class="kefu" @tap="gotoChat">
       <image src="/static/images/icon/kefu1.png" />
+      <view class="text">客服</view>
     </view>
     <!-- 空列表或加载全部提示 -->
     <!-- <EmptyAllTips v-if="isLoaded" :isEmpty="!liveBroadcastList.length" :emptyTips="i18n.liveBroadcastTips"
@@ -633,7 +639,6 @@ export default {
       }
       http.request(params)
     },
-
     /**
      * 加载热销商品列表
      */

@@ -145,7 +145,7 @@ const checkAuthInfo = fn => {
   }
   // 设置登录后的跳转地址
   setRouteUrlAfterLogin()
-  uni.navigateTo({
+  uni.redirectTo({
     url: '/pages/user-login/user-login'
   })
 }

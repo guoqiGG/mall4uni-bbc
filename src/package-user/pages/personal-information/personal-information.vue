@@ -13,38 +13,25 @@
 <template>
   <view class="Mall4j personal-information">
     <view class="item-wrap">
-      <view class="cloumn-item" @tap="getUploadImg">
+      <view class="cloumn-item">
         <view class="txt-wrap">{{ i18n.avatar }}</view>
-        <view class="infor-right-wrap">
-          <image
-            class="avatar-picture"
-            :src="
-              photoFiles
-                ? photoFiles
-                : pic
-                  ? pic
-                  : '/static/images/icon/head04.png'
-            "
-            mode="scaleToFill"
-          />
-          <image
-            class="right-img"
-            src="/static/images/icon/arrow-right.png"
-            mode="scaleToFill"
-          />
-        </view>
+        <button class="infor-right-wrap" style="background-color: transparent;margin:0;padding:0;"
+          open-type="chooseAvatar" @chooseavatar="getUploadImg">
+          <image class="avatar-picture" :src="photoFiles
+            ? photoFiles
+            : pic
+              ? pic
+              : '/static/images/icon/head04.png'
+            " mode="scaleToFill" />
+          <image class="right-img" src="/static/images/icon/arrow-right.png" mode="scaleToFill" />
+        </button>
       </view>
     </view>
     <view class="item-wrap">
       <view v-if="username" class="cloumn-item">
         <view class="txt-wrap">{{ i18n.userName }}</view>
         <view class="right-wrap">
-          <input
-            type="text"
-            class="txt-infor"
-            :value="username"
-            disabled
-          >
+          <input  class="txt-infor" :value="username" disabled>
           <!-- <image
             class="right-img"
             src="/static/images/icon/arrow-right.png"
@@ -55,14 +42,8 @@
       <view class="cloumn-item" @tap="none">
         <view class="txt-wrap">{{ i18n.nickname }}</view>
         <view class="right-wrap">
-          <input
-            type="text"
-            class="txt-infor"
-            :value="nickName"
-            :placeholder="i18n.maximumCharacters"
-            maxlength="15"
-            @input="getNickNameInt"
-          >
+          <input type="nickname" class="txt-infor" :value="nickName" :placeholder="i18n.maximumCharacters" maxlength="15"
+            @input="getNickNameInt">
           <!-- <image
             class="right-img"
             src="/static/images/icon/arrow-right.png"
@@ -73,25 +54,18 @@
       <view class="cloumn-item" @tap="translate">
         <view class="txt-wrap">{{ i18n.gender }}</view>
         <view class="right-wrap">
-          <view v-if="sex==1 || sex==0" class="txt-infor">{{ genderArray[sex] }}</view>
+          <view v-if="sex == 1 || sex == 0" class="txt-infor">{{ genderArray[sex] }}</view>
           <view v-else class="txt-infor" />
-          <image
-            class="right-img"
-            src="/static/images/icon/arrow-right.png"
-            mode="scaleToFill"
-          />
+          <image class="right-img" src="/static/images/icon/arrow-right.png" mode="scaleToFill" />
         </view>
       </view>
-      <picker class="birthday-picker birthday-wrap" mode="date" :value="date" fields="day" :end="endDate" @change="bindDateChange">
+      <picker class="birthday-picker birthday-wrap" mode="date" :value="date" fields="day" :end="endDate"
+        @change="bindDateChange">
         <view class="txt-wrap">{{ i18n.birthday }}</view>
         <view class="right-wrap">
           <view v-if="date" class="choose-value">{{ date }}</view>
           <view v-else class="choose-value" />
-          <image
-            class="right-img"
-            src="/static/images/icon/arrow-right.png"
-            mode="scaleToFill"
-          />
+          <image class="right-img" src="/static/images/icon/arrow-right.png" mode="scaleToFill" />
         </view>
       </picker>
     </view>
@@ -103,22 +77,14 @@
 
     <!-- 性别选择 弹框 -->
     <template v-if="showPicker">
-      <view
-        class="animation-element-wrapper"
-        :animation="animation"
-        :style="'visibility:' + (show ? 'visible' : 'hidden')"
-        @tap.stop="hiddenFloatView"
-      >
+      <view class="animation-element-wrapper" :animation="animation"
+        :style="'visibility:' + (show ? 'visible' : 'hidden')" @tap.stop="hiddenFloatView">
         <view class="animation-element" @tap.stop="nono">
           <text class="right-bt" @tap.stop="hiddenFloatView">{{
             i18n.confirm
           }}</text>
           <view class="line" />
-          <picker-view
-            indicator-style="height: 50px;"
-            @change="bindChange"
-            @tap.stop="nono"
-          >
+          <picker-view indicator-style="height: 50px;" @change="bindChange" @tap.stop="nono">
             <picker-view-column>
               <view v-for="(item, index) in genderArray" :key="index">{{
                 item
@@ -185,22 +151,22 @@ export default {
     }
   },
 
-  onLoad: function() {
+  onLoad: function () {
     // 加载会员信息
     this.genderArray.push(this.i18n.male)
     this.genderArray.push(this.i18n.female)
     this.queryUserInfo()
   },
-  onShow: function() {
+  onShow: function () {
     // 头部导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.personalInfor
     })
   },
-  onHide: function() {
+  onHide: function () {
     this.showPicker = false
   },
-  onReady: function() {
+  onReady: function () {
     this.animation = wx.createAnimation({
       transformOrigin: '50% 50%',
       duration: 0,
@@ -241,40 +207,31 @@ export default {
     /**
      * 上传图片
      */
-    getUploadImg: function() {
-      uni.chooseImage({
-        count: 1,
-        sizeType: ['compressed'],
-        sourceType: ['album'],
-        success: (res) => {
-          var tempFilePaths = res.tempFilePaths
-          const params = {
-            url: '/p/file/upload',
-            filePath: tempFilePaths[0],
-            name: 'file',
-            callBack: (res2) => {
-              this.photoFiles = res2.resourcesUrl + res2.filePath
-              this._photoFiles = res2.filePath
-              this.isChange = true
-            }
-          }
-          const obj = {
-            src: tempFilePaths[0],
-            quality: 0.2
-          }
-          this.$refs.hCompress.compress(obj, res.tempFiles[0]).then(res => {
-            params.filePath = res
-            http.upload(params)
-          })
-        },
-        fail: (failMsg) => {
-          console.log(failMsg)
+    getUploadImg: function (e) {
+      console.log(e)
+      var tempFilePaths = e.detail.avatarUrl
+      const params = {
+        url: '/p/file/upload',
+        filePath: tempFilePaths,
+        name: 'file',
+        callBack: (res2) => {
+          this.photoFiles = res2.resourcesUrl + res2.filePath
+          this._photoFiles = res2.filePath
+          this.isChange = true
         }
+      }
+      const obj = {
+        src: tempFilePaths,
+        quality: 0.2
+      }
+      this.$refs.hCompress.compress(obj, e.detail.avatarUrl).then(res => {
+        params.filePath = res
+        http.upload(params)
       })
     },
 
     // 获取用户信息
-    queryUserInfo: function() {
+    queryUserInfo: function () {
       const params = {
         url: '/p/user/userInfo',
         method: 'GET',
@@ -313,7 +270,7 @@ export default {
     },
 
     // 移动按钮点击事件
-    translate: function(e) {
+    translate: function (e) {
       if (t == 0) {
         moveY = 0
         show = false
@@ -349,7 +306,7 @@ export default {
     },
 
     // 动画事件
-    animationEvents: function(that, moveY, show) {
+    animationEvents: function (that, moveY, show) {
       // console.log("moveY:" + moveY + "\nshow:" + show);
       that.animation = wx.createAnimation({
         transformOrigin: '50% 50%',
@@ -364,13 +321,13 @@ export default {
     },
 
     // 用户昵称
-    getNickNameInt: function(e) {
+    getNickNameInt: function (e) {
       this.nickName = e.detail.value
       this.isChange = true
     },
 
     // 选择性别
-    bindChange: function(e) {
+    bindChange: function (e) {
       console.log('e', e)
       this.sex = e.detail.value[0]
       console.log(this.sex)
@@ -385,7 +342,7 @@ export default {
     },
 
     // 选择日期
-    bindDateChange: function(e) {
+    bindDateChange: function (e) {
       this.date = e.detail.value
       this.isChange = true
     },
@@ -431,15 +388,15 @@ export default {
       }
     },
 
-    nono() {}
+    nono() { }
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
-  onPullDownRefresh: function() {},
-  onShareAppMessage: function(e) {
+  onReachBottom: function () { },
+  onPullDownRefresh: function () { },
+  onShareAppMessage: function (e) {
     return {}
   }
 }

@@ -179,7 +179,7 @@ swiper.pic-swiper .banner {
   height: 90rpx;
   background: #fff;
   margin: auto;
-  padding: 0 60rpx 0 100rpx;
+  padding: 0 10rpx 0 100rpx;
   box-sizing: border-box;
   border-top: 1px solid #f9f9f9;
 }
@@ -215,6 +215,36 @@ swiper.pic-swiper .banner {
   top: 34rpx;
 }
 
+.scroll-news-content {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.scroll-news-content .news-content {
+  animation: loop 8s linear infinite;
+}
+.scroll-news-content .content {
+  display: inline-block;
+  background: #fff;
+}
+.scroll-news-content .content:nth-child(2) {
+  margin-left: 10rpx;
+  padding-right: 50rpx;
+  box-sizing: border-box;
+}
+@keyframes loop {
+  0% {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(calc(-100% + 90rpx));
+    -webkit-transform: translateX(calc(-100% + 90rpx));
+  }
+}
 /* 直播列表入口 */
 .live-enter {
   display: block;
@@ -667,19 +697,25 @@ swiper.pic-swiper .banner {
   right: 15rpx;
   box-shadow: 0 2rpx 33rpx 2rpx rgba(0, 0, 0, 0.04);
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .kefu image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+.kefu .text{
+  color: #FFF;
 }
 
 /* 直播 */
-.live-title{
+.live-title {
   font-size: 32rpx;
   margin-top: 10rpx;
   padding: 10rpx 45rpx;
   font-weight: 600;
-  border-bottom:6rpx solid #eb2444;
+  border-bottom: 6rpx solid #eb2444;
 }
 .live-container {
   display: block;
@@ -706,7 +742,7 @@ swiper.pic-swiper .banner {
   flex: 2;
   position: relative;
 }
-.bg-white{
+.bg-white {
   background: rgba(198, 198, 198, 0.5);
   border-radius: 5rpx;
   padding: 2rpx 3rpx;
@@ -737,7 +773,7 @@ swiper.pic-swiper .banner {
   flex-direction: row;
   align-items: center;
 }
-.like .like-icon{
+.like .like-icon {
   width: 50rpx;
   height: 45rpx;
 }

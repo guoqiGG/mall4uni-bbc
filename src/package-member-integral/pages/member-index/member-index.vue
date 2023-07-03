@@ -16,13 +16,14 @@
       <image src="../../static/images/icon/memberIndexBg.png" class="m-bg" />
       <view class="member-info">
         <view class="head-portrait">
-          <image :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'
+          <image class="head-avatar-bg" src="/static/images/icon/head04.png" />
+          <image class="head-avatar" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'
             " @error="imageError(userInfo, 'pic')" />
         </view>
         <view class="text-box">
           <view class="name-box">
             <text class="name">{{ userInfo.nickName }}</text>
-            <view class="level">
+            <view class="level" @tap="showLevelPop">
               <image :src="userMemberInfo.levelType == 0
                 ? '/static/images/icon/normal-icon.png'
                 : '/static/images/icon/integral-icon.png'
@@ -214,17 +215,37 @@
       </view>
     </view>
     <!-- /青春豆攻略 -->
+
+    <!-- 成长值攻略 -->
+    <view class="sign-in" style="padding-bottom: 30rpx;">
+      <view class="member-tit member-tit2">
+        <view class="text">成长值攻略</view>
+        <view class="cont-det">
+          <view class="cont-det-text" style="font-size: 14px;line-height:24px;color:#707070;">
+            观看直播，观看直播超过50分钟，即可签到成功一次，获得成长值+1。</view>
+
+        </view>
+      </view>
+    </view>
+    <!-- /成长值攻略 -->
+
+    <!-- 会员等级详情弹框 -->
+    <memberGrade ref="menberGrade"></memberGrade>
+    <!-- /会员等级详情弹框 -->
   </view>
 </template>
 
 <script>
 const http = require('../../../utils/http.js')
 const util = require('../../../utils/util.js')
+// 会员等级组件
+import memberGrade from '../../components/menber-grade/menber-grade'
 import goodsitem from '../../components/integral-goods-list/index.vue'
 import dayjs from 'dayjs'
 export default {
   components: {
-    goodsitem
+    goodsitem,
+    memberGrade
   },
   props: {},
   data() {
@@ -242,6 +263,8 @@ export default {
       sevenDay: [],
       dateList: [],
       scoreExplain: {},// 青春豆攻略
+      showPop: false,
+      levelType: 0
     }
   },
 
@@ -280,6 +303,7 @@ export default {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     // 设置头部导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.membershipCentre
@@ -314,21 +338,23 @@ export default {
    */
   onShareAppMessage: function () { },
   methods: {
+    // 显示会员等级弹框
+    showLevelPop: function () {
+      this.$refs.menberGrade.showLevelPop()
+    },
 
-        /**
-     * 青春豆攻略
-     */
-     getScoreExplain: function() {
+    /**
+ * 青春豆攻略
+ */
+    getScoreExplain: function () {
       var param = {
         url: '/p/score/getScoreQuestion',
         method: 'GET',
         data: {},
         callBack: (res) => {
-          console.log(res)
           this.setData({
             scoreExplain: res
           })
-          console.log(this.scoreExplain)
         }
       }
       http.request(param)

@@ -420,12 +420,21 @@ export default {
           tempUid: uni.getStorageSync('bbcTempUid')
         },
         callBack: res => {
+          uni.getUserProfile({
+            desc: "获取你的昵称、头像、地区及性别",
+            success: (res) => {
+              console.log("所有", res)
+            },
+            fail() {
+              console.log(shibai)
+            }
+          })
           if (res.accessToken) {
             uni.setStorageSync('bbcIsPrivacy', 1)
             uni.setStorageSync('bbcHadLogin', true)
             uni.setStorageSync('bbcToken', res.accessToken)
             uni.setStorageSync('bbcLoginResult', res) // 保存整个登录数据
-            const expiresTimeStamp = res.expiresIn * 1000 / 2 + new Date().getTime()
+            const expiresTimeStamp = res.expiresIn * 1000 / 2 + new Date().getTime() 
             // 缓存token的过期时间
             uni.setStorageSync('bbcExpiresTimeStamp', expiresTimeStamp)
 

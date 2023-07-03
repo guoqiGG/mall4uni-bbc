@@ -1467,7 +1467,7 @@ export const index = {
   'loginAgree': '登录代表您已同意',
   'hadBind': '该手机号对应的账户已绑定其他微信号',
   'regAgree': '若手机号未注册将进入注册流程，注册即视为同意',
-  'wechatOneKeyLogin': '微信用户一键登录',
+  'wechatOneKeyLogin': '手机号快捷登录',
   'otherLogMethods': '其他登录方式',
   'wechatLogin': '微信登录',
   'phoneLogin': '手机验证',

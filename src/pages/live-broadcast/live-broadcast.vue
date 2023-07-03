@@ -165,6 +165,9 @@ export default {
   },
 
   onShow: function () {
+    if(!uni.getStorageSync('bbcToken')){
+    uni.navigateTo({ url: 'pages/user-login/user-login' })
+   }
     this.clear()
     // 头部导航标题
     uni.setNavigationBarTitle({

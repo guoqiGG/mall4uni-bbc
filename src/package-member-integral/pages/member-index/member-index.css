@@ -27,15 +27,23 @@
 }
 
 .member-index .member-msg .member-info .head-portrait {
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 50%;
   overflow: hidden;
+  position: relative;
+}
+.member-index .member-msg .member-info .head-portrait .head-avatar-bg{
+  width: 100rpx;
+  height: 100rpx; 
 }
 
-.member-index .member-msg .member-info .head-portrait image {
-  width: 100%;
-  height: 100%;
+.member-index .member-msg .member-info .head-portrait .head-avatar {
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
 }
 
@@ -425,3 +433,5 @@
 } */
 
 /* 青春豆兑换 end */
+
+

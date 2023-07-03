@@ -100,7 +100,7 @@ function request(params) {
             success: res => {
               if (res.confirm) {
                 getApp().globalData.showLoginExpired = false
-                uni.navigateTo({
+                uni.redirectTo({
                   url: '/pages/user-login/user-login'
                 })
               } else {

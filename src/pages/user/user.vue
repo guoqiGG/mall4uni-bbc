@@ -23,27 +23,21 @@
         <view v-if="isAuthInfo" class="userinfo-wrap">
           <view class="left-infor">
             <!-- 头像 -->
-            <image class="avatsr" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'" mode="scaleToFill"
-              @tap="toPersonalInformation" @error="imageError(userInfo, 'pic')" />
+            <view class="avatsr-con">
+              <image class="avatsr-bg" src="/static/images/icon/head04.png" mode="scaleToFill" />
+              <image class="avatsr" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'"
+                mode="scaleToFill" @tap="toPersonalInformation" @error="imageError(userInfo, 'pic')" />
+            </view>
             <view class="infor-wrap">
               <!-- 姓名 -->
               <view class="user-name" @tap="toPersonalInformation">
                 {{ userInfo.nickName }}
               </view>
               <!-- vip称号 -->
-              <view v-if="userLevelInfo.levelType == 1" class="pay-vip-wrap menbers vip-img">
-                <!-- <view class="priming-vip-txt">{{ userLevelInfo.levelName }}</view> -->
-                <!-- <image
-                  class="default-img"
-                  src="/static/images/icon/vip-bg-2.png"
-                /> -->
+              <view v-if="userLevelInfo.levelType == 1" class="pay-vip-wrap menbers vip-img" @tap="toMemberCenter">
                 <text class="vip-txt">{{ userLevelInfo.levelName }}</text>
               </view>
-              <view v-else class="menbers menbers-img">
-                <!-- <image
-                  class="default-img"
-                  src="/static/images/icon/vip-bg-1.png"
-                /> -->
+              <view v-else class="menbers menbers-img" @tap="toMemberCenter">
                 <text class="vip-txt">{{ userLevelInfo.levelName }}</text>
               </view>
             </view>
@@ -229,7 +223,7 @@
               address.city + address.area + address.addr) }}
           </view>
           <view class="station-phone"><text style="color:#333;font-weight: bold;">电话:</text>{{ station.province ?
-            ((station.phonePrefix?(station.phonePrefix + '-'):'') + station.phone) : address.mobile }}
+            ((station.phonePrefix ? (station.phonePrefix + '-') : '') + station.phone) : address.mobile }}
           </view>
         </view>
         <view class="address-icon"
@@ -267,7 +261,7 @@
     <view class="tools-wrap">
       <view class="title-txt">{{ i18n.servicesTools }}</view>
       <view class="cloumn-wrap">
-        <view class="cloumn-item" @tap="toPointsCenter">
+        <view class="cloumn-item" @tap="toMyCouponPage">
           <image class="item-img" src="/static/images/icon/icon_members.png" />
           <view class="infor-txt">优惠券</view>
         </view>
@@ -351,13 +345,11 @@ const config = require('@/utils/config.js')
 const http = require('../../utils/http.js')
 const util = require('../../utils/util.js')
 import Wechat from '../../utils/wechat.js'
-
 import backTopBtn from '@/components/back-top-btn/index.vue'
 import navigationBar from '@/components/navigation-bar/index.vue'
 export default {
   components: {
-    navigationBar,
-    backTopBtn
+    navigationBar
   },
   filters: {
     millionNumber(val) {
@@ -471,6 +463,10 @@ export default {
      * 生命周期函数--监听页面显示
      */
   onShow: function () {
+    if (!uni.getStorageSync('bbcToken')) {
+      uni.navigateTo({ url: 'pages/user-login/user-login' })
+    }
+    console.log(11, uni.getStorageSync('bbcExpiresTimeStamp'))
     uni.setNavigationBarTitle({
       title: this.i18n.personalCenter
     })
@@ -574,6 +570,15 @@ export default {
   },
 
   methods: {
+    /**
+   * 跳转到会员中心(当前成长值)
+   */
+    toMemberCenter: function () {
+      uni.navigateTo({
+        url: '/package-member-integral/pages/member-index/member-index'
+      })
+    },
+
     /**
     * 打开地图选择地址
     */
@@ -1231,6 +1236,7 @@ export default {
         data: {},
         callBack: res => {
           this.getVipInternationalization(res)
+          console.log(res)
           this.setData({
             userLevelInfo: res
           })

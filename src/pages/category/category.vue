@@ -138,6 +138,9 @@ export default {
     uni.setNavigationBarTitle({
       title: this.i18n.classifiedGoods
     })
+   if(!uni.getStorageSync('bbcToken')){
+    uni.navigateTo({ url: 'pages/user-login/user-login' })
+   }
 
     util.transTabbar()
 

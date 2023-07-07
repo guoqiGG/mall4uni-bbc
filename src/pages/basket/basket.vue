@@ -165,7 +165,7 @@
             <text class="blod" style="font-size: 34rpx;color:#333;">{{ i18n.total }}:</text>
             <view class="price">
               <text class="symbol" style="font-size: 34rpx;color:#F81A1A;">￥</text>
-              <text class="big-num" style="font-size: 34rpx;color:#F81A1A;">1111{{ parsePrice(finalMoney)[0] }}</text>
+              <text class="big-num" style="font-size: 34rpx;color:#F81A1A;">{{ parsePrice(finalMoney)[0] }}</text>
               <text class="small-num" style="font-size: 34rpx;color:#F81A1A;">.{{ parsePrice(finalMoney)[1] }}</text>
             </view>
           </view>

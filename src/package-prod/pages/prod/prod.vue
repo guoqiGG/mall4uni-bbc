@@ -24,10 +24,10 @@
       <view class="prod-info">
         <view class="tit-wrap">
           <view class="prod-tit">{{ prodName }}</view>
-          <view v-if="prodType != 3" class="col" @tap="addOrCannelCollection">
+          <!-- <view v-if="prodType != 3" class="col" @tap="addOrCannelCollection">
             <image v-if="!isCollection" src="/static/images/icon/prod-col.png" />
             <image v-if="isCollection" src="/static/images/icon/prod-col-red.png" />{{ i18n.collection }}
-          </view>
+          </view> -->
         </view>
         <view class="sales-p">{{ brief }}</view>
         <!-- 秒杀商品价格 -->

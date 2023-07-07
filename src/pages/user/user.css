@@ -3,6 +3,19 @@
 page {
   background-color: #f6f6f6;
 }
+.container .title{
+  text-align: center;
+  background: #005aff;
+ 
+}
+.container .title .title-text{
+  height: 91rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 44rpx;
+  background: #005aff;
+  color: #fff;
+}
 .top-infor-wrap {
   /* height: 447rpx; */
   height: 262rpx;

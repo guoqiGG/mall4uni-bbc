@@ -13,7 +13,7 @@
     <!-- 自定义导航头 -->
     <!-- #ifndef H5-->
     <navigationBar v-if="navigationBarIsShow" :show-back="false" :navigation-bar-style="tabConfig" :is-left="false"
-      :is-bg-img="isBgImg" :is-mine-page="true" :title="i18n.personalCenter" />
+      :is-bg-img="isBgImg" :is-mine-page="true" :title="i18n.personalCenter" /> 
     <!-- #endif -->
     <view class="top-wrap">
       <view v-if="isAuthInfo" class="top-infor-wrap">

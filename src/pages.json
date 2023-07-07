@@ -52,7 +52,10 @@
           "path": "pages/discount-package-detail/discount-package-detail"
         },
         {
-          "path": "pages/prod/prod"
+          "path": "pages/prod/prod",
+          "style":{
+            "navigationStyle":"custom"
+          }
         },
         {
           "path": "pages/prod-classify/prod-classify"

@@ -11,47 +11,23 @@
 <template>
   <!-- 轮播图 & 商品视频-->
   <view class="Mall4j swiper-con">
+    <view class="prod-detail-title">商品详情</view>
     <view v-if="video && isPlaying" class="video-container">
-      <video
-        id="myVideo"
-        :autoplay="true"
-        enable-progress-gesture="false"
-        :src="video"
-        controls
-        @ended="playEnd"
-      />
+      <video id="myVideo" :autoplay="true" enable-progress-gesture="false" :src="video" controls @ended="playEnd" />
     </view>
     <view v-if="video" class="play-btn" @tap="videoOper">
-      <image
-        v-if="!isPlaying"
-        class="play-icon"
-        src="/static/images/icon/play-red.png"
-      />
-      <text
-        v-if="isPlaying"
-        :class="'play-text ' + (isPlaying ? 'video-stop' : 'video-play')"
-      >{{ isPlaying ? i18n.quitPlaying : "" }}</text>
+      <image v-if="!isPlaying" class="play-icon" src="/static/images/icon/play-red.png" />
+      <text v-if="isPlaying" :class="'play-text ' + (isPlaying ? 'video-stop' : 'video-play')">{{ isPlaying ?
+        i18n.quitPlaying : "" }}</text>
     </view>
-    <swiper
-      v-if="!isPlaying"
-      :circular="true"
-      :indicator-dots="indicatorDots"
-      :autoplay="video"
-      :indicator-color="indicatorColor"
-      :interval="interval"
-      :current="currentPicIndex"
-      :duration="duration"
-      :indicator-active-color="indicatorActiveColor"
-    >
+    <swiper v-if="!isPlaying" :circular="true" :indicator-dots="indicatorDots" :autoplay="video"
+      :indicator-color="indicatorColor" :interval="interval" :current="currentPicIndex" :duration="duration"
+      :indicator-active-color="indicatorActiveColor">
       <block v-if="imgsList.length">
         <block v-for="(item, imgIndex) in imgsList" :key="imgIndex">
           <swiper-item>
-            <image v-if="item" mode="aspectFit" :src="item" @error="handlePicError($event, imgIndex)" />
-            <image
-              v-else
-              src="/static/images/icon/def.png"
-              mode="aspectFit"
-            />
+            <image v-if="item" mode="scaleToFill" :src="item" @error="handlePicError($event, imgIndex)" />
+            <image v-else src="/static/images/icon/def.png" mode="aspectFit" />
           </swiper-item>
         </block>
       </block>
@@ -108,7 +84,7 @@ export default {
   },
   watch: {
     imgs: {
-      handler: function(val, oldVal) {
+      handler: function (val, oldVal) {
         this.imgsList = val ? val.split(',') : ['']
       },
       immediate: true
@@ -177,13 +153,24 @@ export default {
 </script>
 
 <style scoped>
+.prod-detail-title {
+  position: absolute;
+  top: 110rpx;
+  left: 92rpx;
+  z-index: 50;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 24rpx;
+}
+
 swiper {
   height: 750rpx;
   width: 100%;
 }
 
 swiper image {
-  height: 750rpx;
+  height: 100%;
   width: 100%;
 }
 
@@ -203,6 +190,7 @@ swiper image {
   background: #000;
   z-index: 10;
 }
+
 .video-container video {
   display: block;
   width: 100%;

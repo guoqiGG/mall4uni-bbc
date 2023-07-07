@@ -11,50 +11,62 @@ page {
 }
 
 .integral-index .integral-msg {
-  width: 750rpx;
-  height: 290rpx;
+  width: 690rpx;
+  height: 330rpx;
   position: relative;
+  margin: 43rpx auto 0;
+  background-image: url(../../static/images/icon/integral-bg.png);
+  background-size: cover;
+  border-radius: 25rpx;
+  box-shadow: 0rpx 10rpx 30rpx 0rpx rgba(29, 137, 0, 0.4);
 }
-
-.integral-index .integral-msg .bg {
-  position: absolute;
-  left: 0;
-  top: 0;
+.integral-index .integral-msg .image-bg .bg {
   width: 100%;
   height: 100%;
 }
 
 .integral-index .integral-msg .my-integral {
   display: flex;
-  padding: 90rpx 30rpx 0;
-  color: #fff;
-  position: relative;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 90rpx;
+  width: 690rpx;
+  height: 330rpx;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .integral-index .integral-msg .my-integral .number-box .text {
-  font-size: 24rpx;
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .integral-index .integral-msg .my-integral .number-box .number {
-  font-size: 90rpx;
-  font-family: arial;
+  font-size: 120rpx;
+  font-weight: 800;
+  color: #ffffff;
   margin-top: 10rpx;
 }
 
 .integral-index .integral-msg .my-integral .det {
-  font-size: 24rpx;
-  margin-left: 20rpx;
-  margin-top: 76rpx;
-	display: flex;
-	align-items: center;
+  width: 170rpx;
+  height: 86rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fe8102;
+  border-radius: 43rpx;
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .integral-index .integral-msg .my-integral .det image {
   width: 12rpx;
   height: 20rpx;
-	margin-left: 10rpx;
-	padding-top: 4rpx;
+  margin-left: 10rpx;
+  padding-top: 4rpx;
 }
 
 .integral-index .integral-msg .make {
@@ -68,14 +80,14 @@ page {
   height: 42rpx;
   line-height: 42rpx;
   border-radius: 54rpx;
-	display: flex;
+  display: flex;
 }
 
 .integral-index .integral-msg .make image {
   width: 42rpx;
   height: 42rpx;
   vertical-align: top;
-  margin:0 8rpx 0 4rpx;
+  margin: 0 8rpx 0 4rpx;
 }
 
 /* 青春豆中心 */
@@ -97,4 +109,16 @@ page {
   font-size: 30rpx;
   color: #888;
   text-align: center;
+}
+
+.integral-list {
+  width: calc(100% - 60rpx);
+  margin:  0 auto;
+  margin-top: 20rpx;
+}
+.integral-list .member-tits .text{
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #232323;
+  line-height: 24rpx;
 }

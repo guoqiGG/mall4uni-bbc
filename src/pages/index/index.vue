@@ -40,27 +40,23 @@
       <!-- 导航&公告 -->
       <view :class="['content']">
         <!-- 消息播放 -->
-        <view v-if="news.title" class="message-play">
-          <image src="/static/images/icon/horn.png" class="hornpng" />
-          <!-- <swiper vertical="true" autoplay="true" duration="1000" circular="true" class="swiper-cont">
-            <block>
-              <swiper-item class="items">{{ news.title }}</swiper-item>
-              <swiper-item class="items" v-if="news.content"><rich-text :nodes="news.content" /></swiper-item>
-            </block>
-          </swiper> -->
-          <view class="scroll-news-content" :style="'transform: translateX(' + move + 'px);'">
-            <view class="news-content">
-              <view class="content"> {{ news.title }}</view>
-              <view class="content" v-html="news.content"></view>
+        <view style="display:block; padding-top: 26rpx;height:280rpx;background:#005AFF;">
+          <view v-if="news.title" class="message-play">
+            <image src="/static/images/icon/horn.png" class="hornpng" />
+            <view class="scroll-news-content" :style="'transform: translateX(' + move + 'px);'">
+              <view class="news-content">
+                <view class="content"> {{ news.title }}</view>
+                <view class="content" v-html="news.content"></view>
+              </view>
             </view>
+            <!-- <text class="arrow" /> -->
           </view>
-          <!-- <text class="arrow" /> -->
         </view>
         <!-- 消息播放end -->
         <!-- swiper -->
         <swiper v-if="indexImgs.length" circular="true" :autoplay="autoplay" :indicator-color="indicatorColor"
           :interval="interval" :duration="duration" :indicator-active-color="indicatorActiveColor" class="card-swiper"
-          indicator-dots previous-margin="20rpx" next-margin="20rpx">
+          indicator-dots>
           <block v-for="(item, seq) in indexImgs" :key="seq">
             <swiper-item class="banner-item">
               <view class="img-box">
@@ -73,11 +69,27 @@
         <!-- 板块 -->
         <view class="cat-item">
           <view class="item" @tap="toMemberInteral">
+            <view class="item-title">青春豆兑换区</view>
+            <view class="item-desc">福利多多</view>
+            <view class="item-go">
+              <view>GO</view>
+              <view class="image">
+                <image src="/static/images/icon/spring-bean-exchange-arrow.png" />
+              </view>
+            </view>
             <image src="/static/images/icon/spring-bean-exchange.png" />
           </view>
           <view class="item" @tap="toPointsCenter">
+            <view class="item-title">签到</view>
+            <view class="item-desc">签到有礼</view>
+            <view class="item-go">
+              <view style="color:#FE8103;">GO</view>
+              <view class="image">
+                <image src="/static/images/icon/check-in-arrow.png" />
+              </view>
+            </view>
             <image src="/static/images/icon/check-in.png" />
-            <view class="watch-time">{{ signTime >= 50 ? '已签到' : (watchTime + ':' + watchSecond) }}</view>
+            <!-- <view class="watch-time">{{ signTime >= 50 ? '已签到' : (watchTime + ':' + watchSecond) }}</view> -->
           </view>
         </view>
         <!-- 板块end -->
@@ -87,34 +99,40 @@
         <view class="live-title">
           直播列表
         </view>
-        <view class="live-container" v-for="(item, index) in liveBroadcastList" :key="index" :data-roomid="item.roomId"
-          :data-anchorwechat="item.anchorWechat" :data-roomStatus="item.liveStatus" @tap="toLivePage">
-          <view class="live-item">
-            <view class="live-left">
-              <image class="image" :src="'http://img.zzqct.com/shop/' + item.coverImg"></image>
-              <view class="b-situation bg-white">
-                <image class="like-icon" src="/static/images/icon/icon-live.png"></image>
-                <view class="b-processing "><text class="state">{{
-                  item.liveStatus == 101 ? i18n.liveing : item.liveStatus == 102 ? i18n.notStarted : item.liveStatus ==
-                    103
-                    ? i18n.finished : item.liveStatus == 104 ? i18n.noBroadcasting : item.liveStatus == 105 ? i18n.suspend
-                      :
-                      item.liveStatus == 106 ? i18n.abnormal : item.liveStatus == 107 ? i18n.expired : ''
-                }}</text></view>
+        <view class="live-container">
+          <view v-for="(item, index) in liveBroadcastList" :key="index" :data-roomid="item.roomId"
+            :data-anchorwechat="item.anchorWechat" :data-roomStatus="item.liveStatus" @tap="toLivePage">
+            <view class="live-item">
+              <view class="live-left">
+                <image class="image" :src="'http://img.zzqct.com/shop/' + item.coverImg"></image>
+                <view :class="['b-situation', 'bg-white', item.liveStatus == 101 ? 'on-live' : 'no-live']">
+                  <image class="like-icon" src="/static/images/icon/icon-live.png"></image>
+                  <view class="b-processing"><text class="state">{{
+                    item.liveStatus == 101 ? i18n.liveing : item.liveStatus == 102 ? i18n.notStarted : item.liveStatus
+                      ==
+                      103
+                      ? i18n.finished : item.liveStatus == 104 ? i18n.noBroadcasting : item.liveStatus == 105 ?
+                        i18n.suspend
+                        :
+                        item.liveStatus == 106 ? i18n.abnormal : item.liveStatus == 107 ? i18n.expired : ''
+                  }}</text></view>
+                </view>
+                <view :class="['like', 'bg-white', item.liveStatus == 101 ? 'on-live' : 'no-live']">
+                  <image class="like-icon" src="/static/images/icon/icon-product.png"></image>
+                  <view class="like-num" style="color:ff0000;opacity:1;"> 商品99+</view>
+                </view>
               </view>
-              <view class="like bg-white">
-                <image class="like-icon" src="/static/images/icon/icon-product.png"></image>
-                <view class="like-num"> 商品 999+</view>
+              <view class="live-right">
+                <view class="top">
+                  <image class="image" :src="item.feedsImg"></image>
+                </view>
+                <view class="bottom">
+                  <image class="image" :src="item.shareImg"></image>
+                </view>
               </view>
             </view>
-            <view class="live-right">
-              <view class="top">
-                <image class="image" :src="item.feedsImg"></image>
-              </view>
-              <view class="bottom">
-                <image class="image" :src="item.shareImg"></image>
-              </view>
-            </view>
+            <view v-if="index<liveBroadcastList.length-1" class="item-center-line"></view>
+
           </view>
         </view>
       </view>
@@ -130,8 +148,7 @@
       <!-- <privacy-pop v-if="showPop" @hidePop="hidePop" /> -->
     </view>
     <view class="kefu" @tap="gotoChat">
-      <image src="/static/images/icon/kefu1.png" />
-      <view class="text">客服</view>
+      <image src="/static/images/icon/kefu.png" />
     </view>
     <!-- 空列表或加载全部提示 -->
     <!-- <EmptyAllTips v-if="isLoaded" :isEmpty="!liveBroadcastList.length" :emptyTips="i18n.liveBroadcastTips"
@@ -196,7 +213,7 @@ export default {
       showPop: false,
       bgImg: '',
       tabConfig: {
-        background: '',
+        background: '#005AFF',
         fontColor: '#FFFFFF',
         iconColor: '#FFFFFF'
       },
@@ -367,7 +384,7 @@ export default {
           this.showScreen = false
           if (!this.renovationId) {
             this.tabConfig = {
-              background: '#F81A1A',
+              background: '#005AFF',
               fontColor: '#FFFFFF',
               iconColor: '#FFFFFF'
             }
@@ -392,7 +409,7 @@ export default {
         if (this.bgImg) {
           this.tabConfig = {
             backgroundImage: `url(${this.bgImg})`,
-            background: e.detail.bgColor || '#F81A1A',
+            background: e.detail.bgColor || '#005AFF',
             fontColor: this.titleTextColor,
             iconColor: '#FFFFFF'
           }
@@ -404,7 +421,7 @@ export default {
         this.isBgImg = false
         this.tabConfig = {
           backgroundImage: `url(${this.bgImg})`,
-          background: e.detail.bgColor || '#F81A1A',
+          background: e.detail.bgColor || '#005AFF',
           fontColor: this.titleTextColor,
           iconColor: '#FFFFFF'
         }
@@ -412,7 +429,7 @@ export default {
       // 设置导航栏字体的颜色
       uni.setNavigationBarColor({
         frontColor: this.titleTextColor,
-        backgroundColor: '#F81A1A',
+        backgroundColor: '#005AFF',
         complete: (res) => { }
       })
     },
@@ -903,6 +920,4 @@ export default {
   }
 }
 </script>
-<style>
-@import './index.css';
-</style>
+<style>@import './index.css';</style>

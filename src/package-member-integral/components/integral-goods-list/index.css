@@ -4,9 +4,7 @@
   margin-top: 30rpx;
   width: 330rpx;
   background: #fff;
-  padding: 20rpx;
-  box-sizing: border-box;
-  border-radius: 10rpx;
+  border-radius: 10rpx 10rpx 0 0;
 }
 
 .integral-item:nth-child(2n) {
@@ -14,19 +12,21 @@
 }
 
 .integral-item .img {
-  width: 290rpx;
-  height: 290rpx;
+  display: block;
+  width: 330rpx;
+  height: 342rpx;
   font-size: 0;
+  border-radius: 10rpx 10rpx 0 0;
 }
 
 .integral-item .img image {
   width: 100%;
   height: 100%;
+  border-radius: 10rpx 10rpx 0 0;
 }
 
 .integral-item .name {
-  font-size: 28rpx;
-  margin: 16rpx 0 10rpx;
+  margin: 16rpx 0 10rpx 20rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -34,14 +34,20 @@
   text-overflow: ellipsis;
   height: 56rpx;
   line-height: 56rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #232323;
 }
 
 .integral-item .price {
   position: relative;
-  padding-left: 34rpx;
-  height: 28rpx;
   line-height: 28rpx;
   font-size: 24rpx;
+  width: 290rpx;
+  height: 60rpx;
+  background: #ff5000;
+  border-radius: 5rpx;
+  margin: 0 20rpx;
 }
 
 .integral-item .price .icon {
@@ -53,7 +59,10 @@
 }
 
 .integral-item .red-word {
-  color: #F81A1A;
+  color: #FFFFFF;
+line-height: 60rpx;
+padding-left: 25rpx;
+font-size: 28rpx;
 }
 
 .integral-item .old-price {

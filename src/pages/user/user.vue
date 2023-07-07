@@ -16,16 +16,14 @@
       :is-bg-img="isBgImg" :is-mine-page="true" :title="i18n.personalCenter" />
     <!-- #endif -->
     <view class="top-wrap">
-      <image class="top-bg-img" src="@/static/images/icon/bg-2.png" />
       <view v-if="isAuthInfo" class="top-infor-wrap">
-
         <!-- 用户信息（登录） -->
         <view v-if="isAuthInfo" class="userinfo-wrap">
           <view class="left-infor">
             <!-- 头像 -->
             <view class="avatsr-con">
-              <image class="avatsr-bg" src="/static/images/icon/head04.png" mode="scaleToFill" />
-              <image class="avatsr" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'"
+              <image class="avatsr" src="/static/images/icon/user-avatar-bg.png" mode="scaleToFill" />
+              <image class="avatsr-bg" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'"
                 mode="scaleToFill" @tap="toPersonalInformation" @error="imageError(userInfo, 'pic')" />
             </view>
             <view class="infor-wrap">
@@ -34,146 +32,85 @@
                 {{ userInfo.nickName }}
               </view>
               <!-- vip称号 -->
-              <view v-if="userLevelInfo.levelType == 1" class="pay-vip-wrap menbers vip-img" @tap="toMemberCenter">
+              <view class="pay-vip-wrap menbers" @tap="toMemberCenter">
+                <image class="user-grade-icon" src="/static/images/icon/normal-icon.png"></image>
                 <text class="vip-txt">{{ userLevelInfo.levelName }}</text>
               </view>
-              <view v-else class="menbers menbers-img" @tap="toMemberCenter">
-                <text class="vip-txt">{{ userLevelInfo.levelName }}</text>
-              </view>
             </view>
-          </view>
-          <view class="right-infor">
-            <!-- <image class="scan-code" src="/static/images/icon/icon_codes.png" @tap="sacnCode" />
-            <image class="sign-in" src="/static/images/icon/icon_sign.png" @tap="toPointsCenter" />
-            <view class="message" @tap="toMyMessage">
-              <image src="/static/images/icon/icon_message.png" />
-              <view v-if="messageCount > 0" class="quantity-tip-dots">{{ messageCount }}</view>
-            </view> -->
-
           </view>
         </view>
-
-        <!-- 钱包数据 -->
-        <view v-if="isAuthInfo" class="wallet-wrap">
-          <view class="cloumn-wrap">
-            <view class="cloumn-item" @tap="toMyWallet">
-              <view class="numbers-txt">{{ totalBalance | millionNumber }}</view>
-              <view class="infor-con">
-                <view class="infor-txt">{{ i18n.balance }}
-                </view>
-                <view class="arr">
-                  <image src="/static/images/icon/arrow-right.png" />
-                </view>
-              </view>
-            </view>
-            <view class="cloumn-item" @tap="toInteralDetail">
-              <view class="numbers-txt">{{ (userLevelInfo.score ? userLevelInfo.score : '0') | millionNumber }}</view>
-              <view class="infor-con">
-                <view class="infor-txt">{{ i18n.prodType4 }}
-                </view>
-                <view class="arr">
-                  <image src="/static/images/icon/arrow-right.png" />
-                </view>
-              </view>
-            </view>
-            <!-- <view class="cloumn-item" @tap="toMyCouponPage">
-              <view class="numbers-txt">{{ couponNum }}</view>
-              <view class="infor-txt">{{ i18n.coupon }}</view>
-            </view> -->
-            <!-- <view class="cloumn-item" @tap="myCollectionHandle">
-              <view class="numbers-txt">{{ collectionCount }}</view>
-              <view class="infor-txt">{{ i18n.collection }}</view>
-            </view> -->
-          </view>
-          <!-- <view class="vip-column" @tap="toBuyMember">
-            <image
-              src="@/static/images/icon/VIP_bg.png"
-              mode="widthFix"
-            />
-            <view v-if="powerNumber" class="txt-seat">
-              <view v-if="vipRemainingDay">
-                {{ i18n.privilegesTxt7 + ' ' + vipRemainingDay + ' ' + i18n.privilegesTxt8 }}
-              </view>
-              <view v-else>
-                {{ i18n.privilegesTxt3 + ' ' + powerNumber + ' ' + i18n.privilegesTxt4 }},
-                {{
-                  i18n.privilegesTxt5
-                    +
-                    ' '
-                    +
-                    vipMarking.needAmount
-                    +
-                    ' '
-                    +
-                    i18n.privilegesTxt6
-                    +
-                    [
-                      "",
-                      i18n.day,
-                      i18n.week,
-                      i18n.month,
-                      i18n.season,
-                      i18n.year,
-                    ][vipMarking.termType]
-                }}
-              </view>
-            </view>
-            <view v-else class="txt-seat">{{ i18n.privilegesTxt }}</view>
-         
-            <view class="bth-seat">{{ vipRemainingDay ? i18n.renewNow : i18n.openNow }}</view>
-          </view> -->
-        </view>
-        <!-- 钱包数据 end -->
       </view>
       <!-- end 用户信息 -->
 
       <!-- 未登录 -->
-      <view v-else class="default-userinfor-wrap top-infor-wrap">
+      <view v-else class="default-userinfor-wrap top-infor-wrap" style="margin-top:0;">
         <view class="left-infor">
           <!-- 头像 -->
-          <image class="avatsr" src="/static/images/icon/head04.png" mode="scaleToFill" @tap="onGotUserInfo" />
+          <view class="avatsr-con">
+            <image class="avatsr-bg" style="margin-top:0;" src="/static/images/icon/head04.png" mode="scaleToFill"
+              @tap="onGotUserInfo" />
+          </view>
           <view class="sign-in-txt" @tap="onGotUserInfo">
             {{ i18n.loginNow }}
           </view>
         </view>
         <!-- 头像 end -->
-
-        <!-- 钱包数据 -->
-        <view class="wallet-wrap" @tap="onGotUserInfo">
-          <view class="cloumn-wrap">
-            <view class="cloumn-item">
-              <view class="numbers-txt">-</view>
-              <view class="infor-txt">{{ i18n.balance }}
-              </view>
-            </view>
-            <view class="cloumn-item">
-              <view class="numbers-txt">-</view>
-              <view class="infor-txt">{{ i18n.prodType4 }}
-              </view>
-            </view>
-            <!-- <view class="cloumn-item">
-              <view class="numbers-txt">-</view>
-              <view class="infor-txt">{{ i18n.coupon }}</view>
-            </view> -->
-            <!-- <view class="cloumn-item">
-              <view class="numbers-txt">-</view>
-              <view class="infor-txt">{{ i18n.collection }}</view>
-            </view> -->
-          </view>
-          <!-- <view class="vip-column" @tap="onGotUserInfo">
-            <image
-              src="@/static/images/icon/VIP_bg.png"
-              mode="widthFix"
-            />
-            <view class="txt-seat">{{ i18n.privilegesTxt }}</view>
-            <view class="bth-seat">{{ i18n.openNow }}</view>
-          </view> -->
-        </view>
-        <!-- 钱包数据 end -->
       </view>
       <!-- 未登录 end -->
     </view>
 
+    <!-- 钱包数据 -->
+    <view v-if="isAuthInfo" class="wallet-wrap">
+      <view class="cloumn-wrap">
+        <view class="cloumn-item" @tap="toMyWallet">
+          <view class="left-view">
+            <image class="cloumn-item-img" src="/static/images/icon/user-blance.png" />
+            <view class="infor-txt">我的{{ i18n.balance }}
+            </view>
+
+          </view>
+          <view class="arr">
+            <view class="numbers-txt">{{ totalBalance | millionNumber }}</view>
+            <image src="/static/images/icon/arrow-right.png" />
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="cloumn-item" @tap="toInteralDetail">
+          <view class="left-view">
+            <image class="cloumn-item-img" src="/static/images/icon/user-bean.png" />
+            <view class="infor-txt">{{ i18n.prodType4 }}
+            </view>
+          </view>
+
+          <view class="arr">
+            <view class="numbers-txt">{{ (userLevelInfo.score ? userLevelInfo.score : '0') | millionNumber }}</view>
+            <image src="/static/images/icon/arrow-right.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 钱包数据 end -->
+    <!-- 钱包数据 -->
+    <view v-else class="wallet-wrap" @tap="onGotUserInfo">
+      <view class="cloumn-wrap">
+        <view class="cloumn-item">
+          <view class="left-view">
+            <image class="cloumn-item-img" src="/static/images/icon/user-blance.png" />
+            <view class="infor-txt">我的{{ i18n.balance }}</view>
+          </view>
+          <view class="numbers-txt">-</view>
+        </view>
+        <view class="line"></view>
+        <view class="cloumn-item">
+          <view class="left-view">
+            <image class="cloumn-item-img" src="/static/images/icon/user-bean.png" />
+            <view class="infor-txt">{{ i18n.prodType4 }}</view>
+          </view>
+          <view class="numbers-txt">-</view>
+        </view>
+      </view>
+    </view>
+    <!-- 钱包数据 end -->
     <!-- 我的订单 -->
     <view class="my-order-wrap">
       <view class="top-title">
@@ -219,7 +156,8 @@
         <view class="pick-up-info">
           <view class="station-name">{{ station.provience ? station.stationName : address.stationName }}</view>
           <view class="station-address">
-            {{ station.province ? (station.province + station.city + station.area + station.addr) : (address.province +
+            {{ station.province ? (station.province + station.city + station.area + station.addr) : (address.province
+              +
               address.city + address.area + address.addr) }}
           </view>
           <view class="station-phone"><text style="color:#333;font-weight: bold;">电话:</text>{{ station.province ?
@@ -233,26 +171,22 @@
         </view>
       </view>
       <view class="pick-up-item" v-else>
-        <view class="station-address">暂无自提点信息</view>
+        <view class="station-address">暂无自提信息</view>
       </view>
     </view>
     <!--end 我的当前自提点  -->
 
     <!-- 分销中心 & 青春豆商店 -->
     <view class="distribution-points-wrap">
-      <view class="distribution-item" @tap="toDistCenter">
-        <view class="txt-left">
-          <text>{{ isDistributionUserInfo ? '团长管理' : i18n.distributionUser }}</text>
-          <text>{{ i18n.shareGet }}</text>
-        </view>
-        <image class="img-right" src="/static/images/icon/distribution-center.png" />
+      <view class="item" @tap="toDistCenter">
+        <image class="img" src="/static/images/icon/distribution-center.png" />
+        <text class="item-title">{{ isDistributionUserInfo ? '团长管理' : i18n.distributionUser }}</text>
+        <text class="item-desc">{{ i18n.shareGet }}</text>
       </view>
-      <view class="points-item" @tap="toMemberInteral">
-        <view class="txt-left">
-          <text>{{ i18n.pointsMall }}</text>
-          <text>{{ i18n.savePoints }}</text>
-        </view>
-        <image class="img-right" src="/static/images/icon/integral-mall.png" />
+      <view class="item" @tap="toMemberInteral">
+        <image class="img" src="/static/images/icon/integral-mall.png" />
+        <text class="item-title">{{ i18n.pointsMall }}</text>
+        <text class="item-desc">{{ i18n.savePoints }}</text>
       </view>
     </view>
     <!-- end 分销中心 & 青春豆商店 -->
@@ -262,38 +196,17 @@
       <view class="title-txt">{{ i18n.servicesTools }}</view>
       <view class="cloumn-wrap">
         <view class="cloumn-item" @tap="toMyCouponPage">
-          <image class="item-img" src="/static/images/icon/icon_members.png" />
+          <image class="item-img" src="/static/images/icon/icon_youhui.png" />
           <view class="infor-txt">优惠券</view>
         </view>
         <view class="cloumn-item" @tap="toCouponCenter">
-          <image class="item-img" src="/static/images/icon/icon_coupons.png" />
+          <image class="item-img" src="/static/images/icon/icon_gift.png" />
           <view class="infor-txt">礼品券</view>
         </view>
         <view class="cloumn-item" @tap="toAddressList">
           <image class="item-img" src="/static/images/icon/icon_address.png" />
           <view class="infor-txt">{{ i18n.addressManagenment }}</view>
         </view>
-        <!-- <view class="cloumn-item" @tap="myHistory">
-          <image class="item-img" src="/static/images/icon/icon_footprint.png" />
-          <view class="infor-txt">{{ i18n.history }}</view>
-        </view> -->
-        <!-- <view class="cloumn-item" @tap="changeLangs">
-          <image
-            class="item-img"
-            src="/static/images/icon/icon_switch.png"
-          />
-          <view class="infor-txt">{{ i18n.switchLanguages }}</view>
-        </view> -->
-        <!-- <view class="cloumn-item" @tap="gotoMessageBox"> -->
-        <!-- <view class="cloumn-item" @tap="gotoChat">
-          <image class="item-img" src="/static/images/icon/icon_service.png" />
-          <view class="infor-txt">{{ i18n.officialService }}</view>
-        </view> -->
-        <!-- <view class="cloumn-item" @tap="merchantInclusion">
-          <image class="item-img" src="/static/images/icon/icon_tenants.png" />
-          <view class="infor-txt">{{ i18n.merchantEntry }}</view>
-        </view> -->
-
         <view class="cloumn-item" @tap="toSystemSetUp">
           <image class="item-img" src="/static/images/icon/icon_set.png" />
           <view class="infor-txt">{{ i18n.systemSetup }}</view>
@@ -336,6 +249,7 @@
     </view> -->
     <!-- <EmptyAllTips v-if="isLoaded" :isAll="current >= pages" :allTips="i18n.allLoaded2" /> -->
     <!-- 回到顶部 -->
+    <view style="display:block; margin-top: 20rpx;height:1rpx;"></view>
     <back-top-btn v-if="showBacktop" />
   </view>
 </template>
@@ -382,9 +296,9 @@ export default {
 
       isBgImg: false,
       tabConfig: {
-        background: '',
-        fontColor: '#333333',
-        iconColor: '#333333'
+        background: '#005AFF',
+        fontColor: '#FFF',
+        iconColor: '#FFF'
       },
       navigationBarIsShow: false,
 
@@ -466,7 +380,6 @@ export default {
     if (!uni.getStorageSync('bbcToken')) {
       uni.navigateTo({ url: 'pages/user-login/user-login' })
     }
-    console.log(11, uni.getStorageSync('bbcExpiresTimeStamp'))
     uni.setNavigationBarTitle({
       title: this.i18n.personalCenter
     })
@@ -834,7 +747,6 @@ export default {
             let code = ''
             let flag = 0 // flag为0时，表示结果为自提点二维码，flag为1时，表示结果为商家二维码
             // 处理扫码结果
-            console.log(e.result, 'scanCode')
             if (e.result.indexOf(',') > -1) {
               code = e.result.split(',')[1]
             } else if (e.result.indexOf('?shopId=') > -1) {
@@ -947,7 +859,6 @@ export default {
           icon: 'none'
         })
       }
-      console.log('分销中心功能已开启')
 
       util.tapLog(3)
       util.checkAuthInfo(() => {
@@ -1046,6 +957,13 @@ export default {
               isDistributionUserInfo: true
             })
           }
+          else {
+            this.setData({
+              isDistributionUserInfo: false
+            })
+          }
+
+
         }
       })
     },
@@ -1236,7 +1154,6 @@ export default {
         data: {},
         callBack: res => {
           this.getVipInternationalization(res)
-          console.log(res)
           this.setData({
             userLevelInfo: res
           })

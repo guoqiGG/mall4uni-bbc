@@ -108,7 +108,8 @@
                 <view style="display: flex;flex-deriction:row;">
                   <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
                   <view class="text color" v-if="station.phone">
-                    {{ station.phonePrefix }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}</view>
+                    {{ station.phonePrefix ? station.phonePrefix : '' }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone
+                    }}</view>
                 </view>
                 <view v-if="station.province" class="text color">{{ station.province }}{{ selStationItem.city }}{{
                   station.area }}{{ station.addr }}</view>
@@ -121,7 +122,8 @@
               <view class="text">{{ i18n.pickup }}</view>
               <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
               <view class="text color" v-if="station.phone">
-                {{ station.phonePrefix }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}</view>
+                {{ station.phonePrefix ? station.phonePrefix : '' }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}
+              </view>
               <view v-if="selStationItem.province" class="text color">{{ selStationItem.province }}{{ selStationItem.city
               }}{{
   selStationItem.area }}{{ selStationItem.addr }}</view>
@@ -2645,7 +2647,7 @@ export default {
           console.log(res)
           this.setData({
             distributionUserId: res.distributionUserId,
-            stationUserName: res.nickName, 
+            stationUserName: res.nickName,
             stationUserMobile: res.userMobile
           })
           if (res.distributionUserId) {

@@ -9,21 +9,13 @@
 -->
 
 <template>
-  <view class="Mall4j">
+  <view class="Mall4j" style="background-color: #F0F0F0;padding-top:43rpx;min-height:calc(100vh - 43rpx);">
     <!-- 青春豆明细 -->
     <view class="integral-detail">
       <view class="number-box">
-        <image
-          src="../../static/images/icon/integral-detail-bg1.png"
-          class="bg1"
-        />
-        <image
-          src="../../static/images/icon/integral-detail-bg2.png"
-          class="bg2"
-        />
         <view class="my-integral">
-          <view class="number">{{ userInfo.score }}</view>
-          <view class="text">{{ i18n.integral }}</view>
+          <view class="text">我的{{ i18n.integral }}</view>
+          <view class="number">{{ userInfo.score }}</view> 
         </view>
         <!-- <view class="explain" @tap="clikcPop">{{ i18n.integralStrategy }}</view> -->
       </view>

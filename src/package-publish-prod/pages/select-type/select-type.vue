@@ -12,9 +12,9 @@
 <template>
   <view class="Mall4j select-type">
     <!-- <pord-title :prodTitle="'商品类目'" :isOpen="isOpen" @close="close" /> -->
-    <view class="title">
+    <!-- <view class="title"> -->
       <!-- <uni-search-bar class="uni-mt-10" radius="100" placeholder="请输入搜索类目" clearButton="none" cancelButton="none" @confirm="search" /> -->
-      <search-bar :key-word="typeName" :placeholder="dataForm.selectType == 1 ? '请输入三级分类' : '请输入搜索类目'" @handleSearch="search" />
+      <!-- <search-bar :key-word="typeName" :placeholder="dataForm.selectType == 1 ? '请输入三级分类' : '请输入搜索类目'" @handleSearch="search" /> -->
       <!-- <view class="type">
         <view v-if="dataForm.selectType==1" :class="dataForm.selectType==1?'active':''" @tap="type=0">
           平台类目
@@ -23,25 +23,25 @@
           店铺类目
         </view>
       </view> -->
-    </view>
+    <!-- </view> -->
     <!-- 平台类目 -->
     <empty-tips
       v-if="isLoaded && ((dataForm.selectType == 1 && firstCat.dataList.length === 0) || (dataForm.selectType == 2 && shopList.length === 0))"
       :tips-list="['暂无数据']" />
 
     <view v-if="dataForm.selectType == 1" class="select">
-      <view v-if="firstCat.dataList[0]" class="category">
+      <!-- <view v-if="firstCat.dataList[0]" class="category">
         <text v-for="(item, index) in classifyNames" :key="index" @tap="classifyChange(item, index)">{{
           item.categoryName ? index == 2 ? item.categoryName : item.categoryName + ' > ' : '' }}</text>
         <text v-show="!classifyNames[2].categoryName || !classifyNames[2].categoryId" class="active">{{
           classifyGrade[firstCat.dataList[0].grade] }}</text>
-      </view>
+      </view> -->
       <view v-for="(item, index) in firstCat.dataList" :key="index"
         :class="item.categoryId === dataForm.categoryId ? 'active list' : 'list'" @tap="switchProdType(item)">
         <view>
           <text>{{ item.categoryName }}</text>
         </view>
-        <view v-show="item.status" class="iconfont">&#xe775;</view>
+        <view v-show="item.categoryId !== dataForm.categoryId" class="iconfont">&#xe775;</view>
         <view v-show="item.categoryId === dataForm.categoryId" class="iconfont pitchOn">&#xe659;</view>
       </view>
     </view>
@@ -111,12 +111,13 @@ export default {
   },
 
   mounted() {
+    console.log('type',this.dataForm.selectType)
     if (this.dataForm.selectType === 1) {
       this.getDataList()
     } else if (this.dataForm.selectType === 2) {
       this.getShopDataList()
     }
-    if (this.dataForm.classifyName[2].categoryId) {
+    if (this.dataForm.classifyName[0]?.categoryId) {
       this.classifyNames = this.dataForm.classifyName
     }
   },
@@ -136,12 +137,12 @@ export default {
           this.isLoaded = true
           // console.log(res)
           this.allDataList = res
-          if (this.dataForm.classifyName[this.dataForm.classifyName.length - 1].categoryName) {
-            // console.log('123')
-            this.firstCat.dataList = this.allDataList.filter(item => item.parentId === this.dataForm.classifyName[this.dataForm.classifyName.length - 1].parentId)
-          } else {
+          // if (this.dataForm.classifyName[this.dataForm.classifyName.length - 1].categoryName) {
+          //   // console.log('123')
+          //   this.firstCat.dataList = this.allDataList.filter(item => item.parentId === this.dataForm.classifyName[this.dataForm.classifyName.length - 1].parentId)
+          // } else {
             this.firstCat.dataList = this.allDataList.filter(item => item.grade === 0 && item.status)
-          }
+          // }
         }
       }
       http.request(params)
@@ -175,24 +176,18 @@ export default {
 
     // 平台类目选择
     switchProdType(index) {
-      if (index.status) {
-        this.firstCat.dataList = this.allDataList.filter(item => item.parentId === index.categoryId)
-        this.classifyNames[index.grade] = JSON.parse(JSON.stringify(index))
-      } else {
-        // console.log(index.grade)
-        this.classifyNames[index.grade] = JSON.parse(JSON.stringify(index))
-
+ 
+       console.log(index)
         this.firstCat.id = index.categoryId
 
-        const fatherClassify = this.allDataList.filter(item => item.categoryId === index.parentId)
-        this.classifyNames[fatherClassify[0].grade] = JSON.parse(JSON.stringify(fatherClassify[0]))
+        // const fatherClassify = this.allDataList.filter(item => item.categoryId === index.parentId)
+        // this.classifyNames[fatherClassify[0].grade] = JSON.parse(JSON.stringify(fatherClassify[0]))
 
         // 处理直接搜索没有一二级分类
-        if (!this.classifyNames[0].categoryName || !this.classifyNames[1].categoryName) {
-          this.classifyNames[1] = (this.allDataList.filter(item => item.categoryId === this.classifyNames[2].parentId))[0]
-          this.classifyNames[0] = (this.allDataList.filter(item => item.categoryId === this.classifyNames[1].parentId))[0]
-        }
-        console.log(JSON.parse(JSON.stringify(this.classifyNames)))
+        // if (!this.classifyNames[0].categoryName || !this.classifyNames[1].categoryName) {
+        //   this.classifyNames[1] = (this.allDataList.filter(item => item.categoryId === this.classifyNames[2].parentId))[0]
+        //   this.classifyNames[0] = (this.allDataList.filter(item => item.categoryId === this.classifyNames[1].parentId))[0]
+        // }
 
         // if (fatherClassify[0].grade !== 0) {
         //   const fatherClassify1 = this.allDataList.filter(item => item.categoryId === fatherClassify[0].parentId)
@@ -205,7 +200,7 @@ export default {
         // eslint-disable-next-line vue/no-mutating-props
         this.dataForm.categoryId = index.categoryId
         // eslint-disable-next-line vue/no-mutating-props
-        this.dataForm.classifyName = this.classifyNames
+        this.dataForm.classifyName = [{categoryName:index.categoryName,categoryId:index.categoryId}]
         this.selected.categoryName = this.dataForm.classifyName.map(item => {
           return item.categoryName
         }).join('/')
@@ -215,7 +210,7 @@ export default {
         //   url: '/package-publish-prod/pages/publish-prod/publish-prod'
         // })
         uni.navigateBack()
-      }
+      // }
     },
 
     // 选择店铺分类

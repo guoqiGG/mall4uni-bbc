@@ -12,14 +12,12 @@ view<!--
   <!-- 青春豆商城 -->
   <view class="Mall4j integral-index">
     <view class="integral-msg">
-      <image src="../../static/images/icon/integral-bg.png" class="bg" />
       <view class="my-integral">
         <view class="number-box">
           <view class="text">{{ i18n.myIntegral }}</view>
           <view class="number">{{ scoreInfo.score }}</view>
         </view>
         <view class="det" @tap="navigateTo('integral-detail')">{{ i18n.detailed }}
-          <image src="/static/images/icon/white-arr.png" />
         </view>
       </view>
       <!-- <view class="make" @tap="navigateTo('member-index')">
@@ -27,12 +25,12 @@ view<!--
       </view> -->
     </view>
     <view class="integral-list">
-      <view class="member-tit">
+      <view class="member-tits">
         <view class="text">{{ i18n.pointsExchange }}</view>
       </view>
       <view class="con-box">
         <block v-for="(prod, prodId) in scoreProdList" :key="prodId">
-          <goodsitem :prod="prod" />
+          <goodsitem :prod="prod"  />
         </block>
       </view>
       <!-- <view v-if="scoreProdList.length > 10 && loadAll" class="loadall">{{

@@ -5,11 +5,18 @@
 }
 
 .integral-detail .number-box {
-  width: 750rpx;
-  height: 446rpx;
+  width: 690rpx;
+  height: 330rpx;
+  box-shadow: 0rpx 10rpx 30rpx 0rpx rgba(29, 137, 0, 0.4);
+  margin: 0 auto;
   position: relative;
-  color: #fff;
+  overflow: hidden;
+  vertical-align: middle;
+  background-image: url(../../static/images/icon/integral-bg.png);
+  background-size: cover;
+  border-radius: 25rpx;
 }
+
 
 .integral-detail .number-box .bg1 {
   position: absolute;
@@ -32,15 +39,23 @@
   text-align: center;
   width: 300rpx;
   margin: auto;
-  padding-top: 146rpx;
+  vertical-align: middle;
 }
 
 .integral-detail .number-box .my-integral .number {
-  font-size: 60rpx;
+  font-size: 120rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .integral-detail .number-box .text {
-  font-size: 30rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 24rpx;
+  margin-top: 96rpx;
 }
 
 .integral-detail .number-box .explain {
@@ -49,14 +64,13 @@
   top: 30rpx;
   padding: 8rpx 16rpx 8rpx 20rpx;
   border-radius: 30rpx 0 0 30rpx;
-  background: rgba(0,0,0,.2);
+  background: rgba(0, 0, 0, 0.2);
   color: #fff;
   font-size: 24rpx;
 }
 
 .integral-detail .detail-list {
-  padding: 0 30rpx;
-  margin-top: 30rpx;
+  margin: 30rpx 30rpx 0;
 }
 
 .empty {
@@ -72,7 +86,7 @@
 .integral-detail .detail-list .item {
   display: flex;
   padding: 30rpx 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #D9D9D9;
 }
 
 .integral-detail .detail-list .item:last-child {
@@ -85,7 +99,9 @@
 }
 
 .integral-detail .detail-list .item .text-box .tit {
-  font-size: 28rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #232323;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -96,21 +112,23 @@
 .integral-detail .detail-list .item .text-box .time {
   font-size: 24rpx;
   color: #999;
-  margin-top: 10rpx;
+  margin-top: 19rpx;
+  font-weight: 500;
 }
 
 .integral-detail .detail-list .item .score {
-  font-size: 36rpx;
   margin-top: 4rpx;
   font-family: arial;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #ff5000;
 }
 
 .integral-detail .detail-list .item .score.add {
-  color: #F81A1A;
+  color: #f81a1a;
 }
 
 /* 青春豆明细 end */
-
 
 /* 青春豆攻略弹框 */
 
@@ -125,7 +143,7 @@
   top: 0;
   left: 0;
   background: #000;
-  opacity: .4;
+  opacity: 0.4;
   z-index: 1;
 }
 .explain-card {
@@ -141,16 +159,16 @@
   z-index: 2;
 }
 .content-wrap {
-	height: 100%;
+  height: 100%;
 }
 .close-box {
   display: block;
   text-align: right;
 }
 .close-icon {
-	position: absolute;
-	top: 20rpx;
-	right: 20rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
   width: 36rpx;
   height: 36rpx;
 }
@@ -159,21 +177,19 @@
   font-size: 30rpx;
   font-weight: 600;
   text-align: center;
-	margin-bottom: 20rpx;
+  margin-bottom: 20rpx;
 }
 .cont-det {
   display: block;
   font-size: 28rpx;
   color: #555;
-	max-height: 92%;
-	padding-bottom: 40rpx;
-	box-sizing: border-box;
-	overflow: scroll;
+  max-height: 92%;
+  padding-bottom: 40rpx;
+  box-sizing: border-box;
+  overflow: scroll;
 }
 
 /* /青春豆攻略弹框 */
-
-
 
 /* 加载完成 */
 .loadall {

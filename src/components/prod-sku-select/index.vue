@@ -139,7 +139,7 @@
           <view v-if="prodType===2 && activityInfo.activityStatus === 2" class="btn buy" @tap="handleBuyNow(2)">{{ i18n.immediatelyBuy }}</view>
           <!-- 非秒杀、非预售商品 -->
           <block v-else-if="skuShowType==0 && preSellStatus != 1">
-            <!-- <view v-if="skuShowType == 0 && mold !== 1" class="btn cart" @tap="handleAddToCart">{{ i18n.addShoppingCart }}</view> -->
+            <view v-if="skuShowType == 0 && mold !== 1" class="btn cart" @tap="handleAddToCart">{{ i18n.addShoppingCart }}</view>
             <view v-if="skuShowType==0" class="btn buy" @tap="handleBuyNow(0)">{{ i18n.buyNow }}</view>
           </block>
           <!-- 预售 -->

@@ -4,7 +4,7 @@
       "path": "pages/index/index",
       "style": {
         "backgroundTextStyle": "dark",
-        "enablePullDownRefresh": true,
+        "enablePullDownRefresh": false,
         "navigationStyle": "custom",
         "navigationBarTextStyle": "white"
       }
@@ -14,7 +14,7 @@
       "style": {
         "backgroundTextStyle": "dark",
         "navigationStyle": "custom",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "white"
       }
     },
     {
@@ -30,7 +30,7 @@
       "path": "pages/category/category",
       "style": {
         "backgroundTextStyle": "light",
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": false
       }
     },
     {
@@ -149,7 +149,11 @@
           }
         },
         {
-          "path": "pages/integral-detail/integral-detail"
+          "path": "pages/integral-detail/integral-detail",
+          "style":{
+            "navigationBarBackgroundColor": "#ffffff",
+            "navigationBarTextStyle": "black"
+          }
         },
         {
           "path": "pages/integral-index/integral-index",
@@ -531,8 +535,8 @@
     }
   },
   "tabBar": {
-    "selectedColor": "#f81a1a",
-    "color": "#333333",
+    "selectedColor": "#005AFF",
+    "color": "#999999",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -574,7 +578,7 @@
   },
   "globalStyle": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F81A1A",
+    "navigationBarBackgroundColor": "#005AFF",
     // "navigationBarTitleText": "亚米多店铺商城",
     "navigationBarTextStyle": "white",
     "app-plus": {

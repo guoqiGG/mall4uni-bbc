@@ -86,7 +86,7 @@ export default {
       type: Object,
       default: function() {
         return {
-          background: '#F81A1A',
+          background: '#005AFF',
           fontColor: '#000000',
           iconColor: '#000000'
         }
@@ -130,7 +130,7 @@ export default {
     return {
       normal: {
         backgroundImage: ``,
-        background: '#F81A1A',
+        background: '#005AFF',
         fontColor: '#000000',
         iconColor: '#000000'
       }, // 公用样式,个性化样式可通过传值实现
@@ -199,7 +199,7 @@ export default {
 }
 .bar-line .bar-title {
   font-size: 30rpx;
-  /* font-weight: bold; */
+  font-weight: bold;
   line-height: 44rpx;
 }
 /*

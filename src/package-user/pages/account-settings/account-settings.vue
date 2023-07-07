@@ -117,7 +117,7 @@
       <button @tap="logout">{{ i18n.logoutBtns }}</button>
     </view>
   </view>
-</template>
+</template>s
 
 <script>
 const http = require('../../../utils/http.js')

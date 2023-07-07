@@ -38,7 +38,8 @@
                 <text class="text-block">{{ [i18n.amount, i18n.pieces, i18n.amountDiscount,
                 i18n.piecesDiscount][shopCartItem.chooseDiscountItemDto.discountRule] }}</text>
                 <text class="text-list">{{
-                  parseDiscountMsg(shopCartItem.chooseDiscountItemDto.discountRule, shopCartItem.chooseDiscountItemDto.needAmount, shopCartItem.chooseDiscountItemDto.discount, curLang)
+                  parseDiscountMsg(shopCartItem.chooseDiscountItemDto.discountRule,
+                    shopCartItem.chooseDiscountItemDto.needAmount, shopCartItem.chooseDiscountItemDto.discount, curLang)
                 }}</text>
               </view>
               <view>
@@ -92,16 +93,18 @@
                         </view>
                         <view class="price-count">
                           <view class="price">
-                            <text class="symbol">￥</text>
-                            <text class="big-num">{{ parsePrice(prod.comboId ? prod.comboPrice : prod.price)[0] }}</text>
-                            <text class="small-num">.{{ parsePrice(prod.comboId ? prod.comboPrice : prod.price)[1]
+                            <text class="symbol" style="font-size: 20rpx;color:#FA2C3C;">￥</text>
+                            <text class="big-num" style="font-size: 35rpx;color:#FA2C3C;">{{ parsePrice(prod.comboId ?
+                              prod.comboPrice : prod.price)[0] }}</text>
+                            <text class="small-num" style="font-size: 35rpx;color:#FA2C3C;">.{{ parsePrice(prod.comboId ?
+                              prod.comboPrice : prod.price)[1]
                             }}</text>
                             <!-- 套装内的商品的数量 -->
                             <text v-if="prod.comboId" class="combo-count"> x {{ prod.prodCount }}</text>
                           </view>
                           <view v-if="!prod.comboId" class="m-numSelector">
                             <view class="minus" @tap.stop="updateBasket(shopCart.shopId, prod, -1)" />
-                            <input type="number" :value="prod.prodCount" disabled></input>
+                            <input type="number" :value="prod.prodCount" disabled />
                             <view class="plus" @tap.stop="updateBasket(shopCart.shopId, prod, 1)" />
                           </view>
                         </view>
@@ -146,23 +149,24 @@
 
     <!-- 底部按钮 -->
     <!-- 英文时候购物车底部字体出现遮蔽 -->
-    <view v-if="shopCarts.length > 0" class="cart-footer" :style="i18n.instantReduction.length > 2 ? 'height:130rpx' : ''">
+    <view v-if="shopCarts.length > 0" class="cart-footer"
+      :style="i18n.instantReduction.length > 2 ? 'height:130rpx' : ''">
       <view class="btn all">
-        <label @tap="handleCheckAll">
+        <label @tap="handleCheckAll" style="font-size: 34rpx;color:#666;font-weight:500;">
           <checkbox :checked="allChecked" color="#F81A1A" />{{ i18n.selectAll }}
         </label>
       </view>
-      <view class="btn del" @tap="handleDeletProd">
+      <view class="btn del" style="font-size: 34rpx;color:#F81A1A;font-weight:500;" @tap="handleDeletProd">
         <text>{{ i18n.delete }}</text>
       </view>
       <view class="btn total">
         <view class="total-con" @tap.stop="showPriDet">
           <view class="finally">
-            <text class="blod">{{ i18n.total }}:</text>
+            <text class="blod" style="font-size: 34rpx;color:#333;">{{ i18n.total }}:</text>
             <view class="price">
-              <text class="symbol">￥</text>
-              <text class="big-num">{{ parsePrice(finalMoney)[0] }}</text>
-              <text class="small-num">.{{ parsePrice(finalMoney)[1] }}</text>
+              <text class="symbol" style="font-size: 34rpx;color:#F81A1A;">￥</text>
+              <text class="big-num" style="font-size: 34rpx;color:#F81A1A;">1111{{ parsePrice(finalMoney)[0] }}</text>
+              <text class="small-num" style="font-size: 34rpx;color:#F81A1A;">.{{ parsePrice(finalMoney)[1] }}</text>
             </view>
           </view>
           <view v-if="subtractMoney > 0" class="total-msg">
@@ -177,8 +181,10 @@
           <image v-if="!hidePriModal" src="../../static/images/icon/up-arrow.png" />
         </view>
       </view>
-      <view class="btn settle" @tap="toFirmOrder">
-        <text>{{ i18n.settlement }}</text>
+      <view class="btn settle" @tap="toFirmOrder" style="background: #FA2C3C;border-radius: 10rpx;">
+        <text style="font-size: 36rpx;
+        font-weight: 800;
+        color: #FFFFFF;">{{ i18n.settlement }}</text>
       </view>
     </view>
     <!-- end 底部按钮 -->

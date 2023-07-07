@@ -17,8 +17,16 @@
         <text class="sear-input">{{ i18n.searchGoods }}</text>
       </view>
     </view> -->
+    <!-- 顶部分类图片 -->
+    <view v-if="categoryImg" class="adver-map">
+      <view class="item-a">
+        <image :src="categoryImg" mode="widthFix" @error="handlePicError" />
+        <!-- <image v-else src="/static/images/icon/def.png" mode="widthFix" /> -->
+      </view>
+    </view>
     <!-- 滚动内容区 -->
     <view class="main">
+
       <!-- 左侧菜单start -->
       <scroll-view scroll-y="true" class="leftmenu">
         <block v-for="(item, index) in categoryList" :key="index">
@@ -29,48 +37,15 @@
         </block>
       </scroll-view>
       <!-- 左侧菜单end -->
-
       <!-- 右侧内容start -->
       <scroll-view scroll-y="true" class="rightcontent">
-        <view v-if="categoryImg" class="adver-map">
-          <view class="item-a">
-            <image :src="categoryImg" mode="widthFix" @error="handlePicError" />
-            <!-- <image v-else src="/static/images/icon/def.png" mode="widthFix" /> -->
-          </view>
-        </view>
-
-        <block v-for="(item, subCateIndex) in proSubCategoryList" :key="subCateIndex">
-          <view class="sub-category">
-            <view class="sub-category-con">
-              <view class="sub-cate-title">
-                <text class="sub-cate-text">{{ item.categoryName }}</text>
-                <!-- <text
-                  v-if="item.categories"
-                  class="view-all"
-                  data-type="all"
-                  :data-subcateindex="subCateIndex"
-                  :data-parentid="item.categoryId"
-                  @tap="toCatePage"
-                >{{ i18n.viewAll }}</text> -->
-              </view>
-              <view v-if="item.categories" class="th-cate-con">
-                <block v-for="(thCateItem, categoryId) in item.categories" :key="categoryId">
-                  <view class="sub-category-item" :data-categoryid="thCateItem.categoryId"
-                    :data-parentid="item.categoryId" @tap="toCatePage">
-                    <image v-if="thCateItem.imgsrcTail" :src="thCateItem.pic" mode="widthFix"
-                      class="sub-category-item-pic" @error="thCateItem.pic = '../../static/images/icon/def.png'" />
-                    <!-- 默认图 -->
-                    <image v-else src="/static/images/icon/def.png" class="sub-category-item-pic" mode="widthFix" />
-                    <text class="sub-category-item-name">{{ thCateItem.categoryName }}</text>
-                  </view>
-                </block>
-              </view>
-              <view v-else>
-                <EmptyAllTips :isEmpty="true" />
-              </view>
-            </view>
-          </view>
+        <block v-for="(item, key) in prodList" :key="key">
+          <prod :item="item" />
         </block>
+        <!-- 空列表或加载全部提示 -->
+        <EmptyAllTips v-if="isLoaded" :isEmpty="!prodList.length" :emptyTips="i18n.noCommodity"
+          :isAll="current == pages" />
+
       </scroll-view>
       <!-- 右侧内容end -->
     </view>
@@ -80,39 +55,47 @@
 <script>
 const http = require('../../utils/http.js')
 const util = require('../../utils/util.js')
+import prod from '../../components/production/index.vue'
 
 export default {
-  components: {},
+  components: {
+    prod
+  },
   props: {},
   data() {
     return {
       selIndex: 0,
       categoryList: [],
       categoryImg: '',
-      subCategoryList: [],
-      parentId: ''
+      categoryId: 0,
+      prodList: [],
+      parentId: '',
+      current: 1,
+      pages: 0,
+      intoView: '',
+      isLoaded: false
     }
   },
   computed: {
     i18n() {
       return this.$t('index')
     },
-    proSubCategoryList() {
-      const prepareArr = this.subCategoryList
-      prepareArr.map(item => {
-        if (!item.categories) return
-        item.categories.map(items => {
-          // 添加 判断图片路径是否有效的 标识
-          items.imgsrcTail = false
-          if (!items.pic) return
-          const imgPic = items.pic
-          // 检索路径后四位是否为null
-          const imgsrcTail = imgPic.slice(imgPic.length - 4, imgPic.length)
-          if (imgsrcTail !== 'null') items.imgsrcTail = true
-        })
-      })
-      return prepareArr
-    }
+    // proSubCategoryList() {
+    //   const prepareArr = this.subCategoryList
+    //   prepareArr.map(item => {
+    //     if (!item.categories) return
+    //     item.categories.map(items => {
+    //       // 添加 判断图片路径是否有效的 标识
+    //       items.imgsrcTail = false
+    //       if (!items.pic) return
+    //       const imgPic = items.pic
+    //       // 检索路径后四位是否为null
+    //       const imgsrcTail = imgPic.slice(imgPic.length - 4, imgPic.length)
+    //       if (imgsrcTail !== 'null') items.imgsrcTail = true
+    //     })
+    //   })
+    //   return prepareArr
+    // }
   },
 
   /**
@@ -122,7 +105,6 @@ export default {
     if (!uni.getStorageSync('bbcUserInfo')) {
       this.queryUserInfo()
     }
-    this.getCategory()
   },
 
   /**
@@ -138,10 +120,10 @@ export default {
     uni.setNavigationBarTitle({
       title: this.i18n.classifiedGoods
     })
-   if(!uni.getStorageSync('bbcToken')){
-    uni.navigateTo({ url: 'pages/user-login/user-login' })
-   }
-
+    if (!uni.getStorageSync('bbcToken')) {
+      uni.navigateTo({ url: 'pages/user-login/user-login' })
+    }
+    this.getCategory()
     util.transTabbar()
 
     http.getCartCount()
@@ -171,13 +153,13 @@ export default {
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    const that = this
-    setTimeout(() => {
-      that.getCateorgy()
-      wx.stopPullDownRefresh() // 停止下拉刷新
-    }, 100)
-  },
+  // onPullDownRefresh: function () {
+  //   const that = this
+  //   setTimeout(() => {
+  //     that.getCateorgy()
+  //     wx.stopPullDownRefresh() // 停止下拉刷新
+  //   }, 100)
+  // },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -207,7 +189,6 @@ export default {
       http.request(params)
     },
     getCategory() {
-
       var ths = this // 加载分类列表
       const params = {
         url: '/category/categoryInfo',
@@ -217,7 +198,6 @@ export default {
           userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
         callBack: function (res) {
-          console.log(2)
           ths.setData({
             categoryImg: res[0].pic,
             categoryList: res
@@ -260,21 +240,82 @@ export default {
       })
     },
 
+    // getProdList(categoryId) {
+    //   this.setData({
+    //     parentId: categoryId
+    //   }) // 加载子分类列表
+
+    //   const params = {
+    //     url: '/category/categoryInfo',
+    //     method: 'GET',
+    //     data: {
+    //       parentId: categoryId,
+    //       userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
+    //     },
+    //     callBack: (res) => {
+    //       this.setData({
+    //         subCategoryList: res
+    //       })
+    //     }
+    //   }
+    //   http.request(params)
+    // },
+
+    /**
+      * 根据分类id获取商品列表数据
+      */
     getProdList(categoryId) {
       this.setData({
-        parentId: categoryId
-      }) // 加载子分类列表
+        parentId: categoryId,
+        categoryId: categoryId
+      })
 
+      this.isLoaded = false
       const params = {
-        url: '/category/categoryInfo',
+        // url: "/search/searchProdPage",
+        url: '/search/page',
         method: 'GET',
         data: {
-          parentId: categoryId,
+          categoryId: this.categoryId,
+          current: this.current,
+          size: 10,
+          sort: 0,
+          isAllProdType: true,
+          isActive: 1, // 过滤掉活动商品
           userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
         },
-        callBack: (res) => {
+        callBack: res => {
+          this.isLoaded = true
+          const reg = /^[a-z0-9]+$/ // 数字小写字母
+          const reg2 = /^[A-Z]+$/ // 大写字母
+          const reg3 = /[%&',.;=?_$\x22]+/ // 特殊字符
+          const size = (item, sub, index) => {
+            let count = 0
+            let num = 0
+            if (index > item.prodName.lenght) return count
+            for (let i = sub; i < index; i++) {
+              if (reg.test(item.prodName[i]) || reg3.test(item.prodName[i]) || item.prodName[i] === ' ') {
+                num += 1.2
+              } else if (reg2.test(item.prodName[i])) {
+                num += 0.9
+              }
+            }
+            const floor = Math.floor(num / 2)
+            count += floor
+            if (floor !== 0) {
+              count += size(item, index, index + sub)
+              return count
+            } else {
+              return count
+            }
+          }
+          res.records[0].products.forEach(item => {
+            item.sub = size(item, 0, 10)
+          })
           this.setData({
-            subCategoryList: res
+            prodList: params.data.current == 1 ? res.records[0].products : this.prodList.concat(res.records[0].products),
+            // current: res.current,
+            pages: res.pages
           })
         }
       }
@@ -282,17 +323,17 @@ export default {
     },
 
     // 跳转子分类商品页面
-    toCatePage: function (e) {
-      util.tapLog(3)
-      const { type, parentid, categoryid, subcateindex } =
-        e.currentTarget.dataset
-      uni.navigateTo({
-        url: `/package-prod/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${type == 'all'
-          ? this.subCategoryList[subcateindex].categories[0].categoryId
-          : categoryid
-          }`
-      })
-    }
+    // toCatePage: function (e) {
+    //   util.tapLog(3)
+    //   const { type, parentid, categoryid, subcateindex } =
+    //     e.currentTarget.dataset
+    //   uni.navigateTo({
+    //     url: `/package-prod/pages/sub-category/sub-category?parentId=${parentid}&categoryId=${type == 'all'
+    //       ? this.subCategoryList[subcateindex].categories[0].categoryId
+    //       : categoryid
+    //       }`
+    //   })
+    // }
   }
 }
 </script>

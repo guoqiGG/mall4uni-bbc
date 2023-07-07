@@ -17,7 +17,7 @@
     <view class="hot-text">
       <view>
         <view class="hotprod-text">
-          <view class="activity-box">
+          <!-- <view class="activity-box">
             <view v-if="item.shopId === 1" class="activity">{{ i18n.selfEmployed }}</view>
             <block v-if="item.activityInProgress && item.prodType != 0">
               <view v-if="item.prodType != 1" class="activity">
@@ -27,7 +27,7 @@
                 {{ item.groupActivitySearchVO.groupNumber }}{{ i18n.join }}
               </view>
             </block>
-          </view>
+          </view> -->
           {{ item.prodName }}
         </view>
       </view>
@@ -40,7 +40,7 @@
           <text class="symbol">￥</text>
           <text class="big-num">{{ parsePrice(item.activityInProgress && item.prodType != 0 ? item.activityPrice :item.price)[0] }}</text>
           <text class="small-num">.{{ parsePrice(item.activityInProgress && item.prodType != 0 ? item.activityPrice :item.price)[1] }}</text>
-          <text v-if="item.soldNum || item.soldNum === 0" class="prod-info sold-num">{{ i18n.sold }} {{ item.soldNum }}</text>
+          <!-- <text v-if="item.soldNum || item.soldNum === 0" class="prod-info sold-num">{{ i18n.sold }} {{ item.soldNum }}</text> -->
         </view>
         <view v-if="showCancelCollect" class="collection-btn price small-num" @tap.stop="handleCancelCollection">
           {{ i18n.cancleCollection }} </view>

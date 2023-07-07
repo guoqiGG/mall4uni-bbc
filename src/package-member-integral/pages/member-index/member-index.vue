@@ -16,8 +16,8 @@
       <image src="../../static/images/icon/memberIndexBg.png" class="m-bg" />
       <view class="member-info">
         <view class="head-portrait">
-          <image class="head-avatar-bg" src="/static/images/icon/head04.png" />
-          <image class="head-avatar" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'
+          <image class="head-avatar" src="/static/images/icon/user-avatar-bg.png" />
+          <image class="head-avatar-bg" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'
             " @error="imageError(userInfo, 'pic')" />
         </view>
         <view class="text-box">

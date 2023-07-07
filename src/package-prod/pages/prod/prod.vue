@@ -384,7 +384,7 @@
           </block>
           <!-- 青春豆的按钮 -->
           <block v-if="hadOnloaded && prodType == 3">
-            <view  class="btn pre-sale-buy cart-radius" style="margin-left: 250rpx;" @tap="showGroupSku">
+            <view  class="btn pre-sale-buy cart-radius" style="margin-left: 250rpx;font-size: 40rpx;font-weight: 800;" @tap="showGroupSku">
               <text>{{ i18n.redeemNow }}</text>
             </view>
           </block>

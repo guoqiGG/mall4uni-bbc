@@ -267,7 +267,7 @@ export default {
       isPrivacy: uni.getStorageSync('bbcIsPrivacy') || 0,
       passwordType: true,
       passwordImage: '../../static/images/icon/icon-hide.png',
-      loginStatus: 0, // 选择的登录方式 0密码、1验证码、2微信
+      loginStatus: 2, // 选择的登录方式 0密码、1验证码、2微信
       newPasswordType: true,
       conNewPasswordType: true,
       newPasswordImage: '../../static/images/icon/icon-hide.png',
@@ -420,15 +420,6 @@ export default {
           tempUid: uni.getStorageSync('bbcTempUid')
         },
         callBack: res => {
-          uni.getUserProfile({
-            desc: "获取你的昵称、头像、地区及性别",
-            success: (res) => {
-              console.log("所有", res)
-            },
-            fail() {
-              console.log(shibai)
-            }
-          })
           if (res.accessToken) {
             uni.setStorageSync('bbcIsPrivacy', 1)
             uni.setStorageSync('bbcHadLogin', true)

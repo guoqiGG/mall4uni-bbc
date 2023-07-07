@@ -148,7 +148,7 @@ export default {
           uni.setStorageSync('bbcFlowAnalysisLogDto', '')
           // util.toHomePage()
           // 跳转到登录页
-          uni.redirectTo({ url: '/pages/user-login/user-login' })
+          uni.reLaunch({ url: '/pages/user-login/user-login' })
         },
         errCallBack: errMsg => {
           console.log(errMsg)

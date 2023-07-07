@@ -27,28 +27,29 @@
 }
 
 .member-index .member-msg .member-info .head-portrait {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 87rpx;
   border-radius: 50%;
-  overflow: hidden;
   position: relative;
 }
 .member-index .member-msg .member-info .head-portrait .head-avatar-bg{
-  width: 100rpx;
-  height: 100rpx; 
+  width: 98rpx;
+  height: 98rpx; 
+  /* border: 1rpx solid black; */
+  border-radius: 50%;
 }
 
 .member-index .member-msg .member-info .head-portrait .head-avatar {
   position: absolute;
-  top: 10rpx;
-  left: 10rpx;
-  width: 80rpx;
-  height: 80rpx;
+  top: -22rpx;
+  left: -4rpx;
+  width: 105rpx;
+  height: 125rpx;
   border-radius: 50%;
 }
 
 .member-index .member-msg .member-info .text-box {
-  margin: 0 10rpx;
+  margin: 0 40rpx;
   flex: 1;
 }
 

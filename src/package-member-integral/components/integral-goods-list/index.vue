@@ -17,13 +17,12 @@
     </view>
     <view class="name">{{ data.prodName }}</view>
     <view class="price">
-      <image src="/static/images/icon/integral-icon.png" class="icon" />
       <text class="red-word">{{ data.scorePrice }}{{ i18n.integral }}
         <text v-if="data.price > 0" decode="true">+￥{{ data.price }}</text>
       </text>
     </view>
     <!-- 销售价大于等于市场价 市场价不展示 -->
-    <view v-if="data.oriPrice > data.price" class="old-price">{{ i18n.marketValue }}￥{{ data.oriPrice }}</view>
+    <!-- <view v-if="data.oriPrice > data.price" class="old-price">{{ i18n.marketValue }}￥{{ data.oriPrice }}</view> -->
   </view>
   <!-- </view> -->
 </template>

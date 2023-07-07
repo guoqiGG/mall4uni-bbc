@@ -166,7 +166,7 @@
         </view>
         <view class="address-icon"
           @tap="selectLoaction(station.provience ? station.lat : address.lat, station.provience ? station.lng : address.lng)">
-          <image src="/static/images/icon/submit-address.png"></image>
+          <image src="/static/images/icon/submit-address2.png"></image>
           <view class="text">路线</view>
         </view>
       </view>

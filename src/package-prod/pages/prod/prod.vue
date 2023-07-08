@@ -11,12 +11,13 @@
 <template>
   <!-- 商品详情 -->
   <view :class="['Mall4j contenta', popupShowHiden ? 'page-hidden' : '']">
-    <view v-show="!commentShow" :class="['container', skuShow || commentShow ? 'overflow' : '']">
+    <view  :class="['container', skuShow || commentShow ? 'overflow' : '']">
       <!-- 轮播图 & 商品视频-->
       <prod-imgs-video ref="media" :imgs="prodInfo.imgs" :video="prodInfo.video" @videoSts="videoSts" />
       <!-- 轮播图 & 商品视频end -->
       <!-- 倒计时栏、预售 -->
-      <countdown-bar v-if="((activityInfo.activityStatus && prodType === 1 || prodType === 2) || preSellStatus) && prodInfo"
+      <countdown-bar
+        v-if="((activityInfo.activityStatus && prodType === 1 || prodType === 2) || preSellStatus) && prodInfo"
         :preSellTime="preSellTime" :prodType="prodType" :prodId="prodId" :activityInfo="activityInfo" />
       <!-- 倒计时栏 -->
 
@@ -78,10 +79,10 @@
       <view v-if="deliveryModeVO && mold !== 1 && prodType != 5" class="sendway">
         <view class="coupon-tit">{{ i18n.delivery }}</view>
         <view class="coupon-con">
-          <view v-if="deliveryModeVO.hasShopDelivery&&!distributionUserId" class="sendway-item">
+          <view v-if="deliveryModeVO.hasShopDelivery && !distributionUserId" class="sendway-item">
             <image src="/static/images/icon/allow.png" />{{ i18n.expressDelivery }}
           </view>
-          <view v-if="deliveryModeVO.hasCityDelivery&&!distributionUserId" class="sendway-item">
+          <view v-if="deliveryModeVO.hasCityDelivery && !distributionUserId" class="sendway-item">
             <image src="/static/images/icon/allow.png" />{{ i18n.sameDelivery }}
           </view>
           <view v-if="deliveryModeVO.hasUserPickUp" class="sendway-item">
@@ -347,7 +348,7 @@
             <image src="/static/images/icon/shop-customer-service.png" />
             {{ i18n.service }}
           </view> -->
-          <view class="btn icon" @tap="toCartPage" v-if="prodType!=3">
+          <view class="btn icon" @tap="toCartPage" v-if="prodType != 3">
             <image src="/static/images/tabbar/basket.png" />
             {{ i18n.shoppingCart }}
             <view v-if="totalCartNum > 0" class="badge">
@@ -384,7 +385,8 @@
           </block>
           <!-- 青春豆的按钮 -->
           <block v-if="hadOnloaded && prodType == 3">
-            <view  class="btn pre-sale-buy cart-radius" style="margin-left: 250rpx;font-size: 40rpx;font-weight: 800;" @tap="showGroupSku">
+            <view class="btn pre-sale-buy cart-radius" style="margin-left: 250rpx;font-size: 40rpx;font-weight: 800;"
+              @tap="showGroupSku">
               <text>{{ i18n.redeemNow }}</text>
             </view>
           </block>
@@ -585,7 +587,7 @@
       </view>
 
       <!-- 评价弹窗 -->
-      <view v-if="commentShow" :class="prodCommData.number ? 'cmt-popup' : 'cmt-no-popup'">
+      <view :style="{'margin-top':lineHeight}" v-if="commentShow" class="cmt-popup">
         <view class="cmt-tit">
           <view class="cmt-t">{{ i18n.productEvaluation }}
             <text class="cmt-good">{{ i18n.rating }}{{ prodCommData.positiveRating }}%</text>
@@ -801,7 +803,8 @@ export default {
       sharePic: '',
       sharePrice: '',
       isLoaded: false,
-      distributionUserId:'',//团长ID
+      distributionUserId: '',//团长ID
+      lineHeight:'0rpx'
     }
   },
 
@@ -966,7 +969,9 @@ export default {
       }
     }
   },
-
+  mounted() {
+    this.lineHeight = this.$system.ktxStatusHeight + 'rpx'
+  },
   methods: {
     /**
      * videoSts
@@ -1568,7 +1573,7 @@ export default {
         this.prodNum = 1
         return
       }
-      console.log(1111,this.distributionCardNo)
+      console.log(1111, this.distributionCardNo)
       http.request({
         url: '/p/shopCart/changeItem',
         method: 'POST',

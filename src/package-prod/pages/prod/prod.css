@@ -640,22 +640,22 @@ image {
 /** 评价弹窗 */
 
 .cmt-popup {
-  /*  position: fixed;
-  top: 0;
+   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 88; */
-  height: 100vh;
+  z-index: 88;
+  height: 600rpx;
   background-color: #fff;
-  /* padding-bottom: 98rpx; */
+  padding-bottom: 98rpx;
+  box-shadow:0 4px 10px 0 rgba(83, 83, 83, 0.288);
 }
 
 /* 没有评价时候的样式 */
-.cmt-no-popup {
-  height: 100vh;
+/* .cmt-no-popup {
+  height: 400rpx;
   background-color: #fff;
-}
+} */
 
 .cmt-popup .cmt-cont {
   height: calc(100% - 80rpx);

@@ -1661,7 +1661,6 @@ export default {
 
     // 提交订单
     submitOrder: function () {
-      console.log(22, this.actualTotal)
       var isPurePoints = this.actualTotal > 0 ? '' : 1 // 是否纯青春豆: 1是
       var shopCartOrders = this.shopCartOrders
       var reg = /^\s+$/g

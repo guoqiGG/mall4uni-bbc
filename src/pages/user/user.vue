@@ -13,7 +13,7 @@
     <!-- 自定义导航头 -->
     <!-- #ifndef H5-->
     <navigationBar v-if="navigationBarIsShow" :show-back="false" :navigation-bar-style="tabConfig" :is-left="false"
-      :is-bg-img="isBgImg" :is-mine-page="true" :title="i18n.personalCenter" /> 
+      :is-bg-img="isBgImg" :is-mine-page="true" :title="i18n.personalCenter" />
     <!-- #endif -->
     <view class="top-wrap">
       <view v-if="isAuthInfo" class="top-infor-wrap">
@@ -154,7 +154,7 @@
       <view class="pick-up-title">{{ station.province ? '门店自提地址' : '自提地址' }}</view>
       <view class="pick-up-item" v-if="(station.province || address.province) && isAuthInfo">
         <view class="pick-up-info">
-          <view class="station-name">{{ station.provience ? station.stationName : address.stationName }}</view>
+          <view class="station-name">{{ station.province ? station.stationName : address.stationName }}</view>
           <view class="station-address">
             {{ station.province ? (station.province + station.city + station.area + station.addr) : (address.province
               +
@@ -165,7 +165,7 @@
           </view>
         </view>
         <view class="address-icon"
-          @tap="selectLoaction(station.provience ? station.lat : address.lat, station.provience ? station.lng : address.lng)">
+          @tap="selectLoaction(station.province ? station.lat : address.lat, station.province ? station.lng : address.lng)">
           <image src="/static/images/icon/submit-address2.png"></image>
           <view class="text">路线</view>
         </view>

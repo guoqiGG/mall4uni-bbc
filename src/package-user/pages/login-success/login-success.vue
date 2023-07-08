@@ -41,14 +41,6 @@ export default {
     uni.setNavigationBarTitle({
       title: this.i18n.userLogin
     })
-    uni.getUserInfo({
-      provider: 'wx',
-      withCredentials: true,
-      success: ({ userInfo, rawData, signature, encryptedData, iv, errMsg }) => {
-        console.log(userInfo)
-      },
-      fail: (error) => {}
-    })
   },
 
   /**

@@ -89,7 +89,7 @@
               </view>
             </view>
             <image src="/static/images/icon/check-in.png" />
-            <!-- <view class="watch-time">{{ signTime >= 50 ? '已签到' : (watchTime + ':' + watchSecond) }}</view> -->
+            <view class="watch-time">{{ signTime >= 50 ? '已签到' : ('今日观看直播'+watchTime + '分' + watchSecond+'秒') }}</view>
           </view>
         </view>
         <!-- 板块end -->

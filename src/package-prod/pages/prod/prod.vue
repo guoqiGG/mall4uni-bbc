@@ -575,7 +575,7 @@
           <!-- #endif -->
 
           <!-- 赚字浮层 -->
-          <view v-if="isDist && isDistProd" class="earn" @tap="onShowShare">{{ i18n.earn }}</view>
+          <!-- <view v-if="isDist && isDistProd" class="earn" @tap="onShowShare">{{ i18n.earn }}</view> -->
           <!-- 赚字浮层 end -->
           <view v-if="showBacktop" class="suspension-btn" @tap="handleScorllTop">
             <image src="/static/images/icon/back-to-top.png" />

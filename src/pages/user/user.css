@@ -109,7 +109,7 @@ page {
   flex-wrap: nowrap;
   padding-right: 16rpx;
   display: inline-block;
-  margin-top: 8rpx;
+  margin-top: 10rpx;
 }
 
 .infor-wrap .vip-img {
@@ -421,7 +421,7 @@ page {
 }
 .my-pick-up-address .pick-up-item .address-icon .text {
   margin-top: 5rpx;
-  color: #ff5645;
+  color: #666666;
 }
 /* 分销中心 & 青春豆商店 */
 .distribution-points-wrap {

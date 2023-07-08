@@ -38,7 +38,7 @@
             <view class="select-btn">
               <view class="box">
                 <label :data-addrid="item.addrId" @tap="onDefaultAddr">
-                  <radio :checked="item.commonAddr == 1" color="#F81A1A" />{{
+                  <radio :checked="item.commonAddr == 1" color="#005AFF" />{{
                     i18n.asDefaultAddress
                   }}
                 </label>

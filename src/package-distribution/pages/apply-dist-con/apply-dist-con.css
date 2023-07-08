@@ -160,7 +160,7 @@ input {
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  background: #F81A1A;
+  background: #005AFF;
   border-radius: 6rpx;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -279,7 +279,7 @@ input {
   position: relative;
 }
 .station_have_item1{
-  border: 6rpx solid #F81A1A;
+  border: 6rpx solid #005AFF;
 }
 .station_have_item:nth-child(2){
   margin-left: 30rpx;

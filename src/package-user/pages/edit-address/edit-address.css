@@ -86,14 +86,14 @@ page {
   line-height: 80rpx;
   margin: auto;
   text-align: center;
-  border: 1rpx solid #F81A1A;
+  border: 1rpx solid #005AFF;
   border-radius: 50rpx;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-box .keep {
   color: #fff;
-  background-color: #F81A1A;
+  background-color: #005AFF;
 }
 
 .btn-box .clear.btn {

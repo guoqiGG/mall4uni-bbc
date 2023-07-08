@@ -11,7 +11,7 @@
 <template>
   <!-- 商品详情 -->
   <view :class="['Mall4j contenta', popupShowHiden ? 'page-hidden' : '']">
-    <view  :class="['container', skuShow || commentShow ? 'overflow' : '']">
+    <view :class="['container', skuShow ? 'overflow' : '', commentShow ? 'overflow' : '']">
       <!-- 轮播图 & 商品视频-->
       <prod-imgs-video ref="media" :imgs="prodInfo.imgs" :video="prodInfo.video" @videoSts="videoSts" />
       <!-- 轮播图 & 商品视频end -->
@@ -587,72 +587,75 @@
       </view>
 
       <!-- 评价弹窗 -->
-      <view :style="{'margin-top':lineHeight}" v-if="commentShow" class="cmt-popup">
-        <view class="cmt-tit">
-          <view class="cmt-t">{{ i18n.productEvaluation }}
-            <text class="cmt-good">{{ i18n.rating }}{{ prodCommData.positiveRating }}%</text>
+      <view v-if="commentShow" style="position:absolute;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.3);">
+        <view class="cmt-popup">
+          <view class="cmt-tit">
+            <view class="cmt-t">{{ i18n.productEvaluation }}
+              <text class="cmt-good">{{ i18n.rating }}{{ prodCommData.positiveRating }}%</text>
+            </view>
+            <text class="close" @tap="closePopup" />
           </view>
-          <text class="close" @tap="closePopup" />
-        </view>
-        <view class="cmt-cont">
-          <view class="cmt-tag">
-            <text :class="evaluate == -1 ? 'selected' : ''" @tap="getProdCommPage(-1)">{{ i18n.all + " " }}({{
-              prodCommData.number }})</text>
-            <text :class="evaluate == 0 ? 'selected' : ''" @tap="getProdCommPage(0)">{{ i18n.praise + " " }}({{
-              prodCommData.praiseNumber }})</text>
-            <text :class="evaluate == 1 ? 'selected' : ''" @tap="getProdCommPage(1)">{{ i18n.mediumEvaluation + " " }}({{
-              prodCommData.secondaryNumber }})</text>
-            <text :class="evaluate == 2 ? 'selected' : ''" @tap="getProdCommPage(2)">{{ i18n.badEvaluation + " " }}({{
-              prodCommData.negativeNumber }})</text>
-            <text :class="evaluate == 3 ? 'selected' : ''" @tap="getProdCommPage(3)">{{ i18n.havePictures + " " }}({{
-              prodCommData.picNumber }})</text>
-          </view>
-          <view class="cmt-items">
-            <view v-for="(item, prodCommId) in prodCommPage.records" :key="prodCommId" class="cmt-item">
-              <view class="cmt-user">
-                <text class="date">{{ item.recTime }}</text>
-                <view class="cmt-user-info">
-                  <!-- 匿名头像图片-->
-                  <image class="user-img" :src="item.pic ? item.pic : '/static/images/icon/head04.png'"
-                    @error="imageError(item, 'pic')" />
-                  <view class="nickname">
-                    <view class="name-star">
-                      <view class="name">{{ item.isWriteOff ? i18n.userOff : (item.isAnonymous == 1 ?
-                        i18n.anonymousEvaluation : item.nickName) }}</view>
-                      <view>
-                        <comm-star :value="item.score" />
+          <view class="cmt-cont">
+            <view class="cmt-tag">
+              <text :class="evaluate == -1 ? 'selected' : ''" @tap="getProdCommPage(-1)">{{ i18n.all + " " }}({{
+                prodCommData.number }})</text>
+              <text :class="evaluate == 0 ? 'selected' : ''" @tap="getProdCommPage(0)">{{ i18n.praise + " " }}({{
+                prodCommData.praiseNumber }})</text>
+              <text :class="evaluate == 1 ? 'selected' : ''" @tap="getProdCommPage(1)">{{ i18n.mediumEvaluation + " "
+              }}({{
+  prodCommData.secondaryNumber }})</text>
+              <text :class="evaluate == 2 ? 'selected' : ''" @tap="getProdCommPage(2)">{{ i18n.badEvaluation + " " }}({{
+                prodCommData.negativeNumber }})</text>
+              <text :class="evaluate == 3 ? 'selected' : ''" @tap="getProdCommPage(3)">{{ i18n.havePictures + " " }}({{
+                prodCommData.picNumber }})</text>
+            </view>
+            <view class="cmt-items">
+              <view v-for="(item, prodCommId) in prodCommPage.records" :key="prodCommId" class="cmt-item">
+                <view class="cmt-user">
+                  <text class="date">{{ item.recTime }}</text>
+                  <view class="cmt-user-info">
+                    <!-- 匿名头像图片-->
+                    <image class="user-img" :src="item.pic ? item.pic : '/static/images/icon/head04.png'"
+                      @error="imageError(item, 'pic')" />
+                    <view class="nickname">
+                      <view class="name-star">
+                        <view class="name">{{ item.isWriteOff ? i18n.userOff : (item.isAnonymous == 1 ?
+                          i18n.anonymousEvaluation : item.nickName) }}</view>
+                        <view>
+                          <comm-star :value="item.score" />
+                        </view>
                       </view>
+                      <view style="color: #999">{{ item.skuName || "" }}</view>
                     </view>
-                    <view style="color: #999">{{ item.skuName || "" }}</view>
                   </view>
                 </view>
-              </view>
-              <view class="cmt-cnt">
-                <text decode="true">{{ item.content }}</text>
-              </view>
-              <scroll-view v-if="item.pics && item.pics.length" class="cmt-attr" scroll-x="true">
-                <ImgShow v-for="(commPic, index) in item.pics" :key="index" :class="['cmt-attr-img']" :src="commPic"
-                  @handleTap="() => clickImg(commPic, item.pics)" />
-              </scroll-view>
-              <view v-if="item.replyContent" class="cmt-reply">
-                <text class="reply-tit">{{ i18n.shopReply }}：</text>
-                <text class="reply-content">{{ item.replyContent }}</text>
+                <view class="cmt-cnt">
+                  <text decode="true">{{ item.content }}</text>
+                </view>
+                <scroll-view v-if="item.pics && item.pics.length" class="cmt-attr" scroll-x="true">
+                  <ImgShow v-for="(commPic, index) in item.pics" :key="index" :class="['cmt-attr-img']" :src="commPic"
+                    @handleTap="() => clickImg(commPic, item.pics)" />
+                </scroll-view>
+                <view v-if="item.replyContent" class="cmt-reply">
+                  <text class="reply-tit">{{ i18n.shopReply }}：</text>
+                  <text class="reply-content">{{ item.replyContent }}</text>
+                </view>
               </view>
             </view>
-          </view>
-          <!-- 列表空 -->
-          <!-- <view v-if="!prodCommPage.records.length" class="empty">
-          <view class="empty-icon">
-            <image src="/static/images/icon/empty-com.png" />
-          </view>
-          <view class="empty-text">{{ i18n.noProductReviewsTips }}</view>
-        </view> -->
-          <!-- 空列表或加载全部提示 -->
-          <EmptyAllTips v-if="isLoaded" :emptyImg="4" :isEmpty="!prodCommPage.records.length"
-            :emptyTips="i18n.noProductReviewsTips" />
-          <!-- /列表空 -->
-          <view v-if="prodCommPage.pages > prodCommPage.current" class="load-more">
-            <text @tap="getMoreCommPage">{{ i18n.clickLoadMore }}</text>
+            <!-- 列表空 -->
+            <!-- <view v-if="!prodCommPage.records.length" class="empty">
+        <view class="empty-icon">
+          <image src="/static/images/icon/empty-com.png" />
+        </view>
+        <view class="empty-text">{{ i18n.noProductReviewsTips }}</view>
+      </view> -->
+            <!-- 空列表或加载全部提示 -->
+            <EmptyAllTips v-if="isLoaded" :emptyImg="4" :isEmpty="!prodCommPage.records.length"
+              :emptyTips="i18n.noProductReviewsTips" />
+            <!-- /列表空 -->
+            <view v-if="prodCommPage.pages > prodCommPage.current" class="load-more">
+              <text @tap="getMoreCommPage">{{ i18n.clickLoadMore }}</text>
+            </view>
           </view>
         </view>
       </view>
@@ -804,7 +807,7 @@ export default {
       sharePrice: '',
       isLoaded: false,
       distributionUserId: '',//团长ID
-      lineHeight:'0rpx'
+      lineHeight: '0rpx'
     }
   },
 

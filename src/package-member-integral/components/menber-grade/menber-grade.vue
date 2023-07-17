@@ -8,33 +8,18 @@
                 <view class="cont-det">
                     <view class="value-table">
                         <view class="tr">
-                            <view class="td-right th">图标</view>
-                            <view class="td-left th">等级</view>
+                            <view class=" th">等级</view>
+                            <view class=" th">图标</view>
+                            <view class=" th">名称</view>
                         </view>
-                        <view class="tr">
-                            <view class="td-left">
-                                <image src="/static/images/icon/normal-icon.png" />
+                        <view class="tr" v-for="item in gradeInfo" :key="item.level">
+                            <view class="td">{{ item.level }}</view>
+                            <view class="td">
+                                <image :src="item.img" />
                             </view>
-                            <view class="td-right">普通会员</view>
+                            <view class="td">{{ item.levelName }}</view>
                         </view>
-                        <view class="tr">
-                            <view class="td-left">
-                                <image src="/static/images/icon/silver-menber.png" />
-                            </view>
-                            <view class="td-right">白银会员</view>
-                        </view>
-                        <view class="tr">
-                            <view class="td-left">
-                                <image src="/static/images/icon/gold-menber.png" />
-                            </view>
-                            <view class="td-right">黄金会员</view>
-                        </view>
-                        <view class="tr">
-                            <view class="td-left">
-                                <image src="/static/images/icon/diamond-menber.png" />
-                            </view>
-                            <view class="td-right">白金会员</view>
-                        </view>
+
                     </view>
                 </view>
             </view>
@@ -43,15 +28,19 @@
 </template>
 <script>
 export default {
+    props: {
+        gradeInfo: {
+            type: Array,
+        },
+    },
     data() {
         return {
-            showPop:false
+            showPop: false
         }
     },
     methods: {
         // 显示会员等级 弹框
         showLevelPop: function () {
-            console.log(1)
             this.showPop = true
         },
         // 隐藏会员等级 弹框

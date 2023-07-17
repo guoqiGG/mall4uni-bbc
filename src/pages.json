@@ -4,7 +4,7 @@
       "path": "pages/index/index",
       "style": {
         "backgroundTextStyle": "dark",
-        "enablePullDownRefresh": false,
+        "enablePullDownRefresh": true,
         "navigationStyle": "custom",
         "navigationBarTextStyle": "white"
       }
@@ -30,7 +30,8 @@
       "path": "pages/category/category",
       "style": {
         "backgroundTextStyle": "light",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": false,  
+        "disableScroll":true
       }
     },
     {
@@ -53,8 +54,8 @@
         },
         {
           "path": "pages/prod/prod",
-          "style":{
-            "navigationStyle":"custom"
+          "style": {
+            "navigationStyle": "custom"
           }
         },
         {
@@ -93,10 +94,20 @@
           }
         },
         {
-          "path": "pages/pay-way/pay-way"
+          "path": "pages/pay-way/pay-way",
+          "style":{
+            "backgroundTextStyle": "dark",
+            "navigationBarBackgroundColor": "#ffffff",
+            "navigationBarTextStyle": "black"
+          }
         },
         {
-          "path": "pages/pay-success/pay-success"
+          "path": "pages/pay-success/pay-success",
+          "style":{
+            "backgroundTextStyle": "dark",
+            "navigationBarBackgroundColor": "#ffffff",
+            "navigationBarTextStyle": "black"
+          }
         },
         {
           "path": "pages/pay-paypal/appWebView"
@@ -147,13 +158,13 @@
           "path": "pages/member-index/member-index",
           "style": {
             "backgroundTextStyle": "light",
-            "navigationBarBackgroundColor": "#ffffff",
-            "navigationBarTextStyle": "black"
+            "navigationBarBackgroundColor": "#005aff",
+            "navigationBarTextStyle": "white"
           }
         },
         {
           "path": "pages/integral-detail/integral-detail",
-          "style":{
+          "style": {
             "navigationBarBackgroundColor": "#ffffff",
             "navigationBarTextStyle": "black"
           }
@@ -228,6 +239,9 @@
         },
         {
           "path": "pages/my-friends/my-friends"
+        },
+        {
+          "path": "pages/usershopdetail/usershopdetail"
         }
       ]
     },

@@ -9,13 +9,14 @@
 -->
 
 <template>
-  <view class="Mall4j sku-selected-con">
+  <view class="Mall4j sku-selected-con" style="margin-top:-10rpx;">
     <!-- 已选规格 -->
     <view v-if="pageType" class="sku" @tap="showSku">
       <view class="sku-tit">{{ i18n.selected }}</view>
       <view class="sku-con">
-        <block v-for="(skuItem,index) in selectedPropShowList" :key="index">
-          <text decode="true">{{ index < selectedPropShowList.length-1 ? skuItem +'，' : skuItem + '&nbsp; &nbsp;' }}</text>
+        <block v-for="(skuItem, index) in selectedPropShowList" :key="index">
+          <text decode="true">{{ index < selectedPropShowList.length - 1 ? skuItem + '，' : skuItem + '&nbsp; &nbsp;'
+          }}</text>
         </block>
         <text>{{ prodNum }}{{ i18n.piece }}</text>
       </view>
@@ -29,8 +30,9 @@
         <view class="pup-sku-header">
           <view class="close" @tap="closePopup" />
           <view class="pup-sku-img">
-            <image v-if="setPicURL(defaultSku.pic, pic) && !isPicError" :src="setPicURL(defaultSku.pic, pic)" mode="aspectFit" @error="handlePicError" />
-            <image v-else src="/static/images/icon/def.png" mode="aspectFit" />
+            <image v-if="setPicURL(defaultSku.pic, pic) && !isPicError" :src="setPicURL(defaultSku.pic, pic)"
+              mode="aspectFill" @error="handlePicError" />
+            <image v-else src="/static/images/icon/def.png" mode="aspectFill" />
           </view>
           <view class="pup-sku-prod">
             <!-- 秒杀商品价格 -->
@@ -40,17 +42,19 @@
             </view>
             <!-- 商品价格 -->
             <view
-              v-if="findSku && skuShowType === 0 && prodType === 0 || prodType === 3 || (prodType === 1 && skuShowType === 0 ) || (prodType === 2 && activityInfo.activityStatus === 1 || activityInfo.activityStatus === undefined)"
-              class="pup-sku-price"
-            >
-              <block v-if="prodType!==3 || defaultSku.matchingPrice || defaultSku.price">
-                <text v-if="defaultSku.matchingPrice || defaultSku.price" class="pup-sku-price-int">￥{{ parsePrice(defaultSku.matchingPrice || defaultSku.price)[0] }}</text>
+              v-if="findSku && skuShowType === 0 && prodType === 0 || prodType === 3 || (prodType === 1 && skuShowType === 0) || (prodType === 2 && activityInfo.activityStatus === 1 || activityInfo.activityStatus === undefined)"
+              class="pup-sku-price">
+              <block v-if="prodType !== 3 || defaultSku.matchingPrice || defaultSku.price">
+                <text v-if="defaultSku.matchingPrice || defaultSku.price" class="pup-sku-price-int">￥{{
+                  parsePrice(defaultSku.matchingPrice || defaultSku.price)[0] }}</text>
                 <text v-else-if="findSku" class="pup-sku-price-int">￥0</text>
-                <text v-if="defaultSku.matchingPrice || defaultSku.price">.{{ parsePrice(defaultSku.matchingPrice || defaultSku.price)[1] }}</text>
+                <text v-if="defaultSku.matchingPrice || defaultSku.price">.{{ parsePrice(defaultSku.matchingPrice ||
+                  defaultSku.price)[1] }}</text>
                 <text v-else-if="findSku">.00</text>
               </block>
               <text v-if="(defaultSku.matchingPrice || defaultSku.price) && defaultSku.skuScore">+</text>
-              <text v-if="defaultSku.skuScore && prodType===3" class="pup-sku-price-int">{{ defaultSku.skuScore }}{{ i18n.integral }}</text>
+              <text v-if="defaultSku.skuScore && prodType === 3" class="pup-sku-price-int">{{ defaultSku.skuScore }}{{
+                i18n.integral }}</text>
             </view>
             <!-- 拼团商品价格 -->
             <view v-if="prodType === 1 && findSku && skuShowType === 1" class="pup-sku-price">￥
@@ -60,21 +64,24 @@
             <view v-if="!findSku" class="pup-sku-price">{{ i18n.outOfStock }}</view>
             <view class="pup-sku-prop">
               <view>
-                <text>{{ i18n.selected }}</text>
+                <text>{{ i18n.selected }}:</text>
                 <text decode="true">
                   <text v-if="defaultSku.skuName">{{ '&nbsp;' + defaultSku.skuName }}</text>
                   <text v-else>
-                    {{ '&nbsp;' + selectedPropShowList.join('，') }}
+                    {{ selectedPropShowList.join('，') }}
                   </text>
-                  <text v-if="leastNum && comboId">{{ '&nbsp;'+leastNum+'&nbsp;' }}{{ i18n.piece }}</text>
+                  <text v-if="leastNum && comboId">{{ '&nbsp;' + leastNum + '&nbsp;' }}{{ i18n.piece }}</text>
                   <text v-else>{{ '&nbsp;' + prodNum }}{{ i18n.piece }}</text>
                 </text>
               </view>
-              <view v-if="findSku">
-                <text>{{ i18n.inventory }}</text>
-                <text decode="true">{{ '&nbsp;'+ (prodType === 2 && (defaultSku.seckillStocks === 0 || defaultSku.seckillStocks) ? defaultSku.seckillStocks : defaultSku.stocks) }}</text>
-                <text v-if="(prodType === 2 || prodType === 1) && activityInfo.maxNum >= 1 && skuShowType === 1" style="margin-left: 20rpx;">{{ i18n.purchaseLimit }}</text>
-                <text v-if="(prodType === 2 || prodType === 1) && activityInfo.maxNum >= 1 && skuShowType === 1" decode="true">{{ '&nbsp;'+ activityInfo.maxNum }}</text>
+              <view v-if="findSku" style="margin-top:16rpx">
+                <text>{{ i18n.inventory }}:</text>
+                <text decode="true">{{ '&nbsp;' + (prodType === 2 && (defaultSku.seckillStocks === 0 ||
+                  defaultSku.seckillStocks) ? defaultSku.seckillStocks : defaultSku.stocks) }}</text>
+                <text v-if="(prodType === 2 || prodType === 1) && activityInfo.maxNum >= 1 && skuShowType === 1"
+                  style="margin-left: 20rpx;">{{ i18n.purchaseLimit }}</text>
+                <text v-if="(prodType === 2 || prodType === 1) && activityInfo.maxNum >= 1 && skuShowType === 1"
+                  decode="true">{{ '&nbsp;' + activityInfo.maxNum }}</text>
               </view>
             </view>
           </view>
@@ -82,18 +89,22 @@
         <view class="pup-sku-body">
           <view v-if="isInputing" class="input-mask" @tap="handleSetVirtualInputInfo" />
           <!-- 说明（虚拟商品） -->
-          <view v-if="mold === 1 && (virtualInfo.writeOffNum !== 0 || (virtualInfo.writeOffNum === 0 && virtualInfo.isRefund === 0))" class="virtual-goods-tips">
-            <text class="vi-t">{{ i18n.usageInstructions }}：</text>
+          <view
+            v-if="mold === 1 && (virtualInfo.writeOffNum !== 0 || (virtualInfo.writeOffNum === 0 && virtualInfo.isRefund === 0))"
+            class="virtual-goods-tips">
+            <text class="vi-t">{{ i18n.usageInstructions }}:</text>
             <!-- writeOffNum 0无需核销 1单次核销 -1多次核销 -->
             <block v-if="virtualInfo.writeOffNum !== 0">
               <!-- writeOffTime核销有效期 -1.长期有效 0.自定义 x.x天内有效 -->
               <text v-if="virtualInfo.writeOffTime === -1">{{ i18n.longTermValidity }}</text>
-              <text v-else-if="virtualInfo.writeOffTime === 0">{{ i18n.afterPurchase }} {{ virtualInfo.writeOffStart }} {{ i18n.to }} {{ virtualInfo.writeOffEnd }} <text v-if="!isEn">{{ i18n.effective }}</text></text>
+              <text v-else-if="virtualInfo.writeOffTime === 0">{{ i18n.afterPurchase }} {{ virtualInfo.writeOffStart }} {{
+                i18n.to }} {{ virtualInfo.writeOffEnd }} <text v-if="!isEn">{{ i18n.effective }}</text></text>
               <text v-else-if="virtualInfo.writeOffTime === 1">{{ i18n.validOnTheSameDay }}</text>
               <text v-else>{{ i18n.purchase }}{{ virtualInfo.writeOffTime }}{{ i18n.validDay }}</text>
             </block>
             <!-- isRefund 0不支持退款 1支持退款 -->
-            <text v-if="virtualInfo.isRefund === 0"><text v-if="virtualInfo.writeOffNum !== 0 ">，</text>{{ i18n.refundsAreNotAllowed }}</text>
+            <text v-if="virtualInfo.isRefund === 0"><text v-if="virtualInfo.writeOffNum !== 0">，</text>{{
+              i18n.refundsAreNotAllowed }}</text>
           </view>
 
           <!-- 规格 -->
@@ -103,14 +114,10 @@
                 <view v-for="(skuLine, key) in skuGroupItem" :key="key" class="items sku-text">
                   <text class="sku-kind">{{ key }}</text>
                   <view class="con">
-                    <text
-                      v-for="skuLineItem in skuLine"
-                      :key="skuLineItem"
-                      class="sku-choose-item"
-                      :class="['item-item',selectedPropList.indexOf(key + ':' + skuLineItem) !== -1?'active':'',
-                               isSkuLineItemNotOptional(allProperties,selectedPropObj,key,skuLineItem,propKeys)? 'dashed' : '']"
-                      @click="toChooseItem(skuGroupItemIndex, skuLineItem, key)"
-                    >{{ skuLineItem }}</text>
+                    <text v-for="skuLineItem in skuLine" :key="skuLineItem" class="sku-choose-item"
+                      :class="['item-item', selectedPropList.indexOf(key + ':' + skuLineItem) !== -1 ? 'active' : '',
+                        isSkuLineItemNotOptional(allProperties, selectedPropObj, key, skuLineItem, propKeys) ? 'dashed' : '']" @click="toChooseItem(skuGroupItemIndex, skuLineItem, key)">{{
+    skuLineItem }}</text>
                   </view>
                 </view>
               </view>
@@ -123,7 +130,8 @@
                 <text class="row" />
               </view>
               <view class="text-wrap">
-                <input ref="prodNumSelf" :key="prodNumSelfKey" type="number" :value="prodNumSelf" @input="changeNUm" @blur="prodNumInp()"></input>
+                <input ref="prodNumSelf" :key="prodNumSelfKey" type="number" :value="prodNumSelf" @input="changeNUm"
+                  @blur="prodNumInp()"/>
               </view>
               <view class="plus" @tap="onCountPlus">
                 <text class="row" />
@@ -134,35 +142,33 @@
           </view>
         </view>
         <!-- 底部按钮: 普通/秒杀/拼团  -->
-        <view v-if="(pageType || isJionGroup) && pageType != 3" :class="'pup-sku-footer ' + ( isJionGroup ? '' : findSku && !prodNumBiggerThanStock() ? '':'gray')">
+        <view v-if="(pageType || isJionGroup) && pageType != 3"
+          :class="'pup-sku-footer ' + (isJionGroup ? '' : findSku && !prodNumBiggerThanStock() ? '' : 'gray')">
           <!-- 秒杀按钮 -->
-          <view v-if="prodType===2 && activityInfo.activityStatus === 2" class="btn buy" @tap="handleBuyNow(2)">{{ i18n.immediatelyBuy }}</view>
+          <view v-if="prodType === 2 && activityInfo.activityStatus === 2" class="btn buy" @tap="handleBuyNow(2)">{{
+            i18n.immediatelyBuy }}</view>
           <!-- 非秒杀、非预售商品 -->
-          <block v-else-if="skuShowType==0 && preSellStatus != 1">
-            <view v-if="skuShowType == 0 && mold !== 1" class="btn cart" @tap="handleAddToCart">{{ i18n.addShoppingCart }}</view>
-            <view v-if="skuShowType==0" class="btn buy" @tap="handleBuyNow(0)">{{ i18n.buyNow }}</view>
+          <block v-else-if="skuShowType == 0 && preSellStatus != 1">
+            <view v-if="skuShowType == 0 && mold !== 1" class="btn cart" @tap="handleAddToCart">{{ i18n.addShoppingCart }}
+            </view>
+            <view v-if="skuShowType == 0" class="btn buy" @tap="handleBuyNow(0)">{{ i18n.buyNow }}</view>
           </block>
           <!-- 预售 -->
-          <view v-if="preSellStatus == 1 && !(prodType===2 && activityInfo.activityStatus === 2)" class="btn pre-sale-buy" @tap="handleBuyNow(0)">{{ i18n.buyNow }}</view>
+          <view v-if="preSellStatus == 1 && !(prodType === 2 && activityInfo.activityStatus === 2)" class="btn pre-sale-buy"
+            @tap="handleBuyNow(0)">{{ i18n.buyNow }}</view>
           <!-- 开团按钮 -->
-          <view
-            v-if="skuShowType==1 && !isJionGroup && prodType === 1"
-            :class="['btn', activityInfo.activityStatus === 1 ? 'gray-btn' : 'buy']"
-            @tap="handleBuyNow(1)"
-          >{{ i18n.startAGroup }}
+          <view v-if="skuShowType == 1 && !isJionGroup && prodType === 1"
+            :class="['btn', activityInfo.activityStatus === 1 ? 'gray-btn' : 'buy']" @tap="handleBuyNow(1)">{{
+              i18n.startAGroup }}
           </view>
           <!-- 参团按钮 -->
-          <view
-            v-if="isJionGroup"
-            class="btn"
-            :class="[defaultSku.stocks === 0 ? 'gray-btn' : 'buy']"
-            @tap="handleJionGroup"
-          >
+          <view v-if="isJionGroup" class="btn" :class="[defaultSku.stocks === 0 ? 'gray-btn' : 'buy']"
+            @tap="handleJionGroup">
             {{ i18n.JoinGroupNow }}
           </view>
         </view>
         <!-- 青春豆商品: 兑换按钮 -->
-        <view v-if="prodType == 3" :class="'pup-sku-footer ' + (findSku && !prodNumBiggerThanStock() ? '':'gray')">
+        <view v-if="prodType == 3" :class="'pup-sku-footer ' + (findSku && !prodNumBiggerThanStock() ? '' : 'gray')">
           <view class="btn buy" @tap="handleBuyNow(3)">
             {{ i18n.redeemNow }}
           </view>
@@ -172,7 +178,8 @@
           <view class="btn buy">{{ i18n.notAvailableForPurchase }}</view>
         </view>
         <!-- 购物车: 切换sku弹窗 -->
-        <view v-if="!pageType && !isJionGroup" class="pup-sku-footer" :class="{gray: !findSku || prodNumBiggerThanStock()}">
+        <view v-if="!pageType && !isJionGroup" class="pup-sku-footer"
+          :class="{ gray: !findSku || prodNumBiggerThanStock() }">
           <view class="btn buy" @tap="submit">{{ i18n.confirm }}</view>
         </view>
       </view>
@@ -225,7 +232,7 @@ export default {
     },
     virtualInfo: {
       type: Object,
-      default: () => {}
+      default: () => { }
     },
     // sku的显示类型 0普通sku 1拼团sku
     skuShowType: {
@@ -247,7 +254,7 @@ export default {
     // 团购/秒杀  活动信息
     activityInfo: {
       type: Object,
-      default: () => {}
+      default: () => { }
     },
     // 页面类型: 0非商品详情页(套餐/购物车/团购详情:参团页面)  1普通商品(团购)  2秒杀商品  3青春豆商品  5活动商品
     pageType: {
@@ -350,7 +357,7 @@ export default {
       for (var i = 0; i < skuList.length; i++) {
         var isDefault = false
         if ((!defaultSku && skuList[i].skuId == this.skuId)) {
-        // if ((!defaultSku && skuList[i].skuId == this.skuId) ||
+          // if ((!defaultSku && skuList[i].skuId == this.skuId) ||
           // 		(!defaultSku && skuList[i].price == this.defaultPrice) ||
           // 		(!defaultSku && skuList[i].seckillPrice === this.activityInfo?.seckillPrice && skuList[i].price === this.activityInfo?.price) ||
           // 		(!defaultSku && skuList[i].actPrice === this.activityInfo?.actPrice && this.prodType === 1)) {
@@ -408,9 +415,9 @@ export default {
     },
 
     /**
-		 * 将已选的 {key:val,key2:val2}转换成 [val,val2]
-		 */
-    parseSelectedObjToVals: function(skuList) {
+     * 将已选的 {key:val,key2:val2}转换成 [val,val2]
+     */
+    parseSelectedObjToVals: function (skuList) {
       const selectedPropObjList = this.selectedPropObjList
       let selectedProperties = ''
       const selectedPropList = []
@@ -467,8 +474,8 @@ export default {
     },
 
     /**
-		 * 判断当前的规格值 是否可以选
-		 */
+     * 判断当前的规格值 是否可以选
+     */
     isSkuLineItemNotOptional(allProperties, propObj, key, item, propKeys) {
       var selectedPropObj = Object.assign({}, propObj)
       var properties = ''
@@ -491,8 +498,8 @@ export default {
     },
 
     /**
-		 * 规格点击事件
-		 */
+     * 规格点击事件
+     */
     toChooseItem(skuGroupItemIndex, skuLineItem, key) {
       this.selectedPropObjList[skuGroupItemIndex] = this.selectedPropObjList[skuGroupItemIndex] || {}
 
@@ -510,8 +517,8 @@ export default {
     },
 
     /**
-		 * 设置选中的拼团sku
-		 */
+     * 设置选中的拼团sku
+     */
     setDefaultGroupSku() {
       const groupSkuList = this.activityInfo.groupSkuList || this.activityInfo.seckillSkuList
       if (groupSkuList) {
@@ -531,8 +538,8 @@ export default {
     },
 
     /**
-		 * 去重
-		 */
+     * 去重
+     */
     unique(arr) {
       const map = {}
       arr.forEach(item => {
@@ -546,9 +553,9 @@ export default {
     },
 
     /**
-		 * 减数量
-		 */
-    onCountMinus: function() {
+     * 减数量
+     */
+    onCountMinus: function () {
       var prodNum = this.prodNumSelf
       if (prodNum > 1) {
         prodNum = prodNum - 1
@@ -557,9 +564,9 @@ export default {
     },
 
     /**
-		 * 加数量
-		 */
-    onCountPlus: function() {
+     * 加数量
+     */
+    onCountPlus: function () {
       // 商品数量
       let prodNum = parseInt(this.prodNumSelf)
       // 默认库存数量
@@ -591,8 +598,8 @@ export default {
     },
 
     /**
-		 * 加购
-		 */
+     * 加购
+     */
     handleAddToCart() {
       if (!this.findSku || this.prodNumBiggerThanStock()) {
         return
@@ -601,9 +608,9 @@ export default {
     },
 
     /**
-		 * 立即购买
+     * 立即购买
      * @param {Number} orderType 订单类型  0普通 1团购 2秒杀 3青春豆
-		 */
+     */
     handleBuyNow(orderType) {
       if (!this.findSku || this.prodNumBiggerThanStock()) {
         return
@@ -612,8 +619,8 @@ export default {
     },
 
     /**
-		 * 参团
-		 */
+     * 参团
+     */
     handleJionGroup() {
       if (!this.findSku || this.prodNumBiggerThanStock()) {
         return
@@ -622,9 +629,9 @@ export default {
     },
 
     /**
-		 * 库存校验
-		 * @return {Boolean} 购买数量大于库存
-		 */
+     * 库存校验
+     * @return {Boolean} 购买数量大于库存
+     */
     prodNumBiggerThanStock() {
       if (!this.defaultSku) return true
       const defaultSkuStock = this.pageType == 2 ? this.defaultSku.seckillStocks : this.defaultSku.stocks
@@ -632,23 +639,23 @@ export default {
     },
 
     /**
-		 * 输入框聚焦
-		 */
+     * 输入框聚焦
+     */
     inputFocus() {
       this.isInputing = true
     },
 
     /**
-		 * 设置虚拟商品留言
-		 */
+     * 设置虚拟商品留言
+     */
     handleSetVirtualInputInfo() {
       this.isInputing = false
       this.$emit('setVirtualInputInfo', this.virtualInfo.virtualRemarks)
     },
 
     /**
-		 * 输入商品数量
-		 */
+     * 输入商品数量
+     */
     prodNumInp() {
       let num = Number(this.num.replace(/[^\d]/g, ''))
       const max = this.prodType === 2 && (this.defaultSku.seckillStocks === 0 || this.defaultSku.seckillStocks) ? this.defaultSku.seckillStocks : this.defaultSku.stocks
@@ -681,7 +688,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* 已选 */
 .sku {
   display: flex;
@@ -690,23 +696,26 @@ export default {
   position: relative;
   padding: 20rpx;
   background: #fff;
-  padding: 30rpx 20rpx;
+  padding: 40rpx 20rpx;
   margin-top: 20rpx;
 }
 
 .sku-tit {
-  font-size: 22rpx;
+  font-size: 34rpx;
   color: #999;
   margin-right: 20rpx;
+  font-weight: 500;
 }
 
 .sku-con {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 28rpx;
+  font-size: 34rpx;
   font-weight: bold;
   max-width: 77%;
+  font-weight: 500;
+  color: #232323;
 }
 
 .more {
@@ -741,7 +750,7 @@ export default {
   min-height: 375px;
   max-height: 500px;
   background-color: #fff;
-	border-radius: 20rpx 20rpx 0 0;
+  border-radius: 20rpx 20rpx 0 0;
 }
 
 .close {
@@ -766,37 +775,39 @@ export default {
   position: relative;
   font-size: 16px;
   color: #333;
-  padding: 20rpx 20rpx;
+  padding: 30rpx 30rpx;
   background-color: #fff;
   border-bottom: 1rpx solid #f2f2f2;
   padding-top: 35rpx;
-	border-radius: 20rpx 20rpx 0 0;
+  border-radius: 20rpx 20rpx 0 0;
 }
 
 .pup-sku-img {
   display: inline-block;
-  width: 27%;
-  height: 180rpx;
+  width: 200rpx;
+  height: 160rpx;
   vertical-align: middle;
   border-radius: 10rpx;
 }
+
 .pup-sku-img image {
-  display: block;
-  width: 180rpx;
+  width: 100%;
   height: 100%;
+  border-radius: 10rpx
 }
 
 .pup-sku-prod {
   display: inline-block;
-  width: 70%;
+  width: calc(100% - 260rpx);
   vertical-align: middle;
-  padding-left: 10rpx;
+  padding-left: 20rpx;
 }
 
 .prod-title {
   font-size: 28rpx;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /*设定显示行数*/
+  -webkit-line-clamp: 1;
+  /*设定显示行数*/
   -webkit-box-orient: vertical;
   word-break: break-all;
   overflow: hidden;
@@ -809,35 +820,44 @@ export default {
   display: inline-block;
   height: 1.5em;
   line-height: 1.5em;
-  color: #F81A1A;
+  color: #FF5000;
   font-size: 26rpx;
 }
+
 .group-sku-pri {
   display: flex;
   align-items: center;
 }
 
 .pup-sku-price-int {
-  font-size: 34rpx;
+  font-size: 40rpx;
+  color: #FF5000;
+  font-weight: 500;
+}
+
+.pup-sku-price-int text {
+  font-size: 26rpx;
+  color: #FF5000;
 }
 
 .pup-sku-prop {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  font-size: 26rpx;
-  color: #333;
+  font-size: 34rpx;
+  color: #232323;
   line-height: 1.4em;
   padding-right: 10px;
   margin-top: 16rpx;
-	overflow: unset;
+  overflow: unset;
 }
 
 .sel-sku {
   display: inline-block;
   max-width: 340rpx;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /*设定显示行数*/
+  -webkit-line-clamp: 1;
+  /*设定显示行数*/
   -webkit-box-orient: vertical;
   word-break: break-all;
   overflow: hidden;
@@ -846,7 +866,10 @@ export default {
 }
 
 .pup-sku-prop text:first-child {
-  color: #999;
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #999999;
+  line-height: 24rpx;
 }
 
 .pup-sku-body {
@@ -863,7 +886,8 @@ export default {
   max-height: 245px;
   overflow-y: scroll;
 }
-.pup-sku-area .sku-box{
+
+.pup-sku-area .sku-box {
   max-height: 245px;
   overflow-y: scroll;
 }
@@ -875,8 +899,9 @@ export default {
   height: 40px;
   line-height: 40px;
 }
+
 .pup-sku-area .con {
-	padding-right: 20rpx;
+  padding-right: 20rpx;
 }
 
 .pup-sku-area .sku-choose {
@@ -912,6 +937,7 @@ export default {
   background-color: #f9f9f9;
   color: #ddd;
 }
+
 .sku-choose-item.dashed {
   border: 1px dashed #ccc;
 }
@@ -924,10 +950,11 @@ export default {
 
 .pup-sku-count .count-name {
   height: 31px;
-  line-height: 31px;
+  line-height: 24px;
   width: 100rpx;
-  color: #000;
-  font-weight: bold;
+  color: #232323;
+  font-weight: 500;
+  font-size: 34rpx;
 }
 
 .pup-sku-count .num-wrap {
@@ -949,11 +976,13 @@ export default {
   margin-bottom: 20rpx;
   line-height: 1.5em;
 }
+
 .pup-sku-count.virtual-goods-msg {
   margin-bottom: 30rpx;
   max-height: 600rpx;
   overflow-y: auto;
 }
+
 .pup-sku-count.virtual-goods-msg .msg-item {
   display: flex;
   align-items: center;
@@ -961,29 +990,37 @@ export default {
   font-size: 24rpx;
   padding-bottom: 20rpx;
 }
+
 .pup-sku-count.virtual-goods-msg .msg-item:not(:first-child) {
   margin-top: 40rpx;
 }
+
 .pup-sku-count.virtual-goods-msg .msg-item .msg-tit {
   flex-wrap: wrap;
   width: 180rpx;
   margin-right: 20rpx;
   word-break: break-word;
 }
+
 .pup-sku-count.virtual-goods-msg .msg-item .stress {
   color: #F81A1A;
   margin-right: 10rpx;
   font-size: 26rpx;
 }
+
 .pup-sku-count.virtual-goods-msg .msg-item .msg-int {
   font-size: 24rpx;
   width: 100%;
 }
+
 .pup-sku-count.virtual-goods-msg .msg-item .msg-int .uni-input-placeholder {
   color: #aaa;
 }
-/* 留言（虚拟商品）/ */
 
+/* 留言（虚拟商品）/ */
+.num-wrap{
+  background: #F8F8F8;
+}
 .num-wrap .minus,
 .num-wrap .plus {
   position: relative;
@@ -991,7 +1028,7 @@ export default {
   min-width: 30px;
   height: 30px;
   line-height: 30px;
-  background: #f7f7f7;
+  background: #f4f4f4;
   text-align: center;
 }
 
@@ -1039,12 +1076,14 @@ export default {
 .pup-sku-count .text-wrap input {
   height: 30px;
   width: 100%;
-  color: #333;
+  color: #232323;
   background: #fff;
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
   border: none;
   background: #f7f7f7;
+  line-height: 24rpx;
+  font-weight: 500;
 }
 
 .pup-sku-footer {
@@ -1078,18 +1117,20 @@ export default {
 }
 
 .pup-sku-footer .btn.cart {
-  background: #584e61;
+  background: #F7912C;
   color: #fff;
 }
 
 .pup-sku-footer .btn.buy {
-  background: #F81A1A;
+  background: #FA5623;
   color: #fff;
 }
+
 .pup-sku-footer .btn.pre-sale-buy {
   background: #F81A1A;
   color: #fff;
 }
+
 .pup-sku-footer.gray .btn {
   background: #eee;
   color: #999;
@@ -1102,11 +1143,10 @@ export default {
 
 /* 输入框聚焦遮罩 */
 .input-mask {
-	height: 100vh;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-}
-</style>
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}</style>

@@ -22,7 +22,9 @@
           <view class="left-infor">
             <!-- 头像 -->
             <view class="avatsr-con">
-              <image class="avatsr" src="/static/images/icon/user-avatar-bg.png" mode="scaleToFill" />
+              <image class="avatsr"
+                :src="userLevelInfo.picFrame ? config.picDomain + '/shop/' + userLevelInfo.picFrame : '/static/images/icon/user-avatar-bg.png'"
+                mode="scaleToFill" />
               <image class="avatsr-bg" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'"
                 mode="scaleToFill" @tap="toPersonalInformation" @error="imageError(userInfo, 'pic')" />
             </view>
@@ -33,7 +35,9 @@
               </view>
               <!-- vip称号 -->
               <view class="pay-vip-wrap menbers" @tap="toMemberCenter">
-                <image class="user-grade-icon" src="/static/images/icon/normal-icon.png"></image>
+                <image class="user-grade-icon"
+                  :src="userLevelInfo.img ? config.picDomain + '/shop/' + userLevelInfo.img : '/static/images/icon/normal-icon.png'">
+                </image>
                 <text class="vip-txt">{{ userLevelInfo.levelName }}</text>
               </view>
             </view>
@@ -150,7 +154,7 @@
     <!-- end 我的订单 -->
 
     <!-- 我的当前自提点 -->
-    <view class="my-pick-up-address">
+    <view class="my-pick-up-address" v-if="station.province || address.province">
       <view class="pick-up-title">{{ station.province ? '门店自提地址' : '自提地址' }}</view>
       <view class="pick-up-item" v-if="(station.province || address.province) && isAuthInfo">
         <view class="pick-up-info">
@@ -952,7 +956,7 @@ export default {
         url: '/p/distribution/user/distributionUserInfo',
         method: 'GET',
         callBack: res => {
-          if (res && res.state == 1 && res.userMobile) {
+          if (res && res.state) {
             this.setData({
               isDistributionUserInfo: true
             })

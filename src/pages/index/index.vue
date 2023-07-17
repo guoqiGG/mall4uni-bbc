@@ -26,16 +26,6 @@
     <!-- 骨架屏 end -->
 
     <view v-if="!renovationId" class="container">
-      <!-- 搜索框 -->
-      <!-- <view class="bg-sear">
-        <view class="scrolltop">
-          <view class="section" @tap="toSearchPage">
-            <image src="/static/images/icon/search.png" class="search-img" />
-            <text class="placeholder">{{ i18n.search }}</text>
-          </view>
-        </view>
-      </view> -->
-      <!-- 搜索框end -->
 
       <!-- 导航&公告 -->
       <view :class="['content']">
@@ -89,7 +79,8 @@
               </view>
             </view>
             <image src="/static/images/icon/check-in.png" />
-            <view class="watch-time">{{ signTime >= 50 ? '已签到' : ('今日观看直播'+watchTime + '分' + watchSecond+'秒') }}</view>
+            <view class="watch-time">{{ signTime >= 50 ? '已签到' : ('今日观看直播' + watchTime + '分' + watchSecond + '秒') }}
+            </view>
           </view>
         </view>
         <!-- 板块end -->
@@ -104,7 +95,7 @@
             :data-anchorwechat="item.anchorWechat" :data-roomStatus="item.liveStatus" @tap="toLivePage">
             <view class="live-item">
               <view class="live-left">
-                <image class="image" :src="'http://img.zzqct.com/shop/' + item.coverImg"></image>
+                <image class="image" :src="'http://img.zzqct.com/shop/' + item.coverImg" mode="aspectFill"></image>
                 <view :class="['b-situation', 'bg-white', item.liveStatus == 101 ? 'on-live' : 'no-live']">
                   <image class="like-icon" src="/static/images/icon/icon-live.png"></image>
                   <view class="b-processing"><text class="state">{{
@@ -124,25 +115,18 @@
               </view>
               <view class="live-right">
                 <view class="top">
-                  <image class="image" :src="item.feedsImg"></image>
+                  <image class="image" :src="item.feedsImg" mode="aspectFill"></image>
                 </view>
                 <view class="bottom">
-                  <image class="image" :src="item.shareImg"></image>
+                  <image class="image" :src="item.shareImg" mode="aspectFill"></image>
                 </view>
               </view>
             </view>
-            <view v-if="index<liveBroadcastList.length-1" class="item-center-line"></view>
+            <view v-if="index < liveBroadcastList.length - 1" class="item-center-line"></view>
 
           </view>
         </view>
       </view>
-
-      <view v-else style="padding-top: 10rpx;margin:10rpx 15rpx">
-        <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
-        <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
-        <image style="width:100%;height:400rpx;" src="/static/images/icon/zhibo.png"></image>
-      </view>
-
       <!-- 回到顶部 -->
       <!-- <back-top-btn v-if="showBacktop" /> -->
       <!-- <privacy-pop v-if="showPop" @hidePop="hidePop" /> -->
@@ -351,13 +335,11 @@ export default {
       })
     }
   },
-
   methods: {
     hidePop() {
       this.showPop = false
       uni.showTabBar()
     },
-
     /**
      * 获取装修页面数据
      */
@@ -394,7 +376,6 @@ export default {
       })
       uni.hideNavigationBarLoading()
     },
-
     // 页面加载回调
     pageLoaded(e) {
       uni.setNavigationBarTitle({
@@ -433,157 +414,10 @@ export default {
         complete: (res) => { }
       })
     },
-
-    /**
-     * 跳转到商品详情页
-     */
-    toProdDetail: function (prodId) {
-      util.tapLog(3)
-      if (prodId) {
-        this.$Router.push({
-          path: '/package-prod/pages/prod/prod',
-          query: {
-            prodId
-          }
-        })
-      }
-    },
-    // 点击轮播图跳转相应页面
-    toIndexImgContent: function (item) {
-      util.tapLog(3)
-      if (item.type !== 0) {
-        return
-      }
-      const prodId = item.relation
-      http.request({
-        url: '/prod/isStatus',
-        method: 'GET',
-        data: {
-          prodId: prodId
-        },
-        callBack: (res) => {
-          if (res) {
-            this.$Router.push({
-              path: '/package-prod/pages/prod/prod',
-              query: {
-                prodId: prodId,
-                bannerEnter: '1'
-              }
-            })
-          }
-        }
-      })
-    },
     toCouponCenter: function () {
       uni.navigateTo({
         url: '/package-activities/pages/coupon-center/coupon-center'
       })
-    },
-    /**
-     * 秒杀
-     */
-    getSnapUpList: function () {
-      const params = {
-        // url: "/seckill/pageProd",
-        url: '/search/page',
-        method: 'GET',
-        data: {
-          size: 20,
-          current: 1,
-          prodType: 2,
-          isActive: 1, // 过滤掉活动商品
-          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
-        },
-        callBack: (res) => {
-          const result = res.records[0].products.filter(
-            (item) =>
-              util.dateToTimestamp(item.seckillSearchVO.endTime) >
-              new Date().getTime()
-          ) // 过滤掉秒杀时间已结束的商品
-
-          this.setData({
-            snapUpList: result
-          })
-        }
-      }
-      http.request(params)
-    },
-
-    /**
-     * 跳转秒杀列表页
-     */
-    toSnapUpPage: function () {
-      util.tapLog(3)
-      uni.navigateTo({
-        url: '/package-activities/pages/snap-up-list/snap-up-list'
-      })
-    },
-
-    /**
-     * 团购
-     */
-    getAbulk: function () {
-      var param = {
-        url: '/search/page',
-        method: 'GET',
-        data: {
-          current: 1,
-          size: 5,
-          prodType: 1,
-          isActive: 1, // 过滤掉活动商品
-          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
-        },
-        callBack: (res) => {
-          this.setData({
-            aBulkList: res.records[0].products
-          })
-        }
-      }
-      http.request(param)
-    },
-
-    /**
-     * 跳转团购列表页
-     */
-    toAbulkPage: function () {
-      util.tapLog(3)
-      uni.navigateTo({
-        url: '/package-activities/pages/a-bulk-list/a-bulk-list'
-      })
-    },
-
-    // 跳转搜索页
-    toSearchPage: function () {
-      util.tapLog(3)
-      uni.navigateTo({
-        url: '/package-search/pages/search-page/search-page'
-      })
-    },
-    // 跳转商品活动页面
-    toClassifyPage: function (e) {
-      util.tapLog(3)
-      var url =
-        '/package-prod/pages/prod-classify/prod-classify?sts=' + e.currentTarget.dataset.sts
-      var id = e.currentTarget.dataset.id
-      var title = e.currentTarget.dataset.title
-
-      if (id) {
-        url += '&tagid=' + id + '&title=' + title
-      }
-
-      uni.navigateTo({
-        url: url
-      })
-    },
-    toSecKillPage: function () {
-      uni.navigateTo({
-        url: '/package-activities/pages/snap-up-list/snap-up-list'
-      })
-    },
-    toSpecialDiscount: function () {
-      this.$Router.push(
-        '/package-activities/pages/special-discount/special-discount'
-      )
     },
     // 跳转公告列表页面
     onNewsPage: function () {
@@ -591,7 +425,6 @@ export default {
         url: '/package-user/pages/recent-news/recent-news'
       })
     },
-
     getAllData() {
       this.getIndexImgs()
       this.getNoticeList()
@@ -599,7 +432,6 @@ export default {
       // this.getSnapUpList()
       // this.getAbulk()
     },
-
     // 加载轮播图
     getIndexImgs() {
       // 加载轮播图
@@ -656,43 +488,6 @@ export default {
       }
       http.request(params)
     },
-    /**
-     * 加载热销商品列表
-     */
-    getHotSalesProds() {
-      this.isLoaded = false
-      var param = {
-        // url: "/search/searchProdPage",
-        url: '/search/page',
-        method: 'GET',
-        data: {
-          current: this.current,
-          size: 20,
-          sort: 2,
-          orderBy: 1,
-          isActive: 1, // 过滤掉活动商品
-          userId: uni.getStorageSync('bbcUserInfo') ? uni.getStorageSync('bbcUserInfo').userId : ''
-        },
-        callBack: (res) => {
-          this.isLoaded = true
-          var hotSalesList = []
-          if (this.current == 1) {
-            this.setData({
-              hotSalesList: res.records[0].products,
-              pages: res.pages
-            })
-          } else {
-            hotSalesList = this.hotSalesList
-            hotSalesList.push(...res.records[0].products)
-            this.setData({
-              hotSalesList
-            })
-          }
-        }
-      }
-      http.request(param)
-    },
-
     // 触底加载下一页
     getNextPage() {
       if (this.pages > this.current) {
@@ -732,7 +527,6 @@ export default {
         })
       })
     },
-
     /**
        * 跳转青春豆中心
        */
@@ -744,6 +538,7 @@ export default {
         })
       })
     },
+    // 获取直播间列表
     queryLiveList: function () {
       this.isLoaded = false
       const params = {
@@ -827,10 +622,9 @@ export default {
           }, 1000)
         }
         wx.navigateTo({
-          url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${roomId}&custom_params=${customParams}`
+          url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${roomId}&custom_params=${customParams}&open_share_ticket=1`
         }) // 其中wx2b03c6e691cd7370是直播组件appid不能修改
       } else {
-        getSignTime
         uni.showToast({
           title: this.i18n.pleaseOpenInWechat,
           icon: 'none'
@@ -920,4 +714,6 @@ export default {
   }
 }
 </script>
-<style>@import './index.css';</style>
+<style>
+@import './index.css';
+</style>

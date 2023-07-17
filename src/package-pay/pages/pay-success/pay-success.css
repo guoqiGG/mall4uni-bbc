@@ -1,11 +1,38 @@
-
+page{
+  background: #f7f7f7;
+}
 .pay-success {
-  padding-top: 180rpx;
+  margin-top: 28rpx;
+}
+.img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 50rpx;
+}
+.img image{
+  width: 364rpx;
+  height: 205rpx;
 }
 
 .pay-success .pay-det {
   text-align: center;
   font-size: 28rpx;
+}
+.pay-success .pay-det .text{
+  font-size: 40rpx;
+  color: #232323;
+  font-weight: 800;
+}
+.pay-success .pay-det .pay-success{
+  font-size: 30rpx;
+  color: #232323;
+  font-weight: 500;
+}
+.pay-success .pay-det .pay-success .my-order{
+  color: #005aff;
+  text-decoration:  #005aff  underline;
 }
 
 .pay-success .pay-det .number {
@@ -24,7 +51,7 @@
 
 .pay-success .pay-bottom {
   position: absolute;
-  margin-top: 40rpx;
+  margin-top: 98rpx;
   width: 100%;
   text-align: center;
   font-size: 24rpx;
@@ -48,13 +75,24 @@
 }
 
 .pay-success .pay-bottom .other-action .item {
-  padding: 0 30rpx;
-  color: #F81A1A;
-}
+  padding: 30rpx 99rpx;
 
-.pay-success .pay-bottom .other-action .item.bl {
-  border-left: 1px solid #eee;
+  font-size: 34rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #005AFF;
+  border: 1px solid #005aff;
+  border-radius: 10rpx;
+  background: #fff;
 }
+.pay-success .pay-bottom .other-action .item:nth-child(2){
+  margin-left: 30rpx;
+  background: #005AFF;
+  color: #FFF;
+}
+/* .pay-success .pay-bottom .other-action .item.bl {
+  border-left: 1px solid #005aff;
+} */
 
 /* 查看提货码弹窗 */
 .popup-hide {

@@ -15,7 +15,7 @@ image {
   padding-bottom: calc(110rpx + env(safe-area-inset-bottom));
   width: 100%;
 }
-.container.overflow {
+.container {
   min-height: 100vh;
   overflow: hidden;
 }
@@ -200,7 +200,7 @@ image {
 
 .discount-package {
   background: #fff;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   padding: 30rpx 20rpx 0 20rpx;
 }
 
@@ -343,15 +343,16 @@ image {
   justify-content: flex-start;
   background: #fff;
   padding: 30rpx 20rpx;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 
 .discount .coupon-tit,
 .coupon .coupon-tit,
 .sendway .coupon-tit {
-  font-size: 22rpx;
+  font-size: 34rpx;
   color: #999;
   margin-right: 20rpx;
+  font-weight: 500;
 }
 .discount .coupon-con,
 .coupon .coupon-con,
@@ -387,8 +388,10 @@ image {
 .sendway-item {
   display: flex;
   align-items: center;
-  font-size: 24rpx;
+  font-size: 34rpx;
   color: #888;
+  font-weight: 500;
+  color: #232323;
 }
 .sendway-item:not(:last-child) {
   padding-right: 26rpx;
@@ -452,16 +455,18 @@ image {
 
 .cmt-wrap {
   background: #fff;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   position: relative;
   line-height: 48rpx;
 }
 
 .cmt-tit {
-  font-size: 32rpx;
+  font-size: 34rpx;
   position: relative;
   border-bottom: 1px solid #ddd;
   padding: 20rpx;
+  font-weight: 800;
+  color: #232323;
 }
 
 .cmt-t {
@@ -469,9 +474,10 @@ image {
 }
 
 .cmt-good {
-  color: #f81a1a;
-  font-size: 24rpx;
+  color: #FF5000;
+  font-size: 28rpx;
   margin-left: 10rpx;
+  font-weight: 500;
 }
 
 .cmt-count {
@@ -480,6 +486,7 @@ image {
   top: 20rpx;
   font-size: 24rpx;
   color: #666;
+  font-weight: 500;
 }
 
 .cmt-more {
@@ -638,24 +645,33 @@ image {
 }
 
 /** 评价弹窗 */
+.cmt-con{
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background: rgba(0, 0, 0, 0.3); 
+}
 
 .cmt-popup {
-   position: fixed;
+  position: fixed;
+  /* top: 0; */
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 88;
   height: 600rpx;
   background-color: #fff;
-  padding-bottom: 98rpx;
+  /* padding-bottom: 98rpx; */
   box-shadow:0 4px 10px 0 rgba(83, 83, 83, 0.288);
 }
 
 /* 没有评价时候的样式 */
-/* .cmt-no-popup {
-  height: 400rpx;
+.cmt-no-popup {
+  height: 600rpx;
   background-color: #fff;
-} */
+}
 
 .cmt-popup .cmt-cont {
   height: calc(100% - 80rpx);
@@ -701,7 +717,7 @@ image {
 
 /** 店铺 */
 .shop-box {
-  margin: 20rpx 0;
+  margin: 10rpx 0;
   background: #fff;
   padding: 20rpx;
 }
@@ -717,10 +733,12 @@ image {
   max-width: 80%;
 }
 .shop-logo {
-  width: 100rpx;
-  height: 100rpx;
+  width: 110rpx;
+  height: 110rpx;
   background: #fff;
   margin-right: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
 }
 .shop-con {
   display: flex;
@@ -728,8 +746,9 @@ image {
   flex: 1;
 }
 .shop-name {
-  font-size: 30rpx;
+  font-size: 34rpx;
   font-weight: bold;
+  color: #232323;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -740,27 +759,30 @@ image {
 .shop-con .shop-fol {
   display: flex;
   align-items: center;
-  margin-top: 6px;
+  margin-top: 6rpx;
 }
 .shop-con .shop-fol .self-operate {
-  background: #f81a1a;
+  background: #FA2C3C;
   color: #fff;
-  font-size: 23rpx;
+  font-size: 28rpx;
   padding: 8rpx 12rpx;
   line-height: 1em;
   margin-right: 10px;
+  border-radius: 5;
 }
 .shop-con .shop-fol .fol-num {
-  font-size: 13px;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #999;
 }
 /* 进店看看 */
 .shopbox-head .sr {
-  font-size: 13px;
-  color: #f81a1a;
+  font-size: 28rpx;
+  color: #FA2C3C;
   line-height: 1em;
-  padding: 4px 6px;
-  border: 1px solid #f81a1a;
-  border-radius: 50rpx;
+  padding: 7rpx 15rpx;
+  border: 1px solid #FA2C3C;
+  border-radius: 20rpx;
 }
 /* 粉丝&商品 */
 .shop-situation {
@@ -836,7 +858,7 @@ image {
 .prod-detail {
   width: 100% !important;
   background: #fff;
-  margin: 20rpx 0;
+  margin: 10rpx 0;
   position: relative;
   line-height: 48rpx;
   overflow: hidden;
@@ -1547,8 +1569,8 @@ button.btn-type::after {
   -webkit-overflow-scrolling: touch;
 }
 .page-hidden {
-  /* height: 100%;
-  overflow: hidden; */
+  height: 100%;
+  overflow: hidden;
 }
 
 /* 引导蒙版 end */

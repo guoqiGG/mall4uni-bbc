@@ -9,6 +9,7 @@
   position: relative;
   width: 750rpx;
   height: 350rpx;
+  background: linear-gradient(180deg, #005aff, #88b2ff);
 }
 
 .member-index .member-msg .m-bg {
@@ -32,9 +33,9 @@
   border-radius: 50%;
   position: relative;
 }
-.member-index .member-msg .member-info .head-portrait .head-avatar-bg{
+.member-index .member-msg .member-info .head-portrait .head-avatar-bg {
   width: 98rpx;
-  height: 98rpx; 
+  height: 98rpx;
   /* border: 1rpx solid black; */
   border-radius: 50%;
 }
@@ -76,8 +77,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40rpx;
-  padding: 0 14rpx;
+  /* height: 40rpx; */
+  padding: 10rpx 14rpx;
   margin-left: 10rpx;
   box-sizing: border-box;
   background: #fff;
@@ -85,13 +86,13 @@
 }
 
 .member-index .member-msg .member-info .text-box .name-box .level .l-bg {
-  width: 28rpx;
-  height: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
 }
 
 .member-index .member-msg .member-info .text-box .name-box .level .text {
   color: #7c4733;
-  font-size: 18rpx;
+  font-size: 24rpx;
   font-family: arial;
   position: relative;
   line-height: 1.4em;
@@ -124,7 +125,6 @@
 .member-index .member-msg .grow-box {
   position: absolute;
   left: 0;
-  bottom: 26rpx;
   color: #fff;
   display: flex;
   align-items: center;
@@ -140,7 +140,8 @@
 }
 
 .member-index .member-msg .grow-box .item .text {
-  font-size: 24rpx;
+  font-size: 30rpx;
+  font-weight: 500;
 }
 
 .member-index .member-msg .grow-box .item .number-box {
@@ -152,13 +153,14 @@
 
 .member-index .member-msg .grow-box .item .number-box .number {
   font-family: arial;
-  font-size: 40rpx;
+  font-size: 50rpx;
+  font-weight: 500;
+  color: #fff;
 }
 
 .member-index .member-msg .grow-box .item .number-box .arr {
   font-size: 0;
   margin-left: 10rpx;
-  margin-bottom: 4rpx;
 }
 
 .member-index .member-msg .grow-box .item .number-box .arr image {
@@ -180,13 +182,14 @@
 
 .member-tit .text {
   flex: 1;
-  font-size: 32rpx;
-  font-weight: 600;
+  font-size: 34rpx;
+  font-weight: 800;
   position: relative;
   padding-left: 16rpx;
+  color: #232323;
 }
 
-.member-tit .text::before {
+/* .member-tit .text::before {
   position: absolute;
   left: 0;
   top: 20%;
@@ -196,7 +199,7 @@
   content: ' ';
   background: #F81A1A;
   border-radius: 6rpx;
-}
+} */
 
 .member-tit .more {
   font-size: 24rpx;
@@ -212,12 +215,20 @@
   margin-top: 50rpx;
   padding: 0 30rpx;
 }
-
+.member-index .sign-in1 {
+  position: relative;
+  margin: 10rpx 10rpx 0;
+  background: #ffffff;
+  /* box-shadow: 0rpx 0rpx 25rpx 0rpx rgba(0, 0, 0, 0.15); */
+  border-radius: 10rpx;
+  padding: 30rpx 10rpx;
+}
 .member-index .sign-in .con-box {
   display: flex;
   padding: 0 5rpx;
   margin-bottom: -40rpx;
   overflow-y: auto;
+ 
 }
 
 .member-index .sign-in .con-box .item {
@@ -225,6 +236,7 @@
   margin-top: 30rpx;
   text-align: center;
   height: 160rpx;
+  flex: 1;
 }
 
 .member-index .sign-in .con-box .item:nth-child(7n) {
@@ -237,8 +249,8 @@
   border-radius: 50%;
   text-align: center;
   line-height: 80rpx;
-  background: #ffeee6;
-  color: #F81A1A;
+  background: linear-gradient(180deg, #005aff, #88b2ff);
+  color: #fff;
   font-family: arial;
   font-size: 24rpx;
 }
@@ -248,16 +260,6 @@
 }
 
 .member-index .sign-in .con-box .item .number.active {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from #f73200,
-    to(#fe730c)
-  );
-  background: -o-linear-gradient(to left, #fe730c, #f73200);
-  background: linear-gradient(to left, #fe730c, #f73200);
-  background: -webkit-linear-gradient(to left, #fe730c, #f73200);
   color: #fff;
 }
 
@@ -348,7 +350,7 @@
 }
 
 .member-index .mission .con-box .item .btn {
-  background: #F81A1A;
+  background: #f81a1a;
   color: #fff;
   padding: 10rpx;
   border-radius: 60rpx;
@@ -434,5 +436,3 @@
 } */
 
 /* 青春豆兑换 end */
-
-

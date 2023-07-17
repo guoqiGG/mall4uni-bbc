@@ -13,10 +13,11 @@
   <view class="Mall4j member-index">
     <!-- 会员信息 -->
     <view class="member-msg">
-      <image src="../../static/images/icon/memberIndexBg.png" class="m-bg" />
+      <!-- <image src="../../static/images/icon/memberIndexBg.png" class="m-bg" /> -->
       <view class="member-info">
         <view class="head-portrait">
-          <image class="head-avatar" src="/static/images/icon/user-avatar-bg.png" />
+          <image class="head-avatar"
+            :src="userCenterInfo.picFrame ? picDomain + '/shop/' + userCenterInfo.picFrame : '/static/images/icon/user-avatar-bg.png'" />
           <image class="head-avatar-bg" :src="userInfo.pic ? userInfo.pic : '/static/images/icon/head04.png'
             " @error="imageError(userInfo, 'pic')" />
         </view>
@@ -24,22 +25,16 @@
           <view class="name-box">
             <text class="name">{{ userInfo.nickName }}</text>
             <view class="level" @tap="showLevelPop">
-              <image :src="userMemberInfo.levelType == 0
-                ? '/static/images/icon/normal-icon.png'
-                : '/static/images/icon/integral-icon.png'
+              <image :src="userCenterInfo.img
+                ? picDomain + '/shop/' + userCenterInfo.img
+                : '/static/images/icon/normal-icon.png'
                 " class="l-bg" />
-              <view v-if="userMemberInfo.userLevel" class="text">{{
-                userMemberInfo.userLevel.levelName
+              <view v-if="userCenterInfo.levelName" class="text">{{
+                userCenterInfo.levelName
               }}</view>
             </view>
           </view>
-          <!-- <view class="date">{{
-            userMemberInfo.levelType == 0
-              ? i18n.notPayingMember
-              : userMemberInfo.endTime + i18n.expire
-          }}</view> -->
         </view>
-        <!-- <view class="buy-btn" @tap="buyMember">{{ i18n.buyMembership }}</view> -->
       </view>
       <view class="grow-box">
         <view class="item">
@@ -62,55 +57,7 @@
         </view>
       </view>
     </view>
-    <!-- /会员信息 -->
-    <!-- 签到 -->
-    <!-- <view class="sign-in">
-      <view class="member-tit">
-        <view class="text">{{ i18n.dailySignIn }}</view>
-      </view>
-      <view class="con-box">
-        <view
-          v-for="(item, index) in userCenterInfo.scoreList"
-          :key="index"
-          class="item"
-          :data-index="index"
-          @tap="getPoints"
-        >
-          <view
-            v-if="signInItem < index + 1 && 7 > userCenterInfo.signInCount"
-            class="number"
-          >+{{ item }}</view>
-          <view
-            v-if="signInItem < index + 1 && 7 <= userCenterInfo.signInCount"
-            class="number"
-          >+{{ userCenterInfo.scoreList[6] }}</view>
-          <view
-            v-if="signInItem == index + 1 && userCenterInfo.isSignIn == 0"
-            class="number active num-text"
-            data-type="1"
-            @tap="getPoints"
-          >{{ i18n.signIn }}</view>
-          <view
-            v-if="
-              (signInItem >= index + 1 && userCenterInfo.isSignIn == 1) ||
-                (signInItem > index + 1 && userCenterInfo.isSignIn == 0)
-            "
-            class="number active num-text"
-          >{{ i18n.signedIn }}</view>
-          <view
-            v-if="userCenterInfo.signInCount < 7"
-            class="day"
-          >{{ i18n.dayItem }}{{ index + 1 }}{{ i18n.day }}</view>
-          <view
-            v-if="userCenterInfo.signInCount >= 7"
-            class="day"
-          >{{ i18n.dayItem
-          }}{{ index + 1 + (userCenterInfo.signInCount - 7 + 1)
-          }}{{ i18n.day }}</view>
-        </view>
-      </view>
-    </view> -->
-    <view class="sign-in">
+    <view class="sign-in sign-in1">
       <view class="member-tit">
         <view class="text">{{ i18n.dailySignIn }}</view>
       </view>
@@ -221,21 +168,20 @@
       <view class="member-tit member-tit2">
         <view class="text">成长值攻略</view>
         <view class="cont-det">
-          <view class="cont-det-text" style="font-size: 14px;line-height:24px;color:#707070;">
-            观看直播，观看直播超过50分钟，即可签到成功一次，获得成长值+1。</view>
-
+          <view class="cont-det-text" style="margin: 0;padding:10px 0 0;line-height:24px;color:#707070;font-size: 14px;" v-html="growthExplain.paramValue"></view>
         </view>
       </view>
     </view>
     <!-- /成长值攻略 -->
 
     <!-- 会员等级详情弹框 -->
-    <memberGrade ref="menberGrade"></memberGrade>
+    <memberGrade ref="menberGrade" :gradeInfo="userMemberInfo.userLevels"></memberGrade>
     <!-- /会员等级详情弹框 -->
   </view>
 </template>
 
 <script>
+const config = require('@/utils/config.js')
 const http = require('../../../utils/http.js')
 const util = require('../../../utils/util.js')
 // 会员等级组件
@@ -263,8 +209,10 @@ export default {
       sevenDay: [],
       dateList: [],
       scoreExplain: {},// 青春豆攻略
+      growthExplain: {},// 成长值攻略
       showPop: false,
-      levelType: 0
+      levelType: 0,
+      picDomain: config.picDomain
     }
   },
 
@@ -292,6 +240,8 @@ export default {
     this.get7DayUserStore() //获取用户一周的签到展示
 
     this.getScoreExplain() // 青春豆攻略
+
+    this.getGrowthExplain() // 青春豆攻略
   },
 
   /**
@@ -354,6 +304,22 @@ export default {
         callBack: (res) => {
           this.setData({
             scoreExplain: res
+          })
+        }
+      }
+      http.request(param)
+    },
+    /**
+ * 成长值攻略
+ */
+    getGrowthExplain: function () {
+      var param = {
+        url: '/p/score/getGrowthShow',
+        method: 'GET',
+        data: {},
+        callBack: (res) => {
+          this.setData({
+            growthExplain: res
           })
         }
       }

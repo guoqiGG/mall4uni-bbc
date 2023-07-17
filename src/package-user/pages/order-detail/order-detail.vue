@@ -116,12 +116,12 @@
       <!-- 商品信息 -->
       <view class="prod-item">
         <!-- 店铺 -->
-        <view class="shop-box">
+        <!-- <view class="shop-box">
           <view class="shop-icon">
             <image src="/static/images/icon/shop.png" />
           </view>
           <view class="shop-name">{{ shopName }}</view>
-        </view>
+        </view> -->
         <!-- /店铺 -->
         <view v-for="(item, prodIndex) in orderItemDtos" :key="prodIndex" class="prod-box">
           <view class="item-cont" @tap="toProdDetail(item.prodId)">
@@ -432,7 +432,7 @@
     <view class="order-detail-footer">
       <view style="display: flex;align-items: center;"><view v-if="isShowMore" class="more-text" @tap="handleMore">{{ i18n.more }}</view></view>
       <view class="footer-btn-box">
-        <view v-if="!isShowMore" class="group-det" @tap="handleCustomService">{{ i18n.contactCustomerService1 }}</view>
+        <!-- <view v-if="!isShowMore" class="group-det" @tap="handleCustomService">{{ i18n.contactCustomerService1 }}</view> -->
         <view
           v-if="isViewInvoice&&!isShowMore&&(!refundStatus || refundStatus === 4)"
           class="group-det"
@@ -461,7 +461,7 @@
       <view class="more-popup-mask" @tap="closePopup" />
       <view class="more-box">
         <!-- <view class="more-box-mark" /> -->
-        <view class="more-popup-text" @tap="handleCustomService">{{ i18n.contactCustomerService1 }}</view>
+        <!-- <view class="more-popup-text" @tap="handleCustomService">{{ i18n.contactCustomerService1 }}</view> -->
         <view
           v-if="isViewInvoice&&(!refundStatus || refundStatus === 4)"
           class="more-popup-text"

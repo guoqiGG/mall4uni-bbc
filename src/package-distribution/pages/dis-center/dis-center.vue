@@ -17,7 +17,8 @@
           <view class="user-info-box">
             <!-- 头像 -->
             <view class="user-head-portrait">
-              <image :src=" distInfo.pic ? distInfo.pic : '/static/images/icon/head04.png' " @error="imageError(distInfo,'pic')" />
+              <image :src="distInfo.pic ? distInfo.pic : '/static/images/icon/head04.png'"
+                @error="imageError(distInfo, 'pic')" />
             </view>
             <view class="right">
               <!-- 用户名 -->
@@ -33,13 +34,7 @@
                 <view v-if="!disNotice.length" class="notice-txt">{{ i18n.noAnnouncement }}</view>
                 <!-- 有公告的时候轮播 -->
                 <block v-if="disNotice.length > 0">
-                  <swiper
-                    circular="true"
-                    vertical="true"
-                    autoplay="true"
-                    duration="1000"
-                    class="swiper-cont"
-                  >
+                  <swiper circular="true" vertical="true" autoplay="true" duration="1000" class="swiper-cont">
                     <block v-for="(item, index) in disNotice" :key="index">
                       <swiper-item class="items">{{
                         item.msgTitle
@@ -101,7 +96,7 @@
         </view>
         <view class="item-text">
           <view class="item-text-title">
-            {{ i18n.publishProduct }} 
+            {{ i18n.publishProduct }}
           </view>
           <view class="item-text-desc">
             {{ i18n.distributionWinWin }}
@@ -154,12 +149,19 @@
           <view class="list-title">{{ i18n.incomeBreakdown }}</view>
           <text class="arrow" />
         </view>
-        
+
         <view class="menu-cont-list" @tap="toIntegralTurnoverPage">
           <view class="icon">
             <image src="../../static/images/icon/menu_4.png" mode="widthFix" />
           </view>
           <view class="list-title">{{ i18n.integralTurnover }}</view>
+          <text class="arrow" />
+        </view>
+        <view class="menu-cont-list" @tap="toTuanUserShopDetail">
+          <view class="icon">
+            <image src="../../static/images/icon/menu_1.png" mode="widthFix" />
+          </view>
+          <view class="list-title">用户购物明细</view>
           <text class="arrow" />
         </view>
       </view>
@@ -197,12 +199,12 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function (options) { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // 头部导航标题
     uni.setNavigationBarTitle({
       title: this.i18n.distributioncenter
@@ -223,8 +225,8 @@ export default {
         url: '/p/distribution/user/distributionUserInfo',
         method: 'GET',
         callBack: (res) => {
-          if(res?.distributionUserId){
-            uni.setStorageSync('distributionUserId',res.distributionUserId)
+          if (res?.distributionUserId) {
+            uni.setStorageSync('distributionUserId', res.distributionUserId)
           }
           if (res.state === -1) {
             uni.showModal({
@@ -258,7 +260,7 @@ export default {
               confirmText: this.i18n.confirm,
               confirmColor: '#eb2444',
               showCancel: false,
-              success(res) {}
+              success(res) { }
             })
           }
           this.distInfo = res
@@ -282,7 +284,7 @@ export default {
     },
 
     // 获取分销公告
-    getDistributionMsg: function() {
+    getDistributionMsg: function () {
       var ths = this
       const params = {
         url: '/p/distribution/msg/page',
@@ -303,7 +305,7 @@ export default {
     /**
      * 获取用户钱包数据
      */
-    getDisInfoData: function() {
+    getDisInfoData: function () {
       const ths = this
       const params = {
         url: '/p/distribution/user/info',
@@ -321,7 +323,7 @@ export default {
             content: res.data,
             showCancel: false,
             confirmText: ths.i18n.confirm,
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 uni.switchTab({
                   url: '/pages/user/user'
@@ -337,7 +339,7 @@ export default {
     /**
      * 跳转收入明细
      */
-    toIncomeDetailsPage: function() {
+    toIncomeDetailsPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/income-details/income-details'
       })
@@ -346,7 +348,7 @@ export default {
     /**
      * 跳转提现记录
      */
-    toWalletCashPage: function() {
+    toWalletCashPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/take-notes/take-notes'
       })
@@ -355,7 +357,7 @@ export default {
     /**
      * 跳转提现规则
      */
-    toWalletCashRulePage: function() {
+    toWalletCashRulePage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/draw-rule/draw-rule'
       })
@@ -364,7 +366,7 @@ export default {
     /**
      * 跳转到我的好友页面
      */
-    toMyFriendsPage: function() {
+    toMyFriendsPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/my-friends/my-friends'
       })
@@ -373,7 +375,7 @@ export default {
     /**
      * 跳转至我的用户
      */
-    toMyUserPage: function() {
+    toMyUserPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/my-users/my-users'
       })
@@ -382,7 +384,7 @@ export default {
     /**
      * 跳转我的推广界面
      */
-    toPromotionOrderPage: function() {
+    toPromotionOrderPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/promotion-order/promotion-order'
       })
@@ -391,7 +393,7 @@ export default {
     /**
      * 跳转我的推广商品
      */
-    toPromotionProdPage: function() {
+    toPromotionProdPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/promotion-prod/promotion-prod'
       })
@@ -399,17 +401,17 @@ export default {
 
     /**
      * 跳转到我的发布商品 
-     */ 
-     toPublishProdPage:function(){
+     */
+    toPublishProdPage: function () {
       uni.navigateTo({
-        url:'/package-publish-prod/pages/publish-prod/publish-prod'
+        url: '/package-publish-prod/pages/publish-prod/publish-prod'
       })
-     },
+    },
 
     /**
      * 跳转到邀请好友页面
      */
-    toInvitationCards: function() {
+    toInvitationCards: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/invitation-cards/invitation-cards'
       })
@@ -418,24 +420,32 @@ export default {
     /**
      * 跳转到提现
      */
-    toWithdrawal: function() {
+    toWithdrawal: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/withdrawal/withdrawal'
       })
     },
 
     /*
-				跳转到分销员列表，已写好入口，等待对接
-			*/
-    toDistributorListPage: function() {},
+        跳转到分销员列表，已写好入口，等待对接
+      */
+    toDistributorListPage: function () { },
     /*
     * 跳转到青春豆流水页面
-    */ 
-    toIntegralTurnoverPage:function(){
+    */
+    toIntegralTurnoverPage: function () {
       uni.navigateTo({
         url: '/package-distribution/pages/turnover/turnover'
       })
     },
+    /*
+    * 跳转到用户购物明细页面
+    */
+    toTuanUserShopDetail: function () {
+      uni.navigateTo({
+        url: '/package-distribution/pages/usershopdetail/usershopdetail'
+      })
+    }
   }
 }
 </script>

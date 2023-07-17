@@ -16,14 +16,14 @@
         <!-- 收货方式 -->
         <view v-if="selectDistributionWay && mold !== 1" class="distribution-mode">
           <view class="item-box">
-            <view v-if="showMailHome && !distributionUserId" :class="[isDistribution ? 'active' : '', 'item']"
+            <view v-if="showMailHome && !isDist" :class="[isDistribution ? 'active' : '', 'item']"
               @tap="changeDistribution(0)">{{ i18n.mailToHome }}</view>
             <view :class="[isDistribution ? '' : 'active', 'item']" @tap="changeDistribution(1)">{{ i18n.pickStore }}
             </view>
           </view>
         </view>
         <!-- 邮寄到家 -->
-        <view v-if="isDistribution && mold !== 1 && showMailHome && !distributionUserId" class="address-box">
+        <view v-if="isDistribution && mold !== 1 && showMailHome && !isDist" class="address-box">
           <view v-if="!userAddr || isEditAddr">
             <view class="tit">
               <view v-if="!addressList.length" class="text">{{ i18n.fillReceivingInformation }}</view>
@@ -89,7 +89,7 @@
               <image src="/static/images/icon/revise.png" />
             </view>
           </view>
-          <view v-if="canChooseSameCity && canChooseSameCity !== -2" class="choose-way" @tap="distributionPop">
+          <view v-if="canChooseSameCity && canChooseSameCity !== -2" class="choose-way">
             <view class="text">{{ i18n.deliveryMethod }}</view>
             <view class="go">{{ dvyType == 1 ? i18n.expressDelivery : dvyType == 4 ? i18n.sameDelivery :
               i18n.selectDeliveryMethod }}</view>
@@ -100,35 +100,40 @@
         <!-- 到店自提 -->
         <view v-if="!isDistribution && mold !== 1" class="address-box">
           <!-- 选择自提点 -->
-          <!-- 有团长 -->
-          <view class="self-raising" v-if="station.province">
+          <!-- 有团长和自己是团长 -->
+          <view class="self-raising" v-if="isDist||!showMailHome">
             <view class="tit">
-              <view class="text" style="width: 100rpx;">{{ i18n.pickup }}</view>
+              <view class="text" style="font-size:32rpx;font-weight:500;white-space: nowrap;">{{ i18n.pickup }}</view>
               <view>
-                <view style="display: flex;flex-deriction:row;">
+                <view style="display: flex;flex-direction:row;">
                   <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
                   <view class="text color" v-if="station.phone">
-                    {{ station.phonePrefix ? station.phonePrefix : '' }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone
+                    {{ station.phonePrefix ? station.phonePrefix : '' }}{{ station.phonePrefix ? '-' : '' }}{{
+                      station.phone
                     }}</view>
                 </view>
-                <view v-if="station.province" class="text color">{{ station.province }}{{ selStationItem.city }}{{
+                <view v-if="station.province" class="text color">{{ station.province }}{{ station.city }}{{
                   station.area }}{{ station.addr }}</view>
               </view>
             </view>
           </view>
-          <!-- 无团长 -->
+          <!-- 散户 -->
           <view class="self-raising" v-else>
             <view class="tit">
-              <view class="text">{{ i18n.pickup }}</view>
-              <view class="text color" v-if="station.stationName">{{ station.stationName }}</view>
-              <view class="text color" v-if="station.phone">
-                {{ station.phonePrefix ? station.phonePrefix : '' }}{{ station.phonePrefix ? '-' : '' }}{{ station.phone }}
+              <view class="text" style="font-size:32rpx;font-weight:500;white-space: nowrap;">{{ i18n.pickup }}</view>
+              <view style="display: flex;flex-direction:column;">
+                <view style="display: flex;flex-direction:row;">
+                  <view class="text color" v-if="selStationItem.stationName">{{ selStationItem.stationName }}</view>
+                  <view class="text color" v-if="selStationItem.phone">
+                    {{ selStationItem.phonePrefix ? selStationItem.phonePrefix : '' }}{{ selStationItem.phonePrefix ? '-'
+                      :
+                      '' }}{{ selStationItem.phone
+  }}
+                  </view>
+                </view>
               </view>
-              <view v-if="selStationItem.province" class="text color">{{ selStationItem.province }}{{ selStationItem.city
-              }}{{
-  selStationItem.area }}{{ selStationItem.addr }}</view>
             </view>
-            <view class="choose-store" @tap="goSelectStore" v-if="!station.province">
+            <view class="choose-store" @tap="goSelectStore">
               <image src="/static/images/icon/submit-address.png" class="img" />
               <view v-if="selStationItem.province" class="text">{{ selStationItem.province }}{{ selStationItem.city }}{{
                 selStationItem.area }}{{ selStationItem.addr }}</view>
@@ -150,6 +155,7 @@
               <input type="text" class="input" :disabled="disabled" :value="stationUserName"
                 :placeholder="i18n.enterNamePerson" maxlength="15" @input="getConsigneeInt" @click="hideTabbar"
                 @focus="hideTabbar" @blur="showTabbar">
+              <image src="/static/images/icon/edit.png" mode="scaleToFill" />
             </view>
             <view :class="['item', errorTips ? 'error' : '']">
               <view class="user-info">
@@ -174,12 +180,12 @@
         <view class="shop-item">
           <view v-for="(shopCart, index) in shopCartOrders" :key="index">
             <!-- 店铺信息 -->
-            <view class="shop-box">
+            <!-- <view class="shop-box">
               <view class="shop-icon">
-                <image src="/static/images/icon/shop.png" />
+                <image src="/static/images/icon/dianpu.png" />
               </view>
               <view class="shop-name">{{ shopCart.shopName }}</view>
-            </view>
+            </view> -->
             <!-- /店铺信息 -->
 
             <!-- 店铺商品明细 -->
@@ -221,9 +227,9 @@
                       :class="[false ? 'pre-sell' : '', 'item-cont',]">
                       <view class="info-row">
                         <view class="prod-pic">
-                          <image v-if="item.pic && !item.isPicError" mode="aspectFit" :src="item.pic"
+                          <image v-if="item.pic && !item.isPicError" mode="aspectFill" :src="item.pic"
                             @error="handlePicError(item)" />
-                          <image v-else src="/static/images/icon/def.png" mode="aspectFit" />
+                          <image v-else src="/static/images/icon/def.png" mode="aspectFill" />
                         </view>
                         <view class="prod-info">
                           <view class="prodname" :style="orderType ? '-webkit-line-clamp:1;' : '-webkit-line-clamp:2'">{{
@@ -242,8 +248,10 @@
                           <view class="price-nums">
                             <view class="prodprice">
                               <text v-if="item.price" class="symbol">￥</text>
-                              <text v-if="item.price" class="big-num">{{ parsePrice(item.price)[0] }}</text>
-                              <text v-if="item.price" class="small-num">.{{ parsePrice(item.price)[1] }}</text>
+                              <text v-if="item.price" class="big-num" style="font-size: 36rpx;">{{
+                                parsePrice(item.price)[0] }}</text>
+                              <text v-if="item.price" class="small-num" style="font-size: 36rpx;">.{{
+                                parsePrice(item.price)[1] }}</text>
                               <text v-if="orderType === 3 && actualTotal > transFee" class="small-num"> + </text>
                               <text v-if="orderType === 3" class="big-num">{{ item.scorePrice / item.prodCount }} {{
                                 i18n.integral }}</text>
@@ -493,7 +501,7 @@
           </view>
         </view>
         <view class="footer-box"
-          :style="filterShopItems && filterShopItems.length > 0 && shopCartOrders.length === 0 ? 'background: #909399;' : 'background: #F81A1A;'"
+          :style="filterShopItems && filterShopItems.length > 0 && shopCartOrders.length === 0 ? 'background: #909399;' : 'background: linear-gradient(90deg, #F78B2A, #FF4910);'"
           @tap.stop="toPay">
           {{ i18n.submitOrders }}
         </view>
@@ -844,7 +852,8 @@ export default {
       module: '',
       showMailHome: true,
       distributionUserId: '',// 团长ID
-      station: {}
+      station: {},
+      isDist:false
     }
   },
 
@@ -860,9 +869,9 @@ export default {
   onLoad: function (options) {
     // 获取省市区列表数据
     // this.getAreaListInfo()
-    if (uni.getStorageSync('bbcDvyType') == 2 || options.dvyType == 2) {
-      this.showMailHome = false
-    }
+    // if (uni.getStorageSync('bbcDvyType') == 2 || options.dvyType == 2) {
+    //   this.showMailHome = false
+    // }
     this.dvyType = uni.getStorageSync('bbcDvyType') || options.dvyType || 1
     this.orderEntry = options.orderEntry || uni.getStorageSync('bbcOrderEntry') || 0
     this.module = options.module || ''
@@ -908,10 +917,8 @@ export default {
     }, 100)
     // 获取用户信息
     this.queryUserInfo()
-    if (uni.getStorageSync('bbcUserInfo').station) {
-      this.selStationItem = uni.getStorageSync('bbcUserInfo').station
-      this.station = uni.getStorageSync('bbcUserInfo').station
-    }
+    // 查询用户是否为团长
+    this.getIsDistInfo()
   },
 
   /**
@@ -956,6 +963,11 @@ export default {
     // 获取当前可用青春豆
     this.getUserLevelInfo()
     this.loadOrderData()
+
+    if (uni.getStorageSync('bbcUserInfo').station) {
+      // this.selStationItem = uni.getStorageSync('bbcUserInfo').station
+      this.station = uni.getStorageSync('bbcUserInfo').station
+    }
   },
 
   /**
@@ -2643,20 +2655,42 @@ export default {
         method: 'GET',
         data: {},
         callBack: (res) => {
-          console.log(res)
           this.setData({
-            distributionUserId: res.distributionUserId,
             stationUserName: res.nickName,
             stationUserMobile: res.userMobile
           })
           if (res.distributionUserId) {
-            this.isDistribution = false
+            this.showMailHome = false
+          }else{
+            this.showMailHome =true
           }
         }
       }
       http.request(params)
     },
+      /**
+     * 查询用户 是否为分销员
+     */
+     getIsDistInfo() {
+      http.request({
+        url: '/p/distribution/user/distributionUserInfo',
+        method: 'GET',
+        callBack: (res) => {
+          if (res && res.state == 1) {
+            this.setData({
+              isDist: true
+            })
+          }else{
+            this.setData({
+              isDist: false
+            })
+          }
+        }
+      })
+    },
   }
 }
 </script>
-<style>@import './submit-order.css';</style>
+<style>
+@import './submit-order.css';
+</style>

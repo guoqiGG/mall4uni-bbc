@@ -12,7 +12,7 @@
   <view class="Mall4j pay-way">
     <view class="pay-number">
       <view class="price">
-        <view class="big-num"><text class="small-num">￥</text>{{ parsePrice(actualTotal)[0] }}</view>
+        <view class="big-num"><text class="symbol">￥</text>{{ parsePrice(actualTotal)[0] }}</view>
         <view class="small-num">.{{ parsePrice(actualTotal)[1] }}</view>
         <text v-if="!isPurePoints && orderScore" class="small-num"> + </text>
         <text v-if="!isPurePoints && orderScore" class="big-num">{{ orderScore }} {{ i18n.integral }}</text>

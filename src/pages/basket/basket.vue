@@ -13,7 +13,7 @@
     <view id="prod-list" class="prod-list" :style="prodListStyle">
       <view v-for="(shopCart, shopIndex) in shopCarts" :key="shopIndex" class="shop-item">
         <!-- 头部店铺 -->
-        <view class="head-shop">
+        <!-- <view class="head-shop">
           <view class="btn choose-btn">
             <label class="check-box-label">
               <checkbox :checked="shopCart.checked" color="#F81A1A" @tap="handleCheckShop(shopIndex)" />
@@ -25,7 +25,7 @@
             </view>
             <view class="shop-name">{{ shopCart.shopName }}<span /></view>
           </view>
-        </view>
+        </view> -->
         <!-- /头部店铺 -->
 
         <view v-for="(shopCartItem, shopCartItemIndex) in shopCart.shopCartItemDiscounts" :key="shopCartItemIndex"
@@ -63,8 +63,8 @@
             </view>
 
             <!-- 商品item -->
-            <view v-for="(prod, prodIndex) in shopCartItem.shopCartItems" :key="prodIndex">
-              <view class="goods-item">
+            <view style="margin-top: 20rpx;"  v-for="(prod, prodIndex) in shopCartItem.shopCartItems" :key="prodIndex">
+              <view class="goods-item" >
                 <!-- 商品信息 -->
                 <view class="item">
                   <view class="prodinfo" @tap="toProdPage(prod.prodId)">

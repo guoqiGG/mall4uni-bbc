@@ -538,10 +538,10 @@ export const index = {
 
   // pay-result.vue
   'paymentFailed': '支付失败',
-  'paymentFailedTips1': '请在',
+  'paymentFailedTips1': '该订单会为您保留',
   'paymentFailedTips2': '30分钟',
-  'paymentFailedTips3': '内完成付款',
-  'paymentFailedTips4': '否则订单会被系统取消',
+  'paymentFailedTips3': '之后如果还未付款，',
+  'paymentFailedTips4': '系统将自动取消该订单',
   'checkOrder': '查看订单',
   'payAgain': '重新支付',
   'paymentSuccessful': '支付成功',
@@ -549,7 +549,7 @@ export const index = {
   'continueShopping': '继续购物',
 
   // paySuccess.vue
-  'orderPaymentSuccessful': '订单支付成功',
+  'orderPaymentSuccessful': '支付成功',
   'viewDeliveryCode': '查看提货码',
   'deliveryAddress': '提货地址',
   'takeDeliveryTime': '提货时间',

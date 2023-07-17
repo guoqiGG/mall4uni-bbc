@@ -12,24 +12,28 @@
   <view class="Mall4j payment-selector-container">
     <radio-group :class="['ways',!showBalancePay?'recharge-ways':'']" @change="changePayType">
       <!-- 支付宝支付 -->
-      <label v-if="appType > 2 && paySwitchInfo.aliPaySwitch" :class="['item',!showBalancePay?'recharge-item':'']">
+      <!-- <label v-if="appType > 2 && paySwitchInfo.aliPaySwitch" :class="['item',!showBalancePay?'recharge-item':'']">
         <view class="pay-name">
           <view class="img">
             <image src="/static/images/icon/alipay.png" mode="" />
           </view>
           <view class="name">{{ i18n.PayWithAli }}</view>
         </view>
-        <radio value="aliPay" color="#F81A1A" :checked="payTypeStr==='aliPay'" />
-      </label>
+        <radio value="aliPay" color="#08C667" :checked="payTypeStr==='aliPay'" />
+      </label> -->
       <!-- 微信支付 -->
       <label v-if="paySwitchInfo.wxPaySwitch" :class="['item',!showBalancePay?'recharge-item':'']">
         <view class="pay-name">
           <view class="img">
             <image src="/static/images/icon/wxpay.png" />
           </view>
-          <view class="name">{{ i18n.payWithWeChat }}</view>
+          <view class="name"><view>
+            {{ i18n.payWithWeChat }}
+          </view>
+          <view class="green">使用微信支付</view>
         </view>
-        <radio value="wechatPay" color="#F81A1A" :checked="payTypeStr==='wechatPay'" />
+        </view>
+        <radio value="wechatPay" color="#08C667" :checked="payTypeStr==='wechatPay'" />
       </label>
       <!-- #ifdef H5 -->
       <!-- PayPal支付 -->
@@ -42,7 +46,7 @@
             <view class="name">{{ i18n.paypalPay }}</view>
           </view>
           <view class="check">
-            <radio value="payPal" color="#F81A1A" :checked="payTypeStr==='payPal'" />
+            <radio value="payPal" color="#08C667" :checked="payTypeStr==='payPal'" />
           </view>
         </view>
       </label>
@@ -54,10 +58,15 @@
             <view class="img">
               <image src="/static/images/icon/balancePay.png" />
             </view>
-            <view class="name">{{ i18n.balancePay + `（${i18n.currentBalance}：${totalBalance}）` }}</view>
+            <view class="name">
+              <view>{{ i18n.balancePay}}</view>
+              <view>
+              {{i18n.currentBalance}}：{{totalBalance}}
+              </view>
+            </view>
           </view>
           <view class="check">
-            <radio value="balancePay" color="#F81A1A" :checked="payTypeStr==='balancePay'" />
+            <radio value="balancePay" color="#08C667" :checked="payTypeStr==='balancePay'" />
           </view>
         </view>
       </label>
@@ -141,22 +150,26 @@ export default {
 </script>
 <style>
 .ways {
-	padding: 0 20rpx;
+	padding: 0 30rpx;
 	font-size: 24rpx;
 }
 .ways.recharge-ways {
-	padding: 0;
+	padding: 30rpx;
 	font-size: 28rpx;
 }
 .ways .item {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 2rpx solid #eee;
-	padding: 20rpx 0;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+  background: #FFF;
+  box-sizing: border-box;
+  padding: 30rpx 30rpx;
 }
 .ways .item.recharge-item {
 	border: none;
+  
 }
 .ways .item .pay-name {
 	display: flex;
@@ -178,4 +191,3 @@ export default {
 }
 
 </style>
-

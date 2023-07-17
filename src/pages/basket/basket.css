@@ -18,7 +18,7 @@ page {
 
 .shop-item {
   margin-top: 20rpx;
-  background: #fff;
+  /* background: #fff; */
 }
 
 /* 店铺 */
@@ -200,7 +200,6 @@ page {
   text-align: center;
   width: 200rpx;
   height: 160rpx;
-  line-height: 180rpx;
   font-size: 0;
  
 }

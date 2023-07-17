@@ -11,6 +11,10 @@
 <template>
   <!-- 轮播图 & 商品视频-->
   <view class="Mall4j swiper-con">
+    <image v-if="hasLastPage" class="back-img" src="../../static/images/icon/back-white.png" mode=""
+      @click="$turnPage('1', 'navigateBack')" />
+    <image v-else class="back-img" style="width:48rpx;height:48rpx;" src="../../static/images/icon/icon-home.png" mode=""
+      @click="$turnPage('1', 'navigateBack')" />
     <view class="prod-detail-title">商品详情</view>
     <view v-if="video && isPlaying" class="video-container">
       <video id="myVideo" :autoplay="true" enable-progress-gesture="false" :src="video" controls @ended="playEnd" />
@@ -66,7 +70,8 @@ export default {
       // 当前显示商品图像的索引
       currentPicIndex: 0,
       videoContext: '',
-      imgsList: []
+      imgsList: [],
+      hasLastPage: true
     }
   },
   computed: {
@@ -82,6 +87,9 @@ export default {
       return this.$t('index')
     }
   },
+  onLoad: function (options){
+    this.isHasLastPage()
+  },
   watch: {
     imgs: {
       handler: function (val, oldVal) {
@@ -92,6 +100,30 @@ export default {
   },
 
   methods: {
+    isHasLastPage() {
+      let pages = getCurrentPages();
+      if (pages[pages.length - 2]) {
+        this.hasLastPage = true
+      } else {
+        this.hasLastPage = false
+      }
+    },
+
+    $turnPage(x, y) {
+      if (this.url) {
+        this.$Router.push({
+          path: this.url
+        })
+      } else {
+        let pages = getCurrentPages();
+        if (pages[pages.length - 2]) {
+          //如果有上一页，就返回上一页
+          uni.navigateBack(-1)
+        } else {
+          uni.reLaunch({ url: "/pages/index/index" });
+        }
+      }
+    },
     /**
      * 图片错误显示默认图片
      */
@@ -153,6 +185,15 @@ export default {
 </script>
 
 <style scoped>
+.back-img {
+  position: absolute;
+  width: 34rpx;
+  height: 34rpx;
+  top: 110rpx;
+  left: 30rpx;
+  z-index: 50;
+}
+
 .prod-detail-title {
   position: absolute;
   top: 110rpx;

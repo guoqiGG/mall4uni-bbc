@@ -11,7 +11,7 @@
 <template>
   <!-- 商品详情 -->
   <view :class="['Mall4j contenta', popupShowHiden ? 'page-hidden' : '']">
-    <view :class="['container', skuShow ? 'overflow' : '', commentShow ? 'overflow' : '']">
+    <view :class="['container', skuShow || commentShow ? 'overflow' : '']">
       <!-- 轮播图 & 商品视频-->
       <prod-imgs-video ref="media" :imgs="prodInfo.imgs" :video="prodInfo.video" @videoSts="videoSts" />
       <!-- 轮播图 & 商品视频end -->
@@ -79,14 +79,11 @@
       <view v-if="deliveryModeVO && mold !== 1 && prodType != 5" class="sendway">
         <view class="coupon-tit">{{ i18n.delivery }}</view>
         <view class="coupon-con">
-          <view v-if="deliveryModeVO.hasShopDelivery && !distributionUserId" class="sendway-item">
-            <image src="/static/images/icon/allow.png" />{{ i18n.expressDelivery }}
+          <view  class="sendway-item" v-if="userInfo.distributionUserId==null&&isDist==false">
+            <image src="/static/images/icon/allow1.png" />{{ i18n.expressDelivery }}
           </view>
-          <view v-if="deliveryModeVO.hasCityDelivery && !distributionUserId" class="sendway-item">
-            <image src="/static/images/icon/allow.png" />{{ i18n.sameDelivery }}
-          </view>
-          <view v-if="deliveryModeVO.hasUserPickUp" class="sendway-item">
-            <image src="/static/images/icon/allow.png" />{{ i18n.pickStore }}
+          <view  class="sendway-item">
+            <image src="/static/images/icon/allow1.png" />{{ i18n.pickStore }}
           </view>
         </view>
       </view>
@@ -297,8 +294,7 @@
       <!-- 评价 end -->
 
       <!-- 店铺 -->
-      <view v-if="shopInfo" class="shop-box box-radius" @tap="toShopPage">
-        <!-- top -->
+      <!-- <view v-if="shopInfo" class="shop-box box-radius" @tap="toShopPage">
         <view class="shopbox-head">
           <view class="sl">
             <view class="shop-logo">
@@ -318,7 +314,7 @@
               <view class="enter-shop">{{ i18n.enterShop }}</view>
             </view>
           </view>
-        </view>
+        </view> -->
         <!-- 店铺end -->
 
         <!-- 商品详情 -->
@@ -587,7 +583,7 @@
       </view>
 
       <!-- 评价弹窗 -->
-      <view v-if="commentShow" style="position:absolute;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.3);">
+      <view v-if="commentShow" class="cmt-con">
         <view class="cmt-popup">
           <view class="cmt-tit">
             <view class="cmt-t">{{ i18n.productEvaluation }}
@@ -644,11 +640,11 @@
             </view>
             <!-- 列表空 -->
             <!-- <view v-if="!prodCommPage.records.length" class="empty">
-        <view class="empty-icon">
-          <image src="/static/images/icon/empty-com.png" />
-        </view>
-        <view class="empty-text">{{ i18n.noProductReviewsTips }}</view>
-      </view> -->
+            <view class="empty-icon">
+              <image src="/static/images/icon/empty-com.png" />
+            </view>
+            <view class="empty-text">{{ i18n.noProductReviewsTips }}</view>
+          </view> -->
             <!-- 空列表或加载全部提示 -->
             <EmptyAllTips v-if="isLoaded" :emptyImg="4" :isEmpty="!prodCommPage.records.length"
               :emptyTips="i18n.noProductReviewsTips" />
@@ -806,8 +802,7 @@ export default {
       sharePic: '',
       sharePrice: '',
       isLoaded: false,
-      distributionUserId: '',//团长ID
-      lineHeight: '0rpx'
+      userInfo:{}
     }
   },
 
@@ -972,9 +967,7 @@ export default {
       }
     }
   },
-  mounted() {
-    this.lineHeight = this.$system.ktxStatusHeight + 'rpx'
-  },
+
   methods: {
     /**
      * videoSts
@@ -1119,6 +1112,22 @@ export default {
           }
         }
       })
+    },
+
+    /**
+     * 获取用户信息
+     * **/ 
+    queryUserInfo: function () {
+      const params = {
+        url: '/p/user/userInfo',
+        method: 'GET',
+        data: {},
+        dontTrunLogin: true,
+        callBack: (res) => {
+          this.userInfo = res
+        }
+      }
+      http.request(params)
     },
 
     /**
@@ -2317,22 +2326,6 @@ export default {
       const flowAnalysisLogDto = uni.getStorageSync('bbcFlowAnalysisLogDto')
       flowAnalysisLogDto.bizData = this.prodId
       http.saveLog(flowAnalysisLogDto, 2)
-    },
-    /**
-     * 获取用户信息
-     */
-    queryUserInfo: function () {
-      const params = {
-        url: '/p/user/userInfo',
-        method: 'GET',
-        data: {},
-        callBack: (res) => {
-          this.setData({
-            distributionUserId: res.distributionUserId
-          })
-        }
-      }
-      http.request(params)
     },
   }
 }

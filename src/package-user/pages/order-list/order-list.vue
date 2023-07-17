@@ -26,12 +26,12 @@
       <block v-for="(item, orderNumber) in list" :key="orderNumber">
         <view class="prod-item">
           <!-- 店铺 -->
-          <view class="shop-box" @tap="toShopIndex(item.shopId)">
+          <!-- <view class="shop-box" @tap="toShopIndex(item.shopId)">
             <view class="shop-icon">
               <image src="/static/images/icon/shop.png" />
             </view>
             <view class="shop-name">{{ item.shopName }}<span /></view>
-          </view>
+          </view> -->
           <!-- 订单编号 -->
           <view class="order-num">
             <text>{{ i18n.orderNumber }}：{{ item.orderNumber }}</text>
@@ -99,9 +99,9 @@
               <view>
                 <view class="item-cont" :data-ordernum="item.orderNumber" @tap="toOrderDetailPage">
                   <view class="prod-pic">
-                    <image v-if="prod.pic && !prod.isPicError" mode="aspectFit" :src="prod.pic"
+                    <image v-if="prod.pic && !prod.isPicError" mode="aspectFill" :src="prod.pic"
                       @error="handlePicError(prod)" />
-                    <image v-else src="/static/images/icon/def.png" mode="aspectFit" />
+                    <image v-else src="/static/images/icon/def.png" mode="aspectFill" />
                   </view>
                   <view class="prod-info">
                     <view>
@@ -126,7 +126,7 @@
                       <text class="prodprice">
                         <text v-if="prod.price" class="symbol">￥</text>
                         <text v-if="prod.price" class="big-num">{{ parsePrice(prod.price)[0] }}</text>
-                        <text v-if="prod.price" class="small-num">.{{ parsePrice(prod.price)[1] }}</text>
+                        <text v-if="prod.price" class="small-num" style="font-size: 32rpx;">.{{ parsePrice(prod.price)[1] }}</text>
                         <text v-if="prod.price && item.orderType == 3" class="small-num" decode="true">&emsp;+&emsp;</text>
                         <text v-if="prod.useScore && item.orderType == 3" class="small-num">{{ prod.useScore / prod.prodCount
                         }} {{ i18n.integral }}</text>
@@ -161,7 +161,7 @@
             <view class="prodprice">{{ i18n.total }}：
               <text v-if="item.actualTotal" class="symbol">￥</text>
               <text v-if="item.actualTotal" class="big-num">{{ parsePrice(item.actualTotal)[0] }}</text>
-              <text v-if="item.actualTotal" class="small-num" decode="true">.{{ parsePrice(item.actualTotal)[1] + '&nbsp;'
+              <text v-if="item.actualTotal" class="small-num" style="font-size:32rpx;" decode="true">.{{ parsePrice(item.actualTotal)[1] + '&nbsp;'
               }}</text>
               <text v-if="(item.actualTotal && item.userScore > 0)" class="small-num">+</text>
               <text v-if="item.userScore > 0" class="big-num" decode="true">{{ '&nbsp;' + item.userScore + '&nbsp;' }}

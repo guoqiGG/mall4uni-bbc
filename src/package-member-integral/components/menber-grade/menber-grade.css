@@ -17,13 +17,13 @@
 .explain-card {
   position: fixed;
   width: 70%;
-  height: 50%;
+  /* height: 50%; */
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   background: #fff;
   border-radius: 6rpx;
-  padding: 20rpx;
+  padding: 30rpx 30rpx 80rpx;
   z-index: 2;
 }
 .content-wrap {
@@ -35,59 +35,74 @@
 }
 .close-icon {
 	position: absolute;
-	top: 20rpx;
-	right: 20rpx;
+	top: 30rpx;
+	right: 30rpx;
   width: 36rpx;
   height: 36rpx;
 }
 .cont-title {
   display: block;
-  font-size: 30rpx;
-  font-weight: 600;
+  font-size: 40rpx;
+  font-weight: 800;
   text-align: center;
 	margin-bottom: 20rpx;
+  color: #232323;
 }
 .cont-det {
   display: block;
   font-size: 28rpx;
   color: #555;
 	max-height: 92%;
-	padding-bottom: 40rpx;
+	margin-top: 30rpx;
 	box-sizing: border-box;
 	overflow: scroll;
 }
 
 .value-table .tr {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  line-height: 80rpx;
+}
+.value-table .tr:nth-child(2n-1){
+  background: #CEDFFF; 
+}
+.value-table .tr:nth-child(2n){
+  background: #FFFFFF; 
 }
 
-.td-left, .td-right {
+.th, .td {
   display: inline-block;
+  flex: 1;
   padding: 0 6rpx;
-  line-height: 2.5em;
-  font-size: 28rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
   text-align: left;
-  background: #fcf8f7;
   text-align: center;
-  word-break: break-all;
-  /* text-indent: 1.5em; */
+  /* word-break: break-all; */
+  white-space: nowrap;
+  overflow: hidden;
+  color: #232323;
+  font-weight: 500;
+}
+.th:nth-child(1),.td:nth-child(1){
+  flex: 0.5;
 }
 
 .th {
-  background: #ffefe5;
   font-weight: bold;
 }
 
-.td-left {
+/* .td-left {
   flex: 1;
   margin-right: 0.8%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.td-left image{
-  width: 50rpx;
-  height: 50rpx;
+} */
+.td image{
+  width: 65rpx;
+  height: 59rpx;
 }
 
 .td-right {

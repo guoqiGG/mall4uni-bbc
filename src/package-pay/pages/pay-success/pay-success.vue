@@ -10,19 +10,23 @@
 
 <template>
   <view class="Mall4j container">
+    <view class="img">
+      <image src="/static/images/icon/pay-success.png" mode=""></image>
+    </view>
     <view class="pay-success">
       <view class="pay-det">
         <view class="text">{{ i18n.orderPaymentSuccessful }}</view>
-        <view class="number">
+        <!-- <view class="number">
           <text>￥</text>
           <text class="price">{{ actualTotal?actualTotal.toFixed(2):0.00 }}</text>
-        </view>
+        </view> -->
+        <view class="pay-success">支付成功，您可以去<text class="my-order" @tap="toOrderList">我的订单</text>里查看订单详情</view>
       </view>
       <view class="pay-bottom">
-        <view v-if="orderSts!=7" class="view-code" @tap="viewCodePop">{{ i18n.viewDeliveryCode }}</view>
+        <!-- <view v-if="orderSts!=7" class="view-code" @tap="viewCodePop">{{ i18n.viewDeliveryCode }}</view> -->
         <view class="other-action">
-          <view class="item" @tap="toIndex">{{ i18n.continueShopping }}</view>
-          <view class="item bl" @tap="toOrderList">{{ i18n.checkOrder }}</view>
+          <view class="item" @tap="toCategory">{{ i18n.continueShopping }}</view>
+          <view class="item bl" @tap="viewCodePop">{{ i18n.viewDeliveryCode }}</view>
         </view>
       </view>
     </view>
@@ -204,8 +208,10 @@ export default {
     },
 
     // 继续购物
-    toIndex: function() {
-      util.toHomePage()
+    toCategory: function() {
+      uni.switchTab({
+        url:'/pages/category/category'
+      })
     },
 
     // 查看详情

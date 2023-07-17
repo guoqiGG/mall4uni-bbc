@@ -2,17 +2,50 @@
 
 .pay-sts {
   font-size: 40rpx;
-  margin-top: 100rpx;
+  margin-top: 47rpx;
   padding: 30rpx 0;
   text-align: center;
 }
 
+.pay-success,.pay-fail {
+  padding-top: 28rpx;
+}
+.img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 50rpx;
+}
+.img image{
+  width: 364rpx;
+  height: 205rpx;
+}
+.pay-fail .img image{
+  width: 157rpx;
+  height: 157rpx;
+}
+
+
 .pay-sts.fail {
-  color: #F81A1A;
+  color: #232323;
+  font-size: 44rpx;
+  font-weight: 500;
+}
+
+.order-detail-title{
+  color: #232323;
+  font-size: 44rpx;
+  font-weight: 500;
+  padding: 30rpx 0;
+  margin: 59rpx 30rpx 0;
+  border-top: 1rpx solid #E6E6E6;
 }
 
 .pay-sts.succ {
-  color: #F81A1A;
+  color: #232323;
+  font-size: 44rpx;
+  font-weight: 500;
 }
 
 .btns {
@@ -21,41 +54,57 @@
 }
 
 .tips {
-  font-size: 28rpx;
-  color: #999;
-  text-align: center;
+  font-size: 34rpx;
+  color: #232323;
+  line-height: 50rpx;
+  margin: 0 30rpx;
 }
 
 .tips .warn {
   color: #F81A1A;
 }
-
+.btns {
+  margin-top: 60rpx;
+}
 .btns .button {
   border-radius: 10rpx;
-  font-size: 28rpx;
+  font-size: 34rpx;
+  font-weight: 500;
   background: #fff;
-  color: #333;
-  padding: 20rpx 35rpx;
+  color: #999;
+  border-radius: 10rpx;
+  border: 1rpx solid #999;
+  padding: 33rpx 99rpx;
   width: 300rpx;
-  margin: 0 20rpx;
+  line-height: 100rpx;
   text-align: center;
 }
 
 .btns .button.checkorder {
-  background: #F81A1A;
+  /* background: #F81A1A;
   color: #fff;
   margin-bottom: 20rpx;
-  border: 2rpx solid #F81A1A;
+  border: 2rpx solid #F81A1A; */
+}
+.pay-success .my-order{
+  color: #005aff;
+  text-decoration:  #005aff  underline;
 }
 
 .btns .button.payagain {
-  background: #fff;
-  border: 2rpx solid #f90;
-  color: #f90;
+  background: #005aff;
+  border: 1rpx solid #005aff;
+  color: #fff;
+  margin-left: 30rpx;
+}
+.pay-success .btns .button.checkorder{
+  border: 1rpx solid #005aff;
+  color: #005aff;
 }
 
 .btns .button.shopcontinue {
-  background: #fff;
-  border: 2rpx solid #F81A1A;
-  color: #F81A1A;
+  background: #005aff;
+  border: 1rpx solid #005aff;
+  color: #fff;
+  margin-left: 30rpx;
 }

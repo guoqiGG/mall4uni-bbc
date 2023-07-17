@@ -11,26 +11,34 @@
 <template>
   <view class="Mall4j container">
     <!-- 失败 -->
-    <view v-if="sts == 0">
-      <view class="pay-sts fail">{{ i18n.paymentFailed }}</view>
+    <view v-if="sts == 0" class="pay-fail">
+      <view class="img">
+        <image src="/static/images/icon/pay-fail.png" mode=""></image>
+      </view>
+      <view class="pay-sts fail">{{ i18n.payFail }}</view>
+      <view class="order-detail-title">订单信息</view>
       <view class="tips">
         {{ i18n.paymentFailedTips1 }}
         <text class="warn">{{ i18n.paymentFailedTips2 }}</text>
-        {{ i18n.paymentFailedTips3 }}
+        ,{{ i18n.paymentFailedTips2 }}{{ i18n.paymentFailedTips3 }}
+        <text class="tips">{{ i18n.paymentFailedTips4 }}</text>
       </view>
-      <view class="tips">{{ i18n.paymentFailedTips4 }}</view>
+      
       <view class="btns">
         <text class="button checkorder" @tap="toOrderList">{{ i18n.checkOrder }}</text>
         <text class="button payagain" @tap="payAgain">{{ i18n.payAgain }}</text>
       </view>
     </view>
     <!-- 成功 -->
-    <view v-if="sts == 1">
+    <view v-if="sts == 1" class="pay-success">
+      <view class="img">
+        <image src="/static/images/icon/pay-success.png" mode=""></image>
+      </view>
       <view class="pay-sts succ">{{ i18n.paymentSuccessful }}</view>
-      <view class="tips">{{ i18n.thankPurchase }}</view>
+      <view class="tips">支付成功，您可以去<text class="my-order" @tap="toOrderList">我的订单</text>里查看订单详情</view>
       <view class="btns">
         <text class="button checkorder" @tap="toOrderList">{{ i18n.checkOrder }}</text>
-        <text class="button shopcontinue" @tap="toIndex">{{ i18n.continueShopping }}</text>
+        <text class="button shopcontinue" @tap="toCategory">{{ i18n.continueShopping }}</text>
       </view>
     </view>
   </view>
@@ -128,8 +136,11 @@ export default {
         path: '/package-user/pages/order-list/order-list', query: { sts: paySts }
       })
     },
-    toIndex: function() {
-      util.toHomePage()
+    // 继续购物
+    toCategory: function() {
+      uni.switchTab({
+        url:'/pages/category/category'
+      })
     },
     payAgain: function() {
       this.$Router.replace({

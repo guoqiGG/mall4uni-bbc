@@ -104,6 +104,15 @@ export default {
     // #endif
   },
   onShow: function (options) {
+    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044) {
+
+      livePlayer.getShareParams()
+        .then(res => {
+          console.log('get room id', res);
+          // 开始计时
+        })
+
+    }
   },
   globalData: {
     // 定义全局请求队列

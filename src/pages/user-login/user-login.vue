@@ -264,7 +264,8 @@ export default {
       code: '',
       serviceTermsSwitch: false,
       privacyPolicySwitch: false,
-      isPrivacy: uni.getStorageSync('bbcIsPrivacy') || 0,
+      // isPrivacy: uni.getStorageSync('bbcIsPrivacy') || 0,
+      isPrivacy: 0,
       passwordType: true,
       passwordImage: '../../static/images/icon/icon-hide.png',
       loginStatus: 2, // 选择的登录方式 0密码、1验证码、2微信

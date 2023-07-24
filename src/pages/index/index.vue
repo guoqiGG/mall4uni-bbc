@@ -668,8 +668,7 @@ export default {
         method: 'POST',
         data: {
           userId: wx.getStorageSync('userID'), // 用户ID
-          roomId: wx.getStorageSync('liveRoomId'), // 房间ID
-          // anchorwechat: this.anchorwechat, // 主播ID
+          liveRoomId: wx.getStorageSync('liveRoomId'), // 房间ID
         },
         callBack: (res) => {
           if (res) {

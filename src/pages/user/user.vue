@@ -155,7 +155,7 @@
 
     <!-- 我的当前自提点 -->
     <view class="my-pick-up-address" v-if="isAuthInfo">
-      <view class="pick-up-title">{{(isDistributionUserInfo||userInfo.distributionUserId)? '自提地址':'我的地址'}}</view>
+      <view class="pick-up-title">{{(isDistributionUserInfo||userInfo.distributionUserId)? '自提地址':'收货地址'}}</view>
       <view class="pick-up-item" v-if="station.province">
         <view class="pick-up-info">
           <view class="station-name">{{ station.stationName }}</view>

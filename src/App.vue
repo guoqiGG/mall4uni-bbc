@@ -104,14 +104,50 @@ export default {
     // #endif
   },
   onShow: function (options) {
-    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044) {
+    // this.queryUserInfo() // 获取用户信息 
+    // this.getSignTime() // 获取直播间签到时长限制
+    // this.queryLiveList() // 获取直播间列表
 
+    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044) {
       livePlayer.getShareParams()
         .then(res => {
           console.log('get room id', res);
-          // 开始计时
+          // 判断用户登录状态
+          // if (!uni.getStorageSync('bbcToken')) return
+          // // 判断房间状态
+          // // 1.先获取房间列表 2.判断该房间直播状态 只有直播中才开始计时
+          // if (this.globalData.liveBroadcastList.length) {
+          //   this.globalData.liveBroadcastList
+          //   this.globalData.liveBroadcastList = this.globalData.liveBroadcastList.filter(item => {
+          //     return item.roomid == res.roomid
+          //   })
+          //   if (this.globalData.liveBroadcastList[0].status != 101) {
+          //     return
+          //   } else {
+          //     // 开始计时
+          //     let aa = wx.getStorageSync('isWatchTime')
+          //     console.log('已观看时长', aa)
+          //     this.timer = setInterval(() => {
+          //       if (aa > uni.getStorageSync('signTime')) {
+          //         console.log('签到')
+          //         if (!uni.getStorageSync('sign')) {
+          //           this.userSign()
+          //         }
+          //       }
+          //       if (aa % 60 == 0) {
+          //         console.log('插入签到')
+          //         this.watchTimes()
+          //         this.watchSecond = '00'
+          //       }
+          //       if (aa % 60 !== 0) {
+          //         let bb = (aa % 60).toString().length == 1 ? '0' + (aa % 60).toString() : (aa % 60).toString()
+          //         this.watchSecond = bb
+          //         console.log('已观看时长', bb)
+          //       }
+          //     }, 1000)
+          //   }
+          // }
         })
-
     }
   },
   globalData: {
@@ -124,9 +160,95 @@ export default {
     // 当前请求数量
     currentReqCounts: 0,
     // 当前是否已显示登录失效弹窗
-    showLoginExpired: false
+    showLoginExpired: false,
+    liveBroadcastList: []
   },
   methods: {
+    // 获取直播间列表
+    queryLiveList: function () {
+      this.isLoaded = false
+      const params = {
+        url: '/live/liveRoom/page',
+        method: 'GET',
+        data: {
+          searchType: 1,
+          current: 1,
+          size: 2
+        },
+        callBack: (res) => {
+          var list = []
+          if (res.current == 1) {
+            list = res.records
+          } else {
+            list = this.liveBroadcastList
+            list = list.concat(res.records)
+          }
+          this.liveBroadcastList = list
+          this.pages = res.pages
+          this.current = res.current
+        }
+      }
+      http.request(params)
+    },
+    /* 签到 */
+    userSign: function () {
+      const params = {
+        url: '/p/score/updateUserScore',
+        method: 'GET',
+        data: {
+          bizId: wx.getStorageSync('liveRoomId')
+        },
+        callBack: (res) => {
+          if (res) {
+            wx.setStorageSync('sign', '签到成功')
+          }
+        }
+      }
+      http.request(params)
+    },
+    /* 插入观看时间 */
+    watchTimes(roomid) {
+      const params = {
+        url: '/live/liveRoom/putRealTime',
+        method: 'POST',
+        data: {
+          userId: wx.getStorageSync('userID'), // 用户ID
+          roomId: roomid, // 房间ID
+        },
+        callBack: (res) => {
+          if (res) {
+            console.log('插入成功')
+          }
+        }
+      }
+      http.request(params)
+    },
+    /* 获取用户信息 */
+    queryUserInfo: function () {
+      const params = {
+        url: '/p/user/userInfo',
+        method: 'GET',
+        data: {},
+        dontTrunLogin: true,
+        callBack: (res) => {
+          uni.setStorageSync('bbcUserInfo', res)
+          uni.setStorageSync('userID', res.userId)
+          // this.getUserWatchTime()
+        }
+      }
+      http.request(params)
+    },
+    /* 获取直播签到时长的限制 */
+    getSignTime: function () {
+      const params = {
+        url: '/p/score/getViewTime',
+        method: 'GET',
+        callBack: (res) => {
+          wx.setStorageSync('signTime', Number(res) * 60)
+        }
+      }
+      http.request(params)
+    },
     /**
      * 微信小程序检查升级
      */

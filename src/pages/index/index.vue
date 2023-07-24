@@ -567,9 +567,6 @@ export default {
             list = list.concat(res.records)
           }
           this.liveBroadcastList = list
-          if (!this.liveBroadcastList.length) {
-            this.watchSecond = '00'
-          }
           this.pages = res.pages
           this.current = res.current
         }
@@ -583,7 +580,7 @@ export default {
       util.checkAuthInfo(() => {
         this.roomId = e.currentTarget.dataset.roomid // 填写具体的房间号
         this.url = e.currentTarget.dataset.url
-        this.anchorwechat = e.currentTarget.dataset.anchorwechat
+        // this.anchorwechat = e.currentTarget.dataset.anchorwechat
         wx.setStorageSync('liveStatus', e.currentTarget.dataset.roomstatus)
         util.checkAuthInfo(this.toLivePlayer)
       })
@@ -637,7 +634,7 @@ export default {
         })
       }
     },
-    // 获取直播签到时长的限制
+    // 获取直播签到时长限制
     getSignTime: function () {
       const params = {
         url: '/p/score/getViewTime',
@@ -672,7 +669,7 @@ export default {
         data: {
           userId: wx.getStorageSync('userID'), // 用户ID
           roomId: wx.getStorageSync('liveRoomId'), // 房间ID
-          anchorwechat: this.anchorwechat, // 主播ID
+          // anchorwechat: this.anchorwechat, // 主播ID
         },
         callBack: (res) => {
           if (res) {
@@ -720,4 +717,6 @@ export default {
   }
 }
 </script>
-<style>@import './index.css';</style>
+<style>
+@import './index.css';
+</style>

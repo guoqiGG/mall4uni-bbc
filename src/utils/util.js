@@ -569,6 +569,7 @@ const weChatLogin = () => {
     // 请求微信接口获取 code
     wx.login({
       success: (res) => {
+        console.log('open_id',res)
         // 用code 请求登录
         loginByCode(res.code)
       }

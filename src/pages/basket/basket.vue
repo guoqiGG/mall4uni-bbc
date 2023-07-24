@@ -63,8 +63,8 @@
             </view>
 
             <!-- 商品item -->
-            <view style="margin-top: 20rpx;"  v-for="(prod, prodIndex) in shopCartItem.shopCartItems" :key="prodIndex">
-              <view class="goods-item" >
+            <view style="margin-top: 20rpx;" v-for="(prod, prodIndex) in shopCartItem.shopCartItems" :key="prodIndex">
+              <view class="goods-item">
                 <!-- 商品信息 -->
                 <view class="item">
                   <view class="prodinfo" @tap="toProdPage(prod.prodId)">
@@ -366,7 +366,9 @@ export default {
       // 选择的满减id
       switchDiscountId: '',
       prodListStyle: {}, // 页面样式
-      isLoaded: false
+      isLoaded: false,
+      hasDist: false, // 是否有团长
+      isDist: false //是否是团长
     }
   },
   computed: {
@@ -414,6 +416,10 @@ export default {
       // 加载购物车
       this.loadBasketData(null)
     }
+    // 获取用户信息
+    this.queryUserInfo()
+    // 查询用户是否为团长
+    this.getIsDistInfo()
   },
   onHide: function () {
     this.hidePriModal = true
@@ -463,6 +469,7 @@ export default {
      * 结算(结算按钮)
      */
     toFirmOrder: function () {
+      console.log(1)
       this.setData({
         hideModal: true,
         hidePriModal: true
@@ -552,6 +559,7 @@ export default {
       if (basketIds.length > 1 && selectShopId.length == 1) {
         // 单个店铺，且勾选的商品中有不同的配送方式
         if ((hasUserPickUpProdCount && hasUserPickUpProdCount != hasShopDeliveryProdCount) || (hasCityDeliveryProdCount && hasCityDeliveryProdCount != hasShopDeliveryProdCount)) {
+          console.log(2)
           var animation = wx.createAnimation({
             duration: 600,
             timingFunction: 'ease'
@@ -563,23 +571,25 @@ export default {
             this.fadeIn()
           }, 200)
         } else {
-          if (hasUserPickUpProdCount && hasShopDeliveryProdCount == 0) {
-            uni.navigateTo({
-              url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=2' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
-            })
-          }
+          console.log(3)
+          // if (hasUserPickUpProdCount && hasShopDeliveryProdCount == 0) {
+          //   uni.navigateTo({
+          //     url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=2' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+          //   })
+          // }
           uni.navigateTo({
-            url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=1' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+            url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + ((this.isDist || this.hasDist) ? '&dvyType=2' : '&dvyType=1') // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
           })
         }
       } else {
-        if (hasUserPickUpProdCount && hasShopDeliveryProdCount == 0) {
-          uni.navigateTo({
-            url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=2' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
-          })
-        }
+        console.log(4)
+        // if (hasUserPickUpProdCount && hasShopDeliveryProdCount == 0) {
+        //   uni.navigateTo({
+        //     url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=2' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+        //   })
+        // }
         uni.navigateTo({
-          url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + '&dvyType=1' // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
+          url: '/package-prod/pages/submit-order/submit-order?orderEntry=0' + ((this.isDist || this.hasDist) ? '&dvyType=2' : '&dvyType=1') // dvyType 配送类型 1:快递 2:自提 3：无需快递 4:同城配送
         })
       }
     },
@@ -1140,7 +1150,45 @@ export default {
      */
     handlePicError(prod) {
       this.$set(prod, 'isPicError', true)
-    }
+    },
+    /**
+* 获取用户信息
+*/
+    queryUserInfo: function () {
+      const params = {
+        url: '/p/user/userInfo',
+        method: 'GET',
+        data: {},
+        callBack: (res) => {
+          if (res.distributionUserId) {
+            this.hasDist = true
+          } else {
+            this.hasDist = false
+          }
+        }
+      }
+      http.request(params)
+    },
+    /**
+   * 查询用户 是否为分销员
+   */
+    getIsDistInfo() {
+      http.request({
+        url: '/p/distribution/user/distributionUserInfo',
+        method: 'GET',
+        callBack: (res) => {
+          if (res && res.state == 1) {
+            this.setData({
+              isDist: true
+            })
+          } else {
+            this.setData({
+              isDist: false
+            })
+          }
+        }
+      })
+    },
   }
 }
 </script>

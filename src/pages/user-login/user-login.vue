@@ -125,11 +125,14 @@
         <label class="statement-label" @tap.stop="handlePrivacyClick">
           <checkbox class="check-box" :checked="isPrivacy === 1" />
           <view style="color: #999999">
-            {{ i18n.regAgree }}
+            <!-- {{ i18n.regAgree }} -->
+            我已阅读并同意氢春态欢乐团
             <text v-if="serviceTermsSwitch" @tap.stop="toTermsOfService('serviceTerms')">《{{ i18n.termsOfService
             }}》</text>
             <text v-if="privacyPolicySwitch && serviceTermsSwitch" style="color: #999999">{{ i18n.and }}</text>
-            <text v-if="privacyPolicySwitch" @tap.stop="toTermsOfService('servicePolicy')">《{{ i18n.privacyPolicy
+            <text v-if="privacyPolicySwitch" 
+            
+            @tap.stop="toTermsOfService('servicePolicy')">《{{ i18n.privacyPolicy
             }}》</text>
           </view>
         </label>

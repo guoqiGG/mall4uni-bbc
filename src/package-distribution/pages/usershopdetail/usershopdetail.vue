@@ -223,7 +223,16 @@ export default {
           status: sts
         },
         callBack: function (res) {
-					res.records.forEach(order=> {
+          if(!res){
+            ths.setData({
+						list: [],
+						pages: current,
+						current:current,
+					});
+          wx.hideLoading();
+          ths.isLoaded = true
+          }else{
+            res.records.forEach(order=> {
 						order.orderToataluseScore = 0
 						order.orderItemDtos.forEach(orderItem=> {
 							if (orderItem.useScore) {
@@ -244,6 +253,8 @@ export default {
 					});
           wx.hideLoading();
           ths.isLoaded = true
+          }
+	
         },
       };
       http.request(params);
@@ -303,4 +314,6 @@ export default {
   }
 };
 </script>
-<style>@import "./usershopdetail.css";</style>
+<style>
+@import "./usershopdetail.css";
+</style>

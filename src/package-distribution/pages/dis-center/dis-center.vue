@@ -92,10 +92,10 @@
     <view class="lists">
       <view class="list-item" @tap="toPublishProdPage">
         <view class="icon">
-          <image src="../../static/images/icon/list1.png" wid />
+          <image :src="distInfo.stationHave==1?'../../static/images/icon/list1.png':'../../static/images/icon/list1-1.png'" wid />
         </view>
         <view class="item-text">
-          <view class="item-text-title">
+          <view class="item-text-title" :style="distInfo.stationHave==1?'':'color:#999'">
             {{ i18n.publishProduct }}
           </view>
           <view class="item-text-desc">
@@ -403,6 +403,10 @@ export default {
      * 跳转到我的发布商品 
      */
     toPublishProdPage: function () {
+      // 有无实体店
+      if (this.distInfo.stationHave == 0) {
+        return
+      }
       uni.navigateTo({
         url: '/package-publish-prod/pages/publish-prod/publish-prod'
       })

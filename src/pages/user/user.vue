@@ -154,22 +154,41 @@
     <!-- end 我的订单 -->
 
     <!-- 我的当前自提点 -->
-    <view class="my-pick-up-address" v-if="station.province || address.province">
-      <view class="pick-up-title">{{ station.province ? '门店自提地址' : '自提地址' }}</view>
-      <view class="pick-up-item" v-if="(station.province || address.province) && isAuthInfo">
+    <view class="my-pick-up-address" v-if="isAuthInfo">
+      <view class="pick-up-title">{{(isDistributionUserInfo||userInfo.distributionUserId)? '自提地址':'我的地址'}}</view>
+      <view class="pick-up-item" v-if="station.province">
         <view class="pick-up-info">
-          <view class="station-name">{{ station.province ? station.stationName : address.stationName }}</view>
+          <view class="station-name">{{ station.stationName }}</view>
           <view class="station-address">
-            {{ station.province ? (station.province + station.city + station.area + station.addr) : (address.province
-              +
-              address.city + address.area + address.addr) }}
+            {{ station.province + station.city + station.area + station.addr }}
           </view>
-          <view class="station-phone"><text style="color:#333;font-weight: bold;">电话:</text>{{ station.province ?
-            ((station.phonePrefix ? (station.phonePrefix + '-') : '') + station.phone) : address.mobile }}
+          <view class="station-phone">
+            <text style="color:#333;font-weight: bold;">电话:</text>
+            {{(station.phonePrefix ? (station.phonePrefix + '-') : '') + station.phone }}
           </view>
         </view>
-        <view class="address-icon"
-          @tap="selectLoaction(station.province ? station.lat : address.lat, station.province ? station.lng : address.lng)">
+        <view class="address-icon" @tap="selectLoaction(station.lat, station.lng)">
+          <image src="/static/images/icon/submit-address2.png"></image>
+          <view class="text">路线</view>
+        </view>
+      </view>
+      <view class="pick-up-item" v-else>
+        <view class="station-address">{{(isDistributionUserInfo||userInfo.distributionUserId)? '请联系团长添加收货地址':'请在地址管理添加收货地址'}}</view>
+      </view>
+    </view>
+
+    <!-- <view class="my-pick-up-address" v-if="!station.province && isAuthInfo">
+      <view class="pick-up-title">我的地址</view>
+      <view class="pick-up-item" v-if="address.province">
+        <view class="pick-up-info">
+          <view class="station-name">{{ address.stationName }}</view>
+          <view class="station-address">
+            {{ address.province + address.city + address.area + address.addr }}
+          </view>
+          <view class="station-phone"><text style="color:#333;font-weight: bold;">电话:</text>{{ address.mobile }}
+          </view>
+        </view>
+        <view class="address-icon" @tap="selectLoaction(address.lat, address.lng)">
           <image src="/static/images/icon/submit-address2.png"></image>
           <view class="text">路线</view>
         </view>
@@ -177,7 +196,7 @@
       <view class="pick-up-item" v-else>
         <view class="station-address">暂无自提信息</view>
       </view>
-    </view>
+    </view> -->
     <!--end 我的当前自提点  -->
 
     <!-- 分销中心 & 青春豆商店 -->

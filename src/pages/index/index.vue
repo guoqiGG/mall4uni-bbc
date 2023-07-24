@@ -95,7 +95,9 @@
             :data-anchorwechat="item.anchorWechat" :data-roomStatus="item.liveStatus" @tap="toLivePage">
             <view class="live-item">
               <view class="live-left">
-                <image class="image" :src="'http://img.zzqct.com/shop/' + item.coverImg" mode="aspectFill"></image>
+                <image class="image"
+                  :src="item.coverImg.includes('http') ? item.coverImg : 'http://img.zzqct.com/shop/' + item.coverImg"
+                  mode="aspectFill"></image>
                 <view :class="['b-situation', 'bg-white', item.liveStatus == 101 ? 'on-live' : 'no-live']">
                   <image class="like-icon" src="/static/images/icon/icon-live.png"></image>
                   <view class="b-processing"><text class="state">{{
@@ -115,10 +117,14 @@
               </view>
               <view class="live-right">
                 <view class="top">
-                  <image class="image" :src="item.feedsImg" mode="aspectFill"></image>
+                  <image class="image"
+                    :src="item.feedsImg.includes('http') ? item.feedsImg : 'http://img.zzqct.com/shop/' + item.feedsImg"
+                    mode="aspectFill"></image>
                 </view>
                 <view class="bottom">
-                  <image class="image" :src="item.shareImg" mode="aspectFill"></image>
+                  <image class="image"
+                    :src="item.shareImg.includes('http') ? item.shareImg : 'http://img.zzqct.com/shop/' + item.shareImg"
+                    mode="aspectFill"></image>
                 </view>
               </view>
             </view>
@@ -714,6 +720,4 @@ export default {
   }
 }
 </script>
-<style>
-@import './index.css';
-</style>
+<style>@import './index.css';</style>

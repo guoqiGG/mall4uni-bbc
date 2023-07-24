@@ -82,7 +82,7 @@
           <view  class="sendway-item" v-if="userInfo.distributionUserId==null&&isDist==false">
             <image src="/static/images/icon/allow1.png" />{{ i18n.expressDelivery }}
           </view>
-          <view  class="sendway-item">
+          <view  class="sendway-item" v-else>
             <image src="/static/images/icon/allow1.png" />{{ i18n.pickStore }}
           </view>
         </view>
@@ -1635,7 +1635,10 @@ export default {
           shopId: this.shopId,
           distributionCardNo: this.distributionCardNo
         }
-        if (this.deliveryModeVO?.hasUserPickUp && !this.deliveryModeVO?.hasShopDelivery) {
+        if (orderType==0&&this.userInfo.distributionUserId==null&&this.isDist==false) {
+          uni.setStorageSync('bbcDvyType', 1)
+        }
+        if(orderType==0&&(this.userInfo.distributionUserId||this.isDist)){
           uni.setStorageSync('bbcDvyType', 2)
         }
         let url = `/package-prod/pages/submit-order/submit-order?orderEntry=1&orderType=${orderType}&mold=${this.mold}`

@@ -16,14 +16,14 @@
         <!-- 收货方式 -->
         <view v-if="selectDistributionWay && mold !== 1" class="distribution-mode">
           <view class="item-box">
-            <view v-if="showMailHome && !isDist" :class="[isDistribution ? 'active' : '', 'item']"
+            <view v-if="!hasDist && !isDist" class="item active"
               @tap="changeDistribution(0)">{{ i18n.mailToHome }}</view>
-            <view :class="[isDistribution ? '' : 'active', 'item']" @tap="changeDistribution(1)">{{ i18n.pickStore }}
+            <view v-else class="item active" @tap="changeDistribution(1)">{{ i18n.pickStore }}
             </view>
           </view>
         </view>
         <!-- 邮寄到家 -->
-        <view v-if="isDistribution && mold !== 1 && showMailHome && !isDist" class="address-box">
+        <view v-if="mold !== 1 && !hasDist && !isDist" class="address-box">
           <view v-if="!userAddr || isEditAddr">
             <view class="tit">
               <view v-if="!addressList.length" class="text">{{ i18n.fillReceivingInformation }}</view>
@@ -98,10 +98,10 @@
         <!-- /邮寄到家 -->
 
         <!-- 到店自提 -->
-        <view v-if="!isDistribution && mold !== 1" class="address-box">
+        <view v-if="(hasDist||isDist)&& mold !== 1" class="address-box">
           <!-- 选择自提点 -->
           <!-- 有团长和自己是团长 -->
-          <view class="self-raising" v-if="isDist||!showMailHome">
+          <view class="self-raising" v-if="isDist||hasDist">
             <view class="tit">
               <view class="text" style="font-size:32rpx;font-weight:500;white-space: nowrap;">{{ i18n.pickup }}</view>
               <view>
@@ -118,7 +118,7 @@
             </view>
           </view>
           <!-- 散户 -->
-          <view class="self-raising" v-else>
+          <!-- <view class="self-raising" v-else>
             <view class="tit">
               <view class="text" style="font-size:32rpx;font-weight:500;white-space: nowrap;">{{ i18n.pickup }}</view>
               <view style="display: flex;flex-direction:column;">
@@ -139,7 +139,7 @@
                 selStationItem.area }}{{ selStationItem.addr }}</view>
               <view v-if="!selStationItem.province" class="text">{{ i18n.selectPickUpAddress }}</view>
             </view>
-          </view>
+          </view> -->
 
           <!-- 历史提货人 -->
           <view class="raising-user">
@@ -305,7 +305,7 @@
                 </view>
               </view>
               <!-- 配送方式 -->
-              <view v-if="mold !== 1 && isDistribution && !orderType" class="item">
+              <view v-if="mold !== 1 && (!isDist&&!hasDist) && !orderType" class="item">
                 <view class="tit">{{ i18n.shippingCosts }}：</view>
                 <view class="free-box">
                   <view class="price black">
@@ -850,10 +850,10 @@ export default {
       scorePrice: 0,
       startDeliveryFee: 0,
       module: '',
-      showMailHome: true,
+      hasDist: false, // 是否有团长
       distributionUserId: '',// 团长ID
       station: {},
-      isDist:false
+      isDist:false //是否是团长
     }
   },
 
@@ -867,12 +867,9 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取省市区列表数据
-    // this.getAreaListInfo()
-    // if (uni.getStorageSync('bbcDvyType') == 2 || options.dvyType == 2) {
-    //   this.showMailHome = false
-    // }
+    console.log('options',options)
     this.dvyType = uni.getStorageSync('bbcDvyType') || options.dvyType || 1
+    console.log(111,this.dvyType)
     this.orderEntry = options.orderEntry || uni.getStorageSync('bbcOrderEntry') || 0
     this.module = options.module || ''
     this.setData({
@@ -1298,6 +1295,7 @@ export default {
      * 加载订单数据
      */
     loadOrderData: function () {
+      console.log(this.dvyType)
       const orderParam = uni.getStorageSync('bbcOrderItem') || {}
       const dvyType = this.dvyType
       const url = this.orderType === 3 ? '/p/score/confirm' : this.orderType === 2 ? `/p/seckill/${this.orderPath}/confirm` : this.orderType === 1 ? '/p/group/order/confirm' : '/p/order/confirm'
@@ -1554,6 +1552,13 @@ export default {
      * 提交订单校验
      */
     toPay: function () {
+      // if(this.orderType==0){
+      //   if(this.isDist||this.hasDist){
+      //     this.dvyType=2
+      //   }else{
+      //     this.dvyType=1
+      //   }
+      // }
       if (!this.isToPay) return
       if (this.dvyType != 2) {
         if (!this.userAddr && this.mold != 1) {
@@ -1596,9 +1601,11 @@ export default {
           })
           return
         }
+        this.selStationItem=this.station
         if (!this.selStationItem.province) {
           uni.showToast({
-            title: this.i18n.selectPickPoint,
+            // title: this.i18n.selectPickPoint,
+            title: '暂时无法提交订单,请联系团长添加收货地址',
             icon: 'none'
           })
           return
@@ -2660,9 +2667,9 @@ export default {
             stationUserMobile: res.userMobile
           })
           if (res.distributionUserId) {
-            this.showMailHome = false
+            this.hasDist = true
           }else{
-            this.showMailHome =true
+            this.hasDist =false
           }
         }
       }

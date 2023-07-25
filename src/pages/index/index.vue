@@ -245,6 +245,7 @@ export default {
     ]
   },
   onLoad: function (options) {
+    console.log('测试',wx.getStorageSync('ceshi'))
     // #ifdef H5
     this.isWechat = Wechat.isWechat()
     // #endif

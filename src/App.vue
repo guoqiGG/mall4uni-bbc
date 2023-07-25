@@ -104,51 +104,63 @@ export default {
     // #endif
   },
   onShow: function (options) {
-    // this.queryUserInfo() // 获取用户信息 
-    // this.getSignTime() // 获取直播间签到时长限制
-    // this.queryLiveList() // 获取直播间列表
+    // if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044) {
+    //   // 判断用户登录状态 用户未登录直接返回
+    //   if (!uni.getStorageSync('bbcToken')) return
+    //   this.queryUserInfo() // 获取用户信息 
+    //   this.getSignTime() // 获取直播间签到时长限制
+    //   this.queryLiveList() // 获取直播间列表
+    //   this.getUserWatchTime() //获取用户当前已经观看直播的时间
+    //   livePlayer.getShareParams()
+    //     .then(res => {
+    //       console.log('get room id', res);
+    //       // 判断房间状态
+    //       // 1.先获取房间列表 查看房间是否存在 2.判断该房间直播状态 只有直播中才开始计时
+    //       // 房间列表为空返回
+    //       if (!this.liveBroadcastList.length) return
+    //       let liveRoom = {}
+    //       this.liveBroadcastList.forEach(e => {
+    //         if (e.roomid == res.roomid) {
+    //           liveRoom = e
+    //         }
+    //       });
+    //       // 该房间是否存在 不存在则返回
+    //       if (liveRoom == {}) return
+    //       // if (liveRoom.status != 101) { // 查看房间直播状态是否等于101(直播中) 不等于则返回
+    //       //   return
+    //       // } else {
+    //       // 开始计时
+    //       let aa = wx.getStorageSync('isWatchTime')
+    //       console.log('已观看时长', aa)
+    //       this.timer = setInterval(() => {
+    //         if (aa > uni.getStorageSync('signTime')) {
+    //           if (!uni.getStorageSync('sign')) {
+    //             console.log('签到')
+    //             this.userSign()
+    //           } else {
+    //             console.log('今天已经签到过了')
+    //           }
+    //         }
+    //         if (aa % 60 == 0) {
+    //           console.log('每隔一分钟插入直播观看时长')
+    //           this.watchTimes()
+    //           this.watchSecond = '00'
+    //         }
+    //         if (aa % 60 !== 0) {
+    //           let bb = (aa % 60).toString().length == 1 ? '0' + (aa % 60).toString() : (aa % 60).toString()
+    //           this.watchSecond = bb
+    //           console.log('已观看时长', bb)
+    //         }
+    //       }, 1000)
+    //       // }
 
-    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044) {
-      livePlayer.getShareParams()
-        .then(res => {
-          console.log('get room id', res);
-          // 判断用户登录状态
-          // if (!uni.getStorageSync('bbcToken')) return
-          // // 判断房间状态
-          // // 1.先获取房间列表 2.判断该房间直播状态 只有直播中才开始计时
-          // if (this.globalData.liveBroadcastList.length) {
-          //   this.globalData.liveBroadcastList
-          //   this.globalData.liveBroadcastList = this.globalData.liveBroadcastList.filter(item => {
-          //     return item.roomid == res.roomid
-          //   })
-          //   if (this.globalData.liveBroadcastList[0].status != 101) {
-          //     return
-          //   } else {
-          //     // 开始计时
-          //     let aa = wx.getStorageSync('isWatchTime')
-          //     console.log('已观看时长', aa)
-          //     this.timer = setInterval(() => {
-          //       if (aa > uni.getStorageSync('signTime')) {
-          //         console.log('签到')
-          //         if (!uni.getStorageSync('sign')) {
-          //           this.userSign()
-          //         }
-          //       }
-          //       if (aa % 60 == 0) {
-          //         console.log('插入签到')
-          //         this.watchTimes()
-          //         this.watchSecond = '00'
-          //       }
-          //       if (aa % 60 !== 0) {
-          //         let bb = (aa % 60).toString().length == 1 ? '0' + (aa % 60).toString() : (aa % 60).toString()
-          //         this.watchSecond = bb
-          //         console.log('已观看时长', bb)
-          //       }
-          //     }, 1000)
-          //   }
-          // }
-        })
-    }
+    //     })
+    // } else {
+    //   this.clear()
+    // }
+  },
+  onHide() {
+    this.clear()
   },
   globalData: {
     // 定义全局请求队列
@@ -161,7 +173,8 @@ export default {
     currentReqCounts: 0,
     // 当前是否已显示登录失效弹窗
     showLoginExpired: false,
-    liveBroadcastList: []
+    liveBroadcastList: [],// 直播间列表
+    timer: null,// 计时器
   },
   methods: {
     // 获取直播间列表
@@ -248,6 +261,26 @@ export default {
         }
       }
       http.request(params)
+    },
+
+    /* 获取用户观看直播时间 */
+    getUserWatchTime: function () {
+      const params = {
+        url: '/live/liveRoom/getRealTime',
+        method: 'GET',
+        data: {
+          userId: wx.getStorageSync('userID')
+        },
+        callBack: (res) => {
+          wx.setStorageSync('isWatchTime', Number(res) * 60)
+        }
+      }
+      http.request(params)
+    },
+    /* 清除计时器  */
+    clear: function () {
+      clearInterval(this.timer)
+      this.timer = null
     },
     /**
      * 微信小程序检查升级
